@@ -14,7 +14,6 @@ char* alocastring (char *pointer, char aux[])
 	pointer=(char*)malloc((strlen(aux))*(sizeof(char)));
 	strcpy (pointer, aux);
 	return pointer;
-	free(aux);
 }
 /*
 int main ()
