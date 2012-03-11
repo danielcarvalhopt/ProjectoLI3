@@ -5,7 +5,7 @@
 
 char rodape[51] = "Programa iniciado";
 
-int main(){
+int main(int argc, char **argv){
 	int input=0, so = 0, rodape_reset = 0;
 	
 	if( system("cls") ){
