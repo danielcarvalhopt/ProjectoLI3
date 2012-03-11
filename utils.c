@@ -5,3 +5,4 @@ void cin(){
 	scanf("%*[^\n]");
 	scanf("%*c");
 }
+

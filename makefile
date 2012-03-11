@@ -9,3 +9,4 @@ arvore.o:
 
 main.o:
 	gcc -c main.c -Wall -Wextra
+

@@ -6,3 +6,4 @@ rm darray.o
 rm erro.o
 clear
 make
+

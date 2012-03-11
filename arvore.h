@@ -50,3 +50,4 @@ typedef struct sCliente {
 	struct sCliente *cesq, *cdir; // arvore de contribuintes de clientes
 	struct sCliente *nesq, *ndir; // arvore de nomes de clientes
 } Cliente;
+
