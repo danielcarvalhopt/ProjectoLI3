@@ -11,16 +11,16 @@ void clearInputBuffer(){
 
 char* readStr(char *ptr){
 	scanf("%500[^\n]", strBuffer); clearInputBuffer();
-	return allocStr(ptr);
+	return allocStr(ptr, strBuffer);
 }
 
-char* allocStr(char *ptr){
-	if( (ptr = malloc( (strlen(strBuffer)+1) * sizeof(char))) == NULL ){
+char* allocStr(char *dest, char *src){
+	if( (dest = malloc(strlen(src) + 1)) == NULL ){
 		printf("Out of memory\n");
 		return NULL;
 	}
-	strcpy(ptr, strBuffer);
-	return ptr;
+	strcpy(dest, src);
+	return dest;
 }
 
 void readInt(int *ptr){
@@ -44,8 +44,11 @@ void clearScreen(){
 			system("clear");
 		else
 			system("cls");
-		
-	
+}
+
+void concatStr(char *dest, char *src){
+	dest = realloc( dest, (strlen(dest) + strlen(src) + 1) );
+    strcat(dest,src);
 }
 
 /*int main ()

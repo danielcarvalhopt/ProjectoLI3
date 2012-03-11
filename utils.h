@@ -6,7 +6,8 @@ char operativeSystem;
 
 void clearInputBuffer();
 char* readStr(char *ptr);
-char* allocStr(char *ptr);
+char* allocStr(char *dest, char *src);
+void concatStr(char *dest, char *src);
 
 void readInt(int *ptr);
 

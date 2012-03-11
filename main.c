@@ -7,12 +7,13 @@
 char rodape[51] = "Programa iniciado";
 
 int main(/*int argc, char **argv*/){
-	int input=0, rodape_reset = 0;
 	
+	char abc[50];
+	strcpy(abc, "ola");
+	printf("%s",abc);
+	strcat(abc, "ole");
+	printf("%s",abc);
 	
-	while( input == -1){
-		
-	}
 	return 0;
 }
 
