@@ -1,14 +1,8 @@
 /********************************
  * Grafo / Árvore - Localidades *
  ********************************/
-/* Arvore de Vertices */
-typedef struct sVertice {
-       char *nome;
-       Adjacente *adj;
-       struct sVertice *esq, *dir;
-} Vertice;
 
-/* Arvore de Adjacências */
+ /* Arvore de Adjacências */
 typedef struct sAdjacente {
        char *nome;
        int custo;
@@ -16,12 +10,21 @@ typedef struct sAdjacente {
        struct sAdjacente *esq, *dir;
 } Adjacente;
 
+/* Arvore de Vertices */
+typedef struct sVertice {
+       char *nome;
+       Adjacente *adj;
+       struct sVertice *esq, *dir;
+} Vertice;
+
+
 /*********************
  * Arvore de Camioes *
  *********************/
 /* Arvore de Camioes */
 typedef struct sCamiao {
 	unsigned int id;
+	int capacidadecarga;
 	char *matricula;
 	float consumo;
 	struct sCamiao *iesq, *idir; // arvore de identificador de camiao
@@ -38,7 +41,7 @@ typedef struct sServico {
 	Vertice *estava;  // localizaçao do camiao aquando do pedido
 	Vertice *carga;   // local onde o camiao foi carregado
 	Vertice *destino; // local onde o camiao ficou no fim da viagem
-	sServico *ant;    // apontador para o servico anterior
+	struct sServico *ant;    // apontador para o servico anterior
 } Servico;
 
 /* Arvore de Clientes */
