@@ -15,7 +15,7 @@ char* readStr(char *ptr){
 }
 
 char* allocStr(char *ptr){
-	if( (ptr = malloc(strlen(strBuffer) * sizeof(char))) == NULL ){
+	if( (ptr = malloc( (strlen(strBuffer)+1) * sizeof(char))) == NULL ){
 		printf("Out of memory\n");
 		return NULL;
 	}
