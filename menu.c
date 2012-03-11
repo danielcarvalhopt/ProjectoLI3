@@ -1,34 +1,12 @@
 #include "menu.h"
 
-#define CONSOLE_WIDTH 64
-#define MENU_WIDTH 60
-
-void menu_printfHeader(){
-	char header[MENU_WIDTH] = "Transportes LEI - Gestão de Transportes";
-	
-}
-
-void menu(int *input){
-	char acum[CONSOLE_WIDTH];
-	strcpy(acum, ";");
-	
-	
-	menu_printHeader(char *acum);
-	switch(input){
-		case 9:
-//			menu_printPath(input);
-	}
-}
-
-
-
 /*
 int menu(){
 	clearScreen();
 	printf(
 		";**************************************************************;\n"
 		"|                                                              |\n"
-		"| Transportes LEI - Gestão de Transportes                      |\n"
+		"|    Transportes LEI - Gestão de Transportes                   |\n"
 		"|                                                              |\n"
 	);
 	switch(input){
