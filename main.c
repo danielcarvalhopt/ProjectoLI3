@@ -1,20 +1,16 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include "utils.h"
 
+
 char rodape[51] = "Programa iniciado";
 
-int main(int argc, char **argv){
-	int input=0, so = 0, rodape_reset = 0;
+int main(/*int argc, char **argv*/){
+	int input=0, rodape_reset = 0;
 	
-	if( system("cls") ){
-		so=1;
-		system("clear");
-	}
 	
 	while( input != -1){
-		so==0 ? system("cls") : system("clear");
+		clearScreen();
 		printf(
 			";**************************************************************;\n"
 			"|                                                              |\n"
@@ -35,7 +31,7 @@ int main(int argc, char **argv){
 				"|           %50s |\n"
 				"****************************************************************\n"
 				">> ", rodape );
-				scanf("%d[^\n]", &input); cin();
+				readInt(&input);
 				if( input == 1 || input == 2 )
 					input += 90;
 				else if( input != 0 )
@@ -87,7 +83,7 @@ int main(int argc, char **argv){
 				"|           %50s |\n"
 				"****************************************************************\n"
 				">> ", rodape );
-				getchar(); cin(); // nao funciona ainda, precisa de 2x[ENTER]
+				getchar(); clearInputBuffer(); // nao funciona ainda, precisa de 2x[ENTER]
 				input = 0;
 				break;
 			default:
@@ -107,7 +103,7 @@ int main(int argc, char **argv){
 				"|           %50s |\n"
 				"****************************************************************\n"
 				">> ", rodape );
-				scanf("%d[^\n]", &input); cin();
+				readInt(&input);
 				if( input == -1 )
 					input = 0;
 		}

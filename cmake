@@ -1,9 +1,6 @@
 #!/bin/bash
-rm main.o
-rm rect
-rm rectangulo.o
-rm darray.o
-rm erro.o
+rm *.o
+rm *.ghc
+rm transportes
 clear
 make
-

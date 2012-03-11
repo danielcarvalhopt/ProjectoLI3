@@ -1,3 +1,6 @@
+#ifndef ARVORE_H_INCLUDED
+#define ARVORE_H_INCLUDED
+
 /********************************
  * Grafo / Árvore - Localidades *
  ********************************/
@@ -54,3 +57,4 @@ typedef struct sCliente {
 	struct sCliente *nesq, *ndir; // arvore de nomes de clientes
 } Cliente;
 
+#endif /* ARVORE_H_INCLUDED */
