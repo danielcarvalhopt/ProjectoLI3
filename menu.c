@@ -1,23 +1,70 @@
+#include <string.h>
+#include <stdio.h>
+
 #include "menu.h"
+#include "utils.h"
 
 #define CONSOLE_WIDTH 64
 #define MENU_WIDTH 60
 
-void menu_printfHeader(){
-	char header[MENU_WIDTH] = "Transportes LEI - Gestão de Transportes";
+char* menu_Asterisk(char *acum, char *ptacum, int *left){
+	char linha[CONSOLE_WIDTH+2];
+	addChar( addnChar( linha, '*', CONSOLE_WIDTH ) , '\n');
 	
+	strcat(acum, linha);
+	left -= (CONSOLE_WIDTH+1);
+	ptacum += (CONSOLE_WIDTH+1);
+	
+	return ptacum;
+}
+
+char* menu_Space(char *acum, char *ptacum, int *left){
+	char linha[CONSOLE_WIDTH+2];
+	addChar( addnChar( linha, '*', CONSOLE_WIDTH ) , '\n');
+	
+	strcat(acum, linha);
+	left -= (CONSOLE_WIDTH+1);
+	ptacum += (CONSOLE_WIDTH+1);
+	
+	return ptacum;
+}
+
+char* menu_Line(char *acum, char *ptacum, int *left, char *src, int lpos){
+	
+	return ptacum;
+}
+
+char* menu_Header(char *acum, char *ptacum, int *left){
+	//ptacum = menu_printLine(acum, ptacum, , 1);
+	ptacum = menu_Asterisk(acum, ptacum, left);
+	
+	
+	
+	//char header[MENU_WIDTH] = "Transportes LEI - Gestão de Transportes";
+	
+	return ptacum;
 }
 
 void menu(int *input){
-	char acum[CONSOLE_WIDTH];
-	strcpy(acum, ";");
+	/* Mínimos:
+	 * 1 linha de asteriscos
+	 * 3 linhas para o titulo (2 em branco e no meio o titulo)
+	 * 2 linhas para o directorio (1 em branco e outra do directorio)
+	 * 1 linha para opção
+	 * 1 linha em branco
+	 * 1 linha de opção de voltar atrás
+	 * 2 linhas em branco
+	 * 1 linha de estado
+	 * 1 linha de asteriscos
+	 * TOTAL: 13 linhas no mínimo
+	 * */
+	char acum[(CONSOLE_WIDTH+1)*13+1] = {'\0'};
+	char *ptacum = acum;
+	int left = (CONSOLE_WIDTH+1)*13+1;
 	
+	ptacum = menu_Header(acum, ptacum, &left);
 	
-	menu_printHeader(char *acum);
-	switch(input){
-		case 9:
-//			menu_printPath(input);
-	}
+	printf("%s", acum);
 }
 
 

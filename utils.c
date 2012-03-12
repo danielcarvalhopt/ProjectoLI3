@@ -64,18 +64,18 @@ char* extendStr(char *str, int i){
 	return str;
 }
 
-char* addCharEnd(char *dest, char *chr){
+char* addCharEnd(char *dest, char chr){
 	while(dest != '\0') dest++;
-	*(dest) = *chr;
+	*(dest) = chr;
 	*(dest+1) = '\0';
 	return (dest+1);
 }
 
-char* addnCharEnd(char *dest, char *chr, int i){
+char* addnCharEnd(char *dest, char chr, int i){
 	if( i > 0 ){
 		while(dest != '\0') dest++;
 		for(;i>0;i--){
-			*dest = *chr;
+			*dest = chr;
 			dest++;
 		}
 		*dest = '\0';
@@ -83,15 +83,15 @@ char* addnCharEnd(char *dest, char *chr, int i){
 	return dest;
 }
 
-char* addChar(char *dest, char *chr){
-	*(dest+1) = *chr;
-	*(dest+2) = '\0';
-	return (dest+2);
+char* addChar(char *dest, char chr){
+	*(dest) = chr;
+	*(dest+1) = '\0';
+	return (dest+1);
 }
 
-char* addnChar(char *dest, char *chr, int i){
+char* addnChar(char *dest, char chr, int i){
 	for(;i>0;i--){
-		*dest = *chr;
+		*dest = chr;
 		dest++;
 	}
 	*dest = '\0';
