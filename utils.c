@@ -28,7 +28,7 @@ void clearScreen(){
 			system("cls");
 }
 
-int* readInt(int *ptr){
+int readInt(){
 	char c;
 	int sinal=1, res=0;
 	c=getchar();
@@ -47,12 +47,12 @@ int* readInt(int *ptr){
 		}
 	}
 	if( res != INT_MIN )
-		*ptr = res * sinal;
-	return ptr;
+		res *= sinal;
+	return res;
 }
 
-int isInt(int *ptr){
-	return ((*ptr)!=INT_MIN) ? 1 : 0;
+int isInt(int n){
+	return (n != INT_MIN) ? 1 : 0;
 }
 
 char* readStr(char *ptr){

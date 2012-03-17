@@ -32,7 +32,7 @@ int printMenu(int input){
 		case 92:
 			strcpy(status, "O programa vai terminar sem guardar dados");
 			strcpy(menuAnt, " ");
-			printf( "*    %-56s  *\n", "Menu Principal > Sair > Sair sem guarda sem guardarr");
+			printf( "*    %-56s  *\n", "Menu Principal > Sair > Sair sem guardar");
 			break;
 		case 8:
 			//strcpy(status, "Pressione [ENTER] duas vezes para continuar");
@@ -110,7 +110,7 @@ int printMenu(int input){
 
 int getIntLoop(){
 	int x;
-	if( isInt( readInt( &x ) ) == 0 ){
+	if( isInt( x = readInt() ) == 0 ){
 		printf("Numero invalido\n>> ");
 		return getIntLoop();
 	}else
