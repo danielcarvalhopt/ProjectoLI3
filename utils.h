@@ -5,7 +5,8 @@ char strBuffer[501];
 char operativeSystem;
 
 void clearInputBuffer();
-int* readInt(int *ptr);
+int readInt();
+int isInt(int n);
 void chooseSO();
 void clearScreen();
 
