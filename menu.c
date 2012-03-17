@@ -4,70 +4,118 @@
 #include "menu.h"
 #include "utils.h"
 
-#define CONSOLE_WIDTH 64
-#define MENU_WIDTH 60
+int printMenu(int input){
+	char fill[64+2]  = "****************************************************************\n";
+	char space[64+2] = "*                                                              *\n";
+	char title[64+2] = "*    Transportes LEI - Gestao de Transportes                   *\n";
+	char status[60+1] = " ";
+	char menuAnt[62+1] = "0) Voltar ao Menu Anterior";
+	
+	clearScreen();
+	printf("%s%s%s%s",fill,space,title,space);
+	switch( input ){
+		case 9:
+			printf( "*    %-56s  *\n"
+				"%s"
+				"*    %-56s  *\n"
+				"*    %-56s  *\n",
+					"Menu Principal > Sair", space,
+					"1) Guardar e Sair",
+					"2) Sair"
+			);
+			break;
+		case 91:
+			strcpy(status, "Guardado");
+			strcpy(menuAnt, " ");
+			printf( "*    %-56s  *\n", "Menu Principal > Sair > Guardar e Sair");
+			break;
+		case 92:
+			strcpy(status, "O programa vai terminar sem guardar dados");
+			strcpy(menuAnt, " ");
+			printf( "*    %-56s  *\n", "Menu Principal > Sair > Sair sem guarda sem guardarr");
+			break;
+		case 8:
+			//strcpy(status, "Pressione [ENTER] duas vezes para continuar");
+			printf( "*    %-56s  *\n"
+				"%s"
+				"*    %-56s  *\n"
+				"*    %-56s  *\n"
+				"*    %-56s  *\n"
+				"*    %-56s  *\n"
+				"*    %-56s  *\n",
+					"Menu Principal > Ajuda e Acessibilidade", space,
+					"+ Navegação Rápida",
+					"   Em vez de selecionar o caminho passo-a-passo, podera",
+					"   optar por escrever o caminho de uma so vez.",
+					"      Exemplo: 9 seguido de 2 para Guardar e Sair pode",
+					"               ser escrito 92 e ter o mesmo efeito"
+			);
+			break;
+		default:
+			printf( "*    %-56s  *\n"
+				"%s"
+				"*    %-56s  *\n"
+				"*    %-56s  *\n"
+				"*    %-56s  *\n"
+				"*    %-56s  *\n"
+				"%s"
+				"*    %-56s  *\n",
+					"Menu Principal", space,
+					"1) Novo Pedido",
+					"2) Gerir Clientes",
+					"3) Gerir Camioes",
+					"4) Gerir Localizacoes",space,
+					"8) Ajuda e Acessibilidade"
+			);
+			
 
-char* menu_Asterisk(char *acum, char *ptacum, int *left){
-	char linha[CONSOLE_WIDTH+2];
-	addChar( addnChar( linha, '*', CONSOLE_WIDTH ) , '\n');
+			strcpy(menuAnt, "9) Sair");
+	}
+	printf(
+		"%s"
+		"*    %-56s  *\n"
+		"%s%s"
+		"* %60s *\n"
+		"%s>> ",
+			space, menuAnt, space, space, status, fill);
 	
-	strcat(acum, linha);
-	left -= (CONSOLE_WIDTH+1);
-	ptacum += (CONSOLE_WIDTH+1);
-	
-	return ptacum;
+	switch( input ){
+		case -1:
+			input = 0;
+		case 9:
+			input = getIntLoop();
+			if( input == 1 || input == 2 )
+				input += 90;
+			else if( input != 0 )
+				input = 9;
+			break;
+		case 91:
+			input = -1;
+			break;
+		case 92:
+			input = -1;
+			break;
+		case 8:
+			getchar(); clearInputBuffer();
+			input = 0;
+			break;
+		default:
+			input = getIntLoop();
+			if( input == -1 )
+				input = 0;
+	}
+
+	return input;
 }
 
-char* menu_Space(char *acum, char *ptacum, int *left){
-	char linha[CONSOLE_WIDTH+2];
-	addChar( addnChar( linha, '*', CONSOLE_WIDTH ) , '\n');
-	
-	strcat(acum, linha);
-	left -= (CONSOLE_WIDTH+1);
-	ptacum += (CONSOLE_WIDTH+1);
-	
-	return ptacum;
+int getIntLoop(){
+	int x;
+	if( isInt( readInt( &x ) ) == 0 ){
+		printf("Numero invalido\n>> ");
+		return getIntLoop();
+	}else
+		return x;
 }
-
-char* menu_Line(char *acum, char *ptacum, int *left, char *src, int lpos){
-	
-	return ptacum;
-}
-
-char* menu_Header(char *acum, char *ptacum, int *left){
-	//ptacum = menu_printLine(acum, ptacum, , 1);
-	ptacum = menu_Asterisk(acum, ptacum, left);
-	
-	
-	
-	//char header[MENU_WIDTH] = "Transportes LEI - Gestão de Transportes";
-	
-	return ptacum;
-}
-
-void menu(int *input){
-	/* Mínimos:
-	 * 1 linha de asteriscos
-	 * 3 linhas para o titulo (2 em branco e no meio o titulo)
-	 * 2 linhas para o directorio (1 em branco e outra do directorio)
-	 * 1 linha para opção
-	 * 1 linha em branco
-	 * 1 linha de opção de voltar atrás
-	 * 2 linhas em branco
-	 * 1 linha de estado
-	 * 1 linha de asteriscos
-	 * TOTAL: 13 linhas no mínimo
-	 * */
-	char acum[(CONSOLE_WIDTH+1)*13+1] = {'\0'};
-	char *ptacum = acum;
-	int left = (CONSOLE_WIDTH+1)*13+1;
-	
-	ptacum = menu_Header(acum, ptacum, &left);
-	
-	printf("%s", acum);
-}
-
-
 
 /*
 int menu(){

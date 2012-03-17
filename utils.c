@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <limits.h>
 
 #include "utils.h"
 
 void clearInputBuffer(){
-	scanf("%*[^\n]");
-	scanf("%*c");
+	char c;
+	while( (c=getchar()) != '\n' );
 }
 
 void chooseSO(){
@@ -28,9 +29,30 @@ void clearScreen(){
 }
 
 int* readInt(int *ptr){
-	scanf("%d[^\n]",ptr);
-	clearInputBuffer();
+	char c;
+	int sinal=1, res=0;
+	c=getchar();
+	switch(c){
+		case '-': sinal = -1;
+		case '+': c=getchar();
+			  break;
+	}
+	while( c != '\n' && res != INT_MIN){
+		if( c >= '0' && c <= '9' ){
+			res = res*10 + c - '0';
+			c = getchar();
+		}else{
+			res = INT_MIN;
+			clearInputBuffer();
+		}
+	}
+	if( res != INT_MIN )
+		*ptr = res * sinal;
 	return ptr;
+}
+
+int isInt(int *ptr){
+	return ((*ptr)!=INT_MIN) ? 1 : 0;
 }
 
 char* readStr(char *ptr){

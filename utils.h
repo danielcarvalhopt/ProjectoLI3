@@ -6,6 +6,7 @@ char operativeSystem;
 
 void clearInputBuffer();
 int* readInt(int *ptr);
+int isInt(int *ptr);
 void chooseSO();
 void clearScreen();
 
