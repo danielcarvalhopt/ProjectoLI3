@@ -14,10 +14,37 @@ typedef struct sMainTree{
     TreePt tree[DIM];
     int nodes;
     int (*compare[DIM])(void*,void*);
-    void (*print[DIM])(void*);
+    void (*print[DIM])(void*,int);
 } MainTree, *MainTreePt;
 
-MainTreePt tree_new( int (*compare[DIM])(void*,void*), void (*print[DIM])(void*)){
+int maxInt(int a, int b){
+    return a>=b ? a : b;
+}
+
+int tree_getHeight(TreePt tree){
+    return tree!=NULL ? tree->height : 0;
+}
+
+TreePt tree_searchRec(TreePt thisTreePt, void* node, int thisDim, int (*compare)(void*,void*)){
+    int cmp = 0;
+    if( thisTreePt == NULL )
+        return NULL;
+    
+    cmp = compare(thisTreePt->node, node);
+
+    if( cmp > 0 )
+        return tree_searchRec( thisTreePt->l[thisDim], node, thisDim, compare );
+    else if( cmp < 0 )
+        return tree_searchRec( thisTreePt->r[thisDim], node, thisDim, compare );
+    else
+        return thisTreePt;
+}
+
+TreePt tree_search(MainTreePt thisMainTree, void* node, int thisDim){
+    return tree_searchRec(thisMainTree->tree[thisDim], node, thisDim, thisMainTree->compare[thisDim]);
+}
+
+MainTreePt tree_new( int (*compare[DIM])(void*,void*), void (*print[DIM])(void*,int)){
     int i;
     MainTreePt new;
     if( (new = (MainTreePt) malloc( sizeof(MainTree))) != NULL ){
@@ -33,18 +60,20 @@ MainTreePt tree_new( int (*compare[DIM])(void*,void*), void (*print[DIM])(void*)
 
 int tree_insert( MainTreePt thisMainTree, void* node){
     int i, sucesso=1;
-    for( i=0; i<DIM && sucesso == 1; i++){
-        sucesso = tree_insertRec( &thisMainTree->tree[i], node, i, 0, thisMainTree->compare[i]);
-    }
+    for( i=0; i<DIM && sucesso == 1; i++)
+        sucesso = (tree_search(thisMainTree, node, i) == NULL ? 1 : 0);
+
+    for( i=0; i<DIM && sucesso == 1; i++)
+        sucesso = tree_insertRec( &thisMainTree->tree[i], node, i, thisMainTree->compare[i]);
+
     return sucesso; // 1 - inseriu em todos; 0 - já existe
 }
 
-int tree_insertRec( TreePt *thisTree, void* node, int thisDim, int height; int (*compare)(void*,void*)){
+int tree_insertRec( TreePt *thisTree, void* node, int thisDim, int (*compare)(void*,void*)){
     int i, cmp, ret=1;
     if( *thisTree == NULL ){
         *thisTree = (TreePt)malloc(sizeof(Tree));
         (*thisTree)->node = node;
-        (*thisTree)->height = 1; // HEIGHT
         for(i=0; i<DIM; i++){
             (*thisTree)->l[i] = NULL;
             (*thisTree)->r[i] = NULL;
@@ -55,17 +84,17 @@ int tree_insertRec( TreePt *thisTree, void* node, int thisDim, int height; int (
             ret = tree_insertRec( &(*thisTree)->r[thisDim], node, thisDim, compare );
         else if( cmp > 0 ) // existente é maior que o que se quer inserir -> inserir à esquerda
             ret = tree_insertRec( &(*thisTree)->l[thisDim], node, thisDim, compare );
-        else
-            ret = 0; 
     }
+
+    (*thisTree)->height = maxInt( tree_getHeight( (*thisTree)->r[thisDim]), tree_getHeight((*thisTree)->l[thisDim]) ) +1;
     
     return ret;
 }
 
-void tree_printOrderedRec( TreePt thisTree, void (*print)(void*), int thisDim ){
+void tree_printOrderedRec( TreePt thisTree, void (*print)(void*,int), int thisDim ){
     if( thisTree != NULL ){
         tree_printOrderedRec( thisTree->l[thisDim], print, thisDim);
-        print(thisTree->node);
+        print(thisTree->node, thisTree->height);
         tree_printOrderedRec( thisTree->r[thisDim], print, thisDim);
     }
 }
@@ -98,19 +127,19 @@ int comparaY( void* fst, void* snd ){
         return 0;
 }
 
-void print( void *fst ){
-    printf("{%d,%d}\n", ((Coord*)fst)->x, ((Coord*)fst)->y );
+void print( void *fst, int altura ){
+    printf("{%d,%d} at %d\n", ((Coord*)fst)->x, ((Coord*)fst)->y, altura );
 }
 
 int main(){
     int (*funcCompara[DIM])(void*,void*) = {comparaX, comparaY};
-    void (*funcPrint[DIM])(void*) = {print, print};
+    void (*funcPrint[DIM])(void*,int) = {print, print};
     
     MainTreePt arvore = tree_new( funcCompara, funcPrint );
     
     int i;
-    Coord x[5] = { {6,1}, {4,10}, {8,3}, {9,4}, {3,5} };
-    for( i=0; i<5; i++)
+    Coord x[8] = { {6,1}, {4,10}, {8,3}, {9,4}, {3,5}, {4,6}, {2,1}, {7,2} };
+    for( i=0; i<8; i++)
         tree_insert( arvore, &x[i] );
     tree_printOrdered(arvore, 0);
     printf("-----\n");
