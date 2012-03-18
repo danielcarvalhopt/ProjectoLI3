@@ -4,12 +4,8 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-ARVORE_H_INCLUDED	arvore.h	2;"	d
-Adjacente	arvore.h	/^} Adjacente;$/;"	t	typeref:struct:sAdjacente
-Camiao	arvore.h	/^} Camiao;$/;"	t	typeref:struct:sCamiao
-Cliente	arvore.h	/^} Cliente;$/;"	t	typeref:struct:sCliente
-Coord	arvore.c	/^} Coord;$/;"	t	typeref:struct:sCoord	file:
-DIM	arvore.c	4;"	d	file:
+Coord	ndavl.c	/^} Coord;$/;"	t	typeref:struct:sCoord	file:
+DIM	ndavl.h	10;"	d
 LinkedListPTR	mod_lista_ligada.h	/^} *LinkedListPTR; 				\/\/ Apontador para a lista ligada$/;"	t	typeref:struct:linkedList
 MENU_H_INCLUDED	menu.h	2;"	d
 MainList	mod_lista_ligada.h	/^typedef struct MainList {$/;"	s
@@ -17,13 +13,8 @@ MainList::elems	mod_lista_ligada.h	/^	LinkedListPTR elems;     			\/\/ Apontador
 MainList::func_compare	mod_lista_ligada.h	/^	int (*func_compare)(void*,void*);   \/\/ Função de comparação de elementos da lista ligada$/;"	m	struct:MainList	access:public
 MainList::nelems	mod_lista_ligada.h	/^	int nelems;  						\/\/ Numero de elementos da lista ligada$/;"	m	struct:MainList	access:public
 MainListPTR	mod_lista_ligada.h	/^} *MainListPTR; 						\/\/ Apontador para a estrutura de controlo$/;"	t	typeref:struct:MainList
-MainTree	arvore.c	/^} MainTree, *MainTreePt;$/;"	t	typeref:struct:sMainTree	file:
-MainTreePt	arvore.c	/^} MainTree, *MainTreePt;$/;"	t	typeref:struct:sMainTree	file:
-Servico	arvore.h	/^} Servico;$/;"	t	typeref:struct:sServico
-Tree	arvore.c	/^} Tree, *TreePt;$/;"	t	typeref:struct:sTree	file:
-TreePt	arvore.c	/^} Tree, *TreePt;$/;"	t	typeref:struct:sTree	file:
+NDAVL_H_INCLUDED	ndavl.h	2;"	d
 UTILS_H_INCLUDED	utils.h	2;"	d
-Vertice	arvore.h	/^} Vertice;$/;"	t	typeref:struct:sVertice
 addChar	utils.c	/^char* addChar(char *dest, char chr){$/;"	f	signature:(char *dest, char chr)
 addChar	utils.h	/^char* addChar(char *dest, char chr);$/;"	p	signature:(char *dest, char chr)
 addCharEnd	utils.c	/^char* addCharEnd(char *dest, char chr){$/;"	f	signature:(char *dest, char chr)
@@ -32,10 +23,8 @@ addnChar	utils.c	/^char* addnChar(char *dest, char chr, int i){$/;"	f	signature:
 addnChar	utils.h	/^char* addnChar(char *dest, char chr, int i);$/;"	p	signature:(char *dest, char chr, int i)
 addnCharEnd	utils.c	/^char* addnCharEnd(char *dest, char chr, int i){$/;"	f	signature:(char *dest, char chr, int i)
 addnCharEnd	utils.h	/^char* addnCharEnd(char *dest, char chr, int i);$/;"	p	signature:(char *dest, char chr, int i)
-adj	arvore.h	/^       Adjacente *adj;$/;"	m	struct:sVertice	access:public
 allocStr	utils.c	/^char* allocStr(char *dest, char *src){$/;"	f	signature:(char *dest, char *src)
 allocStr	utils.h	/^char* allocStr(char *dest, char *src);$/;"	p	signature:(char *dest, char *src)
-ant	arvore.h	/^	struct sServico *ant;    \/\/ apontador para o servico anterior$/;"	m	struct:sServico	typeref:struct:sServico::sServico	access:public
 apagaelem	mod_lista_ligada.c	/^void apagaelem (LinkedListPTR *elem)$/;"	f	signature:(LinkedListPTR *elem)
 apagaelem	mod_lista_ligada.h	/^void apagaelem (LinkedListPTR *elem);$/;"	p	signature:(LinkedListPTR *elem)
 apagaelemlista	mod_lista_ligada.c	/^void apagaelemlista (MainListPTR lista, void* externdata)$/;"	f	signature:(MainListPTR lista, void* externdata)
@@ -44,142 +33,66 @@ apagalista	mod_lista_ligada.c	/^void apagalista(MainListPTR lista)$/;"	f	signatu
 apagalista	mod_lista_ligada.h	/^void apagalista(MainListPTR lista);$/;"	p	signature:(MainListPTR lista)
 apagalistaaux	mod_lista_ligada.c	/^void apagalistaaux(LinkedListPTR *lista)$/;"	f	signature:(LinkedListPTR *lista)
 apagalistaaux	mod_lista_ligada.h	/^void apagalistaaux(LinkedListPTR *lista);$/;"	p	signature:(LinkedListPTR *lista)
-camiao	arvore.h	/^	Camiao *camiao;$/;"	m	struct:sServico	access:public
-capacidadecarga	arvore.h	/^	int capacidadecarga;$/;"	m	struct:sCamiao	access:public
-carga	arvore.h	/^	Vertice *carga;   \/\/ local onde o camiao foi carregado$/;"	m	struct:sServico	access:public
-cdir	arvore.h	/^	struct sCliente *cesq, *cdir; \/\/ arvore de contribuintes de clientes$/;"	m	struct:sCliente	typeref:struct:sCliente::	access:public
-cesq	arvore.h	/^	struct sCliente *cesq, *cdir; \/\/ arvore de contribuintes de clientes$/;"	m	struct:sCliente	typeref:struct:sCliente::sCliente	access:public
 chooseSO	utils.c	/^void chooseSO(){$/;"	f
 chooseSO	utils.h	/^void chooseSO();$/;"	p	signature:()
 clearInputBuffer	utils.c	/^void clearInputBuffer(){$/;"	f
 clearInputBuffer	utils.h	/^void clearInputBuffer();$/;"	p	signature:()
 clearScreen	utils.c	/^void clearScreen(){$/;"	f
 clearScreen	utils.h	/^void clearScreen();$/;"	p	signature:()
-comparaX	arvore.c	/^int comparaX( void* fst, void* snd ){$/;"	f	signature:( void* fst, void* snd )
-comparaY	arvore.c	/^int comparaY( void* fst, void* snd ){$/;"	f	signature:( void* fst, void* snd )
-compare	arvore.c	/^    int (*compare[DIM])(void*,void*);$/;"	m	struct:sMainTree	file:	access:public
+comparaX	ndavl.c	/^int comparaX( void* fst, void* snd ){$/;"	f	signature:( void* fst, void* snd )
+comparaY	ndavl.c	/^int comparaY( void* fst, void* snd ){$/;"	f	signature:( void* fst, void* snd )
 concatStr	utils.c	/^char* concatStr(char *dest, char *src){$/;"	f	signature:(char *dest, char *src)
 concatStr	utils.h	/^char* concatStr(char *dest, char *src);$/;"	p	signature:(char *dest, char *src)
-consumo	arvore.h	/^	float consumo;$/;"	m	struct:sCamiao	access:public
-contribuinte	arvore.h	/^	unsigned int contribuinte; \/\/ NIF vai de 000,000,000 a +999,999,999, unsigned int vai de 0 a +4,294,967,295, mais que suficiente$/;"	m	struct:sCliente	access:public
 crialistaligada	mod_lista_ligada.c	/^MainListPTR crialistaligada(MainListPTR lista, int(*func_compare)(void*,void*)) {$/;"	f	signature:(MainListPTR lista, int(*func_compare)(void*,void*))
 crialistaligada	mod_lista_ligada.h	/^MainListPTR crialistaligada(MainListPTR lista, int (*func_compare)(void *, void *));$/;"	p	signature:(MainListPTR lista, int (*func_compare)(void *, void *))
-custo	arvore.h	/^       int custo;$/;"	m	struct:sAdjacente	access:public
-destino	arvore.h	/^	Vertice *destino; \/\/ local onde o camiao ficou no fim da viagem$/;"	m	struct:sServico	access:public
-dir	arvore.h	/^       struct sAdjacente *esq, *dir;$/;"	m	struct:sAdjacente	typeref:struct:sAdjacente::	access:public
-dir	arvore.h	/^       struct sVertice *esq, *dir;$/;"	m	struct:sVertice	typeref:struct:sVertice::	access:public
-distancia	arvore.h	/^       int distancia;$/;"	m	struct:sAdjacente	access:public
 elems	mod_lista_ligada.h	/^	LinkedListPTR elems;     			\/\/ Apontador para uma lista ligada                    $/;"	m	struct:MainList	access:public
-esq	arvore.h	/^       struct sAdjacente *esq, *dir;$/;"	m	struct:sAdjacente	typeref:struct:sAdjacente::sAdjacente	access:public
-esq	arvore.h	/^       struct sVertice *esq, *dir;$/;"	m	struct:sVertice	typeref:struct:sVertice::sVertice	access:public
-estava	arvore.h	/^	Vertice *estava;  \/\/ localizaçao do camiao aquando do pedido$/;"	m	struct:sServico	access:public
 extdata	mod_lista_ligada.h	/^	void *extdata;      		\/\/ Apontador para o elemento da lista       $/;"	m	struct:linkedList	access:public
 extendStr	utils.c	/^char* extendStr(char *str, int i){$/;"	f	signature:(char *str, int i)
 extendStr	utils.h	/^char* extendStr(char *str, int i);$/;"	p	signature:(char *str, int i)
 func_compare	mod_lista_ligada.h	/^	int (*func_compare)(void*,void*);   \/\/ Função de comparação de elementos da lista ligada$/;"	m	struct:MainList	access:public
 getIntLoop	menu.c	/^int getIntLoop(){$/;"	f
 getIntLoop	menu.h	/^int getIntLoop();$/;"	p	signature:()
-height	arvore.c	/^    int height; \/\/ HEIGHT$/;"	m	struct:sTree	file:	access:public
-id	arvore.h	/^	unsigned int id;$/;"	m	struct:sCamiao	access:public
-idir	arvore.h	/^	struct sCamiao *iesq, *idir; \/\/ arvore de identificador de camiao$/;"	m	struct:sCamiao	typeref:struct:sCamiao::	access:public
-iesq	arvore.h	/^	struct sCamiao *iesq, *idir; \/\/ arvore de identificador de camiao$/;"	m	struct:sCamiao	typeref:struct:sCamiao::sCamiao	access:public
+height	ndavl.h	/^    int height[DIM];$/;"	v
 inserelistahead	mod_lista_ligada.c	/^ int inserelistahead(MainListPTR lista, void *externdata) {$/;"	f	signature:(MainListPTR lista, void *externdata)
 inserelistahead	mod_lista_ligada.h	/^int inserelistahead(MainListPTR lista, void* externdata);$/;"	p	signature:(MainListPTR lista, void* externdata)
 isInt	utils.c	/^int isInt(int n){$/;"	f	signature:(int n)
 isInt	utils.h	/^int isInt(int n);$/;"	p	signature:(int n)
-l	arvore.c	/^    struct sTree *l[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	file:	access:public
+l	ndavl.h	/^    struct sTree *l[DIM];$/;"	v	typeref:struct:sTree
 linkedList	mod_lista_ligada.h	/^typedef struct linkedList {$/;"	s
 linkedList::extdata	mod_lista_ligada.h	/^	void *extdata;      		\/\/ Apontador para o elemento da lista       $/;"	m	struct:linkedList	access:public
 linkedList::prox	mod_lista_ligada.h	/^	struct linkedList *prox;	\/\/ Próximo elemento da lista$/;"	m	struct:linkedList	typeref:struct:linkedList::linkedList	access:public
-main	arvore.c	/^int main(){$/;"	f
 main	main.c	/^int main(\/*int argc, char **argv*\/){$/;"	f
-matricula	arvore.h	/^	char *matricula;$/;"	m	struct:sCamiao	access:public
-maxInt	arvore.c	/^int maxInt(int a, int b){$/;"	f	signature:(int a, int b)
-mdir	arvore.h	/^	struct sCamiao *mesq, *mdir; \/\/ arvore de matrícula de camiao$/;"	m	struct:sCamiao	typeref:struct:sCamiao::	access:public
-mesq	arvore.h	/^	struct sCamiao *mesq, *mdir; \/\/ arvore de matrícula de camiao$/;"	m	struct:sCamiao	typeref:struct:sCamiao::sCamiao	access:public
-morada	arvore.h	/^	char *morada;$/;"	m	struct:sCliente	access:public
-ndir	arvore.h	/^	struct sCliente *nesq, *ndir; \/\/ arvore de nomes de clientes$/;"	m	struct:sCliente	typeref:struct:sCliente::	access:public
+main	ndavl.c	/^int main(){$/;"	f
+maxInt	utils.c	/^int maxInt(int a, int b){$/;"	f	signature:(int a, int b)
+maxInt	utils.h	/^int maxInt(int a, int b);$/;"	p	signature:(int a, int b)
 nelems	mod_lista_ligada.h	/^	int nelems;  						\/\/ Numero de elementos da lista ligada$/;"	m	struct:MainList	access:public
-nesq	arvore.h	/^	struct sCliente *nesq, *ndir; \/\/ arvore de nomes de clientes$/;"	m	struct:sCliente	typeref:struct:sCliente::sCliente	access:public
-node	arvore.c	/^    void *node;$/;"	m	struct:sTree	file:	access:public
-nodes	arvore.c	/^    int nodes;$/;"	m	struct:sMainTree	file:	access:public
-nome	arvore.h	/^	char *nome;$/;"	m	struct:sCliente	access:public
-nome	arvore.h	/^       char *nome;$/;"	m	struct:sAdjacente	access:public
-nome	arvore.h	/^       char *nome;$/;"	m	struct:sVertice	access:public
+node	ndavl.h	/^    void *node;$/;"	v
 operativeSystem	utils.h	/^char operativeSystem;$/;"	v
-print	arvore.c	/^    void (*print[DIM])(void*,int);$/;"	m	struct:sMainTree	file:	access:public
-print	arvore.c	/^void print( void *fst, int altura ){$/;"	f	signature:( void *fst, int altura )
+print	ndavl.c	/^void print( void *fst, int altura ){$/;"	f	signature:( void *fst, int altura )
 printMenu	menu.c	/^int printMenu(int input){$/;"	f	signature:(int input)
 printMenu	menu.h	/^int printMenu(int input);$/;"	p	signature:(int input)
 procuraelemlista	mod_lista_ligada.c	/^LinkedListPTR procuraelemlista (MainListPTR lista, void *externdata)$/;"	f	signature:(MainListPTR lista, void *externdata)
 procuraelemlista	mod_lista_ligada.h	/^LinkedListPTR procuraelemlista (MainListPTR lista, void *externdata);$/;"	p	signature:(MainListPTR lista, void *externdata)
 prox	mod_lista_ligada.h	/^	struct linkedList *prox;	\/\/ Próximo elemento da lista$/;"	m	struct:linkedList	typeref:struct:linkedList::linkedList	access:public
-r	arvore.c	/^    struct sTree *r[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	file:	access:public
+r	ndavl.h	/^    struct sTree *r[DIM];$/;"	v	typeref:struct:sTree
 readInt	utils.c	/^int readInt(){$/;"	f
 readInt	utils.h	/^int readInt();$/;"	p	signature:()
 readStr	utils.c	/^char* readStr(char *ptr){$/;"	f	signature:(char *ptr)
 readStr	utils.h	/^char* readStr(char *ptr);$/;"	p	signature:(char *ptr)
 rodape	main.c	/^char rodape[51] = "Programa iniciado";$/;"	v
-sAdjacente	arvore.h	/^typedef struct sAdjacente {$/;"	s
-sAdjacente::custo	arvore.h	/^       int custo;$/;"	m	struct:sAdjacente	access:public
-sAdjacente::dir	arvore.h	/^       struct sAdjacente *esq, *dir;$/;"	m	struct:sAdjacente	typeref:struct:sAdjacente::	access:public
-sAdjacente::distancia	arvore.h	/^       int distancia;$/;"	m	struct:sAdjacente	access:public
-sAdjacente::esq	arvore.h	/^       struct sAdjacente *esq, *dir;$/;"	m	struct:sAdjacente	typeref:struct:sAdjacente::sAdjacente	access:public
-sAdjacente::nome	arvore.h	/^       char *nome;$/;"	m	struct:sAdjacente	access:public
-sCamiao	arvore.h	/^typedef struct sCamiao {$/;"	s
-sCamiao::capacidadecarga	arvore.h	/^	int capacidadecarga;$/;"	m	struct:sCamiao	access:public
-sCamiao::consumo	arvore.h	/^	float consumo;$/;"	m	struct:sCamiao	access:public
-sCamiao::id	arvore.h	/^	unsigned int id;$/;"	m	struct:sCamiao	access:public
-sCamiao::idir	arvore.h	/^	struct sCamiao *iesq, *idir; \/\/ arvore de identificador de camiao$/;"	m	struct:sCamiao	typeref:struct:sCamiao::	access:public
-sCamiao::iesq	arvore.h	/^	struct sCamiao *iesq, *idir; \/\/ arvore de identificador de camiao$/;"	m	struct:sCamiao	typeref:struct:sCamiao::sCamiao	access:public
-sCamiao::matricula	arvore.h	/^	char *matricula;$/;"	m	struct:sCamiao	access:public
-sCamiao::mdir	arvore.h	/^	struct sCamiao *mesq, *mdir; \/\/ arvore de matrícula de camiao$/;"	m	struct:sCamiao	typeref:struct:sCamiao::	access:public
-sCamiao::mesq	arvore.h	/^	struct sCamiao *mesq, *mdir; \/\/ arvore de matrícula de camiao$/;"	m	struct:sCamiao	typeref:struct:sCamiao::sCamiao	access:public
-sCliente	arvore.h	/^typedef struct sCliente {$/;"	s
-sCliente::cdir	arvore.h	/^	struct sCliente *cesq, *cdir; \/\/ arvore de contribuintes de clientes$/;"	m	struct:sCliente	typeref:struct:sCliente::	access:public
-sCliente::cesq	arvore.h	/^	struct sCliente *cesq, *cdir; \/\/ arvore de contribuintes de clientes$/;"	m	struct:sCliente	typeref:struct:sCliente::sCliente	access:public
-sCliente::contribuinte	arvore.h	/^	unsigned int contribuinte; \/\/ NIF vai de 000,000,000 a +999,999,999, unsigned int vai de 0 a +4,294,967,295, mais que suficiente$/;"	m	struct:sCliente	access:public
-sCliente::morada	arvore.h	/^	char *morada;$/;"	m	struct:sCliente	access:public
-sCliente::ndir	arvore.h	/^	struct sCliente *nesq, *ndir; \/\/ arvore de nomes de clientes$/;"	m	struct:sCliente	typeref:struct:sCliente::	access:public
-sCliente::nesq	arvore.h	/^	struct sCliente *nesq, *ndir; \/\/ arvore de nomes de clientes$/;"	m	struct:sCliente	typeref:struct:sCliente::sCliente	access:public
-sCliente::nome	arvore.h	/^	char *nome;$/;"	m	struct:sCliente	access:public
-sCliente::ultimo	arvore.h	/^	Servico *ultimo;$/;"	m	struct:sCliente	access:public
-sCoord	arvore.c	/^typedef struct sCoord{$/;"	s	file:
-sCoord::x	arvore.c	/^    int x;$/;"	m	struct:sCoord	file:	access:public
-sCoord::y	arvore.c	/^    int y;$/;"	m	struct:sCoord	file:	access:public
-sMainTree	arvore.c	/^typedef struct sMainTree{$/;"	s	file:
-sMainTree::compare	arvore.c	/^    int (*compare[DIM])(void*,void*);$/;"	m	struct:sMainTree	file:	access:public
-sMainTree::nodes	arvore.c	/^    int nodes;$/;"	m	struct:sMainTree	file:	access:public
-sMainTree::print	arvore.c	/^    void (*print[DIM])(void*,int);$/;"	m	struct:sMainTree	file:	access:public
-sMainTree::tree	arvore.c	/^    TreePt tree[DIM];$/;"	m	struct:sMainTree	file:	access:public
-sServico	arvore.h	/^typedef struct sServico {$/;"	s
-sServico::ant	arvore.h	/^	struct sServico *ant;    \/\/ apontador para o servico anterior$/;"	m	struct:sServico	typeref:struct:sServico::sServico	access:public
-sServico::camiao	arvore.h	/^	Camiao *camiao;$/;"	m	struct:sServico	access:public
-sServico::carga	arvore.h	/^	Vertice *carga;   \/\/ local onde o camiao foi carregado$/;"	m	struct:sServico	access:public
-sServico::destino	arvore.h	/^	Vertice *destino; \/\/ local onde o camiao ficou no fim da viagem$/;"	m	struct:sServico	access:public
-sServico::estava	arvore.h	/^	Vertice *estava;  \/\/ localizaçao do camiao aquando do pedido$/;"	m	struct:sServico	access:public
-sServico::timestamp	arvore.h	/^	unsigned int timestamp; \/\/acho que era de valor ter uma data e hora do pedido$/;"	m	struct:sServico	access:public
-sTree	arvore.c	/^typedef struct sTree{$/;"	s	file:
-sTree::height	arvore.c	/^    int height; \/\/ HEIGHT$/;"	m	struct:sTree	file:	access:public
-sTree::l	arvore.c	/^    struct sTree *l[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	file:	access:public
-sTree::node	arvore.c	/^    void *node;$/;"	m	struct:sTree	file:	access:public
-sTree::r	arvore.c	/^    struct sTree *r[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	file:	access:public
-sVertice	arvore.h	/^typedef struct sVertice {$/;"	s
-sVertice::adj	arvore.h	/^       Adjacente *adj;$/;"	m	struct:sVertice	access:public
-sVertice::dir	arvore.h	/^       struct sVertice *esq, *dir;$/;"	m	struct:sVertice	typeref:struct:sVertice::	access:public
-sVertice::esq	arvore.h	/^       struct sVertice *esq, *dir;$/;"	m	struct:sVertice	typeref:struct:sVertice::sVertice	access:public
-sVertice::nome	arvore.h	/^       char *nome;$/;"	m	struct:sVertice	access:public
+sCoord	ndavl.c	/^typedef struct sCoord{$/;"	s	file:
+sCoord::x	ndavl.c	/^    int x;$/;"	m	struct:sCoord	file:	access:public
+sCoord::y	ndavl.c	/^    int y;$/;"	m	struct:sCoord	file:	access:public
 strBuffer	utils.h	/^char strBuffer[501];$/;"	v
-timestamp	arvore.h	/^	unsigned int timestamp; \/\/acho que era de valor ter uma data e hora do pedido$/;"	m	struct:sServico	access:public
-tree	arvore.c	/^    TreePt tree[DIM];$/;"	m	struct:sMainTree	file:	access:public
-tree_getHeight	arvore.c	/^int tree_getHeight(TreePt tree){$/;"	f	signature:(TreePt tree)
-tree_insert	arvore.c	/^int tree_insert( MainTreePt thisMainTree, void* node){$/;"	f	signature:( MainTreePt thisMainTree, void* node)
-tree_insertRec	arvore.c	/^int tree_insertRec( TreePt *thisTree, void* node, int thisDim, int (*compare)(void*,void*)){$/;"	f	signature:( TreePt *thisTree, void* node, int thisDim, int (*compare)(void*,void*))
-tree_new	arvore.c	/^MainTreePt tree_new( int (*compare[DIM])(void*,void*), void (*print[DIM])(void*,int)){$/;"	f	signature:( int (*compare[DIM])(void*,void*), void (*print[DIM])(void*,int))
-tree_printOrdered	arvore.c	/^void tree_printOrdered(MainTreePt thisMainTree, int thisDim){$/;"	f	signature:(MainTreePt thisMainTree, int thisDim)
-tree_printOrderedRec	arvore.c	/^void tree_printOrderedRec( TreePt thisTree, void (*print)(void*,int), int thisDim ){$/;"	f	signature:( TreePt thisTree, void (*print)(void*,int), int thisDim )
-tree_search	arvore.c	/^TreePt tree_search(MainTreePt thisMainTree, void* node, int thisDim){$/;"	f	signature:(MainTreePt thisMainTree, void* node, int thisDim)
-tree_searchRec	arvore.c	/^TreePt tree_searchRec(TreePt thisTreePt, void* node, int thisDim, int (*compare)(void*,void*)){$/;"	f	signature:(TreePt thisTreePt, void* node, int thisDim, int (*compare)(void*,void*))
-ultimo	arvore.h	/^	Servico *ultimo;$/;"	m	struct:sCliente	access:public
-x	arvore.c	/^    int x;$/;"	m	struct:sCoord	file:	access:public
-y	arvore.c	/^    int y;$/;"	m	struct:sCoord	file:	access:public
+tree_getHeight	ndavl.c	/^int tree_getHeight(TreePt tree, int thisDim){$/;"	f	signature:(TreePt tree, int thisDim)
+tree_insert	ndavl.c	/^int tree_insert( MainTreePt thisMainTree, void* node){$/;"	f	signature:( MainTreePt thisMainTree, void* node)
+tree_insertRec	ndavl.c	/^int tree_insertRec( TreePt *thisTree, TreePt allocd, void* node, int thisDim, int (*compare)(void*,void*)){$/;"	f	signature:( TreePt *thisTree, TreePt allocd, void* node, int thisDim, int (*compare)(void*,void*))
+tree_new	ndavl.c	/^MainTreePt tree_new( int (*compare[DIM])(void*,void*), void (*print[DIM])(void*,int)){$/;"	f	signature:( int (*compare[DIM])(void*,void*), void (*print[DIM])(void*,int))
+tree_printOrdered	ndavl.c	/^void tree_printOrdered(MainTreePt thisMainTree, int thisDim){$/;"	f	signature:(MainTreePt thisMainTree, int thisDim)
+tree_printOrderedRec	ndavl.c	/^void tree_printOrderedRec( TreePt thisTree, void (*print)(void*,int), int thisDim ){$/;"	f	signature:( TreePt thisTree, void (*print)(void*,int), int thisDim )
+tree_search	ndavl.c	/^TreePt tree_search(MainTreePt thisMainTree, void* node, int thisDim){$/;"	f	signature:(MainTreePt thisMainTree, void* node, int thisDim)
+tree_searchRec	ndavl.c	/^TreePt tree_searchRec(TreePt thisTreePt, void* node, int thisDim, int (*compare)(void*,void*)){$/;"	f	signature:(TreePt thisTreePt, void* node, int thisDim, int (*compare)(void*,void*))
+tree_singleRotateWithLeftChild	ndavl.c	/^TreePt tree_singleRotateWithLeftChild( TreePt thisTreePt, int thisDim ){$/;"	f	signature:( TreePt thisTreePt, int thisDim )
+tree_singleRotateWithRightChild	ndavl.c	/^TreePt tree_singleRotateWithRightChild( TreePt thisTreePt, int thisDim ){$/;"	f	signature:( TreePt thisTreePt, int thisDim )
+x	ndavl.c	/^    int x;$/;"	m	struct:sCoord	file:	access:public
+y	ndavl.c	/^    int y;$/;"	m	struct:sCoord	file:	access:public

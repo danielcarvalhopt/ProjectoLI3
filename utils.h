@@ -7,7 +7,7 @@ char operativeSystem;
 void clearInputBuffer();
 int readInt();
 int isInt(int n);
-int maxInt(int a, int b){
+int maxInt(int a, int b);
 void chooseSO();
 void clearScreen();
 
