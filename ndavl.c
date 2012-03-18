@@ -1,25 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
-
-#define DIM 2
-
-typedef struct sTree{
-    void *node;
-    struct sTree *l[DIM];
-    struct sTree *r[DIM];
-    int height; // HEIGHT
-} Tree, *TreePt;
-
-typedef struct sMainTree{
-    TreePt tree[DIM];
-    int nodes;
-    int (*compare[DIM])(void*,void*);
-    void (*print[DIM])(void*,int);
-} MainTree, *MainTreePt;
-
-int maxInt(int a, int b){
-    return a>=b ? a : b;
-}
+#include "ndavl.h"
+#include "utils.h"
 
 int tree_getHeight(TreePt tree){
     return tree!=NULL ? tree->height : 0;
@@ -104,6 +86,8 @@ void tree_printOrdered(MainTreePt thisMainTree, int thisDim){
         tree_printOrderedRec( thisMainTree->tree[thisDim], thisMainTree->print[thisDim], thisDim );
 }
 
+// funções de trocas aqui :D
+
 typedef struct sCoord{
     int x;
     int y;
@@ -144,7 +128,6 @@ int main(){
     tree_printOrdered(arvore, 0);
     printf("-----\n");
     tree_printOrdered(arvore, 1);
-
 
     return 0;
 }

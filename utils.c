@@ -55,6 +55,10 @@ int isInt(int n){
 	return (n != INT_MIN) ? 1 : 0;
 }
 
+int maxInt(int a, int b){
+    return a>=b ? a : b;
+}
+
 char* readStr(char *ptr){
 	scanf("%500[^\n]", strBuffer); clearInputBuffer();
 	return allocStr(ptr, strBuffer);
