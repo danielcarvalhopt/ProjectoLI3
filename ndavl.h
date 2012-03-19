@@ -32,8 +32,11 @@ int tree_insert( MainTreePt thisMainTree, void* node);
 int tree_insertRec( TreePt *thisTree, TreePt allocd, void* node, int thisDim, int (*compare)(void*,void*));
 void tree_printOrderedRec( TreePt thisTree, void (*print)(void*,int,void*), int thisDim );
 void tree_printOrdered(MainTreePt thisMainTree, int thisDim);
-//TreePt tree_singleRotateWithRightChild( TreePt thisTreePt, int thisDim );
-//TreePt tree_singleRotateWithLeftChild( TreePt thisTreePt, int thisDim );
+void tree_maintain( TreePt *thisTree, int thisDim, int (*compare)(void*,void*) );
+void tree_singleRotateLeft( TreePt *thisTreePt, int thisDim );
+void tree_singleRotateRight( TreePt *thisTreePt, int thisDim );
+void tree_doubleRotateLeftRight( TreePt *thisTreePt, int thisDim );
+void tree_doubleRotateRightLeft( TreePt *thisTreePt, int thisDim );
 
 int maxInt(int a,int b);
 
