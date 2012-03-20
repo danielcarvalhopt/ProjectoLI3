@@ -4,9 +4,20 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-Coord	ndavl.c	/^} Coord;$/;"	t	typeref:struct:sCoord	file:
+Camiao	dados.h	/^} Camiao, *CamiaoPt;$/;"	t	typeref:struct:sCamiao
+CamiaoPt	dados.h	/^} Camiao, *CamiaoPt;$/;"	t	typeref:struct:sCamiao
+Camioes	dados.h	/^} Camioes, *CamioesPt;$/;"	t	typeref:struct:sCamioes
+CamioesPt	dados.h	/^} Camioes, *CamioesPt;$/;"	t	typeref:struct:sCamioes
+Cliente	dados.h	/^} Cliente, *ClientePt;$/;"	t	typeref:struct:sCliente
+ClientePt	dados.h	/^} Cliente, *ClientePt;$/;"	t	typeref:struct:sCliente
+Clientes	dados.h	/^} Clientes, *ClientesPt;$/;"	t	typeref:struct:sClientes
+ClientesPt	dados.h	/^} Clientes, *ClientesPt;$/;"	t	typeref:struct:sClientes
 DIM	ndavl.h	10;"	d
 LinkedListPTR	mod_lista_ligada.h	/^} *LinkedListPTR; 				\/\/ Apontador para a lista ligada$/;"	t	typeref:struct:linkedList
+Locais	dados.h	/^} Locais, *LocaisPt;$/;"	t	typeref:struct:sLocais
+LocaisPt	dados.h	/^} Locais, *LocaisPt;$/;"	t	typeref:struct:sLocais
+Local	dados.h	/^} Local, *LocalPt;$/;"	t	typeref:struct:sLocal
+LocalPt	dados.h	/^} Local, *LocalPt;$/;"	t	typeref:struct:sLocal
 MENU_H_INCLUDED	menu.h	2;"	d
 MainList	mod_lista_ligada.h	/^typedef struct MainList {$/;"	s
 MainList::elems	mod_lista_ligada.h	/^	LinkedListPTR elems;     			\/\/ Apontador para uma lista ligada                    $/;"	m	struct:MainList	access:public
@@ -16,6 +27,10 @@ MainListPTR	mod_lista_ligada.h	/^} *MainListPTR; 						\/\/ Apontador para a est
 MainTree	ndavl.h	/^} MainTree, *MainTreePt;$/;"	t	typeref:struct:sMainTree
 MainTreePt	ndavl.h	/^} MainTree, *MainTreePt;$/;"	t	typeref:struct:sMainTree
 NDAVL_H_INCLUDED	ndavl.h	2;"	d
+Servico	dados.h	/^} Servico, *ServicoPt;$/;"	t	typeref:struct:sServico
+ServicoPt	dados.h	/^} Servico, *ServicoPt;$/;"	t	typeref:struct:sServico
+Servicos	dados.h	/^} Servicos, *ServicosPt;$/;"	t	typeref:struct:sServicos
+ServicosPt	dados.h	/^} Servicos, *ServicosPt;$/;"	t	typeref:struct:sServicos
 Tree	ndavl.h	/^} Tree, *TreePt;$/;"	t	typeref:struct:sTree
 TreePt	ndavl.h	/^} Tree, *TreePt;$/;"	t	typeref:struct:sTree
 UTILS_H_INCLUDED	utils.h	2;"	d
@@ -37,14 +52,13 @@ apagalista	mod_lista_ligada.c	/^void apagalista(MainListPTR lista)$/;"	f	signatu
 apagalista	mod_lista_ligada.h	/^void apagalista(MainListPTR lista);$/;"	p	signature:(MainListPTR lista)
 apagalistaaux	mod_lista_ligada.c	/^void apagalistaaux(LinkedListPTR *lista)$/;"	f	signature:(LinkedListPTR *lista)
 apagalistaaux	mod_lista_ligada.h	/^void apagalistaaux(LinkedListPTR *lista);$/;"	p	signature:(LinkedListPTR *lista)
+camiao_comparar	dados.h	/^int camiao_comparar(void* camiaoUm, void* camiaoDois){$/;"	f	signature:(void* camiaoUm, void* camiaoDois)
 chooseSO	utils.c	/^void chooseSO(){$/;"	f
 chooseSO	utils.h	/^void chooseSO();$/;"	p	signature:()
 clearInputBuffer	utils.c	/^void clearInputBuffer(){$/;"	f
 clearInputBuffer	utils.h	/^void clearInputBuffer();$/;"	p	signature:()
 clearScreen	utils.c	/^void clearScreen(){$/;"	f
 clearScreen	utils.h	/^void clearScreen();$/;"	p	signature:()
-comparaX	ndavl.c	/^int comparaX( void* fst, void* snd ){$/;"	f	signature:( void* fst, void* snd )
-comparaY	ndavl.c	/^int comparaY( void* fst, void* snd ){$/;"	f	signature:( void* fst, void* snd )
 compare	ndavl.h	/^    int (*compare[DIM])(void*,void*);$/;"	m	struct:sMainTree	access:public
 concatStr	utils.c	/^char* concatStr(char *dest, char *src){$/;"	f	signature:(char *dest, char *src)
 concatStr	utils.h	/^char* concatStr(char *dest, char *src);$/;"	p	signature:(char *dest, char *src)
@@ -60,6 +74,8 @@ getIntLoop	menu.h	/^int getIntLoop();$/;"	p	signature:()
 height	ndavl.h	/^    int height[DIM];$/;"	m	struct:sTree	access:public
 inserelistahead	mod_lista_ligada.c	/^ int inserelistahead(MainListPTR lista, void *externdata) {$/;"	f	signature:(MainListPTR lista, void *externdata)
 inserelistahead	mod_lista_ligada.h	/^int inserelistahead(MainListPTR lista, void* externdata);$/;"	p	signature:(MainListPTR lista, void* externdata)
+intcmp	utils.c	/^int intcmp(int a, int b){$/;"	f	signature:(int a, int b)
+intcmp	utils.h	/^int intcmp(int a, int b);$/;"	p	signature:(int a, int b)
 isInt	utils.c	/^int isInt(int n){$/;"	f	signature:(int n)
 isInt	utils.h	/^int isInt(int n);$/;"	p	signature:(int n)
 l	ndavl.h	/^    struct sTree *l[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
@@ -67,7 +83,6 @@ linkedList	mod_lista_ligada.h	/^typedef struct linkedList {$/;"	s
 linkedList::extdata	mod_lista_ligada.h	/^	void *extdata;      		\/\/ Apontador para o elemento da lista       $/;"	m	struct:linkedList	access:public
 linkedList::prox	mod_lista_ligada.h	/^	struct linkedList *prox;	\/\/ Próximo elemento da lista$/;"	m	struct:linkedList	typeref:struct:linkedList::linkedList	access:public
 main	main.c	/^int main(\/*int argc, char **argv*\/){$/;"	f
-main	ndavl.c	/^int main(){$/;"	f
 maxInt	ndavl.c	/^int maxInt(int a,int b){$/;"	f	signature:(int a,int b)
 maxInt	ndavl.h	/^int maxInt(int a,int b);$/;"	p	signature:(int a,int b)
 maxInt	utils.c	/^int maxInt(int a, int b){$/;"	f	signature:(int a, int b)
@@ -75,7 +90,6 @@ maxInt	utils.h	/^int maxInt(int a, int b);$/;"	p	signature:(int a, int b)
 nelems	mod_lista_ligada.h	/^	int nelems;  						\/\/ Numero de elementos da lista ligada$/;"	m	struct:MainList	access:public
 node	ndavl.h	/^    void *node;$/;"	m	struct:sTree	access:public
 operativeSystem	utils.h	/^char operativeSystem;$/;"	v
-print	ndavl.c	/^void print( void *fst, int altura, void* ptr ){$/;"	f	signature:( void *fst, int altura, void* ptr )
 print	ndavl.h	/^    void (*print[DIM])(void*,int,void*);$/;"	m	struct:sMainTree	access:public
 printMenu	menu.c	/^int printMenu(int input){$/;"	f	signature:(int input)
 printMenu	menu.h	/^int printMenu(int input);$/;"	p	signature:(int input)
@@ -88,13 +102,18 @@ readInt	utils.h	/^int readInt();$/;"	p	signature:()
 readStr	utils.c	/^char* readStr(char *ptr){$/;"	f	signature:(char *ptr)
 readStr	utils.h	/^char* readStr(char *ptr);$/;"	p	signature:(char *ptr)
 rodape	main.c	/^char rodape[51] = "Programa iniciado";$/;"	v
-sCoord	ndavl.c	/^typedef struct sCoord{$/;"	s	file:
-sCoord::x	ndavl.c	/^    int x;$/;"	m	struct:sCoord	file:	access:public
-sCoord::y	ndavl.c	/^    int y;$/;"	m	struct:sCoord	file:	access:public
+sCamiao	dados.h	/^typedef struct sCamiao{$/;"	s
+sCamioes	dados.h	/^typedef struct sCamioes{$/;"	s
+sCliente	dados.h	/^typedef struct sCliente{$/;"	s
+sClientes	dados.h	/^typedef struct sClientes{$/;"	s
+sLocais	dados.h	/^typedef struct sLocais{$/;"	s
+sLocal	dados.h	/^typedef struct sLocal{$/;"	s
 sMainTree	ndavl.h	/^typedef struct sMainTree{$/;"	s
 sMainTree::compare	ndavl.h	/^    int (*compare[DIM])(void*,void*);$/;"	m	struct:sMainTree	access:public
 sMainTree::print	ndavl.h	/^    void (*print[DIM])(void*,int,void*);$/;"	m	struct:sMainTree	access:public
 sMainTree::tree	ndavl.h	/^    TreePt tree[DIM];$/;"	m	struct:sMainTree	access:public
+sServico	dados.h	/^typedef struct sServico{$/;"	s
+sServicos	dados.h	/^typedef struct sServicos{$/;"	s
 sTree	ndavl.h	/^typedef struct sTree{$/;"	s
 sTree::height	ndavl.h	/^    int height[DIM];$/;"	m	struct:sTree	access:public
 sTree::l	ndavl.h	/^    struct sTree *l[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
@@ -140,5 +159,3 @@ tree_singleRotateLeft	ndavl.c	/^void tree_singleRotateLeft( TreePt *thisTreePt, 
 tree_singleRotateLeft	ndavl.h	/^void tree_singleRotateLeft( TreePt *thisTreePt, int thisDim );$/;"	p	signature:( TreePt *thisTreePt, int thisDim )
 tree_singleRotateRight	ndavl.c	/^void tree_singleRotateRight( TreePt *thisTreePt, int thisDim ){$/;"	f	signature:( TreePt *thisTreePt, int thisDim )
 tree_singleRotateRight	ndavl.h	/^void tree_singleRotateRight( TreePt *thisTreePt, int thisDim );$/;"	p	signature:( TreePt *thisTreePt, int thisDim )
-x	ndavl.c	/^    int x;$/;"	m	struct:sCoord	file:	access:public
-y	ndavl.c	/^    int y;$/;"	m	struct:sCoord	file:	access:public

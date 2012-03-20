@@ -3,9 +3,10 @@
 #include "ndavl.h"
 #include "utils.h"
 
+/* debug, passou para utils.c
 int maxInt(int a,int b){
     return a>=b ? a : b;
-}
+} */
 
 int tree_getHeight(TreePt tree, int thisDim){
     return tree!=NULL ? tree->height[thisDim] : 0;
@@ -240,7 +241,7 @@ void tree_doubleRotateLeftRight( TreePt *thisTreePt, int thisDim ){
     tree_singleRotateLeft( &(*thisTreePt)->l[thisDim], thisDim );
     tree_singleRotateRight( thisTreePt, thisDim);
 }
-
+/*
 typedef struct sCoord{
     int x;
     int y;
@@ -311,3 +312,4 @@ int main(){
 
     return 0;
 }
+*/
