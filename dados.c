@@ -1,3 +1,32 @@
 #include "dados.h"
 
-// o código das funções definidas em dados.h
+//
+// Funções dos camiões
+//
+
+
+
+//
+// Funções dos clientes
+//
+
+
+
+//
+// Funções das Localidades
+//
+
+
+
+//
+// Funções dos serviços anteriores
+//
+
+
+
+//
+// Mais coisas?
+// 
+
+
+
