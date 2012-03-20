@@ -18,7 +18,6 @@ typedef struct sTree{
 
 typedef struct sMainTree{
     TreePt tree[DIM];
-    int nodes;
     int (*compare[DIM])(void*,void*);
     void (*print[DIM])(void*,int,void*);
 } MainTree, *MainTreePt;
@@ -37,6 +36,14 @@ void tree_singleRotateLeft( TreePt *thisTreePt, int thisDim );
 void tree_singleRotateRight( TreePt *thisTreePt, int thisDim );
 void tree_doubleRotateLeftRight( TreePt *thisTreePt, int thisDim );
 void tree_doubleRotateRightLeft( TreePt *thisTreePt, int thisDim );
+
+void tree_searchTreeToDisconnect( TreePt *thisTreePt, int thisDim, void* node, int (*compare)(void*,void*) );
+void tree_disconnectTree( TreePt *thisTreePt, int thisDim, int (*compare)(void*,void*) );
+void tree_pushUp( TreePt *master, TreePt *thisTreePt, int thisDim, int (*compare)(void*,void*) );
+void tree_remove( MainTreePt thisMainTreePt, void* node );
+
+void tree_dispose( MainTreePt *thisMainTree );
+void tree_disposeRec( TreePt *thisTreePt );
 
 int maxInt(int a,int b);
 

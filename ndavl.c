@@ -47,7 +47,7 @@ MainTreePt tree_new( int (*compare[DIM])(void*,void*), void (*print[DIM])(void*,
 int tree_insert( MainTreePt thisMainTree, void* node){
     int i, sucesso = 0;
     TreePt thisTreePt = NULL;
-    for( i=0; i<DIM && thisTreePt == NULL; i++)
+    for( i=0; i<DIM && thisTreePt == NULL; i++ )
         thisTreePt = tree_search(thisMainTree, node, i);
 
     if( thisTreePt == NULL ){ //alocar o espaço dele, depois é que se vai preencher com apontadores esq e dir
@@ -106,11 +106,61 @@ void tree_maintain( TreePt *thisTree, int thisDim, int (*compare)(void*,void*) )
     }else{
         (*thisTree)->height[thisDim] = lh > rh ? lh+1 : rh+1;
     }
-    
-    
+}
 
+void tree_remove( MainTreePt thisMainTreePt, void* node ){
+    int i;
+    TreePt elem = tree_search( thisMainTreePt, node, 0);
+    if( elem == NULL ) return;
 
-                                                            /* actualizar altura do nó */
+    for( i=0; i<DIM; i++ )
+        tree_searchTreeToDisconnect( &thisMainTreePt->tree[i], i, node, thisMainTreePt->compare[i] );
+
+    free(elem);
+
+    //tree_maintain( &thisMainTreePt->tree[thisDim], thisDim, thisMainTreePt->compare );
+}
+
+void tree_searchTreeToDisconnect( TreePt *thisTreePt, int thisDim, void *node, int (*compare)(void*,void*) ){
+    int cmp = 0;
+    if( *thisTreePt == NULL ) return;
+    
+    cmp = compare( (*thisTreePt)->node, node);
+
+    if( cmp > 0 )
+        tree_searchTreeToDisconnect( &(*thisTreePt)->l[thisDim], thisDim, node, compare );
+    else if( cmp < 0 )
+        tree_searchTreeToDisconnect( &(*thisTreePt)->r[thisDim], thisDim, node, compare );
+    else
+        tree_disconnectTree(thisTreePt, thisDim, compare);
+        
+    tree_maintain(thisTreePt, thisDim, compare);
+}
+
+void tree_disconnectTree( TreePt *thisTreePt, int thisDim, int (*compare)(void*,void*) ){
+    if( (*thisTreePt)->l[thisDim] != NULL && (*thisTreePt)->r[thisDim] != NULL )
+        tree_pushUp( thisTreePt ,&(*thisTreePt)->r[thisDim], thisDim, compare );
+    else if( (*thisTreePt)->l[thisDim] == NULL )
+        *thisTreePt = (*thisTreePt)->r[thisDim];
+    else if( (*thisTreePt)->r[thisDim] == NULL )
+        *thisTreePt = (*thisTreePt)->l[thisDim];
+}
+
+void tree_pushUp( TreePt *master, TreePt *thisTreePt, int thisDim, int (*compare)(void*,void*) ){
+    TreePt aux = NULL;
+    if( (*thisTreePt)->l[thisDim] == NULL ){ // direita e Xvezes esquerda
+        aux = (*thisTreePt)->r[thisDim];
+        (*thisTreePt)->l[thisDim] = (*master)->l[thisDim];
+        if( (*thisTreePt) != (*master)->r[thisDim] )
+            (*thisTreePt)->r[thisDim] = (*master)->r[thisDim];
+        else
+            (*thisTreePt)->r[thisDim] = NULL;
+        *master = *thisTreePt;
+
+        *thisTreePt = aux;
+    }else tree_pushUp( master ,&(*thisTreePt)->l[thisDim], thisDim, compare ); // mais uma vez para a esquerda
+
+    tree_maintain( thisTreePt, thisDim, compare );
 }
 
 void tree_printOrderedRec( TreePt thisTree, void (*print)(void*,int,void*), int thisDim ){
@@ -128,6 +178,19 @@ void tree_printOrderedRec( TreePt thisTree, void (*print)(void*,int,void*), int 
 void tree_printOrdered(MainTreePt thisMainTree, int thisDim){
     if( thisMainTree != NULL )
         tree_printOrderedRec( thisMainTree->tree[thisDim], thisMainTree->print[thisDim], thisDim );
+}
+
+void tree_dispose( MainTreePt *thisMainTree ){
+    tree_disposeRec( &(*thisMainTree)->tree[0] );
+    free( *thisMainTree );
+}
+
+void tree_disposeRec( TreePt *thisTreePt ){
+    if( *thisTreePt != NULL ){
+        tree_disposeRec( &(*thisTreePt)->l[0] );
+        tree_disposeRec( &(*thisTreePt)->r[0] );
+        free( *thisTreePt );
+    }
 }
 
 void tree_singleRotateLeft( TreePt *thisTreePt, int thisDim ){
@@ -212,12 +275,39 @@ int main(){
     MainTreePt arvore = tree_new( funcCompara, funcPrint );
 
     int i;
-    Coord x[8] = { {6,1}, {4,10}, {8,3}, {9,4}, {3,5}, {4,6}, {2,1}, {7,2} };
-    for( i=0; i<8; i++)
+    Coord x[20] = {
+        {1,11},
+        {2,22},
+        {3,13},
+        {4,24},
+        {5,15},
+        {6,26},
+        {7,17},
+        {8,28},
+        {9,19},
+        {10,10},
+        {11,1},
+        {12,12},
+        {13,13},
+        {14,4},
+        {15,15},
+        {16,16},
+        {17,17},
+        {18,8},
+        {19,19}
+    };
+    for( i=0; i<20; i++)
         tree_insert( arvore, &x[i] );
+
+    tree_remove( arvore, &x[2] );
+    tree_remove( arvore, &x[7] );
+    tree_remove( arvore, &x[12] );
+
     tree_printOrdered(arvore, 0);
     printf("-----\n");
     tree_printOrdered(arvore, 1);
+
+    tree_dispose( &arvore );
 
     return 0;
 }
