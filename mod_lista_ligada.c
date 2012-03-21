@@ -8,11 +8,11 @@
 
 
 
-MainListPTR crialistaligada(MainListPTR lista, int(*func_compare)(void*,void*)) {
+MainListPTR crialistaligada(int(*func_compare)(void*,void*)) {
     MainListPTR novo;
 
     if((novo= (MainListPTR) malloc(sizeof (struct MainList)))==NULL) return NULL;
-    novo=lista;
+
     novo->elems = NULL;
     novo->nelems = 0;
     novo->func_compare=func_compare;
@@ -39,16 +39,18 @@ MainListPTR crialistaligada(MainListPTR lista, int(*func_compare)(void*,void*)) 
 void apagaelem (LinkedListPTR *elem)
 {
     
-    free((*elem)->extdata);
+    //free((*elem)->extdata);
     free (*elem);
     *elem=NULL;
 }
 
 
 
-void apagaelemlista (MainListPTR lista, void* externdata)
+
+int apagaelemlista (MainListPTR lista, void* externdata)
 {
     LinkedListPTR ant = NULL, actelem= lista->elems;
+    int apagado=0;
 
     if (actelem==NULL) return;
     
@@ -57,6 +59,7 @@ void apagaelemlista (MainListPTR lista, void* externdata)
         lista->elems=lista->elems->prox;
         apagaelem(&actelem);
         lista->nelems--;
+        apagado=1;
     }
 
     else
@@ -72,8 +75,10 @@ void apagaelemlista (MainListPTR lista, void* externdata)
             ant->prox=actelem->prox;
             apagaelem(&actelem);
             lista->nelems--;
+            apagado=1;
         }
     }
+    return apagado;
 }
 
 

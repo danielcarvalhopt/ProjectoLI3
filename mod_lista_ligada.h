@@ -40,7 +40,7 @@ typedef struct MainList {
 	@param func_compare Função de comparação
 	@return Apontador para a estrutura de controlo criada
  */
-MainListPTR crialistaligada(MainListPTR lista, int (*func_compare)(void *, void *));
+//MainListPTR crialistaligada(MainListPTR lista, int (*func_compare)(void *, void *));
 
 
 
@@ -52,7 +52,7 @@ MainListPTR crialistaligada(MainListPTR lista, int (*func_compare)(void *, void 
 	@return 0 em caso de falha
 	@return 1 em caso de sucesso
  */
-int inserelistahead(MainListPTR lista, void* externdata);
+//int inserelistahead(MainListPTR lista, void* externdata);
 
 
 
@@ -61,7 +61,7 @@ int inserelistahead(MainListPTR lista, void* externdata);
 	@brief Liberta um elemento da memória
 	@param elem Apontador para um apontador para uma lista ligada
  */
-void apagaelem (LinkedListPTR *elem);
+//void apagaelem (LinkedListPTR *elem);
 
 
 
@@ -69,8 +69,10 @@ void apagaelem (LinkedListPTR *elem);
 	@fn apagaelemlista
 	@brief Apaga um elemento de uma lista ligada libertando-o da memória
 	@param lista Apontador para a estrutura de controlo da lista ligada
+	@return 1 se houve remoção
+	@return 0 se não houve remoção
  */
-void apagaelemlista(MainListPTR lista, void* externdata);
+//int apagaelemlista(MainListPTR lista, void* externdata);
 
 
 
@@ -81,7 +83,7 @@ void apagaelemlista(MainListPTR lista, void* externdata);
 	@param externdata Elemento a procurar na lista
 	@return Apontador para o elemento encontrado na lista ou NULL caso não seja encontrado
  */
-LinkedListPTR procuraelemlista (MainListPTR lista, void *externdata);
+//LinkedListPTR procuraelemlista (MainListPTR lista, void *externdata);
 
 
 
@@ -90,7 +92,7 @@ LinkedListPTR procuraelemlista (MainListPTR lista, void *externdata);
 	@brief Apaga da memória uma lista ligada completa
 	@param lista Apontador para a estrutura de controlo da lista ligada
  */
-void apagalistaaux(LinkedListPTR *lista);
+//void apagalistaaux(LinkedListPTR *lista);
 
 
 
@@ -99,7 +101,7 @@ void apagalistaaux(LinkedListPTR *lista);
 	@brief Apaga da memória uma lista ligada e actualiza a estrutura de controlo em função disso
 	@param lista Apontador para a estrutura de controlo da lista ligada
  */
-void apagalista(MainListPTR lista);
+//void apagalista(MainListPTR lista);
 
 
 
