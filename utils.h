@@ -4,12 +4,19 @@
 char strBuffer[501];
 char operativeSystem;
 
+// I/O
 void clearInputBuffer();
-int readInt();
-int isInt(int n);
 void chooseSO();
 void clearScreen();
 
+// inteiros
+int readInt();
+int isInt(int n);
+int maxInt(int a, int b);
+int intcmp(int a, int b);
+int intcmp(unsigned int a, unsigned int b);
+
+// strings
 char* readStr(char *ptr);
 char* allocStr(char *dest, char *src);
 char* concatStr(char *dest, char *src);
