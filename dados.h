@@ -14,6 +14,7 @@
 typedef struct sCamiao{
     int id;
     char *matricula;
+    float custo; //por Km
 } Camiao, *CamiaoPt;
 
 int camiao_compararId(void* camiaoUm, void* camiaoDois);

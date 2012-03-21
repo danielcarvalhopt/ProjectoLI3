@@ -3,6 +3,9 @@ Projecto de LI3
 Para compilar o programa utilizar o cmake. ( ./cmake )
 O cmake remove ficheiros antigos e executa o makefile.
 
+Enunciado do projecto:
+https://github.com/downloads/Insatisfeito/ProjectoLI3/projectoLI3_2011_12.pdf
+
 Consultar a wiki para mais informações.
 https://github.com/Insatisfeito/ProjectoLI3/wiki
 
