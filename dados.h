@@ -12,12 +12,15 @@
 //
 
 typedef struct sCamiao{
-    int id;
+    unsigned int id;
     char *matricula;
+    float custo; //por Km
 } Camiao, *CamiaoPt;
 
+void camiao_dump( void* camiao );
 int camiao_compararId(void* camiaoUm, void* camiaoDois);
 int camiao_compararMatricula(void* camiaoUm, void* camiaoDois);
+CamiaoPt camiao_novo( unsigned int id, char *matricula, float custo );
 
 //
 // Funções e estruturas dos clientes

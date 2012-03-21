@@ -10,11 +10,47 @@ int printMenu(int input){
 	char title[64+2] = "*    Transportes LEI - Gestao de Transportes                   *\n";
 	char status[60+1] = " ";
 	char menuAnt[62+1] = "0) Voltar ao Menu Anterior";
+        char inputWait[4] = ">> ";
 	
 	clearScreen();
 	printf("%s%s%s%s",fill,space,title,space);
 	switch( input ){
-		case 9:
+                case 3:
+                        printf( "*    %-56s  *\n"
+                                "%s"
+                                "*    %-56s  *\n"
+                                "*    %-56s  *\n"
+                                "*    %-56s  *\n"
+                                "*    %-56s  *\n",
+                                    "Menu P. > Gestao de Camioes", space,
+                                    "1) Novo veiculo",
+                                    "2) Eliminar veiculo",
+                                    "3) Listar veiculos",
+                                    "4) Actualizar dados do veiculo"
+                        );
+                        break;
+                case 31:
+                        printf( "*    %-56s  *\n"
+                                "%s"
+                                "*    %-56s  *\n"
+                                "*    %-56s  *\n"
+                                "*    %-56s  *\n"
+                                "*    %-56s  *\n",
+                                    "Menu P. > Gestao de Camioes > Novo veiculo", space,
+                                    "Campos:",
+                                    "ID - inteiro positivo que identifica o veiculo",
+                                    "Matricula - conjunto de caracteres no formato XX-XX-XX",
+                                    "Consumo - consumo de combustivel a cada 100km"
+                        );
+                        break;
+                case 33:
+                        strcpy( status, "Listando Elementos..." );
+                        strcpy( inputWait, "" );
+                        printf( "*    %-56s  *\n",
+                                    "Menu P. > Gestao de Camioes > Listagem"
+                        ); 
+                        break;
+                case 9:
 			printf( "*    %-56s  *\n"
 				"%s"
 				"*    %-56s  *\n"
@@ -30,7 +66,7 @@ int printMenu(int input){
 			printf( "*    %-56s  *\n", "Menu Principal > Sair > Guardar e Sair");
 			break;
 		case 92:
-			strcpy(status, "O programa vai terminar sem guardar dados");
+			strcpy(status, "O programa terminou sem guardar dados");
 			strcpy(menuAnt, " ");
 			printf( "*    %-56s  *\n", "Menu Principal > Sair > Sair sem guardar");
 			break;
@@ -51,6 +87,9 @@ int printMenu(int input){
 					"               ser escrito 92 e ter o mesmo efeito"
 			);
 			break;
+                case 32:
+                case 34:
+                        strcpy(status, "Funcionalidade não disponivel (ainda)..");
 		default:
 			printf( "*    %-56s  *\n"
 				"%s"
@@ -76,12 +115,23 @@ int printMenu(int input){
 		"*    %-56s  *\n"
 		"%s%s"
 		"* %60s *\n"
-		"%s>> ",
-			space, menuAnt, space, space, status, fill);
+		"%s%s",
+			space, menuAnt, space, space, status, fill, inputWait);
 	
 	switch( input ){
 		case -1:
 			input = 0;
+                case 3:
+                        input = getIntLoop();
+                        if( input >= 1 && input <= 4)
+                            input += 30;
+                        else if( input != 0 )
+                            input = 3;
+                        break;
+                case 31:
+                case 32:
+                case 33:
+                case 34: break;
 		case 9:
 			input = getIntLoop();
 			if( input == 1 || input == 2 )
