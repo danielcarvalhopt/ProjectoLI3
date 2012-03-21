@@ -3,6 +3,25 @@
 
 #include "menu.h"
 #include "utils.h"
+#include "dados.h"
+
+static int last[3]; //ultimas 3 escolhas
+
+// usada para ficar com registo das ultimas 3 acções do utilizador
+// depois mete-te na parte onde agora estão os atalhos
+//
+// basta ele fazer 1 coisa uma vez e depois sabe que vai estar sempre no atalho da tecla 5
+// depois carrega sempre 5 5 5 5 5 se for uma tarefa repetitiva
+static void novaEscolha(int input){
+    if( input != last[0] && input != last[1] ){
+        last[2] = last[1];
+        last[1] = last[0];
+        last[0] = input;
+    }else if( input == last[1] ){
+        last[1] = last[0];
+        last[0] = input;
+    }
+}
 
 int printMenu(int input){
 	char fill[64+2]  = "****************************************************************\n";
@@ -13,6 +32,7 @@ int printMenu(int input){
         char inputWait[4] = ">> ";
 	
 	clearScreen();
+        //printf("input=%d\n",input);
 	printf("%s%s%s%s",fill,space,title,space);
 	switch( input ){
                 case 3:
@@ -30,6 +50,9 @@ int printMenu(int input){
                         );
                         break;
                 case 31:
+                        strcpy( inputWait, "" );
+                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu anterior" );
+                        strcpy( status, "Inserindo dados de teste..." ); //debug
                         printf( "*    %-56s  *\n"
                                 "%s"
                                 "*    %-56s  *\n"
@@ -46,6 +69,7 @@ int printMenu(int input){
                 case 33:
                         strcpy( status, "Listando Elementos..." );
                         strcpy( inputWait, "" );
+                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu anterior" );
                         printf( "*    %-56s  *\n",
                                     "Menu P. > Gestao de Camioes > Listagem"
                         ); 
@@ -98,12 +122,20 @@ int printMenu(int input){
 				"*    %-56s  *\n"
 				"*    %-56s  *\n"
 				"%s"
+				"*    %-56s  *\n"
+				"*    %-56s  *\n"
+				"*    %-56s  *\n"
+				"*    %-56s  *\n"
 				"*    %-56s  *\n",
 					"Menu Principal", space,
 					"1) Novo Pedido",
 					"2) Gerir Clientes",
 					"3) Gerir Camioes",
-					"4) Gerir Localizacoes",space,
+					"4) Gerir Localidades",space,
+                                        "--Atalhos--",
+                                        "5) Adicionar Localidade",
+                                        "6) Listar pedidos do cliente",
+                                        "", //outro atalho...
 					"8) Ajuda e Acessibilidade"
 			);
 			
@@ -118,60 +150,97 @@ int printMenu(int input){
 		"%s%s",
 			space, menuAnt, space, space, status, fill, inputWait);
 	
-	switch( input ){
-		case -1:
-			input = 0;
-                case 3:
-                        input = getIntLoop();
-                        if( input >= 1 && input <= 4)
-                            input += 30;
-                        else if( input != 0 )
-                            input = 3;
-                        break;
-                case 31:
-                case 32:
-                case 33:
-                case 34: break;
-		case 9:
-			input = getIntLoop();
-			if( input == 1 || input == 2 )
-				input += 90;
-			else if( input != 0 )
-				input = 9;
-			break;
-		case 91:
-			input = -1;
-			break;
-		case 92:
-			input = -1;
-			break;
-		case 8:
-			getchar(); clearInputBuffer();
-			input = 0;
-			break;
-		default:
-			input = getIntLoop();
-			if( input == -1 )
-				input = 0;
-	}
-
+	
 	return input;
 }
 
+int getInput(int input, MainTreePt camioes){
+    Camiao a[20] = {
+        {0, "00-60-00", 1.0},
+        {1, "60-00-00", 1.5},
+        {2, "00-00-60", 2.0},
+        {3, "00-85-00", 2.5},
+        {4, "94-00-00", 3.0},
+        {5, "00-63-85", 3.5},
+        {6, "63-00-60", 4.0},
+        {7, "60-94-00", 4.5},
+        {8, "85-85-85", 5.0},
+        {9, "85-AA-85", 5.5},
+        {10, "60-BB-00", 6.0},
+        {11, "00-BB-60", 6.5},
+        {12, "94-CC-00", 7.0},
+        {13, "00-DC-00", 7.5},
+        {14, "00-NY-00", 8.0},
+        {15, "00-FK-00", 8.5},
+        {16, "85-XX-00", 9.0},
+        {17, "94-94-94", 9.5},
+        {18, "85-85-85",10.0},
+        {19, "60-60-60",10.5} };
+    int i;
+    switch( input ){
+        case -1:
+            input = 0;
+        case 3:
+            input = getIntLoop();
+            if( input >= 1 && input <= 4)
+                input += 30;
+            else if( input != 0 )
+                input = 3;
+            break;
+        case 31:
+            for(i=0; i<20; i++)
+                tree_insert( camioes, camiao_novo( a[i].id, a[i].matricula, a[i].custo ) );
+            getchar(); clearInputBuffer();
+            input /= 10;
+            break;
+        case 32:
+        case 33:
+            tree_printOrdered( camioes, 1 );
+            getchar(); clearInputBuffer();
+            input /= 10;
+            break;
+        case 34: //novaEscolha(input);
+            //input = 3;
+            break;
+        case 9:
+            input = getIntLoop();
+            if( input == 1 || input == 2 )
+                input += 90;
+            else if( input != 0 )
+                input = 9;
+            break;
+        case 91:
+            input = -1;
+            break;
+        case 92:
+            input = -1;
+            break;
+        case 8:
+            getchar(); clearInputBuffer();
+            input = 0;
+            break;
+        default:
+            input = getIntLoop();
+            if( input == -1 )
+                input = 0;
+    }
+    return input;
+}
+
 int getIntLoop(){
-	int x;
-	if( isInt( x = readInt() ) == 0 ){
-		printf("Numero invalido\n>> ");
-		return getIntLoop();
-	}else
-		return x;
+    int x;
+    if( isInt( x = readInt() ) == 0 ){
+        printf("Numero invalido\n>> ");
+        return getIntLoop();
+    }else
+        return x;
 }
 
 /*
-int menu(){
-	clearScreen();
-	printf(
-		";**************************************************************;\n"
+   int menu(){
+   clearScreen();
+   printf(
+   ";**************************************************************;\n"
 		"|                                                              |\n"
 		"| Transportes LEI - Gestão de Transportes                      |\n"
 		"|                                                              |\n"

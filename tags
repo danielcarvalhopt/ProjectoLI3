@@ -73,6 +73,8 @@ extdata	mod_lista_ligada.h	/^	void *extdata;      		\/\/ Apontador para o elemen
 extendStr	utils.c	/^char* extendStr(char *str, int i){$/;"	f	signature:(char *str, int i)
 extendStr	utils.h	/^char* extendStr(char *str, int i);$/;"	p	signature:(char *str, int i)
 func_compare	mod_lista_ligada.h	/^	int (*func_compare)(void*,void*);   \/\/ Função de comparação de elementos da lista ligada$/;"	m	struct:MainList	access:public
+getInput	menu.c	/^int getInput(int input, MainTreePt camioes){$/;"	f	signature:(int input, MainTreePt camioes)
+getInput	menu.h	/^int getInput(int input, MainTreePt camioes);$/;"	p	signature:(int input, MainTreePt camioes)
 getIntLoop	menu.c	/^int getIntLoop(){$/;"	f
 getIntLoop	menu.h	/^int getIntLoop();$/;"	p	signature:()
 height	ndavl.h	/^    int height[DIM];$/;"	m	struct:sTree	access:public
@@ -84,6 +86,7 @@ intcmp	utils.h	/^int intcmp(int a, int b);$/;"	p	signature:(int a, int b)
 isInt	utils.c	/^int isInt(int n){$/;"	f	signature:(int n)
 isInt	utils.h	/^int isInt(int n);$/;"	p	signature:(int n)
 l	ndavl.h	/^    struct sTree *l[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
+last	menu.c	/^static int last[3]; \/\/ultimas 3 escolhas$/;"	v	file:
 linkedList	mod_lista_ligada.h	/^typedef struct linkedList {$/;"	s
 linkedList::extdata	mod_lista_ligada.h	/^	void *extdata;      		\/\/ Apontador para o elemento da lista       $/;"	m	struct:linkedList	access:public
 linkedList::prox	mod_lista_ligada.h	/^	struct linkedList *prox;	\/\/ Próximo elemento da lista$/;"	m	struct:linkedList	typeref:struct:linkedList::linkedList	access:public
@@ -95,6 +98,7 @@ nelems	mod_lista_ligada.h	/^	int nelems;  						\/\/ Numero de elementos da list
 nif	dados.h	/^    unsigned int nif; \/\/numero de identificacao fiscal = contribuinte$/;"	m	struct:sCliente	access:public
 node	ndavl.h	/^    void *node;$/;"	m	struct:sTree	access:public
 nome	dados.h	/^    char *nome;$/;"	m	struct:sCliente	access:public
+novaEscolha	menu.c	/^static void novaEscolha(int input){$/;"	f	file:	signature:(int input)
 operativeSystem	utils.h	/^char operativeSystem;$/;"	v
 print	ndavl.h	/^    void (*print[DIM])(void*);$/;"	m	struct:sMainTree	access:public
 printMenu	menu.c	/^int printMenu(int input){$/;"	f	signature:(int input)

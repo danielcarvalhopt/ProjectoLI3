@@ -18,7 +18,7 @@ int camiao_compararMatricula(void* camiaoUm, void* camiaoDois){
 
 void camiao_dump( void* camiao ){
     CamiaoPt thisCamiaoPt = (CamiaoPt)camiao;
-    printf("{id=%d, matricula=\"%s\", consumo=%f}\n", thisCamiaoPt->id, thisCamiaoPt->matricula, thisCamiaoPt->custo );
+    printf("{id=%3d, matricula=\"%s\", consumo=%f}\n", thisCamiaoPt->id, thisCamiaoPt->matricula, thisCamiaoPt->custo );
 }
 
 CamiaoPt camiao_novo( unsigned int id, char *matricula, float custo ){
