@@ -6,16 +6,10 @@
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 Camiao	dados.h	/^} Camiao, *CamiaoPt;$/;"	t	typeref:struct:sCamiao
 CamiaoPt	dados.h	/^} Camiao, *CamiaoPt;$/;"	t	typeref:struct:sCamiao
-Camioes	dados.h	/^} Camioes, *CamioesPt;$/;"	t	typeref:struct:sCamioes
-CamioesPt	dados.h	/^} Camioes, *CamioesPt;$/;"	t	typeref:struct:sCamioes
 Cliente	dados.h	/^} Cliente, *ClientePt;$/;"	t	typeref:struct:sCliente
 ClientePt	dados.h	/^} Cliente, *ClientePt;$/;"	t	typeref:struct:sCliente
-Clientes	dados.h	/^} Clientes, *ClientesPt;$/;"	t	typeref:struct:sClientes
-ClientesPt	dados.h	/^} Clientes, *ClientesPt;$/;"	t	typeref:struct:sClientes
 DIM	ndavl.h	10;"	d
 LinkedListPTR	mod_lista_ligada.h	/^} *LinkedListPTR; 				\/\/ Apontador para a lista ligada$/;"	t	typeref:struct:linkedList
-Locais	dados.h	/^} Locais, *LocaisPt;$/;"	t	typeref:struct:sLocais
-LocaisPt	dados.h	/^} Locais, *LocaisPt;$/;"	t	typeref:struct:sLocais
 Local	dados.h	/^} Local, *LocalPt;$/;"	t	typeref:struct:sLocal
 LocalPt	dados.h	/^} Local, *LocalPt;$/;"	t	typeref:struct:sLocal
 MENU_H_INCLUDED	menu.h	2;"	d
@@ -29,8 +23,6 @@ MainTreePt	ndavl.h	/^} MainTree, *MainTreePt;$/;"	t	typeref:struct:sMainTree
 NDAVL_H_INCLUDED	ndavl.h	2;"	d
 Servico	dados.h	/^} Servico, *ServicoPt;$/;"	t	typeref:struct:sServico
 ServicoPt	dados.h	/^} Servico, *ServicoPt;$/;"	t	typeref:struct:sServico
-Servicos	dados.h	/^} Servicos, *ServicosPt;$/;"	t	typeref:struct:sServicos
-ServicosPt	dados.h	/^} Servicos, *ServicosPt;$/;"	t	typeref:struct:sServicos
 Tree	ndavl.h	/^} Tree, *TreePt;$/;"	t	typeref:struct:sTree
 TreePt	ndavl.h	/^} Tree, *TreePt;$/;"	t	typeref:struct:sTree
 UTILS_H_INCLUDED	utils.h	2;"	d
@@ -52,26 +44,41 @@ apagalista	mod_lista_ligada.c	/^void apagalista(MainListPTR lista)$/;"	f	signatu
 apagalista	mod_lista_ligada.h	/^void apagalista(MainListPTR lista);$/;"	p	signature:(MainListPTR lista)
 apagalistaaux	mod_lista_ligada.c	/^void apagalistaaux(LinkedListPTR *lista)$/;"	f	signature:(LinkedListPTR *lista)
 apagalistaaux	mod_lista_ligada.h	/^void apagalistaaux(LinkedListPTR *lista);$/;"	p	signature:(LinkedListPTR *lista)
-camiao_comparar	dados.h	/^int camiao_comparar(void* camiaoUm, void* camiaoDois){$/;"	f	signature:(void* camiaoUm, void* camiaoDois)
+camiao_compararId	dados.c	/^int camiao_compararId(void* camiaoUm, void* camiaoDois){$/;"	f	signature:(void* camiaoUm, void* camiaoDois)
+camiao_compararId	dados.h	/^int camiao_compararId(void* camiaoUm, void* camiaoDois);$/;"	p	signature:(void* camiaoUm, void* camiaoDois)
+camiao_compararMatricula	dados.c	/^int camiao_compararMatricula(void* camiaoUm, void* camiaoDois){$/;"	f	signature:(void* camiaoUm, void* camiaoDois)
+camiao_compararMatricula	dados.h	/^int camiao_compararMatricula(void* camiaoUm, void* camiaoDois);$/;"	p	signature:(void* camiaoUm, void* camiaoDois)
+camiao_dump	dados.c	/^void camiao_dump( void* camiao ){$/;"	f	signature:( void* camiao )
+camiao_dump	dados.h	/^void camiao_dump( void* camiao );$/;"	p	signature:( void* camiao )
+camiao_novo	dados.c	/^CamiaoPt camiao_novo( unsigned int id, char *matricula, float custo ){$/;"	f	signature:( unsigned int id, char *matricula, float custo )
+camiao_novo	dados.h	/^CamiaoPt camiao_novo( unsigned int id, char *matricula, float custo );$/;"	p	signature:( unsigned int id, char *matricula, float custo )
 chooseSO	utils.c	/^void chooseSO(){$/;"	f
 chooseSO	utils.h	/^void chooseSO();$/;"	p	signature:()
 clearInputBuffer	utils.c	/^void clearInputBuffer(){$/;"	f
 clearInputBuffer	utils.h	/^void clearInputBuffer();$/;"	p	signature:()
 clearScreen	utils.c	/^void clearScreen(){$/;"	f
 clearScreen	utils.h	/^void clearScreen();$/;"	p	signature:()
+cliente_compararNif	dados.c	/^int cliente_compararNif(void* clienteUm, void* clienteDois){$/;"	f	signature:(void* clienteUm, void* clienteDois)
+cliente_compararNif	dados.h	/^int cliente_compararNif(void* clienteUm, void* clienteDois);$/;"	p	signature:(void* clienteUm, void* clienteDois)
+cliente_compararNome	dados.c	/^int cliente_compararNome(void* clienteUm, void* clienteDois){$/;"	f	signature:(void* clienteUm, void* clienteDois)
+cliente_compararNome	dados.h	/^int cliente_compararNome(void* clienteUm, void* clienteDois);$/;"	p	signature:(void* clienteUm, void* clienteDois)
 compare	ndavl.h	/^    int (*compare[DIM])(void*,void*);$/;"	m	struct:sMainTree	access:public
 concatStr	utils.c	/^char* concatStr(char *dest, char *src){$/;"	f	signature:(char *dest, char *src)
 concatStr	utils.h	/^char* concatStr(char *dest, char *src);$/;"	p	signature:(char *dest, char *src)
 crialistaligada	mod_lista_ligada.c	/^MainListPTR crialistaligada(MainListPTR lista, int(*func_compare)(void*,void*)) {$/;"	f	signature:(MainListPTR lista, int(*func_compare)(void*,void*))
 crialistaligada	mod_lista_ligada.h	/^MainListPTR crialistaligada(MainListPTR lista, int (*func_compare)(void *, void *));$/;"	p	signature:(MainListPTR lista, int (*func_compare)(void *, void *))
+custo	dados.h	/^    float custo; \/\/por Km$/;"	m	struct:sCamiao	access:public
 elems	mod_lista_ligada.h	/^	LinkedListPTR elems;     			\/\/ Apontador para uma lista ligada                    $/;"	m	struct:MainList	access:public
 extdata	mod_lista_ligada.h	/^	void *extdata;      		\/\/ Apontador para o elemento da lista       $/;"	m	struct:linkedList	access:public
 extendStr	utils.c	/^char* extendStr(char *str, int i){$/;"	f	signature:(char *str, int i)
 extendStr	utils.h	/^char* extendStr(char *str, int i);$/;"	p	signature:(char *str, int i)
 func_compare	mod_lista_ligada.h	/^	int (*func_compare)(void*,void*);   \/\/ Função de comparação de elementos da lista ligada$/;"	m	struct:MainList	access:public
+getInput	menu.c	/^int getInput(int input, MainTreePt camioes){$/;"	f	signature:(int input, MainTreePt camioes)
+getInput	menu.h	/^int getInput(int input, MainTreePt camioes);$/;"	p	signature:(int input, MainTreePt camioes)
 getIntLoop	menu.c	/^int getIntLoop(){$/;"	f
 getIntLoop	menu.h	/^int getIntLoop();$/;"	p	signature:()
 height	ndavl.h	/^    int height[DIM];$/;"	m	struct:sTree	access:public
+id	dados.h	/^    unsigned int id;$/;"	m	struct:sCamiao	access:public
 inserelistahead	mod_lista_ligada.c	/^ int inserelistahead(MainListPTR lista, void *externdata) {$/;"	f	signature:(MainListPTR lista, void *externdata)
 inserelistahead	mod_lista_ligada.h	/^int inserelistahead(MainListPTR lista, void* externdata);$/;"	p	signature:(MainListPTR lista, void* externdata)
 intcmp	utils.c	/^int intcmp(int a, int b){$/;"	f	signature:(int a, int b)
@@ -79,18 +86,21 @@ intcmp	utils.h	/^int intcmp(int a, int b);$/;"	p	signature:(int a, int b)
 isInt	utils.c	/^int isInt(int n){$/;"	f	signature:(int n)
 isInt	utils.h	/^int isInt(int n);$/;"	p	signature:(int n)
 l	ndavl.h	/^    struct sTree *l[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
+last	menu.c	/^static int last[3]; \/\/ultimas 3 escolhas$/;"	v	file:
 linkedList	mod_lista_ligada.h	/^typedef struct linkedList {$/;"	s
 linkedList::extdata	mod_lista_ligada.h	/^	void *extdata;      		\/\/ Apontador para o elemento da lista       $/;"	m	struct:linkedList	access:public
 linkedList::prox	mod_lista_ligada.h	/^	struct linkedList *prox;	\/\/ Próximo elemento da lista$/;"	m	struct:linkedList	typeref:struct:linkedList::linkedList	access:public
 main	main.c	/^int main(\/*int argc, char **argv*\/){$/;"	f
-maxInt	ndavl.c	/^int maxInt(int a,int b){$/;"	f	signature:(int a,int b)
-maxInt	ndavl.h	/^int maxInt(int a,int b);$/;"	p	signature:(int a,int b)
+matricula	dados.h	/^    char *matricula;$/;"	m	struct:sCamiao	access:public
 maxInt	utils.c	/^int maxInt(int a, int b){$/;"	f	signature:(int a, int b)
 maxInt	utils.h	/^int maxInt(int a, int b);$/;"	p	signature:(int a, int b)
 nelems	mod_lista_ligada.h	/^	int nelems;  						\/\/ Numero de elementos da lista ligada$/;"	m	struct:MainList	access:public
+nif	dados.h	/^    unsigned int nif; \/\/numero de identificacao fiscal = contribuinte$/;"	m	struct:sCliente	access:public
 node	ndavl.h	/^    void *node;$/;"	m	struct:sTree	access:public
+nome	dados.h	/^    char *nome;$/;"	m	struct:sCliente	access:public
+novaEscolha	menu.c	/^static void novaEscolha(int input){$/;"	f	file:	signature:(int input)
 operativeSystem	utils.h	/^char operativeSystem;$/;"	v
-print	ndavl.h	/^    void (*print[DIM])(void*,int,void*);$/;"	m	struct:sMainTree	access:public
+print	ndavl.h	/^    void (*print[DIM])(void*);$/;"	m	struct:sMainTree	access:public
 printMenu	menu.c	/^int printMenu(int input){$/;"	f	signature:(int input)
 printMenu	menu.h	/^int printMenu(int input);$/;"	p	signature:(int input)
 procuraelemlista	mod_lista_ligada.c	/^LinkedListPTR procuraelemlista (MainListPTR lista, void *externdata)$/;"	f	signature:(MainListPTR lista, void *externdata)
@@ -103,17 +113,18 @@ readStr	utils.c	/^char* readStr(char *ptr){$/;"	f	signature:(char *ptr)
 readStr	utils.h	/^char* readStr(char *ptr);$/;"	p	signature:(char *ptr)
 rodape	main.c	/^char rodape[51] = "Programa iniciado";$/;"	v
 sCamiao	dados.h	/^typedef struct sCamiao{$/;"	s
-sCamioes	dados.h	/^typedef struct sCamioes{$/;"	s
+sCamiao::custo	dados.h	/^    float custo; \/\/por Km$/;"	m	struct:sCamiao	access:public
+sCamiao::id	dados.h	/^    unsigned int id;$/;"	m	struct:sCamiao	access:public
+sCamiao::matricula	dados.h	/^    char *matricula;$/;"	m	struct:sCamiao	access:public
 sCliente	dados.h	/^typedef struct sCliente{$/;"	s
-sClientes	dados.h	/^typedef struct sClientes{$/;"	s
-sLocais	dados.h	/^typedef struct sLocais{$/;"	s
+sCliente::nif	dados.h	/^    unsigned int nif; \/\/numero de identificacao fiscal = contribuinte$/;"	m	struct:sCliente	access:public
+sCliente::nome	dados.h	/^    char *nome;$/;"	m	struct:sCliente	access:public
 sLocal	dados.h	/^typedef struct sLocal{$/;"	s
 sMainTree	ndavl.h	/^typedef struct sMainTree{$/;"	s
 sMainTree::compare	ndavl.h	/^    int (*compare[DIM])(void*,void*);$/;"	m	struct:sMainTree	access:public
-sMainTree::print	ndavl.h	/^    void (*print[DIM])(void*,int,void*);$/;"	m	struct:sMainTree	access:public
+sMainTree::print	ndavl.h	/^    void (*print[DIM])(void*);$/;"	m	struct:sMainTree	access:public
 sMainTree::tree	ndavl.h	/^    TreePt tree[DIM];$/;"	m	struct:sMainTree	access:public
 sServico	dados.h	/^typedef struct sServico{$/;"	s
-sServicos	dados.h	/^typedef struct sServicos{$/;"	s
 sTree	ndavl.h	/^typedef struct sTree{$/;"	s
 sTree::height	ndavl.h	/^    int height[DIM];$/;"	m	struct:sTree	access:public
 sTree::l	ndavl.h	/^    struct sTree *l[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
@@ -121,41 +132,30 @@ sTree::node	ndavl.h	/^    void *node;$/;"	m	struct:sTree	access:public
 sTree::r	ndavl.h	/^    struct sTree *r[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
 strBuffer	utils.h	/^char strBuffer[501];$/;"	v
 tree	ndavl.h	/^    TreePt tree[DIM];$/;"	m	struct:sMainTree	access:public
-tree_disconnectTree	ndavl.c	/^void tree_disconnectTree( TreePt *thisTreePt, int thisDim, int (*compare)(void*,void*) ){$/;"	f	signature:( TreePt *thisTreePt, int thisDim, int (*compare)(void*,void*) )
-tree_disconnectTree	ndavl.h	/^void tree_disconnectTree( TreePt *thisTreePt, int thisDim, int (*compare)(void*,void*) );$/;"	p	signature:( TreePt *thisTreePt, int thisDim, int (*compare)(void*,void*) )
+tree_disconnectTree	ndavl.c	/^static void tree_disconnectTree( TreePt *thisTreePt, int thisDim, int (*compare)(void*,void*) ){$/;"	f	file:	signature:( TreePt *thisTreePt, int thisDim, int (*compare)(void*,void*) )
 tree_dispose	ndavl.c	/^void tree_dispose( MainTreePt *thisMainTree ){$/;"	f	signature:( MainTreePt *thisMainTree )
 tree_dispose	ndavl.h	/^void tree_dispose( MainTreePt *thisMainTree );$/;"	p	signature:( MainTreePt *thisMainTree )
-tree_disposeRec	ndavl.c	/^void tree_disposeRec( TreePt *thisTreePt ){$/;"	f	signature:( TreePt *thisTreePt )
-tree_disposeRec	ndavl.h	/^void tree_disposeRec( TreePt *thisTreePt );$/;"	p	signature:( TreePt *thisTreePt )
-tree_doubleRotateLeftRight	ndavl.c	/^void tree_doubleRotateLeftRight( TreePt *thisTreePt, int thisDim ){$/;"	f	signature:( TreePt *thisTreePt, int thisDim )
-tree_doubleRotateLeftRight	ndavl.h	/^void tree_doubleRotateLeftRight( TreePt *thisTreePt, int thisDim );$/;"	p	signature:( TreePt *thisTreePt, int thisDim )
-tree_doubleRotateRightLeft	ndavl.c	/^void tree_doubleRotateRightLeft( TreePt *thisTreePt, int thisDim ){$/;"	f	signature:( TreePt *thisTreePt, int thisDim )
-tree_doubleRotateRightLeft	ndavl.h	/^void tree_doubleRotateRightLeft( TreePt *thisTreePt, int thisDim );$/;"	p	signature:( TreePt *thisTreePt, int thisDim )
-tree_getHeight	ndavl.c	/^int tree_getHeight(TreePt tree, int thisDim){$/;"	f	signature:(TreePt tree, int thisDim)
-tree_getHeight	ndavl.h	/^int tree_getHeight(TreePt tree, int thisDim);$/;"	p	signature:(TreePt tree, int thisDim)
+tree_disposeRec	ndavl.c	/^static void tree_disposeRec( TreePt *thisTreePt ){$/;"	f	file:	signature:( TreePt *thisTreePt )
+tree_doubleRotateLeftRight	ndavl.c	/^static void tree_doubleRotateLeftRight( TreePt *thisTreePt, int thisDim ){$/;"	f	file:	signature:( TreePt *thisTreePt, int thisDim )
+tree_doubleRotateRightLeft	ndavl.c	/^static void tree_doubleRotateRightLeft( TreePt *thisTreePt, int thisDim ){$/;"	f	file:	signature:( TreePt *thisTreePt, int thisDim )
+tree_getHeight	ndavl.c	/^static int tree_getHeight(TreePt tree, int thisDim){$/;"	f	file:	signature:(TreePt tree, int thisDim)
 tree_insert	ndavl.c	/^int tree_insert( MainTreePt thisMainTree, void* node){$/;"	f	signature:( MainTreePt thisMainTree, void* node)
 tree_insert	ndavl.h	/^int tree_insert( MainTreePt thisMainTree, void* node);$/;"	p	signature:( MainTreePt thisMainTree, void* node)
-tree_insertRec	ndavl.c	/^int tree_insertRec( TreePt *thisTree, TreePt allocd, void* node, int thisDim, int (*compare)(void*,void*)){$/;"	f	signature:( TreePt *thisTree, TreePt allocd, void* node, int thisDim, int (*compare)(void*,void*))
-tree_insertRec	ndavl.h	/^int tree_insertRec( TreePt *thisTree, TreePt allocd, void* node, int thisDim, int (*compare)(void*,void*));$/;"	p	signature:( TreePt *thisTree, TreePt allocd, void* node, int thisDim, int (*compare)(void*,void*))
-tree_maintain	ndavl.c	/^void tree_maintain( TreePt *thisTree, int thisDim, int (*compare)(void*,void*) ){$/;"	f	signature:( TreePt *thisTree, int thisDim, int (*compare)(void*,void*) )
-tree_maintain	ndavl.h	/^void tree_maintain( TreePt *thisTree, int thisDim, int (*compare)(void*,void*) );$/;"	p	signature:( TreePt *thisTree, int thisDim, int (*compare)(void*,void*) )
-tree_new	ndavl.c	/^MainTreePt tree_new( int (*compare[DIM])(void*,void*), void (*print[DIM])(void*,int,void*)){$/;"	f	signature:( int (*compare[DIM])(void*,void*), void (*print[DIM])(void*,int,void*))
-tree_new	ndavl.h	/^MainTreePt tree_new( int (*compare[DIM])(void*,void*), void (*print[DIM])(void*,int,void*));$/;"	p	signature:( int (*compare[DIM])(void*,void*), void (*print[DIM])(void*,int,void*))
+tree_insertRec	ndavl.c	/^static int tree_insertRec( TreePt *thisTree, TreePt allocd, void* node, int thisDim, int (*compare)(void*,void*)){$/;"	f	file:	signature:( TreePt *thisTree, TreePt allocd, void* node, int thisDim, int (*compare)(void*,void*))
+tree_maintain	ndavl.c	/^static void tree_maintain( TreePt *thisTree, int thisDim){$/;"	f	file:	signature:( TreePt *thisTree, int thisDim)
+tree_new	ndavl.c	/^MainTreePt tree_new( int (*compare[DIM])(void*,void*), void (*print[DIM])(void*)){$/;"	f	signature:( int (*compare[DIM])(void*,void*), void (*print[DIM])(void*))
+tree_new	ndavl.h	/^MainTreePt tree_new( int (*compare[DIM])(void*,void*), void (*print[DIM])(void*));$/;"	p	signature:( int (*compare[DIM])(void*,void*), void (*print[DIM])(void*))
 tree_printOrdered	ndavl.c	/^void tree_printOrdered(MainTreePt thisMainTree, int thisDim){$/;"	f	signature:(MainTreePt thisMainTree, int thisDim)
 tree_printOrdered	ndavl.h	/^void tree_printOrdered(MainTreePt thisMainTree, int thisDim);$/;"	p	signature:(MainTreePt thisMainTree, int thisDim)
-tree_printOrderedRec	ndavl.c	/^void tree_printOrderedRec( TreePt thisTree, void (*print)(void*,int,void*), int thisDim ){$/;"	f	signature:( TreePt thisTree, void (*print)(void*,int,void*), int thisDim )
-tree_printOrderedRec	ndavl.h	/^void tree_printOrderedRec( TreePt thisTree, void (*print)(void*,int,void*), int thisDim );$/;"	p	signature:( TreePt thisTree, void (*print)(void*,int,void*), int thisDim )
-tree_pushUp	ndavl.c	/^void tree_pushUp( TreePt *master, TreePt *thisTreePt, int thisDim, int (*compare)(void*,void*) ){$/;"	f	signature:( TreePt *master, TreePt *thisTreePt, int thisDim, int (*compare)(void*,void*) )
-tree_pushUp	ndavl.h	/^void tree_pushUp( TreePt *master, TreePt *thisTreePt, int thisDim, int (*compare)(void*,void*) );$/;"	p	signature:( TreePt *master, TreePt *thisTreePt, int thisDim, int (*compare)(void*,void*) )
+tree_printOrderedRec	ndavl.c	/^static void tree_printOrderedRec( TreePt thisTree, void (*print)(void*), int thisDim ){$/;"	f	file:	signature:( TreePt thisTree, void (*print)(void*), int thisDim )
+tree_pushUp	ndavl.c	/^static void tree_pushUp( TreePt *master, TreePt *thisTreePt, int thisDim, int (*compare)(void*,void*) ){$/;"	f	file:	signature:( TreePt *master, TreePt *thisTreePt, int thisDim, int (*compare)(void*,void*) )
 tree_remove	ndavl.c	/^void tree_remove( MainTreePt thisMainTreePt, void* node ){$/;"	f	signature:( MainTreePt thisMainTreePt, void* node )
 tree_remove	ndavl.h	/^void tree_remove( MainTreePt thisMainTreePt, void* node );$/;"	p	signature:( MainTreePt thisMainTreePt, void* node )
 tree_search	ndavl.c	/^TreePt tree_search(MainTreePt thisMainTree, void* node, int thisDim){$/;"	f	signature:(MainTreePt thisMainTree, void* node, int thisDim)
 tree_search	ndavl.h	/^TreePt tree_search(MainTreePt thisMainTree, void* node, int thisDim);$/;"	p	signature:(MainTreePt thisMainTree, void* node, int thisDim)
-tree_searchRec	ndavl.c	/^TreePt tree_searchRec(TreePt thisTreePt, void* node, int thisDim, int (*compare)(void*,void*)){$/;"	f	signature:(TreePt thisTreePt, void* node, int thisDim, int (*compare)(void*,void*))
-tree_searchRec	ndavl.h	/^TreePt tree_searchRec(TreePt thisTreePt, void* node, int thisDim, int (*compare)(void*,void*));$/;"	p	signature:(TreePt thisTreePt, void* node, int thisDim, int (*compare)(void*,void*))
-tree_searchTreeToDisconnect	ndavl.c	/^void tree_searchTreeToDisconnect( TreePt *thisTreePt, int thisDim, void *node, int (*compare)(void*,void*) ){$/;"	f	signature:( TreePt *thisTreePt, int thisDim, void *node, int (*compare)(void*,void*) )
-tree_searchTreeToDisconnect	ndavl.h	/^void tree_searchTreeToDisconnect( TreePt *thisTreePt, int thisDim, void* node, int (*compare)(void*,void*) );$/;"	p	signature:( TreePt *thisTreePt, int thisDim, void* node, int (*compare)(void*,void*) )
-tree_singleRotateLeft	ndavl.c	/^void tree_singleRotateLeft( TreePt *thisTreePt, int thisDim ){$/;"	f	signature:( TreePt *thisTreePt, int thisDim )
-tree_singleRotateLeft	ndavl.h	/^void tree_singleRotateLeft( TreePt *thisTreePt, int thisDim );$/;"	p	signature:( TreePt *thisTreePt, int thisDim )
-tree_singleRotateRight	ndavl.c	/^void tree_singleRotateRight( TreePt *thisTreePt, int thisDim ){$/;"	f	signature:( TreePt *thisTreePt, int thisDim )
-tree_singleRotateRight	ndavl.h	/^void tree_singleRotateRight( TreePt *thisTreePt, int thisDim );$/;"	p	signature:( TreePt *thisTreePt, int thisDim )
+tree_searchRec	ndavl.c	/^static TreePt tree_searchRec(TreePt thisTreePt, void* node, int thisDim, int (*compare)(void*,void*)){$/;"	f	file:	signature:(TreePt thisTreePt, void* node, int thisDim, int (*compare)(void*,void*))
+tree_searchTreeToDisconnect	ndavl.c	/^static void tree_searchTreeToDisconnect( TreePt *thisTreePt, int thisDim, void *node, int (*compare)(void*,void*) ){$/;"	f	file:	signature:( TreePt *thisTreePt, int thisDim, void *node, int (*compare)(void*,void*) )
+tree_singleRotateLeft	ndavl.c	/^static void tree_singleRotateLeft( TreePt *thisTreePt, int thisDim ){$/;"	f	file:	signature:( TreePt *thisTreePt, int thisDim )
+tree_singleRotateRight	ndavl.c	/^static void tree_singleRotateRight( TreePt *thisTreePt, int thisDim ){$/;"	f	file:	signature:( TreePt *thisTreePt, int thisDim )
+uintcmp	utils.c	/^int uintcmp(unsigned int a, unsigned int b){$/;"	f	signature:(unsigned int a, unsigned int b)
+uintcmp	utils.h	/^int uintcmp(unsigned int a, unsigned int b);$/;"	p	signature:(unsigned int a, unsigned int b)

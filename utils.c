@@ -84,7 +84,7 @@ char* readStr(char *ptr){
 
 char* allocStr(char *dest, char *src){
 	if( (dest = malloc(strlen(src) + 1)) == NULL ){
-		printf("Out of memory\n");
+		//printf("Out of memory\n");
 		return NULL;
 	}
 	strcpy(dest, src);
@@ -93,7 +93,7 @@ char* allocStr(char *dest, char *src){
 
 char* concatStr(char *dest, char *src){
 	if( (dest = realloc( dest, (strlen(dest) + strlen(src) + 1) )) == NULL ){
-		printf("Out of memory");
+		//printf("Out of memory");
 		return NULL;
 	}
     strcat(dest,src);
@@ -102,7 +102,7 @@ char* concatStr(char *dest, char *src){
 
 char* extendStr(char *str, int i){
 	if( (str = realloc( str, (strlen(str) + i + 1) )) == NULL ){
-		printf("Out of memory");
+		//printf("Out of memory");
 		return NULL;
 	}
 	return str;

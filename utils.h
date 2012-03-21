@@ -14,7 +14,7 @@ int readInt();
 int isInt(int n);
 int maxInt(int a, int b);
 int intcmp(int a, int b);
-int intcmp(unsigned int a, unsigned int b);
+int uintcmp(unsigned int a, unsigned int b);
 
 // strings
 char* readStr(char *ptr);
