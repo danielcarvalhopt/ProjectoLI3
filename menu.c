@@ -250,7 +250,7 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes){
             break;
         case 21:
             for(i=0; i<20; i++)
-                tree_insert(clientes, cliente_novo( cliente_teste[i].nif, cliente_teste[i].nome, cliente_teste[i].morada ));
+                tree_insert(clientes, cliente_novo( cliente_teste[i].nif, cliente_teste[i].nome, cliente_teste[i].morada, cliente_teste[i].servicos ));
             getchar(); clearInputBuffer();
             input /= 10;
             break;

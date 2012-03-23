@@ -58,7 +58,7 @@ void cliente_dump( void* cliente ){
     printf("{id=%09d, nome=\"%s\", morada=\"%s\"}\n", thisClientePt->nif, thisClientePt->nome, thisClientePt->morada );
 }
 
-ClientePt cliente_novo( unsigned int nif, char *nome, char *morada ){
+ClientePt cliente_novo( unsigned int nif, char *nome, char *morada, MainListPTR servicos ){
     ClientePt novoClientePt = NULL;
     if( (novoClientePt = malloc( sizeof(Cliente)) ) == NULL ) return NULL;
 
@@ -66,6 +66,7 @@ ClientePt cliente_novo( unsigned int nif, char *nome, char *morada ){
     novoClientePt->nome = nome;
     novoClientePt->nif = nif;
     novoClientePt->morada = morada;
+    novoClientePt->servicos = servicos;
     return novoClientePt;
 }
 
@@ -73,28 +74,26 @@ ClientePt cliente_novo( unsigned int nif, char *nome, char *morada ){
 // 0  - nao inserido novo, mas antigo apagado
 // 1  - encontrou, apagou, meteu o novo
 int cliente_substituiPeloNome( MainTreePt clientesPt, char *procuraNome, unsigned int nif, char *nome, char *morada ){
-    ClientePt aux = cliente_novo( 0, procuraNome, "" );
+    ClientePt aux = cliente_novo( 0, procuraNome, "", NULL );
     TreePt thisTreePt = tree_search( clientesPt, aux, 1);
     free(aux);
     if( thisTreePt == NULL ) return -1;
-    ClientePt modificado = cliente_novo( nif, nome, morada );
-    cliente_setServico( modificado, thisTreePt );
+    ClientePt modificado = cliente_novo( nif, nome, morada, cliente_getServico( thisTreePt ) );
     tree_remove( clientesPt, thisTreePt->node );
     return tree_insert( clientesPt, modificado );
 }
 
-void cliente_setServico( ClientePt thisClientePt, TreePt thisTreePt ){
-    if( thisClientePt == NULL || thisTreePt == NULL ) return;
-    thisClientePt->servicos = ((ClientePt)tree_getElem(thisTreePt))->servicos;
+MainListPTR cliente_getServico( TreePt thisTreePt ){
+    if( thisTreePt == NULL ) return NULL;
+    return ((ClientePt)tree_getElem(thisTreePt))->servicos;
 }
 
 int cliente_substituiPeloNif( MainTreePt clientesPt, unsigned int procuraNif, unsigned int nif, char *nome, char *morada ){
-    ClientePt aux = cliente_novo( procuraNif, "", "" );
+    ClientePt aux = cliente_novo( procuraNif, "", "", NULL );
     TreePt thisTreePt = tree_search( clientesPt, aux, 0);
     free(aux);
     if( thisTreePt == NULL ) return -1;
-    ClientePt modificado = cliente_novo( nif, nome, morada );
-    cliente_setServico( modificado, thisTreePt );
+    ClientePt modificado = cliente_novo( nif, nome, morada, cliente_getServico( thisTreePt ) );
     tree_remove( clientesPt, thisTreePt->node );
     return tree_insert( clientesPt, modificado );
 }

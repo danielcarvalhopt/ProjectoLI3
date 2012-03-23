@@ -21,6 +21,7 @@ typedef struct sCamiao{
     char *matricula;
     float custo; //por Km
     float peso; //peso máximo que pode transportar
+    //falta localidade actual
 } Camiao, *CamiaoPt;
 
 void camiao_dump( void* camiao );
@@ -42,10 +43,10 @@ typedef struct sCliente{
 int cliente_compararNif(void* clienteUm, void* clienteDois);
 int cliente_compararNome(void* clienteUm, void* clienteDois);
 void cliente_dump( void* cliente );
-ClientePt cliente_novo( unsigned int nif, char *nome, char *morada );
+ClientePt cliente_novo( unsigned int nif, char *nome, char *morada, MainListPTR servicos );
 int cliente_substituiPeloNome( MainTreePt clientesPt, char *procuraNome, unsigned int nif, char *nome, char *morada );
 int cliente_substituiPeloNif( MainTreePt clientesPt, unsigned int procuraNif, unsigned int nif, char *nome, char *morada );
-void cliente_setServico( ClientePt thisClientePt, TreePt thisTreePt );
+MainListPTR cliente_getServico( TreePt thisTreePt );
 
 
 
