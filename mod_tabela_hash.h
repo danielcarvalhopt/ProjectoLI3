@@ -29,7 +29,7 @@ typedef struct TabelaHash{
 	@param startcells Numero de elementos iniciais da tabela
 	@return Apontador para tabela de hash
  */
-TabelaHashPTR hashtablecreator (int(*hash_function)(void*,int), int startcells);
+TabelaHashPTR hashtablecreator (int(*hash_function)(void*,int), int startcells,int (*func_compare)(void*,void*));
 
 
 

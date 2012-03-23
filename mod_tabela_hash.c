@@ -1,24 +1,29 @@
 
-
-
-
 /*--------------------------------------------------------------------*/
 /* Módulo de Tabela de Hash -> Funções de tabela de hash com chaining */
 /*--------------------------------------------------------------------*/
 
+char* allocStr(char *dest, char *src){
+    if( (dest = malloc(strlen(src) + 1)) == NULL ){
+        printf("Out of memory\n");
+        return NULL;
+    }
+    strcpy(dest, src);
+    return dest;
+}
 
 
-TabelaHashPTR hashtablecreator (int(*hash_function)(void*,int), int startcells)
+TabelaHashPTR hashtablecreator (int(*hash_function)(void*,int), int startcells, int (*func_compare)(void*,void*))
 {
-	TabelaHashPTR table; void *datacells; int i;
+    TabelaHashPTR table; void *datacells; int i;
 
-	table = (TabelaHashPTR)malloc(sizeof(struct TabelaHash));
+    table = (TabelaHashPTR)malloc(sizeof(struct TabelaHash));
 
 
-	table->hash_function = hash_function;
-	table->nelems=0;
-	table->totalcells=startcells;
-	table->arraycell = (MainListPTR*)malloc(sizeof(MainListPTR) * startcells);
+    table->hash_function = hash_function;
+    table->nelems=0;
+    table->totalcells=startcells;
+    table->arraycell = (MainListPTR*)malloc(sizeof(MainListPTR) * startcells);
 
     for(i=0;i<startcells;i++)
     {
@@ -41,7 +46,7 @@ int hashtablerealloc (TabelaHashPTR table)
 {
     int acttotalcells = table->totalcells;
     int realloccells = acttotalcells*2; int i;
-
+    void *func_compare=(table->arraycell[0]->func_compare);
 
     MainListPTR *dados=table->arraycell;
     LinkedListPTR aux, auxfree;
@@ -78,6 +83,8 @@ int hashtablerealloc (TabelaHashPTR table)
 
 int hashtableinsertion (TabelaHashPTR table, void *externdata)
 {
+    void *func_compare=table->arraycell[0]->func_compare;
+
     if(hashtablecelluse(table)==1){
         hashtablerealloc(table);
     }
@@ -90,6 +97,7 @@ int hashtableinsertion (TabelaHashPTR table, void *externdata)
     if (success==1){
         table->nelems++;
     }
+    else return 0;
 
     return 1;
 }
@@ -98,10 +106,9 @@ int hashtableinsertion (TabelaHashPTR table, void *externdata)
 
 LinkedListPTR hashtablesearch (TabelaHashPTR table, void *externdata)
 {
-    int hashkey=table->hash_function(externdata,table->totalcells);
+    int hashkey=(int)(table->hash_function(externdata,table->totalcells));
     LinkedListPTR aux;
-    aux=(procuraelemlista(table->arraycell[hashkey], externdata));
-    if (aux!=NULL) return aux;  
+    if ((aux=(procuraelemlista(table->arraycell[hashkey], externdata)))!=NULL) return aux;  
     else return NULL;
 }
 
@@ -135,8 +142,10 @@ void hashtabledestroy(TabelaHashPTR table)
 
 int hash_function(void*a,int b)
 {
-    int v = *(char*)a;
-    return (v%b);
+    LocalidadePTR localA = (LocalidadePTR)a;
+    char *nomeA;
+    nomeA=(char*)localA->nome;
+    return 0;
 }
 
 
