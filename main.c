@@ -16,15 +16,15 @@ int main(/*int argc, char **argv*/){
     //    {camiao_dump, camiao_dump}
     //};
     
-    int (*funcCompara[DIM])(void*,void*) = {camiao_compararId, camiao_compararMatricula};
-    void (*funcPrint[DIM])(void*) = {camiao_dump, camiao_dump};
+    int (*comparaCamioes[DIM])(void*,void*) = {camiao_compararId, camiao_compararMatricula};
+    int (*comparaClientes[DIM])(void*,void*) = {cliente_compararNif, cliente_compararNome};
 
-
-    MainTreePt camioes = tree_new( funcCompara, funcPrint );
+    MainTreePt camioes = tree_new( comparaCamioes );
+    MainTreePt clientes = tree_new( comparaClientes );
     while( input != -1 ){
         //stop = -1;
         input = printMenu(input);
-        input = getInput(input, camioes);
+        input = getInput(input, camioes, clientes);
     }
     return 0;
 }

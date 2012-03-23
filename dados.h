@@ -29,10 +29,14 @@ CamiaoPt camiao_novo( unsigned int id, char *matricula, float custo );
 typedef struct sCliente{
     unsigned int nif; //numero de identificacao fiscal = contribuinte
     char *nome;
+    char *morada;
 } Cliente, *ClientePt;
 
 int cliente_compararNif(void* clienteUm, void* clienteDois);
 int cliente_compararNome(void* clienteUm, void* clienteDois);
+void cliente_dump( void* cliente );
+ClientePt cliente_novo( unsigned int nif, char *nome, char *morada );
+
 
 //
 // Funções e estruturas das Localidades

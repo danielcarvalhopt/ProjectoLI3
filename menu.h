@@ -5,7 +5,7 @@
 
 int printMenu(int input);
 int getIntLoop();
-int getInput(int input, MainTreePt camioes);
+int getInput(int input, MainTreePt camioes, MainTreePt clientes);
 
 #endif /* MENU_H_INCLUDED */
 

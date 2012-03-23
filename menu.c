@@ -35,6 +35,45 @@ int printMenu(int input){
         //printf("input=%d\n",input);
 	printf("%s%s%s%s",fill,space,title,space);
 	switch( input ){
+                case 2:
+                        printf( "*    %-56s  *\n"
+                                "%s"
+                                "*    %-56s  *\n"
+                                "*    %-56s  *\n"
+                                "*    %-56s  *\n"
+                                "*    %-56s  *\n",
+                                    "Menu P. > Gestao de Clientes", space,
+                                    "1) Novo cliente",
+                                    "2) Eliminar cliente",
+                                    "3) Listar clientes",
+                                    "4) Actualizar dados do cliente"
+                        );
+                        break;
+                case 21:
+                        strcpy( inputWait, "" );
+                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu anterior" );
+                        strcpy( status, "Inserindo dados de teste..." ); //debug
+                        printf( "*    %-56s  *\n"
+                                "%s"
+                                "*    %-56s  *\n"
+                                "*    %-56s  *\n"
+                                "*    %-56s  *\n"
+                                "*    %-56s  *\n",
+                                    "Menu P. > Gestao de Clientes > Novo cliente", space,
+                                    "Campos:",
+                                    "NIF - número de contribuinte (9 digitos)",
+                                    "Nome - Nome do cliente",
+                                    "Morada - Morada do cliente"
+                        );
+                        break;
+                case 23:
+                        strcpy( status, "Listando Elementos..." );
+                        strcpy( inputWait, "" );
+                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu anterior" );
+                        printf( "*    %-56s  *\n",
+                                    "Menu P. > Gestao de Clientes > Listagem"
+                        ); 
+                        break;
                 case 3:
                         printf( "*    %-56s  *\n"
                                 "%s"
@@ -154,8 +193,8 @@ int printMenu(int input){
 	return input;
 }
 
-int getInput(int input, MainTreePt camioes){
-    Camiao a[20] = {
+int getInput(int input, MainTreePt camioes, MainTreePt clientes){
+    Camiao camiao_teste[20] = {
         {0, "00-60-00", 1.0},
         {1, "60-00-00", 1.5},
         {2, "00-00-60", 2.0},
@@ -176,10 +215,57 @@ int getInput(int input, MainTreePt camioes){
         {17, "94-94-94", 9.5},
         {18, "85-85-85",10.0},
         {19, "60-60-60",10.5} };
+    Cliente cliente_teste[20] = {
+        {111111111, "luis", "Rua de baixo"},
+        {222222222, "paulo", "Rua de cima"},
+        {333333333, "joaquim", "Rua da esquerda"},
+        {444444444, "albertina", "Rua da direita"},
+        {726347623, "daniel", "praça do centro"},
+        {638649271, "bruno", "praça ao lado"},
+        {119372931, "fernando", "rua do fernando"},
+        {682643264, "vanessa", "cidade feliz"},
+        { 64826471, "claudia", "rua atravessada"},
+        {101928498, "bernardo", "estrada do ar"},
+        {628303648, "rui", "rua sem nome"},
+        {356456456, "josé", "mais um nome de rua"},
+        {554555423, "antonio", "um nome de cidade"},
+        {729372984, "joao", "lisboa"},
+        {380934803, "jorge", "porto"},
+        {987654321, "joana", "santarem"},
+        {456789121, "antonia", "leiria"},
+        {732738231, "fernanda", "braga"},
+        {452134541, "bruna", "guimarães"},
+        {454645231, "vasco", "ultima rua à direita"}
+    };
     int i;
     switch( input ){
         case -1:
             input = 0;
+        case 2:
+            input = getIntLoop();
+            if( input >= 1 && input <= 4)
+                input += 20;
+            else if( input != 0 )
+                input = 2;
+            break;
+        case 21:
+            for(i=0; i<20; i++)
+                tree_insert(clientes, cliente_novo( cliente_teste[i].nif, cliente_teste[i].nome, cliente_teste[i].morada ));
+            getchar(); clearInputBuffer();
+            input /= 10;
+            break;
+        case 22: break;
+        case 23:
+            printf("ordenados por Nome: \n");
+            tree_applyToAllOrdered( clientes, 1 , cliente_dump);
+            printf("ordenados por NIF: \n");
+            tree_applyToAllOrdered( clientes, 0 , cliente_dump);
+            getchar(); clearInputBuffer();
+            input /= 10;
+            break;
+        case 24: //novaEscolha(input);
+            //input = 2;
+            break;
         case 3:
             input = getIntLoop();
             if( input >= 1 && input <= 4)
@@ -189,13 +275,16 @@ int getInput(int input, MainTreePt camioes){
             break;
         case 31:
             for(i=0; i<20; i++)
-                tree_insert( camioes, camiao_novo( a[i].id, a[i].matricula, a[i].custo ) );
+                tree_insert( camioes, camiao_novo( camiao_teste[i].id, camiao_teste[i].matricula, camiao_teste[i].custo ) );
             getchar(); clearInputBuffer();
             input /= 10;
             break;
-        case 32:
+        case 32:break;
         case 33:
-            tree_printOrdered( camioes, 1 );
+            printf("ordenados por matricula: \n");
+            tree_applyToAllOrdered( camioes, 1 , camiao_dump);
+            printf("ordenados por id: \n");
+            tree_applyToAllOrdered( camioes, 0 , camiao_dump);
             getchar(); clearInputBuffer();
             input /= 10;
             break;

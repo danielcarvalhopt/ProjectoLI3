@@ -101,13 +101,12 @@ TreePt tree_search(MainTreePt thisMainTree, void* node, int thisDim){
     return tree_searchRec(thisMainTree->tree[thisDim], node, thisDim, thisMainTree->compare[thisDim]);
 }
 
-MainTreePt tree_new( int (*compare[DIM])(void*,void*), void (*print[DIM])(void*)){
+MainTreePt tree_new( int (*compare[DIM])(void*,void*) ){
     int i;
     MainTreePt new;
     if( (new = (MainTreePt) malloc( sizeof(MainTree))) != NULL ){ 
         for( i=0; i<DIM; i++){
             new->compare[i] = compare[i];
-            new->print[i] = print[i];
             new->tree[i] = NULL;
         }
     }
@@ -212,26 +211,17 @@ void tree_remove( MainTreePt thisMainTreePt, void* node ){
     //tree_maintain( &thisMainTreePt->tree[thisDim], thisDim, thisMainTreePt->compare );
 }
 
-
-
-
-
-
-
-static void tree_printOrderedRec( TreePt thisTree, void (*print)(void*), int thisDim ){
+static void tree_applyToAllOrderedRec( TreePt thisTree, void (*func)(void*), int thisDim ){
     if( thisTree != NULL ){
-        //printf("LEFT -> ");
-        tree_printOrderedRec( thisTree->l[thisDim], print, thisDim);
-        //printf("THIS -> ");
-        print(thisTree->node);
-        //printf("RIGHT -> ");
-        tree_printOrderedRec( thisTree->r[thisDim], print, thisDim);
-    }//else printf("NULL\n");
+        tree_applyToAllOrderedRec( thisTree->l[thisDim], func, thisDim);
+        func(thisTree->node);
+        tree_applyToAllOrderedRec( thisTree->r[thisDim], func, thisDim);
+    }
 }
 
-void tree_printOrdered(MainTreePt thisMainTree, int thisDim){
+void tree_applyToAllOrdered(MainTreePt thisMainTree, int thisDim, void (*func)(void*)){
     if( thisMainTree != NULL )
-        tree_printOrderedRec( thisMainTree->tree[thisDim], thisMainTree->print[thisDim], thisDim );
+        tree_applyToAllOrderedRec( thisMainTree->tree[thisDim], func, thisDim );
 }
 
 static void tree_disposeRec( TreePt *thisTreePt ){

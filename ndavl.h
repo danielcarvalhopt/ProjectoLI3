@@ -19,14 +19,13 @@ typedef struct sTree{
 typedef struct sMainTree{
     TreePt tree[DIM];
     int (*compare[DIM])(void*,void*);
-    void (*print[DIM])(void*);
 } MainTree, *MainTreePt;
 
 
-MainTreePt tree_new( int (*compare[DIM])(void*,void*), void (*print[DIM])(void*));
+MainTreePt tree_new( int (*compare[DIM])(void*,void*) );
 int tree_insert( MainTreePt thisMainTree, void* node);
 TreePt tree_search(MainTreePt thisMainTree, void* node, int thisDim);
-void tree_printOrdered(MainTreePt thisMainTree, int thisDim);
+void tree_applyToAllOrdered(MainTreePt thisMainTree, int thisDim, void (*func)(void*));
 void tree_remove( MainTreePt thisMainTreePt, void* node );
 void tree_dispose( MainTreePt *thisMainTree );
 

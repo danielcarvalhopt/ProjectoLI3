@@ -51,6 +51,22 @@ int cliente_compararNome(void* clienteUm, void* clienteDois){
     return strcmp( ((ClientePt)clienteUm)->nome, ((ClientePt)clienteDois)->nome );
 }
 
+void cliente_dump( void* cliente ){
+    ClientePt thisClientePt = (ClientePt)cliente;
+    printf("{id=%09d, nome=\"%s\", morada=\"%s\"}\n", thisClientePt->nif, thisClientePt->nome, thisClientePt->morada );
+}
+
+ClientePt cliente_novo( unsigned int nif, char *nome, char *morada ){
+    ClientePt novoClientePt = NULL;
+    if( (novoClientePt = malloc( sizeof(Cliente)) ) == NULL ) return NULL;
+
+    // meter só o apontador
+    novoClientePt->nome = nome;
+    novoClientePt->nif = nif;
+    novoClientePt->morada = morada;
+    return novoClientePt;
+}
+
 //
 // Funções das Localidades
 //
