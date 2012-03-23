@@ -470,6 +470,7 @@ void imprimelistaligacoes(LinkedListPTR lista)
 
 
 
+
 int main()
 {
 	char *localidadeA, *localidadeB,*localidadeC,*localidadeD,*localidadeE;
@@ -485,27 +486,32 @@ int main()
 	inserelocalidade(table, localidadeC);
 	inserelocalidade(table, localidadeD);
 	inserelocalidade(table, localidadeC);
-
+	removerlocalidade(table,localidadeC);
 
 	printf("Antes\n");
 	hashprint(table);
 
-
+	printf("Medio\n");
 	inserelocalidade(table, localidadeE);
-	inserirligacao(table, localidadeE, localidadeA, 7, 50);
-		inserirligacao(table, localidadeE, localidadeA, 10, 520);	
-	inserirligacao(table, localidadeE, localidadeB, 100, 5200);
+	hashprint(table);
 	printf("Depois\n");
+
+
+	removerlocalidade(table,localidadeC);
+	inserirligacao(table, localidadeE, localidadeA, 10, 52);	
+	inserirligacao(table, localidadeE, localidadeB, 100, 520);
+	inserirligacao(table, localidadeE, localidadeA, 1000, 5200);
+	inserirligacao(table, localidadeE, localidadeD, 10000, 52000);
+
+	removerligacao(table,localidadeE, localidadeD);
 
 	LinkedListPTR aux = hashtablesearch(table, crialocalidade(localidadeE));
 	LocalidadePTR aux2= aux->extdata;
 	LinkedListPTR aux3 = aux2->ligacoesida->elems;
 
-	imprimelistaligacoes(aux3);
+	printf("%d\n",aux2->ligacoesida->nelems );
+	imprimelistaligacoes(aux3);	
 
-	removerligacao(table, localidadeE, localidadeA);
-	printf("LOL\n");
-	if (aux2->ligacoesida->nelems!=0) imprimelistaligacoes(aux3);	
 
 
 
