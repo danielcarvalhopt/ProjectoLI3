@@ -2,8 +2,7 @@ lista de cenas para fazer.
 este ficheiro não deve ser entregue com o projecto.
 
 Urgente:
-- função para ler unsigned int (falta uma função para ler unsigned int, o NIF. semelhante à de inteiros)
-- função para ler floats (falta uma função que leia floats, semelhante à de inteiros)
+- 
 
 Necessário:
 - encapsulamento (criar cópias dos void* que usamos nos módulos genéricos para que não possam ser modificadas fora do módulo)

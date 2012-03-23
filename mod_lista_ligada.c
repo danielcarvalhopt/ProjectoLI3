@@ -1,5 +1,5 @@
+#include <stdlib.h>
 #include "mod_lista_ligada.h"
-
 /*--------------------------------------------------------*/
 /* Módulo de Lista Ligada -> Funções sobre Listas Ligadas */
 /*--------------------------------------------------------*/

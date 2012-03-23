@@ -22,7 +22,7 @@ void camiao_dump( void* camiao ){
     printf("{id=%3d, matricula=\"%s\", consumo=%f}\n", thisCamiaoPt->id, thisCamiaoPt->matricula, thisCamiaoPt->custo );
 }
 
-CamiaoPt camiao_novo( unsigned int id, char *matricula, float custo, float peso ){
+CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double peso ){
     CamiaoPt novoCamiaoPt = NULL;
     if( (novoCamiaoPt = malloc( sizeof(Camiao)) ) == NULL ) return NULL;
 

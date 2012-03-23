@@ -91,8 +91,8 @@ camiao_compararMatricula	dados.c	/^int camiao_compararMatricula(void* camiaoUm, 
 camiao_compararMatricula	dados.h	/^int camiao_compararMatricula(void* camiaoUm, void* camiaoDois);$/;"	p	signature:(void* camiaoUm, void* camiaoDois)
 camiao_dump	dados.c	/^void camiao_dump( void* camiao ){$/;"	f	signature:( void* camiao )
 camiao_dump	dados.h	/^void camiao_dump( void* camiao );$/;"	p	signature:( void* camiao )
-camiao_novo	dados.c	/^CamiaoPt camiao_novo( unsigned int id, char *matricula, float custo, float peso ){$/;"	f	signature:( unsigned int id, char *matricula, float custo, float peso )
-camiao_novo	dados.h	/^CamiaoPt camiao_novo( unsigned int id, char *matricula, float custo, float peso );$/;"	p	signature:( unsigned int id, char *matricula, float custo, float peso )
+camiao_novo	dados.c	/^CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double peso ){$/;"	f	signature:( unsigned int id, char *matricula, double custo, double peso )
+camiao_novo	dados.h	/^CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double peso );$/;"	p	signature:( unsigned int id, char *matricula, double custo, double peso )
 chooseSO	utils.c	/^void chooseSO(){$/;"	f
 chooseSO	utils.h	/^void chooseSO();$/;"	p	signature:()
 clearInputBuffer	utils.c	/^void clearInputBuffer(){$/;"	f
@@ -125,7 +125,7 @@ crialistaligada	localidades.c	/^MainListPTR crialistaligada(int(*func_compare)(v
 crialistaligada	mod_lista_ligada.c	/^MainListPTR crialistaligada(int(*func_compare)(void*,void*)) {$/;"	f	signature:(int(*func_compare)(void*,void*))
 crialistaligada	mod_lista_ligada.h	/^MainListPTR crialistaligada(int (*func_compare)(void *, void *));$/;"	p	signature:(int (*func_compare)(void *, void *))
 crialocalidade	localidades.c	/^LocalidadePTR crialocalidade (char* nome)$/;"	f	signature:(char* nome)
-custo	dados.h	/^    float custo; \/\/por Km$/;"	m	struct:sCamiao	access:public
+custo	dados.h	/^    double custo; \/\/por Km$/;"	m	struct:sCamiao	access:public
 custo	localidades.h	/^	float custo;$/;"	m	struct:Ligacoesida	access:public
 distancia	localidades.h	/^	float distancia;$/;"	m	struct:Ligacoesida	access:public
 elems	localidades.h	/^	LinkedListPTR elems;     			\/\/ Apontador para uma lista ligada                    $/;"	m	struct:MainList	access:public
@@ -171,6 +171,8 @@ height	mod_avl_n_dimensional.h	/^    int height[DIM];$/;"	m	struct:sTree	access:
 id	dados.h	/^    unsigned int id;$/;"	m	struct:sCamiao	access:public
 imprimelista	localidades.c	/^void imprimelista(LinkedListPTR lista)$/;"	f	signature:(LinkedListPTR lista)
 imprimelistaligacoes	localidades.c	/^void imprimelistaligacoes(LinkedListPTR lista)$/;"	f	signature:(LinkedListPTR lista)
+inicializarAtalhos	menu.c	/^void inicializarAtalhos(){$/;"	f
+inicializarAtalhos	menu.h	/^void inicializarAtalhos();$/;"	p	signature:()
 inserelistahead	localidades.c	/^ int inserelistahead(MainListPTR lista, void *externdata) {$/;"	f	signature:(MainListPTR lista, void *externdata)
 inserelistahead	mod_lista_ligada.c	/^ int inserelistahead(MainListPTR lista, void *externdata) {$/;"	f	signature:(MainListPTR lista, void *externdata)
 inserelistahead	mod_lista_ligada.h	/^int inserelistahead(MainListPTR lista, void* externdata);$/;"	p	signature:(MainListPTR lista, void* externdata)
@@ -178,10 +180,13 @@ inserelocalidade	localidades.c	/^int inserelocalidade (TabelaHashPTR table, char
 inserirligacao	localidades.c	/^int inserirligacao(TabelaHashPTR table, char *nomeorigem, char *nomedestino, float custo, float distancia)$/;"	f	signature:(TabelaHashPTR table, char *nomeorigem, char *nomedestino, float custo, float distancia)
 intcmp	utils.c	/^int intcmp(int a, int b){$/;"	f	signature:(int a, int b)
 intcmp	utils.h	/^int intcmp(int a, int b);$/;"	p	signature:(int a, int b)
+isDouble	utils.c	/^int isDouble(double n){$/;"	f	signature:(double n)
+isDouble	utils.h	/^int isDouble(double n);$/;"	p	signature:(double n)
 isInt	utils.c	/^int isInt(int n){$/;"	f	signature:(int n)
 isInt	utils.h	/^int isInt(int n);$/;"	p	signature:(int n)
 l	mod_avl_n_dimensional.h	/^    struct sTree *l[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
-last	menu.c	/^static int last[3]; \/\/ultimas 3 escolhas$/;"	v	file:
+lastInt	menu.c	/^static int lastInt[3]; \/\/ultimas 3 escolhas$/;"	v	file:
+lastString	menu.c	/^static char lastString[3][54];$/;"	v	file:
 ligacoesida	localidades.h	/^	MainListPTR ligacoesida;$/;"	m	struct:Localidade	access:public
 ligacoesvinda	localidades.h	/^	MainListPTR ligacoesvinda;$/;"	m	struct:Localidade	access:public
 linkedList	localidades.h	/^typedef struct linkedList {$/;"	s
@@ -206,9 +211,9 @@ nome	dados.h	/^    char *nome;$/;"	m	struct:sCliente	access:public
 nome	localidades.h	/^	char* nome;$/;"	m	struct:Ligacoesida	access:public
 nome	localidades.h	/^	char* nome;$/;"	m	struct:Ligacoesvinda	access:public
 nome	localidades.h	/^	char* nome;$/;"	m	struct:Localidade	access:public
-novaEscolha	menu.c	/^static void novaEscolha(int input){$/;"	f	file:	signature:(int input)
-operativeSystem	utils.h	/^char operativeSystem;$/;"	v
-peso	dados.h	/^    float peso; \/\/peso máximo que pode transportar$/;"	m	struct:sCamiao	access:public
+novaEscolha	menu.c	/^static void novaEscolha(int input, char *str){$/;"	f	file:	signature:(int input, char *str)
+operativeSystem	utils.c	/^static char operativeSystem;$/;"	v	file:
+peso	dados.h	/^    double peso; \/\/peso máximo que pode transportar$/;"	m	struct:sCamiao	access:public
 printMenu	menu.c	/^int printMenu(int input){$/;"	f	signature:(int input)
 printMenu	menu.h	/^int printMenu(int input);$/;"	p	signature:(int input)
 procuraelemlista	localidades.c	/^LinkedListPTR procuraelemlista (MainListPTR lista, void *externdata)$/;"	f	signature:(MainListPTR lista, void *externdata)
@@ -217,18 +222,22 @@ procuraelemlista	mod_lista_ligada.h	/^LinkedListPTR procuraelemlista (MainListPT
 prox	localidades.h	/^	struct linkedList *prox;	\/\/ Próximo elemento da lista$/;"	m	struct:linkedList	typeref:struct:linkedList::linkedList	access:public
 prox	mod_lista_ligada.h	/^	struct linkedList *prox;	\/\/ Próximo elemento da lista$/;"	m	struct:linkedList	typeref:struct:linkedList::linkedList	access:public
 r	mod_avl_n_dimensional.h	/^    struct sTree *r[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
+readDouble	utils.c	/^double readDouble(){$/;"	f
+readDouble	utils.h	/^double readDouble();$/;"	p	signature:()
 readInt	utils.c	/^int readInt(){$/;"	f
 readInt	utils.h	/^int readInt();$/;"	p	signature:()
 readStr	utils.c	/^char* readStr(char *ptr){$/;"	f	signature:(char *ptr)
 readStr	utils.h	/^char* readStr(char *ptr);$/;"	p	signature:(char *ptr)
+readUInt	utils.c	/^unsigned int readUInt(){$/;"	f
+readUInt	utils.h	/^unsigned int readUInt();$/;"	p	signature:()
 removerligacao	localidades.c	/^int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino)$/;"	f	signature:(TabelaHashPTR table, char *nomeorigem, char *nomedestino)
 removerlocalidade	localidades.c	/^int removerlocalidade (TabelaHashPTR table, char *nome)$/;"	f	signature:(TabelaHashPTR table, char *nome)
 rodape	main.c	/^char rodape[51] = "Programa iniciado";$/;"	v
 sCamiao	dados.h	/^typedef struct sCamiao{$/;"	s
-sCamiao::custo	dados.h	/^    float custo; \/\/por Km$/;"	m	struct:sCamiao	access:public
+sCamiao::custo	dados.h	/^    double custo; \/\/por Km$/;"	m	struct:sCamiao	access:public
 sCamiao::id	dados.h	/^    unsigned int id;$/;"	m	struct:sCamiao	access:public
 sCamiao::matricula	dados.h	/^    char *matricula;$/;"	m	struct:sCamiao	access:public
-sCamiao::peso	dados.h	/^    float peso; \/\/peso máximo que pode transportar$/;"	m	struct:sCamiao	access:public
+sCamiao::peso	dados.h	/^    double peso; \/\/peso máximo que pode transportar$/;"	m	struct:sCamiao	access:public
 sCliente	dados.h	/^typedef struct sCliente{$/;"	s
 sCliente::morada	dados.h	/^    char *morada;$/;"	m	struct:sCliente	access:public
 sCliente::nif	dados.h	/^    unsigned int nif; \/\/numero de identificacao fiscal = contribuinte$/;"	m	struct:sCliente	access:public
@@ -245,7 +254,6 @@ sTree::l	mod_avl_n_dimensional.h	/^    struct sTree *l[DIM];$/;"	m	struct:sTree	
 sTree::node	mod_avl_n_dimensional.h	/^    void *node;$/;"	m	struct:sTree	access:public
 sTree::r	mod_avl_n_dimensional.h	/^    struct sTree *r[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
 servicos	dados.h	/^    MainListPTR servicos;$/;"	m	struct:sCliente	access:public
-strBuffer	utils.h	/^char strBuffer[501];$/;"	v
 totalcells	localidades.h	/^	int totalcells;$/;"	m	struct:TabelaHash	access:public
 totalcells	mod_tabela_hash.h	/^	int totalcells;$/;"	m	struct:TabelaHash	access:public
 tree	mod_avl_n_dimensional.h	/^    TreePt tree[DIM];$/;"	m	struct:sMainTree	access:public

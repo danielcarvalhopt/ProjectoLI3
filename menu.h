@@ -6,6 +6,7 @@
 int printMenu(int input);
 int getIntLoop();
 int getInput(int input, MainTreePt camioes, MainTreePt clientes);
+void inicializarAtalhos();
 
 #endif /* MENU_H_INCLUDED */
 

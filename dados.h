@@ -19,15 +19,15 @@
 typedef struct sCamiao{
     unsigned int id;
     char *matricula;
-    float custo; //por Km
-    float peso; //peso máximo que pode transportar
+    double custo; //por Km
+    double peso; //peso máximo que pode transportar
     //falta localidade actual
 } Camiao, *CamiaoPt;
 
 void camiao_dump( void* camiao );
 int camiao_compararId(void* camiaoUm, void* camiaoDois);
 int camiao_compararMatricula(void* camiaoUm, void* camiaoDois);
-CamiaoPt camiao_novo( unsigned int id, char *matricula, float custo, float peso );
+CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double peso );
 
 //
 // Funções e estruturas dos clientes

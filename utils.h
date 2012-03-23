@@ -1,8 +1,6 @@
 #ifndef UTILS_H_INCLUDED
 #define UTILS_H_INCLUDED
 
-char strBuffer[501];
-char operativeSystem;
 
 // I/O
 void clearInputBuffer();
@@ -11,10 +9,15 @@ void clearScreen();
 
 // inteiros
 int readInt();
+unsigned int readUInt();
 int isInt(int n);
 int maxInt(int a, int b);
 int intcmp(int a, int b);
 int uintcmp(unsigned int a, unsigned int b);
+
+// double
+double readDouble();
+int isDouble(double n);
 
 // strings
 char* readStr(char *ptr);
