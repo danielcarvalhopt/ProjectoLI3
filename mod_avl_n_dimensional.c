@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "ndavl.h"
+#include "mod_avl_n_dimensional.h"
 #include "utils.h"
 
 /* debug, passou para utils.c

@@ -10,8 +10,11 @@ utils.o:
 menu.o:
 	gcc -c -g menu.c menu.h -Wall -Wextra
 
-ndavl.o:
-	gcc -c -g ndavl.c ndavl.h -Wall -Wextra
+mod_lista_ligada.o:
+	gcc -c -g mod_lista_ligada.c mod_lista_ligada.h -Wall -Wextra
+
+mod_avl_n_dimensional.o:
+	gcc -c -g mod_avl_n_dimensional.c mod_avl_n_dimensional.h -Wall -Wextra
 
 main.o:
 	gcc -c -g main.c -Wall -Wextra

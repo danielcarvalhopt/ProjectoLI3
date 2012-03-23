@@ -1,3 +1,4 @@
+#include "mod_avl_n_dimensional.h"
 #include "dados.h"
 #include "utils.h"
 #include <string.h>

@@ -1,5 +1,5 @@
-#ifndef NDAVL_H_INCLUDED
-#define NDAVL_H_INCLUDED
+#ifndef MOD_AVL_N_DIMENSIONAL_H_INCLUDED
+#define MOD_AVL_N_DIMENSIONAL_H_INCLUDED
 
 /******************
  *
@@ -49,4 +49,4 @@ static void tree_pushUp( TreePt *master, TreePt *thisTreePt, int thisDim, int (*
 static void tree_disposeRec( TreePt *thisTreePt );
 */
 
-#endif /* NDAVL_H_INCLUDED */
+#endif /* MOD_AVL_N_DIMENSIONAL_H_INCLUDED */
