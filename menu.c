@@ -6,14 +6,16 @@
 #include "utils.h"
 #include "dados.h"
 
-static int lastInt[3]; //ultimas 3 escolhas
-static char lastString[3][54];
 
-// usada para ficar com registo das ultimas 3 acções do utilizador
-// depois mete-te na parte onde agora estão os atalhos
-//
-// basta ele fazer 1 coisa uma vez e depois sabe que vai estar sempre no atalho da tecla 5
-// depois carrega sempre 5 5 5 5 5 se for uma tarefa repetitiva
+static int lastInt[3];          /**< Representação numérica dos atalhos **/
+static char lastString[3][54];  /**<  Representação string dos atalhos  **/
+
+/* Altera os valores das variáveis static que controlam os atalhos mostrados ao utilizador
+ * @param input Representação numérica da ultima opção escolhida pelo utilizador
+ * @param str Representação string da ultima opção escolhida pelo utilizador
+ * @see lastInt
+ * @see lastString
+ * */
 static void novaEscolha(int input, char *str){
     if( input != lastInt[0] && input != lastInt[1] ){
         lastInt[2] = lastInt[1];
@@ -53,14 +55,15 @@ int printMenu(int input){
         char inputWait[4] = ">> ";
 
         int i;
-        // escolher o atalho certo
+        
+        /* Caso se tenha seleccionado um atalho, modifica a variável input
+         * */
         for( i=5; i<8; i++ )
             if( input == i )
                 input = lastInt[i-5];
 
 
 	clearScreen();
-        //printf("input=%d\n",input);
 	printf("%s%s%s%s",fill,space,title,space);
 	switch( input ){
                 case 1:
@@ -354,6 +357,7 @@ int printMenu(int input){
 }
 
 int getInput(int input, MainTreePt camioes, MainTreePt clientes){
+    //alguns dados para testes
     Camiao camiao_teste[20] = {
         {0, "00-60-00", 1.0, 10},
         {1, "60-00-00", 1.5, 10},
@@ -417,6 +421,7 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes){
             break;
         case 22: getchar(); clearInputBuffer(); input=0; break;
         case 23:
+            // modo de listagem para efeitos de debug
             printf("ordenados por Nome: \n");
             tree_applyToAllOrdered( clientes, 1 , cliente_dump);
             printf("ordenados por NIF: \n");
@@ -440,6 +445,7 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes){
             break;
         case 32:break;
         case 33:
+            // modo de listagem para efeitos de debug
             printf("ordenados por matricula: \n");
             tree_applyToAllOrdered( camioes, 1 , camiao_dump);
             printf("ordenados por id: \n");
