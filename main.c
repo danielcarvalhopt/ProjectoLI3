@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "ndavl.h"
+#include "mod_avl_n_dimensional.h"
 #include "utils.h"
 #include "menu.h"
 #include "dados.h"

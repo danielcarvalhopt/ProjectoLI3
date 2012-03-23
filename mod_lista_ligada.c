@@ -1,4 +1,4 @@
-
+#include "mod_lista_ligada.h"
 
 /*--------------------------------------------------------*/
 /* Módulo de Lista Ligada -> Funções sobre Listas Ligadas */
@@ -122,13 +122,6 @@ void apagalista(MainListPTR lista)
 
 
 
-/***********   ZONA DE TESTES **************/
-/***********   ZONA DE TESTES **************/
-/***********   ZONA DE TESTES **************/
-/***********   ZONA DE TESTES **************/
-/***********   ZONA DE TESTES **************/
-/***********   ZONA DE TESTES **************/
-/***********   ZONA DE TESTES **************/
 /********************************************
 
 
