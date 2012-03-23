@@ -10,7 +10,8 @@
 static int lastInt[3];          /**< Representação numérica dos atalhos **/
 static char lastString[3][54];  /**<  Representação string dos atalhos  **/
 
-/* Altera os valores das variáveis static que controlam os atalhos mostrados ao utilizador
+/**
+ * Altera os valores das variáveis static que controlam os atalhos mostrados ao utilizador
  * @param input Representação numérica da ultima opção escolhida pelo utilizador
  * @param str Representação string da ultima opção escolhida pelo utilizador
  * @see lastInt
@@ -56,7 +57,8 @@ int printMenu(int input){
 
         int i;
         
-        /* Caso se tenha seleccionado um atalho, modifica a variável input
+        /**
+         * Caso se tenha seleccionado um atalho, modifica a variável input
          * */
         for( i=5; i<8; i++ )
             if( input == i )
@@ -68,7 +70,7 @@ int printMenu(int input){
 	switch( input ){
                 case 1:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); //debug
+                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
 
                         printf( "*    %-56s  *\n"
                                 "%s",
@@ -93,7 +95,7 @@ int printMenu(int input){
                 case 21:
                         strcpy( inputWait, "" );
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Inserindo dados de teste..." ); //debug
+                        strcpy( status, "Inserindo dados de teste..." ); 
                         printf( "*    %-56s  *\n"
                                 "%s"
                                 "*    %-56s  *\n"
@@ -110,7 +112,7 @@ int printMenu(int input){
                         break;
                 case 22:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); //debug
+                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
 
                         printf( "*    %-56s  *\n"
                                 "%s",
@@ -131,7 +133,7 @@ int printMenu(int input){
                         break;
                 case 24:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); //debug
+                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
 
                         printf( "*    %-56s  *\n"
                                 "%s",
@@ -157,7 +159,7 @@ int printMenu(int input){
                 case 31:
                         strcpy( inputWait, "" );
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Inserindo dados de teste..." ); //debug
+                        strcpy( status, "Inserindo dados de teste..." ); 
                         printf( "*    %-56s  *\n"
                                 "%s"
                                 "*    %-56s  *\n"
@@ -174,7 +176,7 @@ int printMenu(int input){
                         break;
                 case 32:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); //debug
+                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
 
                         printf( "*    %-56s  *\n"
                                 "%s",
@@ -193,7 +195,7 @@ int printMenu(int input){
                         break;
                 case 34:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); //debug
+                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
 
                         printf( "*    %-56s  *\n"
                                 "%s",
@@ -218,7 +220,7 @@ int printMenu(int input){
                 case 41:
                         strcpy( inputWait, "" );
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Inserindo dados de teste..." ); //debug
+                        strcpy( status, "Inserindo dados de teste..." ); 
                         printf( "*    %-56s  *\n"
                                 "%s"
                                 "*    %-56s  *\n"
@@ -231,7 +233,7 @@ int printMenu(int input){
                         break;
                 case 42:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); //debug
+                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
 
                         printf( "*    %-56s  *\n"
                                 "%s",
@@ -250,7 +252,7 @@ int printMenu(int input){
                         break;
                 case 44:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); //debug
+                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
 
                         printf( "*    %-56s  *\n"
                                 "%s",
@@ -293,7 +295,7 @@ int printMenu(int input){
 
 		case 81:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); //debug
+                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
                         printf( "*    %-56s  *\n",
                                     "Menu P. > Importar/Exportar Dados > Exportar Dados"
                         ); 
@@ -301,7 +303,7 @@ int printMenu(int input){
                         break;
                 case 82:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); //debug
+                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
                         printf( "*    %-56s  *\n",
                                     "Menu P. > Importar/Exportar Dados > Exportar Dados..."
                         ); 
@@ -309,7 +311,7 @@ int printMenu(int input){
                         break;
                 case 83:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); //debug
+                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
                         printf( "*    %-56s  *\n",
                                     "Menu P. > Importar/Exportar Dados > Importar Dados"
                         ); 
