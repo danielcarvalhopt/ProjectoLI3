@@ -4,6 +4,7 @@
 #include "utils.h"
 #include "menu.h"
 #include "dados.h"
+#include "input.h"
 
 
 char rodape[51] = "Programa iniciado";

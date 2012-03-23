@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 
+#include "input.h"
 #include "menu.h"
 #include "utils.h"
 #include "dados.h"

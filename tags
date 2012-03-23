@@ -10,6 +10,7 @@ Cliente	dados.h	/^} Cliente, *ClientePt;$/;"	t	typeref:struct:sCliente
 ClientePt	dados.h	/^} Cliente, *ClientePt;$/;"	t	typeref:struct:sCliente
 DADOS_H_INCLUDED	dados.h	2;"	d
 DIM	mod_avl_n_dimensional.h	10;"	d
+INPUT_H_INCLUDED	input.h	2;"	d
 Ligacoesida	localidades.h	/^typedef struct Ligacoesida$/;"	s
 Ligacoesida::custo	localidades.h	/^	float custo;$/;"	m	struct:Ligacoesida	access:public
 Ligacoesida::distancia	localidades.h	/^	float distancia;$/;"	m	struct:Ligacoesida	access:public
@@ -159,6 +160,7 @@ hashtableelemdeletion	localidades.c	/^int hashtableelemdeletion (TabelaHashPTR t
 hashtableelemdeletion	mod_tabela_hash.c	/^int hashtableelemdeletion (TabelaHashPTR table, void* externdata)$/;"	f	signature:(TabelaHashPTR table, void* externdata)
 hashtableelemdeletion	mod_tabela_hash.h	/^int hashtableelemdeletion (TabelaHashPTR table, void* externdata);$/;"	p	signature:(TabelaHashPTR table, void* externdata)
 hashtableinsertion	localidades.c	/^int hashtableinsertion (TabelaHashPTR table, void *externdata)$/;"	f	signature:(TabelaHashPTR table, void *externdata)
+hashtableinsertion	localidades.c	/^int hashtableinsertion (TabelaHashPTR table, void *externdata);$/;"	p	file:	signature:(TabelaHashPTR table, void *externdata)
 hashtableinsertion	mod_tabela_hash.c	/^int hashtableinsertion (TabelaHashPTR table, void *externdata)$/;"	f	signature:(TabelaHashPTR table, void *externdata)
 hashtableinsertion	mod_tabela_hash.h	/^int hashtableinsertion (TabelaHashPTR table, void *externdata);$/;"	p	signature:(TabelaHashPTR table, void *externdata)
 hashtablerealloc	localidades.c	/^int hashtablerealloc (TabelaHashPTR table)$/;"	f	signature:(TabelaHashPTR table)
@@ -184,6 +186,8 @@ isDouble	utils.c	/^int isDouble(double n){$/;"	f	signature:(double n)
 isDouble	utils.h	/^int isDouble(double n);$/;"	p	signature:(double n)
 isInt	utils.c	/^int isInt(int n){$/;"	f	signature:(int n)
 isInt	utils.h	/^int isInt(int n);$/;"	p	signature:(int n)
+isUInt	utils.c	/^int isUInt(unsigned int n){$/;"	f	signature:(unsigned int n)
+isUInt	utils.h	/^int isUInt(unsigned int n);$/;"	p	signature:(unsigned int n)
 l	mod_avl_n_dimensional.h	/^    struct sTree *l[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
 lastInt	menu.c	/^static int lastInt[3]; \/\/ultimas 3 escolhas$/;"	v	file:
 lastString	menu.c	/^static char lastString[3][54];$/;"	v	file:
@@ -222,14 +226,14 @@ procuraelemlista	mod_lista_ligada.h	/^LinkedListPTR procuraelemlista (MainListPT
 prox	localidades.h	/^	struct linkedList *prox;	\/\/ Próximo elemento da lista$/;"	m	struct:linkedList	typeref:struct:linkedList::linkedList	access:public
 prox	mod_lista_ligada.h	/^	struct linkedList *prox;	\/\/ Próximo elemento da lista$/;"	m	struct:linkedList	typeref:struct:linkedList::linkedList	access:public
 r	mod_avl_n_dimensional.h	/^    struct sTree *r[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
-readDouble	utils.c	/^double readDouble(){$/;"	f
-readDouble	utils.h	/^double readDouble();$/;"	p	signature:()
-readInt	utils.c	/^int readInt(){$/;"	f
-readInt	utils.h	/^int readInt();$/;"	p	signature:()
-readStr	utils.c	/^char* readStr(char *ptr){$/;"	f	signature:(char *ptr)
-readStr	utils.h	/^char* readStr(char *ptr);$/;"	p	signature:(char *ptr)
-readUInt	utils.c	/^unsigned int readUInt(){$/;"	f
-readUInt	utils.h	/^unsigned int readUInt();$/;"	p	signature:()
+readDouble	input.c	/^double readDouble(){$/;"	f
+readDouble	input.h	/^double readDouble();$/;"	p	signature:()
+readInt	input.c	/^int readInt(){$/;"	f
+readInt	input.h	/^int readInt();$/;"	p	signature:()
+readStr	input.c	/^char* readStr(char *ptr){$/;"	f	signature:(char *ptr)
+readStr	input.h	/^char* readStr(char *ptr);$/;"	p	signature:(char *ptr)
+readUInt	input.c	/^unsigned int readUInt(){$/;"	f
+readUInt	input.h	/^unsigned int readUInt();$/;"	p	signature:()
 removerligacao	localidades.c	/^int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino)$/;"	f	signature:(TabelaHashPTR table, char *nomeorigem, char *nomedestino)
 removerlocalidade	localidades.c	/^int removerlocalidade (TabelaHashPTR table, char *nome)$/;"	f	signature:(TabelaHashPTR table, char *nome)
 rodape	main.c	/^char rodape[51] = "Programa iniciado";$/;"	v

@@ -8,19 +8,16 @@ void chooseSO();
 void clearScreen();
 
 // inteiros
-int readInt();
-unsigned int readUInt();
+int isUInt(unsigned int n);
 int isInt(int n);
 int maxInt(int a, int b);
 int intcmp(int a, int b);
 int uintcmp(unsigned int a, unsigned int b);
 
 // double
-double readDouble();
 int isDouble(double n);
 
 // strings
-char* readStr(char *ptr);
 char* allocStr(char *dest, char *src);
 char* concatStr(char *dest, char *src);
 char* extendStr(char *str, int i);
