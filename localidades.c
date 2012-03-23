@@ -510,7 +510,729 @@ int main()
     inserirligacao(table, localidadeG, localidadeE, 1, 1);
     inserelocalidade(table, localidadeE);
 
+inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
 
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);
+inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);
+    inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);inserelocalidade(table, localidadeA);
+    inserelocalidade(table, localidadeB);
+    inserelocalidade(table, localidadeC);
+    inserelocalidade(table, localidadeD);
+    inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+    removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);
 
     LinkedListPTR aux = hashtablesearch(table, crialocalidade(localidadeA));
     LocalidadePTR aux2= aux->extdata;
@@ -564,8 +1286,11 @@ int main()
 
 */
 
-
-
+    hashprint(table);
+    printf("Teste\n");
+    removerlocalidade(table, localidadeA);
+    hashprint(table);
+    printf("%d\n",aux2->ligacoesida->nelems );
 
 	return 0;
 }
