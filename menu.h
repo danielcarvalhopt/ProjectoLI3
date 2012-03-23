@@ -1,7 +1,7 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
 
-#include "ndavl.h"
+#include "mod_avl_n_dimensional.h"
 
 int printMenu(int input);
 int getIntLoop();

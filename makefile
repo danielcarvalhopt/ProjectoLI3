@@ -1,5 +1,5 @@
-transportes: utils.o menu.o ndavl.o dados.o main.o
-	gcc utils.o menu.o ndavl.o dados.o main.o -o transportes
+transportes: utils.o menu.o mod_avl_n_dimensional.o dados.o main.o
+	gcc utils.o menu.o mod_avl_n_dimensional.o dados.o main.o -o transportes
 
 dados.o:
 	gcc -c -g dados.c dados.h -Wall -Wextra

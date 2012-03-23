@@ -2,6 +2,7 @@
 #define DADOS_H_INCLUDED
 
 #include "mod_lista_ligada.h"
+#include "mod_avl_n_dimensional.h"
 // metemos aqui as definições das estruturas de dados e das funções de comparação, output, clone, etc
 //
 // as definições das funções devem ser do género:
@@ -42,8 +43,9 @@ int cliente_compararNif(void* clienteUm, void* clienteDois);
 int cliente_compararNome(void* clienteUm, void* clienteDois);
 void cliente_dump( void* cliente );
 ClientePt cliente_novo( unsigned int nif, char *nome, char *morada );
-ClientePt cliente_substituiPeloNome( char *procuraNome, unsigned int nif, char *nome, char *morada );
-ClientePt cliente_substituiPeloNif( unsigned int procuraNif, unsigned int nif, char *nome, char *morada );
+int cliente_substituiPeloNome( MainTreePt clientesPt, char *procuraNome, unsigned int nif, char *nome, char *morada );
+int cliente_substituiPeloNif( MainTreePt clientesPt, unsigned int procuraNif, unsigned int nif, char *nome, char *morada );
+void cliente_setServico( ClientePt thisClientePt, TreePt thisTreePt );
 
 
 

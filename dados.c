@@ -37,7 +37,6 @@ CamiaoPt camiao_novo( unsigned int id, char *matricula, float custo, float peso 
     novoCamiaoPt->matricula = matricula;
     novoCamiaoPt->id = id;
     novoCamiaoPt->custo = custo;
-    novoCamiaoPt->volume = volume;
     novoCamiaoPt->peso = peso;
     return novoCamiaoPt;
 }
@@ -70,14 +69,17 @@ ClientePt cliente_novo( unsigned int nif, char *nome, char *morada ){
     return novoClientePt;
 }
 
+// -1 - nao encontrou
+// 0  - nao inserido novo, mas antigo apagado
+// 1  - encontrou, apagou, meteu o novo
 int cliente_substituiPeloNome( MainTreePt clientesPt, char *procuraNome, unsigned int nif, char *nome, char *morada ){
     ClientePt aux = cliente_novo( 0, procuraNome, "" );
     TreePt thisTreePt = tree_search( clientesPt, aux, 1);
     free(aux);
-    if( thisTreePt == NULL ) return NULL;
+    if( thisTreePt == NULL ) return -1;
     ClientePt modificado = cliente_novo( nif, nome, morada );
     cliente_setServico( modificado, thisTreePt );
-    tree_dispose( thisTreePt );
+    tree_remove( clientesPt, thisTreePt->node );
     return tree_insert( clientesPt, modificado );
 }
 
@@ -86,8 +88,15 @@ void cliente_setServico( ClientePt thisClientePt, TreePt thisTreePt ){
     thisClientePt->servicos = ((ClientePt)tree_getElem(thisTreePt))->servicos;
 }
 
-ClientePt cliente_substituiPeloNif( MainTreePt thisMainTreePt, unsigned int procuraNif, unsigned int nif, char *nome, char *morada ){
-    return NULL;
+int cliente_substituiPeloNif( MainTreePt clientesPt, unsigned int procuraNif, unsigned int nif, char *nome, char *morada ){
+    ClientePt aux = cliente_novo( procuraNif, "", "" );
+    TreePt thisTreePt = tree_search( clientesPt, aux, 0);
+    free(aux);
+    if( thisTreePt == NULL ) return -1;
+    ClientePt modificado = cliente_novo( nif, nome, morada );
+    cliente_setServico( modificado, thisTreePt );
+    tree_remove( clientesPt, thisTreePt->node );
+    return tree_insert( clientesPt, modificado );
 }
 
 
