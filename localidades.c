@@ -269,12 +269,18 @@ void hashtabledestroy(TabelaHashPTR table)
 
 
 
+
+
 int hash_function(void*a,int b)
 {
-	//LocalidadePTR localA = (LocalidadePTR)a;
-	//char *nomeA;
-    //nomeA=(char*)localA->nome;
-    return 0;
+    LocalidadePTR localA = (LocalidadePTR)a;
+    char *nomeA; int res=0,i;
+    nomeA=(char*)localA->nome;
+    for(i=0;nomeA[i]!='\0';i++)
+    {
+        res+=(int)*(nomeA)^2;
+    }
+    return (res%b);
 }
 
 // ------------------------------------------------------------------
@@ -422,8 +428,8 @@ int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino)
             return 0;
         else
         {
-           apagaelemlista(aux->ligacoesida,localidadedestino);
-           apagaelemlista(aux2->ligacoesvinda, localidadeorigem);
+            apagaelemlista(aux->ligacoesida,localidadedestino);
+            apagaelemlista(aux2->ligacoesvinda, localidadeorigem);
         }
 
 
