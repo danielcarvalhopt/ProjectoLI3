@@ -144,7 +144,7 @@ char* allocStr(char *dest, char *src){
 
 TabelaHashPTR hashtablecreator (int(*hash_function)(void*,int), int startcells, int (*func_compare)(void*,void*))
 {
-	TabelaHashPTR table; void *datacells; int i;
+	TabelaHashPTR table; int i;
 
 	table = (TabelaHashPTR)malloc(sizeof(struct TabelaHash));
 
@@ -171,6 +171,8 @@ int hashtablecelluse (TabelaHashPTR table)
 
 
 
+
+int hashtableinsertion (TabelaHashPTR table, void *externdata);
 int hashtablerealloc (TabelaHashPTR table)
 {
     int acttotalcells = table->totalcells;
@@ -195,7 +197,8 @@ int hashtablerealloc (TabelaHashPTR table)
         aux=dados[i]->elems;
         while(aux!=NULL)
         {
-            hashtableinsertion (table, aux->extdata);
+
+            if ((hashtableinsertion (table, aux->extdata))==0) return 0;
             auxfree=aux;
             aux=aux->prox;
             free(auxfree);
@@ -209,10 +212,9 @@ int hashtablerealloc (TabelaHashPTR table)
 }
 
 
-
 int hashtableinsertion (TabelaHashPTR table, void *externdata)
 {
-	void *func_compare=table->arraycell[0]->func_compare;
+    void *func_compare=table->arraycell[0]->func_compare;
 
     if(hashtablecelluse(table)==1){
         hashtablerealloc(table);
@@ -230,8 +232,6 @@ int hashtableinsertion (TabelaHashPTR table, void *externdata)
 
     return 1;
 }
-
-
 
 LinkedListPTR hashtablesearch (TabelaHashPTR table, void *externdata)
 {
@@ -271,9 +271,9 @@ void hashtabledestroy(TabelaHashPTR table)
 
 int hash_function(void*a,int b)
 {
-	LocalidadePTR localA = (LocalidadePTR)a;
-	char *nomeA;
-    nomeA=(char*)localA->nome;
+	//LocalidadePTR localA = (LocalidadePTR)a;
+	//char *nomeA;
+    //nomeA=(char*)localA->nome;
     return 0;
 }
 
@@ -320,7 +320,7 @@ int compareligacoesvinda (void *a, void *b)
 
 LocalidadePTR crialocalidade (char* nome)
 {
-	LocalidadePTR localidade; char* nomelocalidade;
+	LocalidadePTR localidade; char* nomelocalidade=NULL;
 
 	localidade = (LocalidadePTR)malloc(sizeof(struct Localidade));
 	localidade->nome=allocStr(nomelocalidade,nome);
@@ -354,7 +354,7 @@ int removerlocalidade (TabelaHashPTR table, char *nome)
 
 LigacoesidaPTR crialigacaoida (char* nome, float custo, float distancia)
 {
-	LigacoesidaPTR ligacao; char *nomelocalidade;
+	LigacoesidaPTR ligacao; char *nomelocalidade=NULL;
 
 	ligacao = malloc (sizeof(struct Ligacoesida));
 	ligacao->nome = allocStr(nomelocalidade,nome);
@@ -366,7 +366,7 @@ LigacoesidaPTR crialigacaoida (char* nome, float custo, float distancia)
 
 LigacoesvindaPTR crialigacaovinda (char* nome)
 {
-	LigacoesvindaPTR ligacao; char *nomelocalidade;
+	LigacoesvindaPTR ligacao; char *nomelocalidade=NULL;
 
 	ligacao = (LigacoesvindaPTR)malloc(sizeof(struct Ligacoesvinda));
 	ligacao->nome=allocStr(nomelocalidade,nome);
@@ -383,20 +383,22 @@ int inserirligacao(TabelaHashPTR table, char *nomeorigem, char *nomedestino, flo
 	LigacoesvindaPTR localidadeorigem = crialigacaovinda(nomeorigem);
 
 	LocalidadePTR aux, aux2;
+    
+    if ((hashtablesearch(table, localidadeida)==NULL) || (hashtablesearch(table, localidadevinda)==NULL)) return 0;
+    else
+    {
+        aux = (((LinkedListPTR)hashtablesearch(table, localidadeida))->extdata);
+        aux2 = (((LinkedListPTR)hashtablesearch(table, localidadevinda))->extdata);
+        if ((procuraelemlista(aux->ligacoesida,localidadedestino)!=NULL) || (procuraelemlista(aux2->ligacoesvinda, localidadeorigem)!=NULL))
+            return 0;
+        else
+        {
+           inserelistahead(aux->ligacoesida,localidadedestino);
+           inserelistahead(aux2->ligacoesvinda, localidadeorigem);
+        }
 
-	if ((aux = (hashtablesearch(table, localidadeida)->extdata))==NULL) return 0;
-	if (procuraelemlista(aux->ligacoesida,localidadedestino)==NULL)
-	{
-		inserelistahead(aux->ligacoesida,localidadedestino);
-	}
-	else return 0;
-	if((aux2 = (hashtablesearch(table, localidadevinda)->extdata))==NULL) return 0;
-	if (procuraelemlista(aux2->ligacoesvinda, localidadeorigem)==NULL)
-	{
-		inserelistahead(aux2->ligacoesvinda, localidadeorigem);
-	}
-	else return 0;
 
+    }
 	return 1;
 }
 
@@ -411,21 +413,22 @@ int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino)
 
 	LocalidadePTR aux, aux2;
 
-	if ((aux = (hashtablesearch(table, localidadeida))->extdata)==NULL) return 0;
-	if (procuraelemlista(aux->ligacoesida,localidadedestino)!=NULL)
-	{
-		apagaelemlista(aux->ligacoesida,localidadedestino);
-	}
-	else return 0;
-	if((aux2 = (hashtablesearch(table, localidadevinda))->extdata)==NULL) return 0;
-	if (procuraelemlista(aux2->ligacoesvinda, localidadeorigem)!=NULL)
-	{
-		apagaelemlista(aux2->ligacoesvinda, localidadeorigem);
-	}
-	else return 0;
+    if ((hashtablesearch(table, localidadeida)!=NULL) || (hashtablesearch(table, localidadevinda)!=NULL)) return 0;
+    else
+    {
+        aux = (((LinkedListPTR)hashtablesearch(table, localidadeida))->extdata);
+        aux2 = (((LinkedListPTR)hashtablesearch(table, localidadevinda))->extdata);
+        if ((procuraelemlista(aux->ligacoesida,localidadedestino)==NULL) || (procuraelemlista(aux2->ligacoesvinda, localidadeorigem)==NULL))
+            return 0;
+        else
+        {
+           apagaelemlista(aux->ligacoesida,localidadedestino);
+           apagaelemlista(aux2->ligacoesvinda, localidadeorigem);
+        }
 
+
+    }
 	return 1;
-
 }
 
 
@@ -473,20 +476,65 @@ void imprimelistaligacoes(LinkedListPTR lista)
 
 int main()
 {
-	char *localidadeA, *localidadeB,*localidadeC,*localidadeD,*localidadeE;
+	char *localidadeA, *localidadeB,*localidadeC,*localidadeD,*localidadeE,*localidadeF,*localidadeG;
 	localidadeA=(char*)malloc(10); strcpy(localidadeA, "LocalA");
 	localidadeB=(char*)malloc(10); strcpy(localidadeB, "LocalB");
 	localidadeC=(char*)malloc(10); strcpy(localidadeC, "LocalC");
 	localidadeD=(char*)malloc(10); strcpy(localidadeD, "LocalD");
 	localidadeE=(char*)malloc(10); strcpy(localidadeE, "LocalE");
+    localidadeF=(char*)malloc(10); strcpy(localidadeD, "LocalF");
+    localidadeG=(char*)malloc(10); strcpy(localidadeE, "LocalG");
 
 	TabelaHashPTR table = hashtablecreator(hash_function, 1, comparalocalidades);
-	inserelocalidade(table, localidadeA);
+	
+
+    inserelocalidade(table, localidadeA);
 	inserelocalidade(table, localidadeB);
 	inserelocalidade(table, localidadeC);
 	inserelocalidade(table, localidadeD);
-	inserelocalidade(table, localidadeC);
-	removerlocalidade(table,localidadeC);
+	inserelocalidade(table, localidadeE);
+
+
+    inserelocalidade(table, localidadeF);
+    inserelocalidade(table, localidadeG);
+    inserelocalidade(table, localidadeF);
+	removerlocalidade(table,localidadeE);
+    removerlocalidade(table,localidadeG);
+
+
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeB, 1, 1);
+    inserirligacao(table, localidadeA, localidadeE, 1, 1);
+    inserirligacao(table, localidadeA, localidadeG, 2, 2);
+    inserirligacao(table, localidadeE, localidadeA, 1, 1);
+    inserirligacao(table, localidadeG, localidadeE, 1, 1);
+    inserelocalidade(table, localidadeE);
+
+
+
+    LinkedListPTR aux = hashtablesearch(table, crialocalidade(localidadeA));
+    LocalidadePTR aux2= aux->extdata;
+    LinkedListPTR aux3 = aux2->ligacoesida->elems;
+
+    LinkedListPTR aux4 = hashtablesearch(table, crialocalidade(localidadeB));
+    LocalidadePTR aux5= aux4->extdata;
+    LinkedListPTR aux6 = aux5->ligacoesida->elems;
+
+    printf("%d\n",aux2->ligacoesida->nelems );
+    imprimelistaligacoes(aux3); 
+    printf("%d\n",aux5->ligacoesida->nelems );
+    imprimelistaligacoes(aux6);
+
+
+
+
+/*
+
+
+
+
+
+
 
 	printf("Antes\n");
 	hashprint(table);
@@ -514,7 +562,7 @@ int main()
 
 
 
-
+*/
 
 
 
