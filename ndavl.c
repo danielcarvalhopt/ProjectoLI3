@@ -237,6 +237,11 @@ void tree_dispose( MainTreePt *thisMainTree ){
     free( *thisMainTree );
 }
 
+void* tree_getElem( TreePt thisTreePt ){
+    if( thisTreePt == NULL )
+        return NULL;
+    return thisTreePt->node;
+}
 
 
 

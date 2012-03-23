@@ -21,7 +21,7 @@ void camiao_dump( void* camiao ){
     printf("{id=%3d, matricula=\"%s\", consumo=%f}\n", thisCamiaoPt->id, thisCamiaoPt->matricula, thisCamiaoPt->custo );
 }
 
-CamiaoPt camiao_novo( unsigned int id, char *matricula, float custo ){
+CamiaoPt camiao_novo( unsigned int id, char *matricula, float custo, float peso ){
     CamiaoPt novoCamiaoPt = NULL;
     if( (novoCamiaoPt = malloc( sizeof(Camiao)) ) == NULL ) return NULL;
 
@@ -36,6 +36,8 @@ CamiaoPt camiao_novo( unsigned int id, char *matricula, float custo ){
     novoCamiaoPt->matricula = matricula;
     novoCamiaoPt->id = id;
     novoCamiaoPt->custo = custo;
+    novoCamiaoPt->volume = volume;
+    novoCamiaoPt->peso = peso;
     return novoCamiaoPt;
 }
 
@@ -66,6 +68,27 @@ ClientePt cliente_novo( unsigned int nif, char *nome, char *morada ){
     novoClientePt->morada = morada;
     return novoClientePt;
 }
+
+int cliente_substituiPeloNome( MainTreePt clientesPt, char *procuraNome, unsigned int nif, char *nome, char *morada ){
+    ClientePt aux = cliente_novo( 0, procuraNome, "" );
+    TreePt thisTreePt = tree_search( clientesPt, aux, 1);
+    free(aux);
+    if( thisTreePt == NULL ) return NULL;
+    ClientePt modificado = cliente_novo( nif, nome, morada );
+    cliente_setServico( modificado, thisTreePt );
+    tree_dispose( thisTreePt );
+    return tree_insert( clientesPt, modificado );
+}
+
+void cliente_setServico( ClientePt thisClientePt, TreePt thisTreePt ){
+    if( thisClientePt == NULL || thisTreePt == NULL ) return;
+    thisClientePt->servicos = ((ClientePt)tree_getElem(thisTreePt))->servicos;
+}
+
+ClientePt cliente_substituiPeloNif( MainTreePt thisMainTreePt, unsigned int procuraNif, unsigned int nif, char *nome, char *morada ){
+    return NULL;
+}
+
 
 //
 // Funções das Localidades

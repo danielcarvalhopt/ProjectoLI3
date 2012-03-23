@@ -259,7 +259,7 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes){
             printf("ordenados por Nome: \n");
             tree_applyToAllOrdered( clientes, 1 , cliente_dump);
             printf("ordenados por NIF: \n");
-            tree_applyToAllOrdered( clientes, 0 , cliente_dump);
+tree_applyToAllOrdered( clientes, 0 , cliente_dump);
             getchar(); clearInputBuffer();
             input /= 10;
             break;

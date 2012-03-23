@@ -28,6 +28,7 @@ TreePt tree_search(MainTreePt thisMainTree, void* node, int thisDim);
 void tree_applyToAllOrdered(MainTreePt thisMainTree, int thisDim, void (*func)(void*));
 void tree_remove( MainTreePt thisMainTreePt, void* node );
 void tree_dispose( MainTreePt *thisMainTree );
+void* tree_getElem( TreePt thisTreePt );
 
 /*
  * STATIC

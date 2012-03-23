@@ -1,3 +1,5 @@
+#ifndef MOD_LISTA_LIGADA_H_INCLUDED
+#define MOD_LISTA_LIGADA_H_INCLUDED
 
 
 /*----------------------------------------------*/
@@ -105,4 +107,4 @@ void apagalista(MainListPTR lista);
 
 
 
-
+#endif /* MOD_LISTA_LIGADA_H_INCLUDED */
