@@ -1,5 +1,5 @@
 /**
- * @file menu.c
+ * @file menu.h
  *
  * @brief Módulo da interface com o utilizador.
  * @details Tem funções para escrever o menú no ecrã e interpretar o input do utilizador

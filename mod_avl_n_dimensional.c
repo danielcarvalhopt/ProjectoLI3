@@ -82,6 +82,16 @@ static void tree_maintain( TreePt *thisTree, int thisDim){
     }
 }
 
+/**
+ * @brief Função recursiva de procura (auxiliar)
+ * @param thisTreePt Apontador para a sub-árvore
+ * @param node Apontador para o nodo com a informação a procurar
+ * @param thisDim Dimensão em que se deve fazer a procura
+ * @param compare Apontador para a função de comparação
+ * @return Apontador para a sub-árvore onde foi encontrada uma correspondência com 'node'
+ *         NULL caso não encontre nenhum correspondência
+ * @see tree_search()
+ * */
 static TreePt tree_searchRec(TreePt thisTreePt, void* node, int thisDim, int (*compare)(void*,void*)){
     int cmp = 0;
     if( thisTreePt == NULL )
@@ -211,6 +221,13 @@ void tree_remove( MainTreePt thisMainTreePt, void* node ){
     //tree_maintain( &thisMainTreePt->tree[thisDim], thisDim, thisMainTreePt->compare );
 }
 
+/**
+ * @brief Função auxiliar recursiva para aplicar uma função a todos os elementos da árvore
+ * @param thisTree Apontador para a sub-árvore na qual se vai aplicar a função
+ * @param func Apontador para a função a aplicar
+ * @param thisDim Dimensão onde se vai aplicar a função
+ * @see tree_applyToAllOrdered()
+ * */
 static void tree_applyToAllOrderedRec( TreePt thisTree, void (*func)(void*), int thisDim ){
     if( thisTree != NULL ){
         tree_applyToAllOrderedRec( thisTree->l[thisDim], func, thisDim);

@@ -6,7 +6,7 @@
 
 #include "utils.h"
 
-static char operativeSystem;
+static char operativeSystem; /**< Toma o valor 1 ou 2 consoante o sistema operativo em que o programa está a correr */
 
 void clearInputBuffer(){
 	char c;
@@ -16,9 +16,9 @@ void clearInputBuffer(){
 void chooseSO(){
 	if( system("cls") ){
 		system("clear");
-		operativeSystem = 1; // Linux, Unix...
+		operativeSystem = 1; /**< O programa está a correr em Linux, Unix, ... */
 	}else
-		operativeSystem = 2; // Windows
+		operativeSystem = 2; /**< O programa está a correr num sistema Windows */
 }
 
 void clearScreen(){
@@ -34,7 +34,7 @@ void clearScreen(){
 
 
 int isDouble(double n){
-    if( isinf(n) || isnan(n) ) //verifica se n não é um número ou se representa a infinidade
+    if( isinf(n) || isnan(n) ) /**< verifica se n não é um número ou se representa a infinidade */
         return 0;
     return 1;
 }
@@ -89,6 +89,8 @@ char* concatStr(char *dest, char *src){
     strcat(dest,src);
     return dest;
 }
+/*
+funções sem interesse--
 
 char* extendStr(char *str, int i){
 	if( (str = realloc( str, (strlen(str) + i + 1) )) == NULL ){
@@ -131,4 +133,5 @@ char* addnChar(char *dest, char chr, int i){
 	*dest = '\0';
 	return dest;
 }
+*/
 

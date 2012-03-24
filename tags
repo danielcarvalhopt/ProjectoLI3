@@ -56,14 +56,6 @@ TabelaHashPTR	mod_tabela_hash.h	/^}*TabelaHashPTR;$/;"	t	typeref:struct:TabelaHa
 Tree	mod_avl_n_dimensional.h	/^} Tree, *TreePt;$/;"	t	typeref:struct:sTree
 TreePt	mod_avl_n_dimensional.h	/^} Tree, *TreePt;$/;"	t	typeref:struct:sTree
 UTILS_H_INCLUDED	utils.h	2;"	d
-addChar	utils.c	/^char* addChar(char *dest, char chr){$/;"	f	signature:(char *dest, char chr)
-addChar	utils.h	/^char* addChar(char *dest, char chr);$/;"	p	signature:(char *dest, char chr)
-addCharEnd	utils.c	/^char* addCharEnd(char *dest, char chr){$/;"	f	signature:(char *dest, char chr)
-addCharEnd	utils.h	/^char* addCharEnd(char *dest, char chr);$/;"	p	signature:(char *dest, char chr)
-addnChar	utils.c	/^char* addnChar(char *dest, char chr, int i){$/;"	f	signature:(char *dest, char chr, int i)
-addnChar	utils.h	/^char* addnChar(char *dest, char chr, int i);$/;"	p	signature:(char *dest, char chr, int i)
-addnCharEnd	utils.c	/^char* addnCharEnd(char *dest, char chr, int i){$/;"	f	signature:(char *dest, char chr, int i)
-addnCharEnd	utils.h	/^char* addnCharEnd(char *dest, char chr, int i);$/;"	p	signature:(char *dest, char chr, int i)
 allocStr	localidades.c	/^char* allocStr(char *dest, char *src){$/;"	f	signature:(char *dest, char *src)
 allocStr	mod_tabela_hash.c	/^char* allocStr(char *dest, char *src){$/;"	f	signature:(char *dest, char *src)
 allocStr	utils.c	/^char* allocStr(char *dest, char *src){$/;"	f	signature:(char *dest, char *src)
@@ -129,8 +121,6 @@ elems	localidades.h	/^	LinkedListPTR elems;     			\/\/ Apontador para uma lista
 elems	mod_lista_ligada.h	/^	LinkedListPTR elems;     			\/\/ Apontador para uma lista ligada                    $/;"	m	struct:MainList	access:public
 extdata	localidades.h	/^	void *extdata;      		\/\/ Apontador para o elemento da lista       $/;"	m	struct:linkedList	access:public
 extdata	mod_lista_ligada.h	/^	void *extdata;      		\/\/ Apontador para o elemento da lista       $/;"	m	struct:linkedList	access:public
-extendStr	utils.c	/^char* extendStr(char *str, int i){$/;"	f	signature:(char *str, int i)
-extendStr	utils.h	/^char* extendStr(char *str, int i);$/;"	p	signature:(char *str, int i)
 func_compare	localidades.h	/^	int (*func_compare)(void*,void*);   \/\/ Função de comparação de elementos da lista ligada$/;"	m	struct:MainList	access:public
 func_compare	mod_lista_ligada.h	/^	int (*func_compare)(void*,void*);   \/\/ Função de comparação de elementos da lista ligada$/;"	m	struct:MainList	access:public
 getInput	menu.c	/^int getInput(int input, MainTreePt camioes, MainTreePt clientes){$/;"	f	signature:(int input, MainTreePt camioes, MainTreePt clientes)
@@ -196,7 +186,7 @@ linkedList::extdata	mod_lista_ligada.h	/^	void *extdata;      		\/\/ Apontador p
 linkedList::prox	localidades.h	/^	struct linkedList *prox;	\/\/ Próximo elemento da lista$/;"	m	struct:linkedList	typeref:struct:linkedList::linkedList	access:public
 linkedList::prox	mod_lista_ligada.h	/^	struct linkedList *prox;	\/\/ Próximo elemento da lista$/;"	m	struct:linkedList	typeref:struct:linkedList::linkedList	access:public
 main	localidades.c	/^int main()$/;"	f
-main	main.c	/^int main(\/*int argc, char **argv*\/){$/;"	f
+main	main.c	/^int main(){$/;"	f
 matricula	dados.h	/^    char *matricula; \/**< Matrícula do camião                                     *\/$/;"	m	struct:sCamiao	access:public
 maxInt	utils.c	/^int maxInt(int a, int b){$/;"	f	signature:(int a, int b)
 maxInt	utils.h	/^int maxInt(int a, int b);$/;"	p	signature:(int a, int b)
@@ -212,7 +202,7 @@ nome	localidades.h	/^	char* nome;$/;"	m	struct:Ligacoesida	access:public
 nome	localidades.h	/^	char* nome;$/;"	m	struct:Ligacoesvinda	access:public
 nome	localidades.h	/^	char* nome;$/;"	m	struct:Localidade	access:public
 novaEscolha	menu.c	/^static void novaEscolha(int input, char *str){$/;"	f	file:	signature:(int input, char *str)
-operativeSystem	utils.c	/^static char operativeSystem;$/;"	v	file:
+operativeSystem	utils.c	/^static char operativeSystem; \/**< Toma o valor 1 ou 2 consoante o sistema operativo em que o programa está a correr *\/$/;"	v	file:
 peso	dados.h	/^    double peso;     \/**< Peso máximo que o camião pode transportar               *\/$/;"	m	struct:sCamiao	access:public
 printMenu	menu.c	/^int printMenu(int input){$/;"	f	signature:(int input)
 printMenu	menu.h	/^int printMenu(int input);$/;"	p	signature:(int input)
@@ -232,7 +222,6 @@ readUInt	input.c	/^unsigned int readUInt(){$/;"	f
 readUInt	input.h	/^unsigned int readUInt();$/;"	p	signature:()
 removerligacao	localidades.c	/^int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino)$/;"	f	signature:(TabelaHashPTR table, char *nomeorigem, char *nomedestino)
 removerlocalidade	localidades.c	/^int removerlocalidade (TabelaHashPTR table, char *nome)$/;"	f	signature:(TabelaHashPTR table, char *nome)
-rodape	main.c	/^char rodape[51] = "Programa iniciado";$/;"	v
 sCamiao	dados.h	/^typedef struct sCamiao{$/;"	s
 sCamiao::custo	dados.h	/^    double custo;    \/**< Gasto por Km em função do consumo e desgaste do veiculo *\/$/;"	m	struct:sCamiao	access:public
 sCamiao::id	dados.h	/^    unsigned int id; \/**< Identificador único do camião                           *\/$/;"	m	struct:sCamiao	access:public
