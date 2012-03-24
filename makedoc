@@ -1,0 +1,6 @@
+#!/bin/bash
+
+
+rm doc.zip
+doxygen doxyfile
+zip -r doc.zip doc
