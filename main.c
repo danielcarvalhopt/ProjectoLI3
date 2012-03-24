@@ -8,7 +8,10 @@
 #include "utils.h"
 #include "menu.h"
 #include "dados.h"
+#include "localidades.h"
 #include "input.h"
+#include "mod_tabela_hash.h"
+#include "mod_lista_ligada.h"
 
 
 int main(){
@@ -27,7 +30,7 @@ int main(){
 
     while( input != -1 ){
         input = printMenu(input);
-        input = getInput(input, camioes, clientes);
+        input = getInput(input, camioes, clientes, table);
     }
     return 0;
 }

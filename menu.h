@@ -8,6 +8,8 @@
 #define MENU_H_INCLUDED
 
 #include "mod_avl_n_dimensional.h"
+#include "mod_tabela_hash.h"
+#include "localidades.h"
 
 /**
  * @brief Escreve o menú no ecrã
@@ -29,7 +31,7 @@ int getIntLoop();
  * @param clientes Estrutura de controlo de uma avl n-dimensional com os dados relativos aos camioes
  * @return Inteiro que indica o próximo menú a mostrar ao utilizador
  * */
-int getInput(int input, MainTreePt camioes, MainTreePt clientes);
+int getInput(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR table);
 
 /** 
  * @brief Inicializa as variáveis static que controlam os atalhos mostrados ao utilizador com três atalhos iniciais e predefinidos
@@ -37,6 +39,9 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes);
  * @see lastString
  * */
 void inicializarAtalhos();
+void inserelocalidadeinput(TabelaHashPTR table);
+void removelocalidadeinput(TabelaHashPTR table);
+void insereligacaoinput(TabelaHashPTR table);
 
 #endif /* MENU_H_INCLUDED */
 

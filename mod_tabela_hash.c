@@ -3,9 +3,6 @@
 #include "dados.h"
 #include "mod_tabela_hash.h"
 #include "utils.h"
-/*--------------------------------------------------------------------*/
-/* Módulo de Tabela de Hash -> Funções de tabela de hash com chaining */
-/*--------------------------------------------------------------------*/
 
 TabelaHashPTR hashtablecreator (int(*hash_function)(void*,int), int startcells, int (*func_compare)(void*,void*))
 {
@@ -132,13 +129,4 @@ void hashtabledestroy(TabelaHashPTR table)
         apagalista(aux[i]);
     }
 }
-
-
-/*
-int hash_function(void*a,int b){
-    LocalidadePTR localA = (LocalidadePTR)a;
-    char *nomeA;
-    nomeA=(char*)localA->nome;
-    return 0;
-}*/
 

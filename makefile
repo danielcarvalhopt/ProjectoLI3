@@ -22,5 +22,13 @@ mod_lista_ligada.o:
 mod_avl_n_dimensional.o:
 	gcc -c -g mod_avl_n_dimensional.c mod_avl_n_dimensional.h -Wall -Wextra
 
+localidades.o:
+	gcc -c -g localidades.c localidades.h -Wall -Wextra
+
+mod_tabela_hash.o:
+	gcc -c -g mod_tabela_hash.c mod_tabela_hash.h -Wall -Wextra
+
 main.o:
 	gcc -c -g main.c -Wall -Wextra
+
+

@@ -51,7 +51,7 @@ int apagaelemlista (MainListPTR lista, void* externdata)
     LinkedListPTR ant = NULL, actelem= lista->elems;
     int apagado=0;
 
-    if (actelem==NULL) return 1;
+    if (actelem==NULL) return 0;
     
     if (lista->func_compare(actelem->extdata, externdata)==0)
     {
