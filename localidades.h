@@ -82,3 +82,4 @@ typedef struct TabelaHash{
 }*TabelaHashPTR;
 
 
+int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino);
