@@ -22,6 +22,7 @@
  * @param l Array de apontadores para a esquerda
  * @param r Array de apontadores para a direita
  * @param height Array que indica a altura da sub-árvore em cada uma das dimensões
+ * @see mod_avl_n_dimensional.h
  * */
 typedef struct sTree{
     void *node;
@@ -37,6 +38,7 @@ typedef struct sTree{
  *          dimensões e uma função de comparação para cada dimensão.
  * @param tree Array de apontadores para o topo da árvore
  * @param compare Array de apontadores para as funções de comparação dos nodos
+ * @see mod_avl_n_dimensional.h
  * */
 typedef struct sMainTree{
     TreePt tree[DIM];

@@ -8,7 +8,7 @@
 
 /**
  * @brief Lê uma variável do tipo double.
- * @detail Primeiro verifica se a string introduzida corresponde a um número no formato decimal, depois faz parsing da string para um double
+ * @details Primeiro verifica se a string introduzida corresponde a um número no formato decimal, depois faz parsing da string para um double
  * @return Variável decimal de dupla precisão com o número introduzido pelo utilizador 
  * */
 double readDouble();
@@ -27,10 +27,10 @@ int readInt();
 
 /**
  * @brief  Lê um conjunto de caracteres
- * @detail Começa por criar um array de caracteres de tamanho fixo,
- *         depois aloca espaço em memória suficiente para conter o
- *         conjunto de caracteres lido e devolve um apontador para
- *         o início do espaço criado.
+ * @details Começa por criar um array de caracteres de tamanho fixo,
+ *          depois aloca espaço em memória suficiente para conter o
+ *          conjunto de caracteres lido e devolve um apontador para
+ *          o início do espaço criado.
  * @return Um apontador para o primeiro caracter da sequência lida
  * @see allocStr()
  * */

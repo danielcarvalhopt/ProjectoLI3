@@ -1,8 +1,12 @@
+/**
+ * @file mod_tabela_hash.h
+ * @brief Módulo de tabela de Hash
+ * @details O módulo de tabela de hash, com todas as estruturas e funções genéricas
+ * */
+#ifndef MOD_TABELA_HASH_H_INCLUDED
+#define MOD_TABELA_HASH_H_INCLUDED
 
-
-/*------------------------------------------------*/
-/* Módulo de Tabela de Hash -> Estrutura de Dados */
-/*------------------------------------------------*/
+#include "mod_lista_ligada.h"
 
 /**
 	@brief Tabela de Hash com chaining
@@ -23,10 +27,10 @@ typedef struct TabelaHash{
 
 
 /**
-	@fn hashtablecreator
 	@brief Cria a tabela de hash e inicia as listas ligadas a NULL
 	@param hash_function Função de hash para dispersão de elementos
 	@param startcells Numero de elementos iniciais da tabela
+        @param func_compare Apontador para a função de comparação
 	@return Apontador para tabela de hash
  */
 TabelaHashPTR hashtablecreator (int(*hash_function)(void*,int), int startcells,int (*func_compare)(void*,void*));
@@ -34,7 +38,6 @@ TabelaHashPTR hashtablecreator (int(*hash_function)(void*,int), int startcells,i
 
 
 /**
-	@fn hashtablecelluse
 	@brief Verifica o factor de ocupação da tabela de hash 
 	@param table Apontador para a tabela de hash
 	@return 0 se está com um factor de ocupação maior que o indicado
@@ -45,7 +48,6 @@ int hashtablecelluse (TabelaHashPTR table);
 
 
 /**
-	@fn hashtablerealloc
 	@brief Aloca mais espaço para a tabela de hash caso esta tenha ultrapassado o factor de ocupação indicado
 	@param table Apontador para a tabela de hash
 	@return 0 se não conseguiu alocar espaço suficiente
@@ -56,7 +58,6 @@ int hashtablerealloc (TabelaHashPTR table);
 
 
 /**
-	@fn hashtableinsertion
 	@brief Insere um elemento na tabela de hash
 	@param table Apontador para a tabela de hash
 	@param externdata Apontador para o elemento a inserir
@@ -68,7 +69,6 @@ int hashtableinsertion (TabelaHashPTR table, void *externdata);
 
 
 /**
-	@fn hashtablesearch
 	@brief Procura um elemento na tabela de hash
 	@param table Apontador para a tabela de hash
 	@param externdata Apontador para o elemento a procurar
@@ -79,7 +79,6 @@ LinkedListPTR hashtablesearch (TabelaHashPTR table, void *externdata);
 
 
 /**
-	@fn hashtableelemdeletion
 	@brief Elimina um elemento dado da tabela de hash
 	@param table Apontador para a tabela de hash
 	@param externdata Apontador para o elemento a elimiar
@@ -91,7 +90,6 @@ int hashtableelemdeletion (TabelaHashPTR table, void* externdata);
 
 
 /**
-	@fn hashtabledestroy
 	@brief Elimina todos os elementos da tabela de hash
 	@param table Apontador para a tabela de hash
  */
@@ -99,12 +97,11 @@ void hashtabledestroy(TabelaHashPTR table);
 
 
 
-/**
-	@fn hash_function
+/*
 	@brief Indica o indice na tabela onde um elemento será inserido/procurado/eliminado
 	@param a Apontador para os dados a analisar e criar hashkey
 	@param b Numero de elementos total da tabela
  */
-int hash_function(void*a,int b);
+//int hash_function(void*a,int b);
 
-
+#endif /* MOD_TABELA_HASH_H_INCLUDED */

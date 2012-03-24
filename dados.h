@@ -1,25 +1,31 @@
 /**
  * @file dados.h
  * @brief Estruturas e Funções específicas dos dados
- * @detail Estruturas dos vários modelos de dados e funções para inicializar, comparar, ...
+ * @details Estruturas dos vários modelos de dados e funções para inicializar, comparar, ...
  * */
 #ifndef DADOS_H_INCLUDED
 #define DADOS_H_INCLUDED
 
 #include "mod_lista_ligada.h"
 #include "mod_avl_n_dimensional.h"
+#include "mod_tabela_hash.h"
 
 //
 // Funções e estruturas dos camiões
 //
 
-/** Estrutura de dados que define um camião. */
+/**
+ * @brief Estrutura de dados que define um Camiao.
+ * @param id Identificador único do camião
+ * @param matricula Matrícula do camião
+ * @param custo Gasto por Km em função do consumo e desgaste do veiculo
+ * @param peso Peso máximo que o camião pode transportar 
+ * */
 typedef struct sCamiao{
-    unsigned int id; /**< Identificador único do camião                           */
-    char *matricula; /**< Matrícula do camião                                     */
-    double custo;    /**< Gasto por Km em função do consumo e desgaste do veiculo */
-    double peso;     /**< Peso máximo que o camião pode transportar               */
-    //falta localidade actual
+    unsigned int id;
+    char *matricula;
+    double custo;
+    double peso;
 } Camiao, *CamiaoPt;
 
 /**
@@ -52,10 +58,10 @@ int camiao_compararMatricula(void* camiaoUm, void* camiaoDois);
 
 /**
  * @brief Inicializa uma nova variável camiao
- * @detail Aloca espaço em memória para uma nova variável do tipo camiao,
- *         depois preenche os dados do camião de acordo com os argumentos
- *         passados à função. Por fim retorna um apontador para o espaço
- *         alocado.
+ * @details Aloca espaço em memória para uma nova variável do tipo camiao,
+ *          depois preenche os dados do camião de acordo com os argumentos
+ *          passados à função.\n
+ *          Por fim retorna um apontador para o espaço alocado.
  * @param id Inteiro sem sinal que representa o identificador único do camião
  * @param matricula Conjunto de caracteres que representam a matrícula do camião
  * @param custo Valor real de dupla precisão que representa o gasto por km associado ao camião
@@ -69,12 +75,18 @@ CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double pes
 // Funções e estruturas dos clientes
 //
 
-/** Estrutura de dados que define um Cliente */
+/**
+ * @brief Estrutura de dados que define um Cliente
+ * @param nif Número de Identificação Fiscal (nº contribuinte) do cliente 
+ * @param nome Nome do cliente
+ * @param morada Morada do cliente
+ * @param serviços Apontador para a estrutura de controlo da lista de serviços anteriores do cliente 
+ * */
 typedef struct sCliente{
-    unsigned int nif;     /**< Número de Identificação Fiscal (nº contribuinte) do cliente                       */
-    char *nome;           /**< Nome do cliente                                                                   */
-    char *morada;         /**< Morada do cliente                                                                 */
-    MainListPTR servicos; /**< Apontador para a estrutura de controlo da lista de serviços anteriores do cliente */
+    unsigned int nif;
+    char *nome;
+    char *morada;
+    MainListPTR servicos;
 } Cliente, *ClientePt;
 
 /**
@@ -107,10 +119,10 @@ void cliente_dump( void* cliente );
 
 /**
  * @brief Inicializa uma nova variável cliente
- * @detail Aloca espaço em memória para uma nova variável do tipo cliente,
- *         depois preenche os dados do cliente de acordo com os argumentos
- *         passados à função. Por fim retorna um apontador para o espaço
- *         alocado.
+ * @details Aloca espaço em memória para uma nova variável do tipo cliente,
+ *          depois preenche os dados do cliente de acordo com os argumentos
+ *          passados à função.\n
+ *          Por fim retorna um apontador para o espaço alocado.
  * @param nif Inteiro sem sinal que representa o contribuinte do cliente
  * @param nome Conjunto de caracteres que representam o nome do utilizador
  * @param morada Conjunto de caracteres que representam a morada do utilizador
@@ -122,10 +134,10 @@ ClientePt cliente_novo( unsigned int nif, char *nome, char *morada, MainListPTR 
 
 /**
  * @brief Substitui os dados de um cliente com determinado Nome
- * @detail A função procura o cliente pelo Nome, depois cria um novo
- *         cliente com os argumentos passados à função e com a lista
- *         de serviços anteriores do cliente que encontrou. Por fim,
- *         apaga o cliente que encontrou e insere o que criou.
+ * @details A função procura o cliente pelo Nome, depois cria um novo
+ *          cliente com os argumentos passados à função e com a lista
+ *          de serviços anteriores do cliente que encontrou.\n
+ *          Por fim, apaga o cliente que encontrou e insere o que criou.
  * @param clientesPt Apontador para a estrutura de controlo da árvore de clientes
  * @param procuraNome Nome do cliente que se quer modificar
  * @param nif Novo nif do cliente
@@ -140,10 +152,10 @@ int cliente_substituiPeloNome( MainTreePt clientesPt, char *procuraNome, unsigne
 
 /**
  * @brief Substitui os dados de um cliente com determinado Nif
- * @detail A função procura o cliente pelo Nif, depois cria um novo
- *         cliente com os argumentos passados à função e com a lista
- *         de serviços anteriores do cliente que encontrou. Por fim,
- *         apaga o cliente que encontrou e insere o que criou.
+ * @details A função procura o cliente pelo Nif, depois cria um novo
+ *          cliente com os argumentos passados à função e com a lista
+ *          de serviços anteriores do cliente que encontrou.\n
+ *          Por fim, apaga o cliente que encontrou e insere o que criou.
  * @param clientesPt Apontador para a estrutura de controlo da árvore de clientes
  * @param procuraNif Nif do cliente que se quer modificar
  * @param nif Novo nif do cliente
@@ -158,23 +170,64 @@ int cliente_substituiPeloNif( MainTreePt clientesPt, unsigned int procuraNif, un
 
 /**
  * @brief Obtém a lista de serviços anteriores de um cliente
- * @detail Obtém o apontador para a estrutura de controlo da
- *         lista de serviços anteriores do cliente a partir
- *         da subárvore que aponta para o cliente
+ * @details Obtém o apontador para a estrutura de controlo da
+ *          lista de serviços anteriores do cliente a partir
+ *          da subárvore que aponta para o cliente.
  * @param thisTreePt Subárvore que aponta para o cliente
  * @return Apontador para a estrutura de controlo da lista de serviços anteriores do cliente
  * */
 MainListPTR cliente_getServico( TreePt thisTreePt );
 
-/*
+
 //
 // Funções e estruturas das Localidades
 //
 
-typedef struct sLocal{
+typedef struct Ligacoesida{
+	char* nome;
+	float custo;
+	float distancia;
+}*LigacoesidaPTR;
 
-} Local, *LocalPt;
+typedef struct Ligacoesvinda{
+	char* nome;
+}*LigacoesvindaPTR;
 
+
+typedef struct Localidade{
+	char* nome;
+	MainListPTR ligacoesida;
+	MainListPTR ligacoesvinda;
+}*LocalidadePTR;
+
+// função de input
+void removeligacaoinput(TabelaHashPTR table);
+
+int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino);
+void imprimelistaligacoes(LinkedListPTR lista);
+void hashprint (TabelaHashPTR table);
+void imprimelista(LinkedListPTR lista);
+int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino);
+int inserirligacao(TabelaHashPTR table, char *nomeorigem, char *nomedestino, float custo, float distancia);
+LigacoesvindaPTR crialigacaovinda (char* nome);
+LigacoesidaPTR crialigacaoida (char* nome, float custo, float distancia);
+int removerlocalidade (TabelaHashPTR table, char *nome);
+int inserelocalidade (TabelaHashPTR table, char *nome);
+LocalidadePTR crialocalidade (char* nome);
+int compareligacoesvinda (void *a, void *b);
+int compareligacoesida (void *a, void *b);
+int comparalocalidades (void *a, void *b);
+
+/**
+ * @brief Remove a ligação entre duas localidades
+ * @param table Apontador para a tabela de hash
+ * @param nomeorigem Nome da cidade que serve de ponto de partida
+ * @param nomedestino Nome da cidade que serve de ponto de chegada
+ * @return 
+ * */
+int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino);
+
+/*
 //
 // Funções e estruturas dos serviços anteriores
 //

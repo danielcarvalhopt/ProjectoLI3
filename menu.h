@@ -38,8 +38,5 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes);
  * */
 void inicializarAtalhos();
 
-
-void removeligacaoinput(TabelaHashPTR table);
-
 #endif /* MENU_H_INCLUDED */
 

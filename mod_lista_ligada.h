@@ -1,11 +1,10 @@
+/**
+ * @file mod_lista_ligada.h
+ * @brief Listas ligadas
+ * @details Define listas ligadas genéricas e as suas funções
+ * */
 #ifndef MOD_LISTA_LIGADA_H_INCLUDED
 #define MOD_LISTA_LIGADA_H_INCLUDED
-
-
-/*----------------------------------------------*/
-/* Módulo de Lista Ligada -> Estrutura de Dados */
-/*----------------------------------------------*/
-
 
 /**
 	@brief Lista Ligada
@@ -36,9 +35,7 @@ typedef struct MainList {
 
 
 /**
-	@fn crialistaligada
 	@brief Cria a estrutura de controlo de uma lista ligada
-	@param lista Apontador para a estrutura de controlo da lista
 	@param func_compare Função de comparação
 	@return Apontador para a estrutura de controlo criada
  */
@@ -47,7 +44,6 @@ MainListPTR crialistaligada(int (*func_compare)(void *, void *));
 
 
 /**
-	@fn inserelistahead
 	@brief Insere um elemento na cabeça da lista
 	@param lista Estrutura de controlo da lista onde se irá inserir o elemento
 	@param externdata Apontador para os dados a inserir na lista
@@ -59,7 +55,6 @@ int inserelistahead(MainListPTR lista, void* externdata);
 
 
 /**
-	@fn apagaelem
 	@brief Liberta um elemento da memória
 	@param elem Apontador para um apontador para uma lista ligada
  */
@@ -68,9 +63,9 @@ void apagaelem (LinkedListPTR *elem);
 
 
 /**
-	@fn apagaelemlista
 	@brief Apaga um elemento de uma lista ligada libertando-o da memória
 	@param lista Apontador para a estrutura de controlo da lista ligada
+        @param externdata Apontador para os dados que se querem remover da lista
 	@return 1 se houve remoção
 	@return 0 se não houve remoção
  */
@@ -79,7 +74,6 @@ int apagaelemlista(MainListPTR lista, void* externdata);
 
 
 /**
-	@fn procuraelemlista
 	@brief Procura um dado elemento na lista ligada
 	@param lista Apontador para a estrutura de controlo da lista ligada
 	@param externdata Elemento a procurar na lista
@@ -90,7 +84,6 @@ LinkedListPTR procuraelemlista (MainListPTR lista, void *externdata);
 
 
 /**
-	@fn apagalistaaux
 	@brief Apaga da memória uma lista ligada completa
 	@param lista Apontador para a estrutura de controlo da lista ligada
  */
@@ -99,7 +92,6 @@ void apagalistaaux(LinkedListPTR *lista);
 
 
 /**
-	@fn apagalista
 	@brief Apaga da memória uma lista ligada e actualiza a estrutura de controlo em função disso
 	@param lista Apontador para a estrutura de controlo da lista ligada
  */

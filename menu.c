@@ -10,6 +10,7 @@
 static int lastInt[3];          /**< Representação numérica dos atalhos **/
 static char lastString[3][54];  /**<  Representação string dos atalhos  **/
 
+
 /**
  * Altera os valores das variáveis static que controlam os atalhos mostrados ao utilizador
  * @param input Representação numérica da ultima opção escolhida pelo utilizador
@@ -508,19 +509,3 @@ int getIntLoop(){
         return x;
 }
 
-void removeligacaoinput(TabelaHashPTR table)
-{
-    char *localorigem=NULL, *localdest=NULL, *aux=NULL,*aux2=NULL;
-    printf("Introduza localidade de origem > ");
-    localorigem= readStr(aux);
-    printf("Introduza localidade de destino > ");
-    localdest= readStr(aux2);
-
-    switch(removerligacao (table,localorigem, localdest))
-    {
-        case -1: printf("Uma ou ambas as localidades não existem!");break;
-        case 0: printf("A ligação não existe!");break; 
-        case 1: printf("A ligação foi removida com sucesso!");break;
-    }
-
-}

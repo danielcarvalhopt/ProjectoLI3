@@ -1,21 +1,16 @@
+#include <stdlib.h>
 
+#include "dados.h"
+#include "mod_tabela_hash.h"
+#include "utils.h"
 /*--------------------------------------------------------------------*/
 /* Módulo de Tabela de Hash -> Funções de tabela de hash com chaining */
 /*--------------------------------------------------------------------*/
 
-char* allocStr(char *dest, char *src){
-    if( (dest = malloc(strlen(src) + 1)) == NULL ){
-        printf("Out of memory\n");
-        return NULL;
-    }
-    strcpy(dest, src);
-    return dest;
-}
-
-
 TabelaHashPTR hashtablecreator (int(*hash_function)(void*,int), int startcells, int (*func_compare)(void*,void*))
 {
-    TabelaHashPTR table; void *datacells; int i;
+    TabelaHashPTR table;
+    int i;
 
     table = (TabelaHashPTR)malloc(sizeof(struct TabelaHash));
 
@@ -139,103 +134,11 @@ void hashtabledestroy(TabelaHashPTR table)
 }
 
 
-
-int hash_function(void*a,int b)
-{
+/*
+int hash_function(void*a,int b){
     LocalidadePTR localA = (LocalidadePTR)a;
     char *nomeA;
     nomeA=(char*)localA->nome;
     return 0;
-}
-
-
-/***********   ZONA DE TESTES **************/
-/***********   ZONA DE TESTES **************/
-/***********   ZONA DE TESTES **************/
-/***********   ZONA DE TESTES **************/
-/***********   ZONA DE TESTES **************/
-/***********   ZONA DE TESTES **************/
-/***********   ZONA DE TESTES **************/
-/********************************************
-
-/*
-void hashprint(TabelaHashPTR table)
-{
-    MainListPTR *aux=table->arraycell;int i;
-    for(i=0;i<table->totalcells;i++)
-    {
-        while(aux[i]->elems!=NULL){
-            printf("%s\n",(char*)aux[i]->elems->extdata);
-            aux[i]->elems=aux[i]->elems->prox;
-            }
-    }
-}
-
-
-
-
-int main()
-{
-
-
-int i;
-    char *string;
-    string=malloc(sizeof(10));
-    strcpy(string,"1");
-    char *string2;
-    string2=malloc(sizeof(10));
-    strcpy(string2,"2");
-    char *string3;
-    string3=malloc(sizeof(10));
-    strcpy(string3,"3");
-    char *string4;
-    string4=malloc(sizeof(10));
-    strcpy(string4,"4");
-    char *string5;
-    string5=malloc(sizeof(10));
-    strcpy(string5,"5");
-    char *string6;
-    string6=malloc(sizeof(10));
-    strcpy(string6,"6");
-    char *string7;
-    string7=malloc(sizeof(10));
-    strcpy(string7,"LOL");
-    char *string8;
-    string8=malloc(sizeof(10));
-    strcpy(string8,"8");
-    TabelaHashPTR table;
-    table = hashtablecreator (hash_function,1);
-hashtableinsertion(table, "TROLOL");
-for (i=0; i<3;i++){
-    hashtableinsertion(table,string);
-    hashtableinsertion(table,string2);
-        hashtableinsertion(table,string3);
-            hashtableinsertion(table,string4);
-                hashtableinsertion(table,string5);
-                    hashtableinsertion(table,string6);
-                        hashtableinsertion(table,string7);
-                            hashtableinsertion(table,string8);}
-
-                                
-    printf("%d %d %d\n", table->totalcells, hashtablecelluse(table), table->nelems );
-    printf("%d\n", table->totalcells);
-    printf("Search:%s\n",(char*)((hashtablesearch(table, "TROLOL"))->extdata));
-    printf("%d\n",hashtableelemdeletion(table, "TROLOL"));
-    hashtabledestroy(table);
-        printf("%d %d %d\n", table->totalcells, hashtablecelluse(table), table->nelems );
-    printf("%d\n", table->totalcells);
-    if((((hashtablesearch(table, string7)))!=NULL))
-    printf("Search:%s\n",(char*)((hashtablesearch(table, string7))->extdata));
-    else printf("LOL\n");
-    if((((hashtablesearch(table, "TROLOL")))!=NULL))
-    printf("Search:%s\n",(char*)((hashtablesearch(table, "TROLOL"))->extdata));
-    else printf("LOL TROLOL\n");
-
-
-
-
-    return 0;
 }*/
 
-
-    

@@ -34,7 +34,7 @@ void clearScreen(){
 
 
 int isDouble(double n){
-    if( isinf(n) || isnan(n) ) /**< verifica se n não é um número ou se representa a infinidade */
+    if( isinf(n) || isnan(n) ) // verifica se n não é um número ou se representa a infinidade
         return 0;
     return 1;
 }

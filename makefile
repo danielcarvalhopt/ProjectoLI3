@@ -1,5 +1,5 @@
-transportes: utils.o menu.o input.o mod_avl_n_dimensional.o mod_lista_ligada.o dados.o main.o
-	gcc utils.o menu.o input.o mod_avl_n_dimensional.o mod_lista_ligada.o dados.o main.o -o transportes
+transportes: utils.o menu.o input.o mod_avl_n_dimensional.o mod_lista_ligada.o mod_tabela_hash.o dados.o main.o
+	 gcc utils.o menu.o input.o mod_avl_n_dimensional.o mod_lista_ligada.o mod_tabela_hash.o dados.o main.o -o transportes
 
 dados.o:
 	gcc -c -g dados.c dados.h -Wall -Wextra
@@ -12,6 +12,9 @@ input.o:
 
 menu.o:
 	gcc -c -g menu.c menu.h -Wall -Wextra
+
+mod_tabela_hash.o:
+	gcc -c -g mod_tabela_hash.c mod_tabela_hash.h -Wall -Wextra
 
 mod_lista_ligada.o:
 	gcc -c -g mod_lista_ligada.c mod_lista_ligada.h -Wall -Wextra

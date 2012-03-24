@@ -30,9 +30,9 @@ void clearScreen();
 
 /**
  * @brief Verifica se o inteiro sem sinal é válido
- * @detail De acordo com o funcionamento do programa, todo o inteiro
- *         diferente de INT_MAX é válido. INT_MAX é o maior inteiro
- *         representável.
+ * @details De acordo com o funcionamento do programa, todo o inteiro
+ *          diferente de INT_MAX é válido.\n
+ *          INT_MAX é o maior inteiro representável.
  * @param n Número que se pretende verificar se é inteiro sem sinal
  * @return Um inteiro com o seguinte significado:
  *         0 - n não é um inteiro sem sinal válido
@@ -43,9 +43,9 @@ int isUInt(unsigned int n);
 
 /**
  * @brief Verifica se o inteiro é válido
- * @detail De acordo com o funcionamento do programa, todo o inteiro
- *         diferente de INT_MAX é válido. INT_MAX é o maior inteiro
- *         representável.
+ * @details De acordo com o funcionamento do programa, todo o inteiro
+ *         diferente de INT_MAX é válido.\n
+ *         INT_MAX é o maior inteiro representável.
  * @param n Número que se pretende verificar se é inteiro
  * @return Um inteiro com o seguinte significado:
  *         0 - n não é um inteiro válido
@@ -91,9 +91,9 @@ int uintcmp(unsigned int a, unsigned int b);
 
 /**
  * @brief Verifica se o numero real de dupla precisão é válido
- * @detail De acordo com o funcionamento do programa, os números
- *         reais de dupla precisão que não são válidos têm o valor
- *         de NaN (Not a Number) ou +/-infinito.
+ * @details De acordo com o funcionamento do programa, os números
+ *          reais de dupla precisão que não são válidos têm o valor
+ *          de NaN (Not a Number) ou +/-infinito.
  * @param n Número que se pretende verificar se é real de dupla precisão
  * @return Um inteiro com o seguinte significado:
  *         0 - n não é um real de dupla precisão válido
@@ -109,9 +109,9 @@ int isDouble(double n);
 
 /**
  * @brief Copia uma string para outra
- * @detail Aloca espaço para uma string de tamanho igual à string em src,
- *         coloca o apontador dest a apontar para esse espaço e copia o
- *         conteúdo da origem (src) para o destino (dest).
+ * @details Aloca espaço para uma string de tamanho igual à string em src,
+ *          coloca o apontador dest a apontar para esse espaço e copia o
+ *          conteúdo da origem (src) para o destino (dest).
  * @param dest String de destino
  * @param src String de origem
  * @return Um apontador para a cópia da string em src
@@ -121,9 +121,9 @@ char* allocStr(char *dest, char *src);
 
 /**
  * @brief Concatena src em dest
- * @detail Realoca espaço em memória para que as duas strings possam ser
- *         inseridas no espaço apontado por dest. Depois concatena as duas
- *         strings nesse espaço.
+ * @details Realoca espaço em memória para que as duas strings possam ser
+ *          inseridas no espaço apontado por dest. Depois concatena as duas
+ *          strings nesse espaço.
  * @param dest String de destino
  * @param src String de destino
  * @return Uma string com a concatenação das duas strings que são passadas como argumento
@@ -139,4 +139,5 @@ char* addnCharEnd(char *dest, char chr, int i);
 char* addChar(char *dest, char chr);
 char* addnChar(char *dest, char chr, int i);
 */
+
 #endif /* UTILS_H_INCLUDED */

@@ -206,10 +206,10 @@ int tree_insert( MainTreePt thisMainTree, void* node){
 
 /**
  * @brief Mover o menor nodo da sub-árvore direita de forma a poder remover o nodo actual com segurança
- * @detail A função vai encontrar a menor sub-árvore (thisTreePt) na sub-árvore direita do 'master'
- *         e vai trocar as ligações de modo a transformar a 'thisTreePt' na nova 'master' sem perder
- *         as ligações já existentes. Esta função só é necessária quando o nodo que se quer remover
- *         tem sub-árvores esquerda e direita.
+ * @details A função vai encontrar a menor sub-árvore (thisTreePt) na sub-árvore direita do 'master'
+ *          e vai trocar as ligações de modo a transformar a 'thisTreePt' na nova 'master' sem perder
+ *          as ligações já existentes.\n
+ *          Esta função só é necessária quando o nodo que se quer remover tem sub-árvores esquerda e direita.
  * @param master Apontador para apontador para a sub-árvore a trocar
  * @param thisTreePt Apontador para apontador para a sub-árvore que vai subir
  * @param thisDim Dimensão em que se quer balancear a árvore
@@ -279,8 +279,6 @@ void tree_remove( MainTreePt thisMainTreePt, void* node ){
         tree_searchTreeToDisconnect( &thisMainTreePt->tree[i], i, node, thisMainTreePt->compare[i] );
 
     free(elem);
-
-    //tree_maintain( &thisMainTreePt->tree[thisDim], thisDim, thisMainTreePt->compare );
 }
 
 /**
@@ -326,77 +324,3 @@ void* tree_getElem( TreePt thisTreePt ){
     return thisTreePt->node;
 }
 
-
-
-/*
-typedef struct sCoord{
-    int x;
-    int y;
-} Coord;
-
-int comparaX( void* fst, void* snd ){
-    if( ((Coord*)fst)->x < ((Coord*)snd)->x )
-        return -1;
-    else if( ((Coord*)fst)->x > ((Coord*)snd)->x )
-        return 1;
-    else
-        return 0;
-}
-
-int comparaY( void* fst, void* snd ){
-    if( ((Coord*)fst)->y < ((Coord*)snd)->y )
-        return -1;
-    else if( ((Coord*)fst)->y > ((Coord*)snd)->y )
-        return 1;
-    else
-        return 0;
-}
-
-void print( void *fst, int altura, void* ptr ){
-    printf("{%2d,%2d} at %2d with addr %p\n", ((Coord*)fst)->x, ((Coord*)fst)->y, altura, ptr );
-}
-
-int main(){
-    int (*funcCompara[DIM])(void*,void*) = {comparaX, comparaY};
-    void (*funcPrint[DIM])(void*,int,void*) = {print, print};
-
-    MainTreePt arvore = tree_new( funcCompara, funcPrint );
-
-    int i;
-    Coord x[20] = {
-        {1,11},
-        {2,22},
-        {3,13},
-        {4,24},
-        {5,15},
-        {6,26},
-        {7,17},
-        {8,28},
-        {9,19},
-        {10,10},
-        {11,1},
-        {12,12},
-        {13,13},
-        {14,4},
-        {15,15},
-        {16,16},
-        {17,17},
-        {18,8},
-        {19,19}
-    };
-    for( i=0; i<20; i++)
-        tree_insert( arvore, &x[i] );
-
-    tree_remove( arvore, &x[2] );
-    tree_remove( arvore, &x[7] );
-    tree_remove( arvore, &x[12] );
-
-    tree_printOrdered(arvore, 0);
-    printf("-----\n");
-    tree_printOrdered(arvore, 1);
-
-    tree_dispose( &arvore );
-
-    return 0;
-}
-*/
