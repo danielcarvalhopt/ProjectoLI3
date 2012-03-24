@@ -2,20 +2,14 @@
 /*--------------------------------------------------------------------*/
 /* Módulo de Tabela de Hash -> Funções de tabela de hash com chaining */
 /*--------------------------------------------------------------------*/
-
-char* allocStr(char *dest, char *src){
-    if( (dest = malloc(strlen(src) + 1)) == NULL ){
-        printf("Out of memory\n");
-        return NULL;
-    }
-    strcpy(dest, src);
-    return dest;
-}
-
+#include <stdlib.h>
+#include <string.h>
+#include "mod_tabela_hash.h"
+#include "localidades.h"
 
 TabelaHashPTR hashtablecreator (int(*hash_function)(void*,int), int startcells, int (*func_compare)(void*,void*))
 {
-    TabelaHashPTR table; void *datacells; int i;
+    TabelaHashPTR table; int i;
 
     table = (TabelaHashPTR)malloc(sizeof(struct TabelaHash));
 
@@ -143,9 +137,13 @@ void hashtabledestroy(TabelaHashPTR table)
 int hash_function(void*a,int b)
 {
     LocalidadePTR localA = (LocalidadePTR)a;
-    char *nomeA;
+    char *nomeA; int res=0,i;
     nomeA=(char*)localA->nome;
-    return 0;
+    for(i=0;nomeA[i]!='\0';i++)
+    {
+        res+=(int)*(nomeA)^2;
+    }
+    return (res%b);
 }
 
 
@@ -158,7 +156,7 @@ int hash_function(void*a,int b)
 /***********   ZONA DE TESTES **************/
 /********************************************
 
-/*
+
 void hashprint(TabelaHashPTR table)
 {
     MainListPTR *aux=table->arraycell;int i;

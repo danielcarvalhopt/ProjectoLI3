@@ -5,6 +5,8 @@
 #include "menu.h"
 #include "utils.h"
 #include "dados.h"
+#include "localidades.h"
+
 
 
 static int lastInt[3];          /**< Representação numérica dos atalhos **/
@@ -358,8 +360,9 @@ int printMenu(int input){
 	return input;
 }
 
-int getInput(int input, MainTreePt camioes, MainTreePt clientes){
+int getInput(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR table){
     //alguns dados para testes
+
     Camiao camiao_teste[20] = {
         {0, "00-60-00", 1.0, 10},
         {1, "60-00-00", 1.5, 10},
@@ -464,10 +467,10 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes){
             else if( input != 0 )
                 input = 4;
             break;
-        case 41: getchar(); clearInputBuffer(); input=0; break;
-        case 42: getchar(); clearInputBuffer(); input=0; break;
-        case 43: getchar(); clearInputBuffer(); input=0; break;
-        case 44: getchar(); clearInputBuffer(); input=0; break;
+        case 41: inserelocalidadeinput(table); clearInputBuffer(); input=0; break;
+        case 42: removelocalidadeinput(table); clearInputBuffer(); input=0; break;
+        case 43: printf("\n");hashprint(table);clearInputBuffer(); input=0; break;
+        case 44: insereligacaoinput(table);clearInputBuffer(); input=0; break;
         case 9:
             input = getIntLoop();
             if( input == 1 || input == 2 )
@@ -508,3 +511,58 @@ int getIntLoop(){
         return x;
 }
 
+
+void inserelocalidadeinput (TabelaHashPTR table)
+{   
+    char *inputlocal=NULL,*aux=NULL;
+
+    printf("Nome da localidade a inserir > ");
+    aux=readStr(inputlocal); 
+    switch (inserelocalidade(table, aux))
+    {
+        case -1: printf("Localidade já existe!"); break;
+        case 0: printf("Não foi possível inserir a localidade por falta de memória!");break;
+        case 1: printf("Localidade inserida com sucesso!");break;
+    }
+}
+
+void removelocalidadeinput(TabelaHashPTR table)
+{
+    char *inputlocal=NULL,*aux=NULL;
+
+    printf("Nome da localidade a remover > ");
+    aux=readStr(inputlocal); 
+    switch (removerlocalidade(table, aux))
+    {
+        case -1: printf("Não foi possível completar a operação por falta de memória!");break;
+        case 0: printf("Localidade não existe!"); break;
+        case 1: printf("Localidade removida com sucesso!");break;
+    }
+}
+
+
+void insereligacaoinput(TabelaHashPTR table)
+{
+    char *localorigem=NULL, *localdest=NULL, *aux=NULL,*aux2=NULL;
+    int custo, distancia;
+
+
+    printf("Introduza localidade de origem > ");
+    localorigem= readStr(aux);
+    printf("Introduza localidade de destino > ");
+    localdest= readStr(aux2);
+    printf("Introduza o custo de portagens > ");
+    custo=readInt();
+    printf("Introduza a distância > ");
+    distancia=readInt();
+
+    switch(inserirligacao(table,localorigem,localdest,custo,distancia))
+    {
+        case -2:printf("Não foi possível completar a operação por falta de memória! ");break;
+        case -1: printf("Uma ou ambas as localidades não existem!");break;
+        case 0: printf("A ligação já existe!");break;    
+        case 1: printf("A ligação foi inserida com sucesso!");break;
+
+    }
+
+}

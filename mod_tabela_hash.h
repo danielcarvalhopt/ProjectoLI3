@@ -1,4 +1,7 @@
+#ifndef MOD_LISTA_TABELA_HASH_H_INCLUDED
+#define MOD_LISTA_TABELA_HASH_H_INCLUDED
 
+#include "mod_lista_ligada.h"
 
 /*------------------------------------------------*/
 /* Módulo de Tabela de Hash -> Estrutura de Dados */
@@ -108,3 +111,4 @@ void hashtabledestroy(TabelaHashPTR table);
 int hash_function(void*a,int b);
 
 
+#endif /* MOD_LISTA_TABELA_HASH_H_INCLUDED */
