@@ -3,16 +3,21 @@
 #include "mod_avl_n_dimensional.h"
 #include "utils.h"
 
-/* debug, passou para utils.c
-int maxInt(int a,int b){
-    return a>=b ? a : b;
-} */
-
+/**
+ * @brief Obter a altura de determinada sub-árvore em determinada dimensão
+ * @param tree Apontador para a sub-árvore
+ * @param thisDim Dimensão em questão
+ * @return Altura da sub-árvore ou 0 se a sub-árvore nao existir
+ * */
 static int tree_getHeight(TreePt tree, int thisDim){
     return tree!=NULL ? tree->height[thisDim] : 0;
 }
 
-
+/**
+ * @brief Rodar sub-árvore com a sub-árvore èsquerda
+ * @param thisTreePt Apontador para o apontador para a sub-árvore
+ * @param thisDim Dimensão em que se deve fazer troca
+ * */
 static void tree_singleRotateLeft( TreePt *thisTreePt, int thisDim ){
     TreePt node = (*thisTreePt)->r[thisDim];
     unsigned int lh, rh;
@@ -32,6 +37,12 @@ static void tree_singleRotateLeft( TreePt *thisTreePt, int thisDim ){
     *thisTreePt = node;
 }
 
+
+/**
+ * @brief Rodar sub-árvore com a sub-árvore direita
+ * @param thisTreePt Apontador para o apontador para a sub-árvore
+ * @param thisDim Dimensão em que se deve fazer troca
+ * */
 static void tree_singleRotateRight( TreePt *thisTreePt, int thisDim ){
     TreePt node = (*thisTreePt)->l[thisDim];
     unsigned int lh, rh;
@@ -51,16 +62,33 @@ static void tree_singleRotateRight( TreePt *thisTreePt, int thisDim ){
     *thisTreePt = node;
 }
 
+
+/**
+ * @brief Dupla rotação direita esquerda
+ * @param thisTreePt Apontador para o apontador para a sub-árvore
+ * @param thisDim Dimensão em que se deve fazer troca
+ * */
 static void tree_doubleRotateRightLeft( TreePt *thisTreePt, int thisDim ){
     tree_singleRotateRight( &(*thisTreePt)->r[thisDim], thisDim );
     tree_singleRotateLeft( thisTreePt, thisDim );
 }
 
+
+/**
+ * @brief Dupla rotação esquerda direita
+ * @param thisTreePt Apontador para o apontador para a sub-árvore
+ * @param thisDim Dimensão em que se deve fazer troca
+ * */
 static void tree_doubleRotateLeftRight( TreePt *thisTreePt, int thisDim ){
     tree_singleRotateLeft( &(*thisTreePt)->l[thisDim], thisDim );
     tree_singleRotateRight( thisTreePt, thisDim);
 }
 
+/**
+ * @brief Balancear a árvore em determinada dimensão
+ * @param thisTree Apontador para apontador para a sub-árvore
+ * @param thisDim Dimensão a balancear
+ * */
 static void tree_maintain( TreePt *thisTree, int thisDim){
     if( *thisTree == NULL ) return;
 
@@ -123,21 +151,26 @@ MainTreePt tree_new( int (*compare[DIM])(void*,void*) ){
     return new;
 }
 
-static int tree_insertRec( TreePt *thisTree, TreePt allocd, void* node, int thisDim, int (*compare)(void*,void*)){
-    int ret=1;
+/**
+ * @brief Função auxiliar de inserção recursiva
+ * @param thisTree Apontador para apontador para a sub-árvore
+ * @param allocd Apontador para uma sub-árvore previamente alocada
+ * @param node Apontador para o nodo, para efeitos de comparação
+ * @param thisDim Dimensão em que se quer inserir o nodo
+ * @param compare Apontador para a função de comparação
+ * */
+static void tree_insertRec( TreePt *thisTree, TreePt allocd, void* node, int thisDim, int (*compare)(void*,void*)){
     if( *thisTree == NULL )
         *thisTree = allocd;
     else{
         if( compare((*thisTree)->node, node) < 0 ){ // existente é menor que o que se quer inserir -> inserir à direita
-            ret = tree_insertRec( &(*thisTree)->r[thisDim], allocd, node, thisDim, compare );
+            tree_insertRec( &(*thisTree)->r[thisDim], allocd, node, thisDim, compare );
         }else{                                      // existente é maior que o que se quer inserir -> inserir à esquerda
-            ret = tree_insertRec( &(*thisTree)->l[thisDim], allocd, node, thisDim, compare );
+            tree_insertRec( &(*thisTree)->l[thisDim], allocd, node, thisDim, compare );
         }
     }
 
     tree_maintain( thisTree, thisDim );
-
-    return ret;
 }
 
 int tree_insert( MainTreePt thisMainTree, void* node){
@@ -166,6 +199,17 @@ int tree_insert( MainTreePt thisMainTree, void* node){
     return sucesso; // 1 - inseriu em todos; 0 - já existe
 }
 
+/**
+ * @brief Mover o menor nodo da sub-árvore direita de forma a poder remover o nodo actual com segurança
+ * @detail A função vai encontrar a menor sub-árvore (thisTreePt) na sub-árvore direita do 'master'
+ *         e vai trocar as ligações de modo a transformar a 'thisTreePt' na nova 'master' sem perder
+ *         as ligações já existentes. Esta função só é necessária quando o nodo que se quer remover
+ *         tem sub-árvores esquerda e direita.
+ * @param master Apontador para apontador para a sub-árvore a trocar
+ * @param thisTreePt Apontador para apontador para a sub-árvore que vai subir
+ * @param thisDim Dimensão em que se quer balancear a árvore
+ * @param compare Apontador para a função de comparação de nodos
+ * */
 static void tree_pushUp( TreePt *master, TreePt *thisTreePt, int thisDim, int (*compare)(void*,void*) ){
     TreePt aux = NULL;
     if( (*thisTreePt)->l[thisDim] == NULL ){ // direita e Xvezes esquerda
@@ -183,6 +227,12 @@ static void tree_pushUp( TreePt *master, TreePt *thisTreePt, int thisDim, int (*
     tree_maintain( thisTreePt, thisDim );
 }
 
+/**
+ * @brief Desconectar a sub-árvore
+ * @param thisTreePt Apontador para apontador da sub-árvore a remover
+ * @param thisDim Dimensão em que se quer remover a sub-árvore
+ * @param compare Apontador para a função de comparação
+ * */
 static void tree_disconnectTree( TreePt *thisTreePt, int thisDim, int (*compare)(void*,void*) ){
     if( (*thisTreePt)->l[thisDim] != NULL && (*thisTreePt)->r[thisDim] != NULL )
         tree_pushUp( thisTreePt ,&(*thisTreePt)->r[thisDim], thisDim, compare );
@@ -192,6 +242,13 @@ static void tree_disconnectTree( TreePt *thisTreePt, int thisDim, int (*compare)
         *thisTreePt = (*thisTreePt)->l[thisDim];
 }
 
+/**
+ * @brief Procura a sub-árvore, e quando a encontrar, chama a função para a desconectar
+ * @param thisTreePt Apontador para apontador para a sub-árvore
+ * @param thisDim Dimensão em que se quer remover a sub-árvore
+ * @param node Apontador para o nodo a procurar
+ * @param compare Apontador para a função de comparação
+ * */
 static void tree_searchTreeToDisconnect( TreePt *thisTreePt, int thisDim, void *node, int (*compare)(void*,void*) ){
     int cmp = 0;
     if( *thisTreePt == NULL ) return;
@@ -241,6 +298,10 @@ void tree_applyToAllOrdered(MainTreePt thisMainTree, int thisDim, void (*func)(v
         tree_applyToAllOrderedRec( thisMainTree->tree[thisDim], func, thisDim );
 }
 
+/**
+ * @brief Faz recursivamente free às sub-árvores da árvore
+ * @param thisTreePt sub-árvore a que se quer fazer free
+ * */
 static void tree_disposeRec( TreePt *thisTreePt ){
     if( *thisTreePt != NULL ){
         tree_disposeRec( &(*thisTreePt)->l[0] );

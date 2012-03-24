@@ -9,7 +9,7 @@ CamiaoPt	dados.h	/^} Camiao, *CamiaoPt;$/;"	t	typeref:struct:sCamiao
 Cliente	dados.h	/^} Cliente, *ClientePt;$/;"	t	typeref:struct:sCliente
 ClientePt	dados.h	/^} Cliente, *ClientePt;$/;"	t	typeref:struct:sCliente
 DADOS_H_INCLUDED	dados.h	7;"	d
-DIM	mod_avl_n_dimensional.h	10;"	d
+DIM	mod_avl_n_dimensional.h	13;"	d
 INPUT_H_INCLUDED	input.h	7;"	d
 Ligacoesida	localidades.h	/^typedef struct Ligacoesida$/;"	s
 Ligacoesida::custo	localidades.h	/^	float custo;$/;"	m	struct:Ligacoesida	access:public
@@ -27,7 +27,7 @@ Localidade::ligacoesvinda	localidades.h	/^	MainListPTR ligacoesvinda;$/;"	m	stru
 Localidade::nome	localidades.h	/^	char* nome;$/;"	m	struct:Localidade	access:public
 LocalidadePTR	localidades.h	/^}*LocalidadePTR;$/;"	t	typeref:struct:Localidade
 MENU_H_INCLUDED	menu.h	8;"	d
-MOD_AVL_N_DIMENSIONAL_H_INCLUDED	mod_avl_n_dimensional.h	2;"	d
+MOD_AVL_N_DIMENSIONAL_H_INCLUDED	mod_avl_n_dimensional.h	11;"	d
 MOD_LISTA_LIGADA_H_INCLUDED	mod_lista_ligada.h	2;"	d
 MainList	localidades.h	/^typedef struct MainList {$/;"	s
 MainList	mod_lista_ligada.h	/^typedef struct MainList {$/;"	s
@@ -103,7 +103,7 @@ cliente_substituiPeloNif	dados.h	/^int cliente_substituiPeloNif( MainTreePt clie
 cliente_substituiPeloNome	dados.c	/^int cliente_substituiPeloNome( MainTreePt clientesPt, char *procuraNome, unsigned int nif, char *nome, char *morada ){$/;"	f	signature:( MainTreePt clientesPt, char *procuraNome, unsigned int nif, char *nome, char *morada )
 cliente_substituiPeloNome	dados.h	/^int cliente_substituiPeloNome( MainTreePt clientesPt, char *procuraNome, unsigned int nif, char *nome, char *morada );$/;"	p	signature:( MainTreePt clientesPt, char *procuraNome, unsigned int nif, char *nome, char *morada )
 comparalocalidades	localidades.c	/^int comparalocalidades (void *a, void *b)$/;"	f	signature:(void *a, void *b)
-compare	mod_avl_n_dimensional.h	/^    int (*compare[DIM])(void*,void*);$/;"	m	struct:sMainTree	access:public
+compare	mod_avl_n_dimensional.h	/^    int (*compare[DIM])(void*,void*); \/**< Array de apontadores para a função de comparação de nodos *\/$/;"	m	struct:sMainTree	access:public
 compareligacoesida	localidades.c	/^int compareligacoesida (void *a, void *b)$/;"	f	signature:(void *a, void *b)
 compareligacoesvinda	localidades.c	/^int compareligacoesvinda (void *a, void *b)$/;"	f	signature:(void *a, void *b)
 concatStr	utils.c	/^char* concatStr(char *dest, char *src){$/;"	f	signature:(char *dest, char *src)
@@ -155,7 +155,7 @@ hashtablerealloc	mod_tabela_hash.h	/^int hashtablerealloc (TabelaHashPTR table);
 hashtablesearch	localidades.c	/^LinkedListPTR hashtablesearch (TabelaHashPTR table, void *externdata)$/;"	f	signature:(TabelaHashPTR table, void *externdata)
 hashtablesearch	mod_tabela_hash.c	/^LinkedListPTR hashtablesearch (TabelaHashPTR table, void *externdata)$/;"	f	signature:(TabelaHashPTR table, void *externdata)
 hashtablesearch	mod_tabela_hash.h	/^LinkedListPTR hashtablesearch (TabelaHashPTR table, void *externdata);$/;"	p	signature:(TabelaHashPTR table, void *externdata)
-height	mod_avl_n_dimensional.h	/^    int height[DIM];$/;"	m	struct:sTree	access:public
+height	mod_avl_n_dimensional.h	/^    int height[DIM];      \/**< Array que indica a altura da sub-árvore em cada uma das dimensões *\/$/;"	m	struct:sTree	access:public
 id	dados.h	/^    unsigned int id; \/**< Identificador único do camião                           *\/$/;"	m	struct:sCamiao	access:public
 imprimelista	localidades.c	/^void imprimelista(LinkedListPTR lista)$/;"	f	signature:(LinkedListPTR lista)
 imprimelistaligacoes	localidades.c	/^void imprimelistaligacoes(LinkedListPTR lista)$/;"	f	signature:(LinkedListPTR lista)
@@ -174,7 +174,7 @@ isInt	utils.c	/^int isInt(int n){$/;"	f	signature:(int n)
 isInt	utils.h	/^int isInt(int n);$/;"	p	signature:(int n)
 isUInt	utils.c	/^int isUInt(unsigned int n){$/;"	f	signature:(unsigned int n)
 isUInt	utils.h	/^int isUInt(unsigned int n);$/;"	p	signature:(unsigned int n)
-l	mod_avl_n_dimensional.h	/^    struct sTree *l[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
+l	mod_avl_n_dimensional.h	/^    struct sTree *l[DIM]; \/**< Array de apontadores para a esquerda                              *\/$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
 lastInt	menu.c	/^static int lastInt[3];          \/**< Representação numérica dos atalhos **\/$/;"	v	file:
 lastString	menu.c	/^static char lastString[3][54];  \/**<  Representação string dos atalhos  **\/$/;"	v	file:
 ligacoesida	localidades.h	/^	MainListPTR ligacoesida;$/;"	m	struct:Localidade	access:public
@@ -196,7 +196,7 @@ nelems	localidades.h	/^	int nelems;$/;"	m	struct:TabelaHash	access:public
 nelems	mod_lista_ligada.h	/^	int nelems;  						\/\/ Numero de elementos da lista ligada$/;"	m	struct:MainList	access:public
 nelems	mod_tabela_hash.h	/^	int nelems;$/;"	m	struct:TabelaHash	access:public
 nif	dados.h	/^    unsigned int nif;     \/**< Número de Identificação Fiscal (nº contribuinte) do cliente                       *\/$/;"	m	struct:sCliente	access:public
-node	mod_avl_n_dimensional.h	/^    void *node;$/;"	m	struct:sTree	access:public
+node	mod_avl_n_dimensional.h	/^    void *node;           \/**< Apontador para dados externos                                     *\/$/;"	m	struct:sTree	access:public
 nome	dados.h	/^    char *nome;           \/**< Nome do cliente                                                                   *\/$/;"	m	struct:sCliente	access:public
 nome	localidades.h	/^	char* nome;$/;"	m	struct:Ligacoesida	access:public
 nome	localidades.h	/^	char* nome;$/;"	m	struct:Ligacoesvinda	access:public
@@ -211,7 +211,7 @@ procuraelemlista	mod_lista_ligada.c	/^LinkedListPTR procuraelemlista (MainListPT
 procuraelemlista	mod_lista_ligada.h	/^LinkedListPTR procuraelemlista (MainListPTR lista, void *externdata);$/;"	p	signature:(MainListPTR lista, void *externdata)
 prox	localidades.h	/^	struct linkedList *prox;	\/\/ Próximo elemento da lista$/;"	m	struct:linkedList	typeref:struct:linkedList::linkedList	access:public
 prox	mod_lista_ligada.h	/^	struct linkedList *prox;	\/\/ Próximo elemento da lista$/;"	m	struct:linkedList	typeref:struct:linkedList::linkedList	access:public
-r	mod_avl_n_dimensional.h	/^    struct sTree *r[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
+r	mod_avl_n_dimensional.h	/^    struct sTree *r[DIM]; \/**< Array de apontadores para a direita                               *\/$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
 readDouble	input.c	/^double readDouble(){$/;"	f
 readDouble	input.h	/^double readDouble();$/;"	p	signature:()
 readInt	input.c	/^int readInt(){$/;"	f
@@ -233,17 +233,17 @@ sCliente::nif	dados.h	/^    unsigned int nif;     \/**< Número de Identificaç�
 sCliente::nome	dados.h	/^    char *nome;           \/**< Nome do cliente                                                                   *\/$/;"	m	struct:sCliente	access:public
 sCliente::servicos	dados.h	/^    MainListPTR servicos; \/**< Apontador para a estrutura de controlo da lista de serviços anteriores do cliente *\/$/;"	m	struct:sCliente	access:public
 sMainTree	mod_avl_n_dimensional.h	/^typedef struct sMainTree{$/;"	s
-sMainTree::compare	mod_avl_n_dimensional.h	/^    int (*compare[DIM])(void*,void*);$/;"	m	struct:sMainTree	access:public
-sMainTree::tree	mod_avl_n_dimensional.h	/^    TreePt tree[DIM];$/;"	m	struct:sMainTree	access:public
+sMainTree::compare	mod_avl_n_dimensional.h	/^    int (*compare[DIM])(void*,void*); \/**< Array de apontadores para a função de comparação de nodos *\/$/;"	m	struct:sMainTree	access:public
+sMainTree::tree	mod_avl_n_dimensional.h	/^    TreePt tree[DIM];                 \/**< Array de apontadores para o topo da árvore                *\/$/;"	m	struct:sMainTree	access:public
 sTree	mod_avl_n_dimensional.h	/^typedef struct sTree{$/;"	s
-sTree::height	mod_avl_n_dimensional.h	/^    int height[DIM];$/;"	m	struct:sTree	access:public
-sTree::l	mod_avl_n_dimensional.h	/^    struct sTree *l[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
-sTree::node	mod_avl_n_dimensional.h	/^    void *node;$/;"	m	struct:sTree	access:public
-sTree::r	mod_avl_n_dimensional.h	/^    struct sTree *r[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
+sTree::height	mod_avl_n_dimensional.h	/^    int height[DIM];      \/**< Array que indica a altura da sub-árvore em cada uma das dimensões *\/$/;"	m	struct:sTree	access:public
+sTree::l	mod_avl_n_dimensional.h	/^    struct sTree *l[DIM]; \/**< Array de apontadores para a esquerda                              *\/$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
+sTree::node	mod_avl_n_dimensional.h	/^    void *node;           \/**< Apontador para dados externos                                     *\/$/;"	m	struct:sTree	access:public
+sTree::r	mod_avl_n_dimensional.h	/^    struct sTree *r[DIM]; \/**< Array de apontadores para a direita                               *\/$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
 servicos	dados.h	/^    MainListPTR servicos; \/**< Apontador para a estrutura de controlo da lista de serviços anteriores do cliente *\/$/;"	m	struct:sCliente	access:public
 totalcells	localidades.h	/^	int totalcells;$/;"	m	struct:TabelaHash	access:public
 totalcells	mod_tabela_hash.h	/^	int totalcells;$/;"	m	struct:TabelaHash	access:public
-tree	mod_avl_n_dimensional.h	/^    TreePt tree[DIM];$/;"	m	struct:sMainTree	access:public
+tree	mod_avl_n_dimensional.h	/^    TreePt tree[DIM];                 \/**< Array de apontadores para o topo da árvore                *\/$/;"	m	struct:sMainTree	access:public
 tree_applyToAllOrdered	mod_avl_n_dimensional.c	/^void tree_applyToAllOrdered(MainTreePt thisMainTree, int thisDim, void (*func)(void*)){$/;"	f	signature:(MainTreePt thisMainTree, int thisDim, void (*func)(void*))
 tree_applyToAllOrdered	mod_avl_n_dimensional.h	/^void tree_applyToAllOrdered(MainTreePt thisMainTree, int thisDim, void (*func)(void*));$/;"	p	signature:(MainTreePt thisMainTree, int thisDim, void (*func)(void*))
 tree_applyToAllOrderedRec	mod_avl_n_dimensional.c	/^static void tree_applyToAllOrderedRec( TreePt thisTree, void (*func)(void*), int thisDim ){$/;"	f	file:	signature:( TreePt thisTree, void (*func)(void*), int thisDim )
@@ -258,7 +258,7 @@ tree_getElem	mod_avl_n_dimensional.h	/^void* tree_getElem( TreePt thisTreePt );$
 tree_getHeight	mod_avl_n_dimensional.c	/^static int tree_getHeight(TreePt tree, int thisDim){$/;"	f	file:	signature:(TreePt tree, int thisDim)
 tree_insert	mod_avl_n_dimensional.c	/^int tree_insert( MainTreePt thisMainTree, void* node){$/;"	f	signature:( MainTreePt thisMainTree, void* node)
 tree_insert	mod_avl_n_dimensional.h	/^int tree_insert( MainTreePt thisMainTree, void* node);$/;"	p	signature:( MainTreePt thisMainTree, void* node)
-tree_insertRec	mod_avl_n_dimensional.c	/^static int tree_insertRec( TreePt *thisTree, TreePt allocd, void* node, int thisDim, int (*compare)(void*,void*)){$/;"	f	file:	signature:( TreePt *thisTree, TreePt allocd, void* node, int thisDim, int (*compare)(void*,void*))
+tree_insertRec	mod_avl_n_dimensional.c	/^static void tree_insertRec( TreePt *thisTree, TreePt allocd, void* node, int thisDim, int (*compare)(void*,void*)){$/;"	f	file:	signature:( TreePt *thisTree, TreePt allocd, void* node, int thisDim, int (*compare)(void*,void*))
 tree_maintain	mod_avl_n_dimensional.c	/^static void tree_maintain( TreePt *thisTree, int thisDim){$/;"	f	file:	signature:( TreePt *thisTree, int thisDim)
 tree_new	mod_avl_n_dimensional.c	/^MainTreePt tree_new( int (*compare[DIM])(void*,void*) ){$/;"	f	signature:( int (*compare[DIM])(void*,void*) )
 tree_new	mod_avl_n_dimensional.h	/^MainTreePt tree_new( int (*compare[DIM])(void*,void*) );$/;"	p	signature:( int (*compare[DIM])(void*,void*) )

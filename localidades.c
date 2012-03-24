@@ -537,3 +537,31 @@ int main()
 
 	return 0;
 }
+
+int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino)
+{
+
+    LocalidadePTR localidadeida = crialocalidade(nomeorigem);
+    LocalidadePTR localidadevinda = crialocalidade(nomedestino);
+    LigacoesidaPTR localidadedestino = crialigacaoida(nomedestino, 0,0);
+    LigacoesvindaPTR localidadeorigem = crialigacaovinda(nomeorigem);
+
+    LocalidadePTR aux, aux2;
+
+    if ((hashtablesearch(table, localidadeida)==NULL) || (hashtablesearch(table, localidadevinda)==NULL)) return -1;
+    else
+    {
+        aux = (((LinkedListPTR)hashtablesearch(table, localidadeida))->extdata);
+        aux2 = (((LinkedListPTR)hashtablesearch(table, localidadevinda))->extdata);
+        if ((procuraelemlista(aux->ligacoesida,localidadedestino)==NULL) || (procuraelemlista(aux2->ligacoesvinda, localidadeorigem)==NULL))
+            return 0;
+        else
+        {
+            apagaelemlista(aux->ligacoesida,localidadedestino);
+            apagaelemlista(aux2->ligacoesvinda, localidadeorigem);
+        }
+
+
+    }
+    return 1;
+}
