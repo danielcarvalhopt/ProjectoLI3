@@ -182,40 +182,170 @@ MainListPTR cliente_getServico( TreePt thisTreePt );
 //
 // Funções e estruturas das Localidades
 //
-
+/**
+    @brief Estrutura de que identifica as localidades às quais uma localidade se liga
+    @param nome Nome da localidade para onde se estabeleceu uma ligação
+    @param custo Custo associado à ligação
+    @param distancia Distancia entre as localidades
+ */
 typedef struct Ligacoesida{
 	char* nome;
 	float custo;
 	float distancia;
 }*LigacoesidaPTR;
 
+/**
+    @brief Estrutura de que identifica as localidades que fazem ligação a uma determinada localidade
+    @param nome Nome da localidade com quem existe ligação
+ */
 typedef struct Ligacoesvinda{
 	char* nome;
 }*LigacoesvindaPTR;
 
 
+/**
+    @brief Estrutura de que identifica uma localidade
+    @param nome Nome da localidade
+    @param ligacoesida Lista de ligações às quais a localidade se liga
+    @param ligacoesvinda Lista de ligações da localidades que se ligam à localidade
+ */
 typedef struct Localidade{
 	char* nome;
 	MainListPTR ligacoesida;
 	MainListPTR ligacoesvinda;
 }*LocalidadePTR;
 
-// função de input
+/**
+    @brief Pede a inserção do nome das localidades de onde se pretende remover uma ligação
+    @details Pede a inserção do nome das localidades de onde se pretende remover uma ligação invocando as
+             funções correspondentes que o fazem e imprime mensagem de sucesso ou não conforme o resultado da operação
+    @param table Tabela de Hash com as localidades
+ */
 void removeligacaoinput(TabelaHashPTR table);
 
+
+/**
+ * @brief Remove a ligação entre duas dadas localidades
+ * @details Remove uma ligação entre duas dadas localidades fazendo a verificação se as localidades existem e se a ligação existe
+ * @param table Tabela de Hash com as localidades
+ * @param nomeorigem String com o nome da localidade de origem da ligação
+ * @param nomedestino String com o nome da localidade de destino da ligação
+ * @return -1 Caso localidades não existam
+ * @return 0 Caso ligação não exista
+ * @return 1 Caso seja removida com sucesso
+ * */
 int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino);
+
+/**
+ * @brief Imprime ligações de uma determinada localidade
+ * @details Imprime ligações de uma determinada localidade passada como argumento da função mostrando as localidades, o custo e a distância entre elas.
+ * @param lista Apontador de Lista Ligada para uma localidade
+ * */
 void imprimelistaligacoes(LinkedListPTR lista);
+
+/**
+ * @brief Imprime todas as localidades inseridas no programa invocando uma função auxiliar de output
+ * @details 
+ * @param table Tabela de Hash com as localidades
+ * */
 void hashprint (TabelaHashPTR table);
+
+/**
+ * @brief Imprime todas as localidades existentes nos indices da tabela de Hash
+ * @details 
+ * @param lista Apontador de Lista Ligada para uma lista de localidades existentes nos indices da tabela de hash
+ * */
 void imprimelista(LinkedListPTR lista);
-int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino);
+
+
+/**
+ * @brief Insere uma ligação entre duas localidades
+ * @details Insere uma ligação entre duas dadas localidades fazendo a verificação se as localidades existem e se a ligação existe
+ * @param table Tabela de Hash com as localidades
+ * @param nomeorigem String com o nome da localidade de origem da ligação
+ * @param nomedestino String com o nome da localidade de destino da ligação
+ * @param custo Custo associado à ligação entre localidades
+ * @param distancia Distância entre as duas localidades
+ * @return -1 Caso localidades não existam
+ * @return 0 Caso ligação já exista
+ * @return 1 Caso seja inserida com sucesso
+ * */
 int inserirligacao(TabelaHashPTR table, char *nomeorigem, char *nomedestino, float custo, float distancia);
+
+/**
+ * @brief Aloca espaço e cria para uma estrutura de dados do tipo ligacaovinda
+ * @details 
+ * @param nome String com o nome da localidade
+ * @return Apontador para a estrutura criada ou NULL caso não seja possível alocar memória
+ * */
 LigacoesvindaPTR crialigacaovinda (char* nome);
+
+/**
+ * @brief Aloca espaço e cria para uma estrutura de dados do tipo ligacaoida
+ * @details 
+ * @param nome String com o nome da localidade
+ * @param custo Custo de ida para a localidade inserida
+ * @param distancia Distancia para a localidade inserida
+ * @return Apontador para a estrutura criada ou NULL caso não seja possível alocar memória
+ * */
 LigacoesidaPTR crialigacaoida (char* nome, float custo, float distancia);
+
+/**
+ * @brief Remove uma localidade da tabela de Hash
+ * @details
+ * @param table Tabela de Hash com as localidades
+ * @param nome String com o nome da localidade a remover
+ * @return 1 Caso seja removida com sucesso
+ * @return 0 Caso não seja removida com sucesso
+ * */
 int removerlocalidade (TabelaHashPTR table, char *nome);
+
+/**
+ * @brief Insere uma localidade na tabela de Hash
+ * @details 
+ * @param table Tabela de Hash com as localidades
+ * @param nome String com o nome da localidade a inserir
+ * @return 1 Caso seja inserida com sucesso
+ * @return 0 Caso não seja inserida com sucesso
+ * */
 int inserelocalidade (TabelaHashPTR table, char *nome);
+
+/**
+ * @brief Cria uma estrutura de localidade
+ * @details
+ * @param nome String com o nome da localidade a criar
+ * @return Apontador para a estrutura criada
+ * */
 LocalidadePTR crialocalidade (char* nome);
+
+/**
+ * @brief Compara duas estruturas de dados ligacoesvinda
+ * @details 
+ * @param a Ligação a comparar
+ * @param b Ligação a comparar
+ * @return 1 Caso sejam iguais
+ * @return 0 Caso sejam diferentes
+ * */
 int compareligacoesvinda (void *a, void *b);
+
+/**
+ * @brief Compara duas estruturas de dados ligacoesida
+ * @details 
+ * @param a Ligação a comparar
+ * @param b Ligação a comparar
+ * @return 1 Caso sejam iguais
+ * @return 0 Caso sejam diferentes
+ * */
 int compareligacoesida (void *a, void *b);
+
+/**
+ * @brief Compara duas estruturas de dados localidade
+ * @details 
+ * @param a Localidade a comparar
+ * @param b Localidade a comparar
+ * @return 1 Caso sejam iguais
+ * @return 0 Caso sejam diferentes
+ * */
 int comparalocalidades (void *a, void *b);
 
 /**
