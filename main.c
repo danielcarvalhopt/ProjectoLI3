@@ -2,16 +2,31 @@
  * @file main.c
  * @brief Ficheiro com a função main e inicializações de algumas variáveis
  * */
+
+/**
+ * \mainpage Membros do Grupo
+ * 
+ *
+ * \image html membros.png Grupo 42
+ *
+ * <CENTER><B>
+ * Bruno Ferreira - a61055<BR>
+ * Daniel Carvalho - a61008<BR>
+ * Mariana Medeiros - a61041
+ * </B></CENTER>
+ * */
+
 #include <stdio.h>
 #include <string.h>
-#include "mod_avl_n_dimensional.h"
-#include "utils.h"
-#include "menu.h"
+
 #include "dados.h"
-#include "localidades.h"
 #include "input.h"
-#include "mod_tabela_hash.h"
+#include "menu.h"
+#include "utils.h"
+
+#include "mod_avl_n_dimensional.h"
 #include "mod_lista_ligada.h"
+#include "mod_tabela_hash.h"
 
 
 int main(){
@@ -30,7 +45,7 @@ int main(){
 
     while( input != -1 ){
         input = printMenu(input);
-        input = getInput(input, camioes, clientes, table);
+        input = getInput(input, camioes, clientes);
     }
     return 0;
 }

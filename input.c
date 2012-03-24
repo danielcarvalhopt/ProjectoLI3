@@ -1,3 +1,7 @@
+/**
+ * @file input.c
+ * @brief Módulo de input (código)
+ * */
 #include <stdio.h>
 #include <math.h>
 #include <limits.h>
@@ -32,6 +36,7 @@ int readInt(){
 		res *= sinal;
 	return res;
 }
+
 unsigned int readUInt(){
 	char c;
 	unsigned int res=0;

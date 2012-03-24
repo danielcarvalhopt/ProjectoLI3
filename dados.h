@@ -223,9 +223,17 @@ int comparalocalidades (void *a, void *b);
  * @param table Apontador para a tabela de hash
  * @param nomeorigem Nome da cidade que serve de ponto de partida
  * @param nomedestino Nome da cidade que serve de ponto de chegada
- * @return 
+ * @return -1 Não encontrou localidades
+ * @return 0  Não encontrou ligação
+ * @return 1  Removeu a ligação
  * */
 int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino);
+
+
+void inserelocalidadeinput(TabelaHashPTR table);
+void removelocalidadeinput(TabelaHashPTR table);
+void insereligacaoinput(TabelaHashPTR table);
+void removeligacaoinput(TabelaHashPTR table);
 
 /*
 //

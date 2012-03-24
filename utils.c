@@ -1,3 +1,7 @@
+/**
+ * @file utils.c
+ * @brief Definições estáticas do módulo de utilitários
+ * */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

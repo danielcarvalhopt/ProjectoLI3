@@ -1,6 +1,6 @@
 /**
  * @file input.h
- * @brief Módulo de input
+ * @brief Módulo de input (definições)
  * @details Tem funções para receber input do utilizador 
  * */
 #ifndef INPUT_H_INCLUDED

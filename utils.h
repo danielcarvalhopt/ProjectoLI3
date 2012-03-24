@@ -1,3 +1,8 @@
+/**
+ * @file utils.h
+ * @brief Módulo de utilitários
+ * @details Contém algumas funções que são necessárias ao longo do código mas não pertencem a nenhum dos outros módulos
+ * */
 #ifndef UTILS_H_INCLUDED
 #define UTILS_H_INCLUDED
 
