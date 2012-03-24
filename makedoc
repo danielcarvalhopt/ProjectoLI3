@@ -1,6 +1,11 @@
 #!/bin/bash
 
+# nota: gerar com doxygen 1.8.0
+# nota2: é preciso compilar as fontes, os binários não funcionam
+# nota3: é preciso instalar o graphviz para os gráficos de relação
+#        sudo apt-get install graphviz
 
-rm doc.zip
-doxygen doxyfile
-zip -r doc.zip doc
+rm doc.zip         # remover zip antigo
+doxygen doxyfile   # gerar documentação
+zip -r doc.zip doc # comprimir a documentação
+rm -rfv doc        # remover a pasta de documentação
