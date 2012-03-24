@@ -16,9 +16,9 @@ void clearInputBuffer(){
 void chooseSO(){
 	if( system("cls") ){
 		system("clear");
-		operativeSystem = 1; /**< O programa está a correr em Linux, Unix, ... */
+		operativeSystem = 1; // O programa está a correr em Linux, Unix, ...
 	}else
-		operativeSystem = 2; /**< O programa está a correr num sistema Windows */
+		operativeSystem = 2; // O programa está a correr num sistema Windows
 }
 
 void clearScreen(){

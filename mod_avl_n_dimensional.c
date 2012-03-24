@@ -1,3 +1,8 @@
+/**
+ * @file mod_avl_n_dimensional.c
+ * @brief Módulo de árvores AVL com N dimensões (static definitions)
+ * @details Algumas definições static do módulo de árvores 
+ * */
 #include <stdlib.h>
 #include <stdio.h>
 #include "mod_avl_n_dimensional.h"

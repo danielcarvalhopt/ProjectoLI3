@@ -1,10 +1,10 @@
 /**
  * @file mod_avl_n_dimensional.h
  * @brief Módulo de árvores AVL com N dimensões
- * @detail Módulo de árvores AVL que utiliza um array de apontadores para a esquerda e para
- *         a direita, com o objectivo de ter várias árvores AVL a ocuparem o mesmo espaço de memória.
+ * @details Módulo de árvores AVL que utiliza um array de apontadores para a esquerda e para
+ *         a direita, com o objectivo de ter várias árvores AVL a ocuparem o mesmo espaço de memória.\n
  *         Esta árvore permite que estejam, no mesmo espaço de memória, N árvores AVL, organizadas por
- *         campos diferentes (por exemplo: nome, idade e número de aluno).
+ *         campos diferentes (por exemplo: nome, idade e número de aluno).\n
  *         As várias "dimensões" da árvore são as várias maneiras como a árvore está logicamente organizada.
  * */
 #ifndef MOD_AVL_N_DIMENSIONAL_H_INCLUDED
@@ -12,18 +12,35 @@
 
 #define DIM 2 /**< Número de dimensões da árvore */
 
-/** Estrutura de sub-árvore */
+/** 
+ * @brief Estrutura de sub-árvore
+ * @details Estrutura de sub-árvore que tem apontadores para os
+ *         ramos à esquerda e à direita e um apontador para os
+ *         dados externos. Tem tembém um indicador da altura da
+ *         sub-árvore.
+ * @param node Apontador para os dados externos
+ * @param l Array de apontadores para a esquerda
+ * @param r Array de apontadores para a direita
+ * @param height Array que indica a altura da sub-árvore em cada uma das dimensões
+ * */
 typedef struct sTree{
-    void *node;           /**< Apontador para dados externos                                     */
-    struct sTree *l[DIM]; /**< Array de apontadores para a esquerda                              */
-    struct sTree *r[DIM]; /**< Array de apontadores para a direita                               */
-    int height[DIM];      /**< Array que indica a altura da sub-árvore em cada uma das dimensões */
+    void *node;
+    struct sTree *l[DIM];
+    struct sTree *r[DIM];
+    int height[DIM];
 } Tree, *TreePt;
 
-/** Estrutura de controlo da árvore AVL de N dimensões */
+/**
+ * @brief Árvore AVL de N dimensões
+ * @details Estrutura de controlo da árvore AVL de N dimensões.\n
+ *          Contém apontadores para o topo das árvores das várias
+ *          dimensões e uma função de comparação para cada dimensão.
+ * @param tree Array de apontadores para o topo da árvore
+ * @param compare Array de apontadores para as funções de comparação dos nodos
+ * */
 typedef struct sMainTree{
-    TreePt tree[DIM];                 /**< Array de apontadores para o topo da árvore                */
-    int (*compare[DIM])(void*,void*); /**< Array de apontadores para a função de comparação de nodos */
+    TreePt tree[DIM];
+    int (*compare[DIM])(void*,void*);
 } MainTree, *MainTreePt;
 
 /**
@@ -37,8 +54,8 @@ MainTreePt tree_new( int (*compare[DIM])(void*,void*) );
  * @brief Insere um nodo na árvore
  * @param thisMainTree Apontador para a estrutura principal da árvore
  * @param node Apontador para o nodo a inserir na árvore
- * @return Inteiro com o seguinte significado:
- *         0 - nodo já existe
+ * @return Inteiro com o seguinte significado:\n
+ *         0 - nodo já existe\n
  *         1 - nodo inserido em todas as dimensões
  * */
 int tree_insert( MainTreePt thisMainTree, void* node);
@@ -63,7 +80,7 @@ void tree_applyToAllOrdered(MainTreePt thisMainTree, int thisDim, void (*func)(v
 
 /**
  * @brief Remover um elemento da árvore
- * @detail Procura o elemento semelhante ao apontado por node, se encontrar, remove-o
+ * @details Procura o elemento semelhante ao apontado por node, se encontrar, remove-o
  * @param thisMainTreePt Apontador para a estrutura de controlo da árvore
  * @param node Apontador para o nodo com informação de procura
  * */
