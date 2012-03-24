@@ -16,7 +16,6 @@
 	@param nelems Número de elementos inseridos na tabela
 	@param totalcells Número de elementos da tabela
  */
-
 typedef struct TabelaHash{
 	MainListPTR *arraycell;
 	int (*hash_function)(void*,int);
