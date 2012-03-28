@@ -1,7 +1,20 @@
-Projecto de LI3
+ /////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+////////////////                 Projecto de LI3                   \\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\//////////////////////////////////////////////
+
 
 Para compilar o programa utilizar o cmake. ( ./cmake )
 O cmake remove ficheiros antigos e executa o makefile.
+
+Para compilar a documentação:
+instalar o doxygen 1.8.0, preferencialmente compilando as fontes e não usando os binários
+para ter os gráficos de relação é preciso instalar o graphviz:
+sudo apt-get install graphviz
+
+Para instalar editor e compilar o latex:
+sudo add-apt-repository ppa:gummi/gummi
+sudo apt-get update
+sudo apt-get install gummi texlive-full
 
 Enunciado do projecto:
 https://github.com/downloads/Insatisfeito/ProjectoLI3/projectoLI3_2011_12.pdf
