@@ -16,11 +16,12 @@ sudo apt-get install graphviz
 ******* editor e compilador de latex ***
 sudo add-apt-repository ppa:gummi/gummi
 sudo apt-get update
-sudo apt-get install gummi texlive myspell-pt-pt
+sudo apt-get install gummi texlive myspell-pt-pt texlive-lang-portuguese
 
 gummi - editor com preview impec
 texlive - cenas do latex
 myspell-pt-pt - spellchecker português para o ubuntu em geral (é usado pelo gummi)
+texlive-lang-portuguese - poder usar hifenização da língua portuguesa no latex
 
 Para usar spell checking:
 no gummi ir a edit -> preferences -> Miscellaneous -> Spell check language -> pt-PT
