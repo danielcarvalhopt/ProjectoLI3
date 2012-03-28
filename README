@@ -3,24 +3,36 @@
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\//////////////////////////////////////////////
 
 
+******* compilar o programa *******
 Para compilar o programa utilizar o cmake. ( ./cmake )
 O cmake remove ficheiros antigos e executa o makefile.
 
-Para compilar a documentação:
+
+******* compilar a documentação ***
 instalar o doxygen 1.8.0, preferencialmente compilando as fontes e não usando os binários
 para ter os gráficos de relação é preciso instalar o graphviz:
 sudo apt-get install graphviz
 
-Para instalar editor e compilar o latex:
+******* editor e compilador de latex ***
 sudo add-apt-repository ppa:gummi/gummi
 sudo apt-get update
-sudo apt-get install gummi texlive-full
+sudo apt-get install gummi texlive myspell-pt-pt
+
+gummi - editor com preview impec
+texlive - cenas do latex
+myspell-pt-pt - spellchecker português para o ubuntu em geral (é usado pelo gummi)
+
+Para usar spell checking:
+no gummi ir a edit -> preferences -> Miscellaneous -> Spell check language -> pt-PT
+depois em Document -> enable spell checking
+Aconselho a fazerem o documento sem spellchecking e verificarem no fim se está tudo correcto.
 
 "Uma não tão pequena introdução ao LaTeX":
 http://alfarrabio.di.uminho.pt/~albie/lshort/pt-lshort-a5.pdf
 
-Enunciado do projecto:
+******** Enunciado do projecto *******
 https://github.com/downloads/Insatisfeito/ProjectoLI3/projectoLI3_2011_12.pdf
+
 
 Consultar a wiki para mais informações.
 https://github.com/Insatisfeito/ProjectoLI3/wiki
