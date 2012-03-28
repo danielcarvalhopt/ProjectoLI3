@@ -16,6 +16,9 @@ sudo add-apt-repository ppa:gummi/gummi
 sudo apt-get update
 sudo apt-get install gummi texlive-full
 
+"Uma não tão pequena introdução ao LaTeX":
+http://alfarrabio.di.uminho.pt/~albie/lshort/pt-lshort-a5.pdf
+
 Enunciado do projecto:
 https://github.com/downloads/Insatisfeito/ProjectoLI3/projectoLI3_2011_12.pdf
 
