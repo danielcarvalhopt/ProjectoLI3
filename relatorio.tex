@@ -48,7 +48,7 @@
         }
     }
 }
-\fancyfoot[C]{\thepage}
+\fancyfoot[C]{}
 
 \begin{document}
 
@@ -98,13 +98,27 @@
 \begin{figure}[htb!]
     \includegraphics[width=190pt]{image2.png}
 \end{figure}
-\lipsum[1-2]
+\lipsum[1-1]
 
 \newpage
 \subsection{Uma subsecção}
 \lipsum[1-3]
 
 \clearpage
-\section{Adeus, Mundo!}
-\ldots e aqui ele acaba.
+\onecolumn
+\section{Fotos}
+\begin{center}
+    \begin{tabular}{ccc}
+        \includegraphics[width=90pt]{bruno.png}&
+        \includegraphics[width=90pt]{daniel.png}&
+        \includegraphics[width=90pt]{mariana.png}\\
+        
+        \small{\textbf{Bruno Ferreira}}&
+        \small{\textbf{Daniel Carvalho}}&
+        \small{\textbf{Mariana Medeiros}}\\
+        \small{\textbf{A61055}}&
+        \small{\textbf{A61008}}&
+        \small{\textbf{A61041}}\\
+    \end{tabular}
+\end{center}
 \end{document}

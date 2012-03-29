@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # limpar ficheiros antigos
-find . -name "*.ghc" -delete
+find . -name "*.gch" -delete
 find . -name "*.o" -delete
 find . -name "transportes" -delete
 find . -name "*.out" -delete
