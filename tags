@@ -41,6 +41,7 @@ MainListPTR	mod_lista_ligada.h	/^} *MainListPTR; 						\/\/ Apontador para a est
 MainTree	mod_avl_n_dimensional.h	/^} MainTree, *MainTreePt;$/;"	t	typeref:struct:sMainTree
 MainTreePt	mod_avl_n_dimensional.h	/^} MainTree, *MainTreePt;$/;"	t	typeref:struct:sMainTree
 Resumo	relatorio.tex	/^\\section{Resumo}$/;"	s
+SERIAL_H_INCLUDED	serial.h	8;"	d
 TabelaHash	mod_tabela_hash.h	/^typedef struct TabelaHash{$/;"	s
 TabelaHash::arraycell	mod_tabela_hash.h	/^	MainListPTR *arraycell;$/;"	m	struct:TabelaHash	access:public
 TabelaHash::hash_function	mod_tabela_hash.h	/^	int (*hash_function)(void*,int);$/;"	m	struct:TabelaHash	access:public
@@ -178,6 +179,7 @@ nelems	mod_lista_ligada.h	/^	int nelems;  						\/\/ Numero de elementos da list
 nelems	mod_tabela_hash.h	/^	int nelems;$/;"	m	struct:TabelaHash	access:public
 nif	dados.h	/^    unsigned int nif;$/;"	m	struct:sCliente	access:public
 node	mod_avl_n_dimensional.h	/^    void *node;$/;"	m	struct:sTree	access:public
+nodos	mod_avl_n_dimensional.h	/^    int nodos;$/;"	m	struct:sMainTree	access:public
 nome	dados.h	/^	char* nome;$/;"	m	struct:Ligacoesida	access:public
 nome	dados.h	/^	char* nome;$/;"	m	struct:Ligacoesvinda	access:public
 nome	dados.h	/^	char* nome;$/;"	m	struct:Localidade	access:public
@@ -220,6 +222,7 @@ sCliente::nome	dados.h	/^    char *nome;$/;"	m	struct:sCliente	access:public
 sCliente::servicos	dados.h	/^    MainListPTR servicos;$/;"	m	struct:sCliente	access:public
 sMainTree	mod_avl_n_dimensional.h	/^typedef struct sMainTree{$/;"	s
 sMainTree::compare	mod_avl_n_dimensional.h	/^    int (*compare[DIM])(void*,void*);$/;"	m	struct:sMainTree	access:public
+sMainTree::nodos	mod_avl_n_dimensional.h	/^    int nodos;$/;"	m	struct:sMainTree	access:public
 sMainTree::tree	mod_avl_n_dimensional.h	/^    TreePt tree[DIM];$/;"	m	struct:sMainTree	access:public
 sTree	mod_avl_n_dimensional.h	/^typedef struct sTree{$/;"	s
 sTree::height	mod_avl_n_dimensional.h	/^    int height[DIM];$/;"	m	struct:sTree	access:public

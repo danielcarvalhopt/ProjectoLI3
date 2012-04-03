@@ -150,6 +150,7 @@ MainTreePt tree_new( int (*compare[DIM])(void*,void*) ){
         for( i=0; i<DIM; i++){
             new->compare[i] = compare[i];
             new->tree[i] = NULL;
+            new->nodos = 0;
         }
     }
     return new;
@@ -178,7 +179,7 @@ static void tree_insertRec( TreePt *thisTree, TreePt allocd, void* node, int thi
 }
 
 int tree_insert( MainTreePt thisMainTree, void* node){
-    int i, sucesso = 0;
+    int i;
     TreePt thisTreePt = NULL;
     for( i=0; i<DIM && thisTreePt == NULL; i++ )
         thisTreePt = tree_search(thisMainTree, node, i);
@@ -191,16 +192,12 @@ int tree_insert( MainTreePt thisMainTree, void* node){
             thisTreePt->r[i] = NULL;
             thisTreePt->height[i] = 1;
         }
-        sucesso = 1;
+        for( i=0; i<DIM; i++)
+            tree_insertRec( &thisMainTree->tree[i], thisTreePt, node, i, thisMainTree->compare[i] );
+        thisMainTree->nodos++;
+        return 1;
     }
-
-    for( i=0; i<DIM && sucesso == 1; i++)
-        tree_insertRec( &thisMainTree->tree[i], thisTreePt, node, i, thisMainTree->compare[i] );
-    
-    //for( i=0; i<DIM && sucesso == 1; i++)
-    //    tree_maintain( &thisTreePt, i, thisMainTree->compare[i] );
-
-    return sucesso; // 1 - inseriu em todos; 0 - já existe
+    return 0;
 }
 
 /**
@@ -278,10 +275,11 @@ void tree_remove( MainTreePt thisMainTreePt, void* node ){
         tree_searchTreeToDisconnect( &thisMainTreePt->tree[i], i, node, thisMainTreePt->compare[i] );
 
     free(elem);
+    thisMainTreePt->nodos--;
 }
 
 /**
- * @brief Função auxiliar recursiva para aplicar uma função a todos os elementos da árvore
+ * @brief Função auxiliar recursiva para aplicar uma função a todos os elementos da árvore InOrder
  * @param thisTree Apontador para a sub-árvore na qual se vai aplicar a função
  * @param func Apontador para a função a aplicar
  * @param thisDim Dimensão onde se vai aplicar a função
