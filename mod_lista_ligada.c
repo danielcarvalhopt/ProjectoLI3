@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include "mod_lista_ligada.h"
+#include <string.h>
+#include <stdio.h>
 /*--------------------------------------------------------*/
 /* Módulo de Lista Ligada -> Funções sobre Listas Ligadas */
 /*--------------------------------------------------------*/
@@ -7,7 +9,8 @@
 
 
 
-MainListPTR crialistaligada(int(*func_compare)(void*,void*)) {
+MainListPTR criaListaLigada(int(*func_compare)(void*,void*)) 
+{
     MainListPTR novo;
 
     if((novo= (MainListPTR) malloc(sizeof (struct MainList)))==NULL) return NULL;
@@ -21,7 +24,8 @@ MainListPTR crialistaligada(int(*func_compare)(void*,void*)) {
 
 
 
- int inserelistahead(MainListPTR lista, void *externdata) {
+ int insereListaInicio(MainListPTR lista, void *externdata) 
+ {
     LinkedListPTR novo;
 
     if ((novo =(LinkedListPTR) malloc(sizeof(struct linkedList)))==NULL) return 0;
@@ -33,12 +37,37 @@ MainListPTR crialistaligada(int(*func_compare)(void*,void*)) {
     return 1;
 }
 
-
-
-void apagaelem (LinkedListPTR *elem)
+int insereListaOrdenado (MainListPTR lista, void *externdata)
 {
-    
-    //free((*elem)->extdata);
+    MainListPTR aux = lista;
+    LinkedListPTR novo, anterior = NULL, actual = aux->elems;
+
+    if((novo =(LinkedListPTR) malloc(sizeof(struct linkedList)))==NULL) return 0;
+    novo->extdata = externdata;
+    novo->prox = NULL;
+    while ((actual!=NULL) && ((aux->func_compare(novo->extdata,actual->extdata))!=-1))
+    {
+        anterior = actual;
+        actual = actual->prox;
+    }
+    if (anterior==NULL)
+    {
+        novo->prox = aux->elems;
+        aux->elems=novo;
+        aux->nelems++;
+    }
+    else
+    {
+        novo->prox=actual;
+        anterior->prox = novo;
+        aux->nelems++;
+    }
+    return 1;
+}
+
+
+void apagaElemento (LinkedListPTR *elem)
+{
     free (*elem);
     *elem=NULL;
 }
@@ -46,7 +75,7 @@ void apagaelem (LinkedListPTR *elem)
 
 
 
-int apagaelemlista (MainListPTR lista, void* externdata)
+int apagaElementoLista (MainListPTR lista, void* externdata)
 {
     LinkedListPTR ant = NULL, actelem= lista->elems;
     int apagado=0;
@@ -56,7 +85,7 @@ int apagaelemlista (MainListPTR lista, void* externdata)
     if (lista->func_compare(actelem->extdata, externdata)==0)
     {
         lista->elems=lista->elems->prox;
-        apagaelem(&actelem);
+        apagaElemento(&actelem);
         lista->nelems--;
         apagado=1;
     }
@@ -72,7 +101,7 @@ int apagaelemlista (MainListPTR lista, void* externdata)
         if (actelem!=NULL)
         {
             ant->prox=actelem->prox;
-            apagaelem(&actelem);
+            apagaElemento(&actelem);
             lista->nelems--;
             apagado=1;
         }
@@ -82,7 +111,7 @@ int apagaelemlista (MainListPTR lista, void* externdata)
 
 
 
-LinkedListPTR procuraelemlista (MainListPTR lista, void *externdata)
+LinkedListPTR procuraElementoLista (MainListPTR lista, void *externdata)
 {
     LinkedListPTR aux= lista->elems;
     
@@ -98,7 +127,7 @@ LinkedListPTR procuraelemlista (MainListPTR lista, void *externdata)
 
 
 
-void apagalistaaux(LinkedListPTR *lista)
+void apagaListaAux(LinkedListPTR *lista)
 {
     LinkedListPTR aux;
 
@@ -106,33 +135,31 @@ void apagalistaaux(LinkedListPTR *lista)
     {
         aux=*lista;
         *lista=(*lista)->prox;
-        apagaelem(&aux);
+        apagaElemento(&aux);
     }
 
 }
 
 
 
-void apagalista(MainListPTR lista)
+void apagaLista(MainListPTR lista)
 {
-    apagalistaaux(&(lista->elems));
+    apagaListaAux(&(lista->elems));
     lista->nelems=0;
 }
 
 
 
 
-/********************************************
 
 
+/*
 int func_compareaux(void* a, void *b)
 {
     char *aa, *bb;
     aa = (char*)a;
     bb=(char*)b;
-    if(strcmp(aa,bb)==0) return 0;
-    if(strcmp(aa,bb)==-1) return -1; 
-    else return 1;
+    return strcmp(aa,bb);
 }
 
 void imprimelista(LinkedListPTR lista)
@@ -160,23 +187,32 @@ int main()
     e=(char*)malloc(sizeof(strlen("D1")+1));
     strcpy(e,"D5");
 
-    LinkedListPTR elemento;
+
     MainListPTR raiz;
-    raiz = (MainListPTR) malloc (sizeof(struct MainList));
-    crialistaligada(raiz,func_compareaux);
+    raiz=criaListaLigada(func_compareaux);
 
-    inserelistahead(raiz,a);
-    inserelistahead(raiz,b);
-    inserelistahead(raiz,c);
-    apagaelemlista(raiz,c);
+    insereListaOrdenado(raiz,b);
+    insereListaOrdenado(raiz,d);
+    insereListaOrdenado(raiz,c);
+    insereListaOrdenado(raiz,a);
+    insereListaOrdenado(raiz,e);
+
+    imprimelista(raiz->elems);   
+    printf("%d\n",raiz->nelems ); 
+
+
+
+
+
+    
+    printf("Elem: %s\n",(char*)procuraElementoLista(raiz,a)->extdata);
+
+    apagaLista(raiz);
+    printf("Elem: %s\n",(char*)(procuraElementoLista(raiz,a)));
+    printf("%d\n",raiz->nelems );
     imprimelista(raiz->elems);
-    printf("Elem: %s\n",(char*)procuraelemlista(raiz,a)->extdata);
-
-    apagalista(raiz);
-        printf("Elem: %s\n",(char*)(procuraelemlista(raiz,a)));
-        printf("%d\n",raiz->nelems );
-        imprimelista(raiz->elems);
     return 0;
 
 }
-************************************/
+
+*/
