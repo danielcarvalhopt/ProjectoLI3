@@ -21,6 +21,7 @@ typedef struct TabelaHash{
 	int (*hash_function)(void*,int);
 	int nelems;
 	int totalcells;
+	int startcells;
 }*TabelaHashPTR;
 
 
@@ -32,7 +33,7 @@ typedef struct TabelaHash{
         @param func_compare Apontador para a função de comparação
 	@return Apontador para tabela de hash
  */
-TabelaHashPTR hashtablecreator (int(*hash_function)(void*,int), int startcells,int (*func_compare)(void*,void*));
+TabelaHashPTR criaTabelaHash (int(*hash_function)(void*,int), int startcells, int (*func_compare)(void*,void*));
 
 
 
@@ -42,7 +43,7 @@ TabelaHashPTR hashtablecreator (int(*hash_function)(void*,int), int startcells,i
 	@return 0 se está com um factor de ocupação maior que o indicado
 	@return 1 se não está com um factor de ocupação maior que o indicado
  */
-int hashtablecelluse (TabelaHashPTR table);
+int ocupacaoTabelaHash (TabelaHashPTR table);
 
 
 
@@ -52,7 +53,17 @@ int hashtablecelluse (TabelaHashPTR table);
 	@return 0 se não conseguiu alocar espaço suficiente
 	@return 1 se alocou com sucesso
  */
-int hashtablerealloc (TabelaHashPTR table);
+int aumentaTabelaHash (TabelaHashPTR table);
+
+
+
+/**
+	@brief Diminui o espaço alocado para a tabela de hash caso esta tenha ultrapassado o factor de ocupação indicado
+	@param table Apontador para a tabela de hash
+	@return 0 se não conseguiu alocar espaço suficiente
+	@return 1 se alocou com sucesso
+ */
+int diminuiTabelaHash (TabelaHashPTR table);
 
 
 
@@ -63,7 +74,7 @@ int hashtablerealloc (TabelaHashPTR table);
 	@return 0 se não conseguiu inserir
 	@return 1 se inseriu com sucesso
  */
-int hashtableinsertion (TabelaHashPTR table, void *externdata);
+int insereElementoTabelaHash (TabelaHashPTR table, void *externdata);
 
 
 
@@ -73,7 +84,7 @@ int hashtableinsertion (TabelaHashPTR table, void *externdata);
 	@param externdata Apontador para o elemento a procurar
 	@return Apontador para o elemento encontrado ou NULL
  */
-LinkedListPTR hashtablesearch (TabelaHashPTR table, void *externdata);
+LinkedListPTR procuraTabelaHash (TabelaHashPTR table, void *externdata);
 
 
 
@@ -84,7 +95,7 @@ LinkedListPTR hashtablesearch (TabelaHashPTR table, void *externdata);
 	@return 1 se pagado
 	@return 0 se não apagado/encontrado
  */
-int hashtableelemdeletion (TabelaHashPTR table, void* externdata);
+int apagaElementoTabelaHash (TabelaHashPTR table, void* externdata);
 
 
 
@@ -92,7 +103,7 @@ int hashtableelemdeletion (TabelaHashPTR table, void* externdata);
 	@brief Elimina todos os elementos da tabela de hash
 	@param table Apontador para a tabela de hash
  */
-void hashtabledestroy(TabelaHashPTR table);
+void apagaTabelaHash(TabelaHashPTR table);
 
 
 

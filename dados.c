@@ -138,26 +138,26 @@ LocalidadePTR crialocalidade (char* nome){
 
     localidade = (LocalidadePTR)malloc(sizeof(struct Localidade));
     localidade->nome=allocStr(nomelocalidade,nome);
-    localidade->ligacoesida=crialistaligada(compareligacoesida);
-    localidade->ligacoesvinda=crialistaligada(compareligacoesvinda);
+    localidade->ligacoesida=criaListaLigada(compareligacoesida);
+    localidade->ligacoesvinda=criaListaLigada(compareligacoesvinda);
 
     return localidade;
 }
 
 int inserelocalidade (TabelaHashPTR table, char *nome){
     LocalidadePTR localidade = crialocalidade(nome);
-    if (hashtablesearch(table, localidade)!=NULL) return 0;
+    if (procuraTabelaHash(table, localidade)!=NULL) return 0;
 
-    return hashtableinsertion (table, localidade);
+    return insereElementoTabelaHash (table, localidade);
 }
 
 int removerlocalidade (TabelaHashPTR table, char *nome){
     LocalidadePTR aux;
     if ((aux = crialocalidade(nome))==NULL) return 0;
 
-    if (hashtablesearch(table, aux)==NULL) return 0;
+    if (procuraTabelaHash(table, aux)==NULL) return 0;
 
-    return (hashtableelemdeletion(table, aux)); 
+    return (apagaElementoTabelaHash(table, aux)); 
 }
 
 LigacoesidaPTR crialigacaoida (char* nome, float custo, float distancia){
@@ -188,15 +188,15 @@ int inserirligacao(TabelaHashPTR table, char *nomeorigem, char *nomedestino, flo
 
     LocalidadePTR aux, aux2;
 
-    if ((hashtablesearch(table, localidadeida)==NULL) || (hashtablesearch(table, localidadevinda)==NULL)) return 0;
+    if ((procuraTabelaHash(table, localidadeida)==NULL) || (procuraTabelaHash(table, localidadevinda)==NULL)) return 0;
     else{
-        aux = (((LinkedListPTR)hashtablesearch(table, localidadeida))->extdata);
-        aux2 = (((LinkedListPTR)hashtablesearch(table, localidadevinda))->extdata);
-        if ((procuraelemlista(aux->ligacoesida,localidadedestino)!=NULL) || (procuraelemlista(aux2->ligacoesvinda, localidadeorigem)!=NULL))
+        aux = (((LinkedListPTR)procuraTabelaHash(table, localidadeida))->extdata);
+        aux2 = (((LinkedListPTR)procuraTabelaHash(table, localidadevinda))->extdata);
+        if ((procuraElementoLista(aux->ligacoesida,localidadedestino)!=NULL) || (procuraElementoLista(aux2->ligacoesvinda, localidadeorigem)!=NULL))
             return 0;
         else{
-            inserelistahead(aux->ligacoesida,localidadedestino);
-            inserelistahead(aux2->ligacoesvinda, localidadeorigem);
+            insereListaOrdenado(aux->ligacoesida,localidadedestino);
+            insereListaOrdenado(aux2->ligacoesvinda, localidadeorigem);
         }
     }
     return 1;
@@ -241,15 +241,15 @@ int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino){
 
     LocalidadePTR aux, aux2;
 
-    if ((hashtablesearch(table, localidadeida)==NULL) || (hashtablesearch(table, localidadevinda)==NULL)) return -1;
+    if ((procuraTabelaHash(table, localidadeida)==NULL) || (procuraTabelaHash(table, localidadevinda)==NULL)) return -1;
     else{
-        aux = (((LinkedListPTR)hashtablesearch(table, localidadeida))->extdata);
-        aux2 = (((LinkedListPTR)hashtablesearch(table, localidadevinda))->extdata);
-        if ((procuraelemlista(aux->ligacoesida,localidadedestino)==NULL) || (procuraelemlista(aux2->ligacoesvinda, localidadeorigem)==NULL))
+        aux = (((LinkedListPTR)procuraTabelaHash(table, localidadeida))->extdata);
+        aux2 = (((LinkedListPTR)procuraTabelaHash(table, localidadevinda))->extdata);
+        if ((procuraElementoLista(aux->ligacoesida,localidadedestino)==NULL) || (procuraElementoLista(aux2->ligacoesvinda, localidadeorigem)==NULL))
             return 0;
         else{
-            apagaelemlista(aux->ligacoesida,localidadedestino);
-            apagaelemlista(aux2->ligacoesvinda, localidadeorigem);
+            apagaElementoLista(aux->ligacoesida,localidadedestino);
+            apagaElementoLista(aux2->ligacoesvinda, localidadeorigem);
         }
     }
     return 1;

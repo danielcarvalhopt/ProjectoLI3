@@ -4,7 +4,8 @@
 #include "mod_tabela_hash.h"
 #include "utils.h"
 
-TabelaHashPTR hashtablecreator (int(*hash_function)(void*,int), int startcells, int (*func_compare)(void*,void*))
+
+TabelaHashPTR criaTabelaHash (int(*hash_function)(void*,int), int startcells, int (*func_compare)(void*,void*))
 {
     TabelaHashPTR table;
     int i;
@@ -19,7 +20,7 @@ TabelaHashPTR hashtablecreator (int(*hash_function)(void*,int), int startcells, 
 
     for(i=0;i<startcells;i++)
     {
-        table->arraycell[i]=(crialistaligada(func_compare));
+        table->arraycell[i]=(criaListaLigada(func_compare));
     }
 
     return table;
@@ -27,14 +28,18 @@ TabelaHashPTR hashtablecreator (int(*hash_function)(void*,int), int startcells, 
 
 
 
-int hashtablecelluse (TabelaHashPTR table)
+int ocupacaoTabelaHash (TabelaHashPTR table)
 {
-    return ( 0.5 < ( (float)table->nelems / (float)table->totalcells) );
+    float res = (float)table->nelems / (float)table->totalcells;
+    if (res > 0.5) return 1;
+    if (res < 0.225) return -1;
+    return 0;
+
 } 
 
 
 
-int hashtablerealloc (TabelaHashPTR table)
+int aumentaTabelaHash (TabelaHashPTR table)
 {
     int acttotalcells = table->totalcells;
     int realloccells = acttotalcells*2; int i;
@@ -49,7 +54,7 @@ int hashtablerealloc (TabelaHashPTR table)
 
     for (i=0; i < realloccells; i++)
     {        
-        table->arraycell[i]=(crialistaligada(func_compare));        
+        table->arraycell[i]=(criaListaLigada(func_compare));        
     }
 
     for (i=0; i < acttotalcells; i++)
@@ -58,7 +63,7 @@ int hashtablerealloc (TabelaHashPTR table)
         aux=dados[i]->elems;
         while(aux!=NULL)
         {
-            hashtableinsertion (table, aux->extdata);
+            insereElementoTabelaHash(table, aux->extdata);
             auxfree=aux;
             aux=aux->prox;
             free(auxfree);
@@ -73,19 +78,56 @@ int hashtablerealloc (TabelaHashPTR table)
 
 
 
-int hashtableinsertion (TabelaHashPTR table, void *externdata)
+int diminuiTabelaHash (TabelaHashPTR table)
+{
+    int acttotalcells = table->totalcells;
+    int realloccells = acttotalcells/2; int i;
+    void *func_compare=(table->arraycell[0]->func_compare);
+    MainListPTR *dados=table->arraycell;
+    LinkedListPTR aux, auxfree;
+
+    table->arraycell=(void*)malloc(sizeof(void*)*(realloccells));
+    table->totalcells=realloccells;
+    table->nelems=0;
+
+    for (i=0; i < realloccells; i++)
+    {        
+        table->arraycell[i]=(criaListaLigada(func_compare));        
+    }
+
+    for (i=0; i < acttotalcells; i++)
+    {
+        
+        aux=dados[i]->elems;
+        while(aux!=NULL)
+        {
+            insereElementoTabelaHash(table, aux->extdata);
+            auxfree=aux;
+            aux=aux->prox;
+            free(auxfree);
+        }
+    }
+    table->totalcells=realloccells;
+    free(aux);
+    free(dados);
+
+    return 1;
+}
+
+
+int insereElementoTabelaHash (TabelaHashPTR table, void *externdata)
 {
     void *func_compare=table->arraycell[0]->func_compare;
 
-    if(hashtablecelluse(table)==1){
-        hashtablerealloc(table);
+    if(ocupacaoTabelaHash(table)==1){
+        aumentaTabelaHash(table);
     }
     int hashkey=table->hash_function(externdata,table->totalcells);
     if (table->arraycell[hashkey]==NULL)
     {
-        table->arraycell[hashkey]=(crialistaligada(func_compare));
+        table->arraycell[hashkey]=(criaListaLigada(func_compare));
     }
-    int success = inserelistahead(table->arraycell[hashkey], externdata);
+    int success = insereListaOrdenado(table->arraycell[hashkey], externdata);
     if (success==1){
         table->nelems++;
     }
@@ -96,37 +138,69 @@ int hashtableinsertion (TabelaHashPTR table, void *externdata)
 
 
 
-LinkedListPTR hashtablesearch (TabelaHashPTR table, void *externdata)
+LinkedListPTR procuraTabelaHash (TabelaHashPTR table, void *externdata)
 {
     int hashkey=(int)(table->hash_function(externdata,table->totalcells));
     LinkedListPTR aux;
-    if ((aux=(procuraelemlista(table->arraycell[hashkey], externdata)))!=NULL) return aux;  
+    if ((aux=(procuraElementoLista(table->arraycell[hashkey], externdata)))!=NULL) return aux;  
     else return NULL;
 }
 
 
 
-int hashtableelemdeletion (TabelaHashPTR table, void* externdata)
+int apagaElementoTabelaHash (TabelaHashPTR table, void* externdata)
 {
     int apagado=0;
     int hashkey=table->hash_function(externdata,table->totalcells);
-    if(apagaelemlista(table->arraycell[hashkey],externdata)==1)
+
+    if(apagaElementoLista(table->arraycell[hashkey],externdata)==1)
     {
         apagado=1; 
         table->nelems--;
+    }
+    if((ocupacaoTabelaHash(table)==-1) && ((table->totalcells)>10000)){
+        diminuiTabelaHash(table);
     }
     return apagado;
 }
 
 
 
-void hashtabledestroy(TabelaHashPTR table)
+void apagaTabelaHash(TabelaHashPTR table)
 {
     MainListPTR *aux=table->arraycell; int i;
 
     for(i=0;i<(table->totalcells);i++)
     {
-        apagalista(aux[i]);
+        apagaLista(aux[i]);
+    }
+    table->nelems=0;
+
+    while((ocupacaoTabelaHash(table)==-1) && ((table->totalcells)>10000)){
+        diminuiTabelaHash(table);
     }
 }
 
+/*
+void imprimeHash(TabelaHashPTR table)
+{
+    MainListPTR *aux=table->arraycell; int i;
+
+    for(i=0;i<(table->totalcells);i++)
+    {
+        imprimelista(aux[i]->elems);
+    }
+}
+
+
+int hash_function (void *externdata, int b)
+{
+    char *a=externdata; double res=0; int i=0;
+    while (i < strlen(a))
+    {
+        res+=a[i];
+        i++;
+    }
+    return (int)res%(b-1);
+}
+*/
