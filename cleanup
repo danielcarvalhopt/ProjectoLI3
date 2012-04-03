@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+find . -name "*.gch" -delete
+find . -name "*.o" -delete
+find . -name "transportes" -delete
+find . -name "*.out" -delete
+find . -name "*~" -delete
+clear
