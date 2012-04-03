@@ -97,11 +97,11 @@ Hash
 
 \newpage
 \section{Resumo}
-Neste relatório encontram-se explicitadas de forma detalhada as escolhas do \mbox{grupo 42} no que ao projecto da unidade curricular de \mbox{Laboratórios de Informática III} diz respeito. Serão revistas as escolhas em relação às estruturas de dados usadas, a forma como se interligam, a complexidade algorítmica sobre essas mesmas estruturas e outras opções relativas à abordagem do problema que nos é exposto no projecto.
+Neste relatório encontram-se explicitadas de forma detalhada as escolhas do \mbox{grupo 42} no que ao projecto da unidade curricular de \mbox{Laboratórios de Informática III} diz respeito. Serão revistas as escolhas em relação às estruturas de dados usadas, a forma como se interligam, a complexidade algorítmica sobre essas mesmas estruturas e outras opções relativas à abordagem do problema que é exposto no projecto.
 
 Relativamente às estruturas de dados será feita uma abordagem sobre módulos genéricos e a forma como estes foram tidos em conta como uma possível solução para o problema assim como a implementação na mesma solução.
 
-Para além do já supracitado este relatório serve de referência para o uso da interface do programa pelo utilizador, sendo explicado com pormenor o uso e o funcionamento desta.
+Para além do já supracitado, este relatório serve de referência para o uso da interface do programa pelo utilizador, sendo explicado com pormenor o uso e o funcionamento desta.
 
 \clearpage
 \section{Introdução}
@@ -109,7 +109,7 @@ Uma empresa de transportes de nome Transitários LEI procura uma solução infor
 
 É da pretensão da administração da empresa possuir uma base de dados de localidades para e de onde é possível fazer transporte, de clientes, de meios de transportes disponíveis e serviços prestados.
 
-Atendendo às várias restrições que a empresa comporta nos seus serviços como a não existência de dupla direcção de ligações entre duas localidades, prevê-se que seja necessário que o programa execute várias tarefas, fazendo-se notar as seguintes:
+Atendendo às várias restrições que a empresa comporta nos seus serviços, como a não existência de dupla direcção de ligações entre duas localidades, prevê-se que seja necessário que o programa execute várias tarefas, fazendo-se notar as seguintes:
 \begin{itemize}
     \item{Inserção e remoção de localidades;}
     \item{Inserção e remoção de ligações entre localidades;}
@@ -124,7 +124,7 @@ solução do problema apresentado implementado na linguagem imperativa C.
 \section{Conteúdo}
 \subsection[Estruturas de dados]{Estruturas de dados -- Abordagem geral ao problema}
 \label{abordagem geral}
-Tendo em conta o problema apresentado pela empresa Transitários LEI chegou-se a uma possível solução que prova ser eficiente na execução das tarefas que são necessárias satisfazer. De forma sucinta presentemente, e mais à frente neste relatório de forma mais detalhada, passa-se então à explicação das escolhas das estruturas de dados para a implementação de uma solução que satisfaça os requisitos da empresa. Dividindo o problema em duas partes, no âmbito do tipo de dados a tratar temos de um lado localidades e do outro clientes e camiões.
+Tendo em conta o problema apresentado pela empresa Transitários LEI chegou-se a uma possível solução que prova ser eficiente na execução das tarefas que são necessárias satisfazer. De forma sucinta presentemente, e posteriormente neste relatório de forma mais detalhada, passa-se então à explicação das escolhas das estruturas de dados para a implementação de uma solução que satisfaça os requisitos da empresa. Dividindo o problema em duas partes, no âmbito do tipo de dados a tratar temos de um lado localidades e do outro clientes e camiões.
 
 No caso das localidades, optou-se por usar uma estrutura que fosse eficiente o suficiente para oferecer ao utilizador uma robustez suficiente para lidar com uma grande gama em termos de quantidade de localidades e ao mesmo tempo que oferece-se rapidez na procura. A solução idealizada e que foi de facto implementada foi uma Tabela de Dispersão (‘Hash Table’) com encadeamento (‘Chaining’), ou seja, em cada uma das posições da tabela é utilizado um apontador para uma lista ligada de localizações de forma a evitar colisões na tabela. Também é de referir que a cada localidade estão associadas duas listas ligadas que indicam as localidades a que uma determinada localidade está associada por ligação. Esta solução traz à solução uma rapidez considerável assim como uma inserção igualmente rápida comparativamente a outras estruturas de dados.
 
