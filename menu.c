@@ -216,12 +216,21 @@ int printMenu(int input){
                                 "*    %-56s  *\n"
                                 "*    %-56s  *\n"
                                 "*    %-56s  *\n"
+                                "*    %-56s  *\n"
+                                "%s"
+                                "*    %-56s  *\n"
+                                "*    %-56s  *\n"
+                                "*    %-56s  *\n"
                                 "*    %-56s  *\n",
-                                    "Menu P. > Gestao de Localidades", space,
+                                    "Menu P. > Gestao de Localidades/Ligacoes", space,
                                     "1) Inserir Localidade",
                                     "2) Eliminar Localidade",
-                                    "3) Listar localidades",
-                                    "4) Modificar localidade"
+                                    "3) Listar Localidades",
+                                    "4) Modificar localidade",space,
+                                    "5) Criar Ligacao",
+                                    "6) Eliminar Ligacao",
+                                    "7) Listar Ligacoes",
+                                    "8) Modificar Ligacoes"
                         );
                         break;
                 case 41:
@@ -232,11 +241,11 @@ int printMenu(int input){
                                 "%s"
                                 "*    %-56s  *\n"
                                 "*    %-56s  *\n",
-                                    "Menu P. > Gestao de Localidades > Inserir Localidade", space,
+                                    "Menu P. > Localidades/Ligacoes > Inserir Localidade", space,
                                     "Campos:",
                                     "???"
                         );
-                        novaEscolha(31, "Inserir Localidade");
+                        novaEscolha(41, "Inserir Localidade");
                         break;
                 case 42:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
@@ -244,18 +253,18 @@ int printMenu(int input){
 
                         printf( "*    %-56s  *\n"
                                 "%s",
-                                    "Menu P. > Gestao de Localidades > Eliminar Localidade", space
+                                    "Menu P. > Localidades/Ligacoes > Eliminar Localidade", space
                         );
-                        novaEscolha(32, "Eliminar Localidade");
+                        novaEscolha(42, "Eliminar Localidade");
                         break;
                 case 43:
                         strcpy( status, "Listando Elementos..." );
                         strcpy( inputWait, "" );
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
                         printf( "*    %-56s  *\n",
-                                    "Menu P. > Gestao de Localidades > Listar Localidades"
+                                    "Menu P. > Localidades/Ligacoes > Listar Localidades"
                         ); 
-                        novaEscolha(33, "Listar Localidades");
+                        novaEscolha(43, "Listar Localidades");
                         break;
                 case 44:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
@@ -263,10 +272,52 @@ int printMenu(int input){
 
                         printf( "*    %-56s  *\n"
                                 "%s",
-                                    "Menu P. > Gestao de Localidades > Modificar Localidade", space
+                                    "Menu P. > Localidades/Ligacoes > Modificar Localidade", space
                         );
-                        novaEscolha(34, "Modificar Localidade");
+                        novaEscolha(44, "Modificar Localidade");
                         break;
+                case 45:
+                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
+                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
+
+                        printf( "*    %-56s  *\n"
+                                "%s",
+                                    "Menu P. > Localidades/Ligacoes > Criar Ligacao", space
+                        );
+                        novaEscolha(45, "Criar Ligacao");
+                        break;
+                case 46:
+                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
+                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
+
+                        printf( "*    %-56s  *\n"
+                                "%s",
+                                    "Menu P. > Localidades/Ligacoes > Eliminar Ligacao", space
+                        );
+                        novaEscolha(46, "Eliminar Ligacao");
+                        break;
+                case 47:
+                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
+                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
+
+                        printf( "*    %-56s  *\n"
+                                "%s",
+                                    "Menu P. > Localidades/Ligacoes > Listar Ligacao", space
+                        );
+                        novaEscolha(47, "Listar Ligacao");
+                        break;
+
+                case 48:
+                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
+                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
+
+                        printf( "*    %-56s  *\n"
+                                "%s",
+                                    "Menu P. > Localidades/Ligacoes > Modificar Ligacao", space
+                        );
+                        novaEscolha(48, "Modificar Ligacao");
+                        break;
+
                 case 9:
 			printf( "*    %-56s  *\n"
 				"%s"
@@ -342,7 +393,7 @@ int printMenu(int input){
 					"1) Novo Pedido",
 					"2) Gerir Clientes",
 					"3) Gerir Camioes",
-					"4) Gerir Localidades",space,
+					"4) Gerir Localidades e Ligacoes",space,
                                         "--Recentemente usados--",
                                         lastString[0],
                                         lastString[1],
@@ -467,7 +518,7 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes){
             break;
         case 4:
             input = getIntLoop();
-            if( input >= 1 && input <= 4)
+            if( input >= 1 && input <= 8)
                 input += 40;
             else if( input != 0 )
                 input = 4;
@@ -476,6 +527,10 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes){
         case 42: getchar(); clearInputBuffer(); input=0; break;
         case 43: getchar(); clearInputBuffer(); input=0; break;
         case 44: getchar(); clearInputBuffer(); input=0; break;
+        case 45: getchar(); clearInputBuffer(); input=0; break;
+        case 46: getchar(); clearInputBuffer(); input=0; break;
+        case 47: getchar(); clearInputBuffer(); input=0; break;
+        case 48: getchar(); clearInputBuffer(); input=0; break;
         case 9:
             input = getIntLoop();
             if( input == 1 || input == 2 )

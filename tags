@@ -8,9 +8,12 @@ Camiao	dados.h	/^} Camiao, *CamiaoPt;$/;"	t	typeref:struct:sCamiao
 CamiaoPt	dados.h	/^} Camiao, *CamiaoPt;$/;"	t	typeref:struct:sCamiao
 Cliente	dados.h	/^} Cliente, *ClientePt;$/;"	t	typeref:struct:sCliente
 ClientePt	dados.h	/^} Cliente, *ClientePt;$/;"	t	typeref:struct:sCliente
+Conte   do	relatorio.tex	/^\\section{Conteúdo}$/;"	s
 DADOS_H_INCLUDED	dados.h	7;"	d
 DIM	mod_avl_n_dimensional.h	13;"	d
+Estruturas de dados	relatorio.tex	/^\\subsection[Estruturas de dados]{Estruturas de dados -- Abordagem geral ao problema}$/;"	u
 INPUT_H_INCLUDED	input.h	7;"	d
+Introdu     o	relatorio.tex	/^\\section{Introdução}$/;"	s
 Ligacoesida	dados.h	/^typedef struct Ligacoesida{$/;"	s
 Ligacoesida::custo	dados.h	/^	float custo;$/;"	m	struct:Ligacoesida	access:public
 Ligacoesida::distancia	dados.h	/^	float distancia;$/;"	m	struct:Ligacoesida	access:public
@@ -25,6 +28,7 @@ Localidade::ligacoesida	dados.h	/^	MainListPTR ligacoesida;$/;"	m	struct:Localid
 Localidade::ligacoesvinda	dados.h	/^	MainListPTR ligacoesvinda;$/;"	m	struct:Localidade	access:public
 Localidade::nome	dados.h	/^	char* nome;$/;"	m	struct:Localidade	access:public
 LocalidadePTR	dados.h	/^}*LocalidadePTR;$/;"	t	typeref:struct:Localidade
+Localidades	relatorio.tex	/^\\subsection[Localidades]{Localidades -- Tabela de Hash com chaining, Grafos e Listas Ligadas}$/;"	u
 MENU_H_INCLUDED	menu.h	8;"	d
 MOD_AVL_N_DIMENSIONAL_H_INCLUDED	mod_avl_n_dimensional.h	11;"	d
 MOD_LISTA_LIGADA_H_INCLUDED	mod_lista_ligada.h	7;"	d
@@ -36,6 +40,7 @@ MainList::nelems	mod_lista_ligada.h	/^	int nelems;  						\/\/ Numero de element
 MainListPTR	mod_lista_ligada.h	/^} *MainListPTR; 						\/\/ Apontador para a estrutura de controlo$/;"	t	typeref:struct:MainList
 MainTree	mod_avl_n_dimensional.h	/^} MainTree, *MainTreePt;$/;"	t	typeref:struct:sMainTree
 MainTreePt	mod_avl_n_dimensional.h	/^} MainTree, *MainTreePt;$/;"	t	typeref:struct:sMainTree
+Resumo	relatorio.tex	/^\\section{Resumo}$/;"	s
 TabelaHash	mod_tabela_hash.h	/^typedef struct TabelaHash{$/;"	s
 TabelaHash::arraycell	mod_tabela_hash.h	/^	MainListPTR *arraycell;$/;"	m	struct:TabelaHash	access:public
 TabelaHash::hash_function	mod_tabela_hash.h	/^	int (*hash_function)(void*,int);$/;"	m	struct:TabelaHash	access:public
