@@ -39,13 +39,14 @@ int main(){
     /** Inicializar estruturas de controlo dos vários tipos de dados */
     MainTreePt camioes = tree_new( comparaCamioes );
     MainTreePt clientes = tree_new( comparaClientes );
+    TabelaHashPTR localidades = criaTabelaHash(hash_function, 10000, comparalocalidades);
 
     /** Inicializar os atalhos predefinidos do menu */
     inicializarAtalhos();
 
     while( input != -1 ){
         input = printMenu(input);
-        input = getInput(input, camioes, clientes);
+        input = getInput(input, camioes, clientes, localidades);
     }
     return 0;
 }

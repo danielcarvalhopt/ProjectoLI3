@@ -28,9 +28,10 @@ int getIntLoop();
  * @param input Inteiro que indica o menú que foi mostrado ao utilizador
  * @param camioes Estrutura de controlo de uma avl n-dimensional com os dados relativos aos camioes
  * @param clientes Estrutura de controlo de uma avl n-dimensional com os dados relativos aos camioes
+ * @param localidades Tabela de Hash para tratamento de dados de localidades
  * @return Inteiro que indica o próximo menú a mostrar ao utilizador
  * */
-int getInput(int input, MainTreePt camioes, MainTreePt clientes);
+int getInput(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR localidades);
 
 /** 
  * @brief Inicializa as variáveis static que controlam os atalhos mostrados ao utilizador com três atalhos iniciais e predefinidos
