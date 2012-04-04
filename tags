@@ -46,6 +46,7 @@ TabelaHash	mod_tabela_hash.h	/^typedef struct TabelaHash{$/;"	s
 TabelaHash::arraycell	mod_tabela_hash.h	/^	MainListPTR *arraycell;$/;"	m	struct:TabelaHash	access:public
 TabelaHash::hash_function	mod_tabela_hash.h	/^	int (*hash_function)(void*,int);$/;"	m	struct:TabelaHash	access:public
 TabelaHash::nelems	mod_tabela_hash.h	/^	int nelems;$/;"	m	struct:TabelaHash	access:public
+TabelaHash::startcells	mod_tabela_hash.h	/^	int startcells;$/;"	m	struct:TabelaHash	access:public
 TabelaHash::totalcells	mod_tabela_hash.h	/^	int totalcells;$/;"	m	struct:TabelaHash	access:public
 TabelaHashPTR	mod_tabela_hash.h	/^}*TabelaHashPTR;$/;"	t	typeref:struct:TabelaHash
 Tree	mod_avl_n_dimensional.h	/^} Tree, *TreePt;$/;"	t	typeref:struct:sTree
@@ -53,15 +54,21 @@ TreePt	mod_avl_n_dimensional.h	/^} Tree, *TreePt;$/;"	t	typeref:struct:sTree
 UTILS_H_INCLUDED	utils.h	7;"	d
 allocStr	utils.c	/^char* allocStr(char *dest, char *src){$/;"	f	signature:(char *dest, char *src)
 allocStr	utils.h	/^char* allocStr(char *dest, char *src);$/;"	p	signature:(char *dest, char *src)
-apagaelem	mod_lista_ligada.c	/^void apagaelem (LinkedListPTR *elem)$/;"	f	signature:(LinkedListPTR *elem)
-apagaelem	mod_lista_ligada.h	/^void apagaelem (LinkedListPTR *elem);$/;"	p	signature:(LinkedListPTR *elem)
-apagaelemlista	mod_lista_ligada.c	/^int apagaelemlista (MainListPTR lista, void* externdata)$/;"	f	signature:(MainListPTR lista, void* externdata)
-apagaelemlista	mod_lista_ligada.h	/^int apagaelemlista(MainListPTR lista, void* externdata);$/;"	p	signature:(MainListPTR lista, void* externdata)
-apagalista	mod_lista_ligada.c	/^void apagalista(MainListPTR lista)$/;"	f	signature:(MainListPTR lista)
-apagalista	mod_lista_ligada.h	/^void apagalista(MainListPTR lista);$/;"	p	signature:(MainListPTR lista)
-apagalistaaux	mod_lista_ligada.c	/^void apagalistaaux(LinkedListPTR *lista)$/;"	f	signature:(LinkedListPTR *lista)
-apagalistaaux	mod_lista_ligada.h	/^void apagalistaaux(LinkedListPTR *lista);$/;"	p	signature:(LinkedListPTR *lista)
+apagaElemento	mod_lista_ligada.c	/^void apagaElemento (LinkedListPTR *elem)$/;"	f	signature:(LinkedListPTR *elem)
+apagaElemento	mod_lista_ligada.h	/^void apagaElemento (LinkedListPTR *elem);$/;"	p	signature:(LinkedListPTR *elem)
+apagaElementoLista	mod_lista_ligada.c	/^int apagaElementoLista (MainListPTR lista, void* externdata)$/;"	f	signature:(MainListPTR lista, void* externdata)
+apagaElementoLista	mod_lista_ligada.h	/^int apagaElementoLista (MainListPTR lista, void* externdata);$/;"	p	signature:(MainListPTR lista, void* externdata)
+apagaElementoTabelaHash	mod_tabela_hash.c	/^int apagaElementoTabelaHash (TabelaHashPTR table, void* externdata)$/;"	f	signature:(TabelaHashPTR table, void* externdata)
+apagaElementoTabelaHash	mod_tabela_hash.h	/^int apagaElementoTabelaHash (TabelaHashPTR table, void* externdata);$/;"	p	signature:(TabelaHashPTR table, void* externdata)
+apagaLista	mod_lista_ligada.c	/^void apagaLista(MainListPTR lista)$/;"	f	signature:(MainListPTR lista)
+apagaLista	mod_lista_ligada.h	/^void apagaLista(MainListPTR lista);$/;"	p	signature:(MainListPTR lista)
+apagaListaAux	mod_lista_ligada.c	/^void apagaListaAux(LinkedListPTR *lista)$/;"	f	signature:(LinkedListPTR *lista)
+apagaListaAux	mod_lista_ligada.h	/^void apagaListaAux(LinkedListPTR *lista);$/;"	p	signature:(LinkedListPTR *lista)
+apagaTabelaHash	mod_tabela_hash.c	/^void apagaTabelaHash(TabelaHashPTR table)$/;"	f	signature:(TabelaHashPTR table)
+apagaTabelaHash	mod_tabela_hash.h	/^void apagaTabelaHash(TabelaHashPTR table);$/;"	p	signature:(TabelaHashPTR table)
 arraycell	mod_tabela_hash.h	/^	MainListPTR *arraycell;$/;"	m	struct:TabelaHash	access:public
+aumentaTabelaHash	mod_tabela_hash.c	/^int aumentaTabelaHash (TabelaHashPTR table)$/;"	f	signature:(TabelaHashPTR table)
+aumentaTabelaHash	mod_tabela_hash.h	/^int aumentaTabelaHash (TabelaHashPTR table);$/;"	p	signature:(TabelaHashPTR table)
 camiao_compararId	dados.c	/^int camiao_compararId(void* camiaoUm, void* camiaoDois){$/;"	f	signature:(void* camiaoUm, void* camiaoDois)
 camiao_compararId	dados.h	/^int camiao_compararId(void* camiaoUm, void* camiaoDois);$/;"	p	signature:(void* camiaoUm, void* camiaoDois)
 camiao_compararMatricula	dados.c	/^int camiao_compararMatricula(void* camiaoUm, void* camiaoDois){$/;"	f	signature:(void* camiaoUm, void* camiaoDois)
@@ -99,16 +106,20 @@ compareligacoesvinda	dados.c	/^int compareligacoesvinda (void *a, void *b){$/;"	
 compareligacoesvinda	dados.h	/^int compareligacoesvinda (void *a, void *b);$/;"	p	signature:(void *a, void *b)
 concatStr	utils.c	/^char* concatStr(char *dest, char *src){$/;"	f	signature:(char *dest, char *src)
 concatStr	utils.h	/^char* concatStr(char *dest, char *src);$/;"	p	signature:(char *dest, char *src)
+criaListaLigada	mod_lista_ligada.c	/^MainListPTR criaListaLigada(int(*func_compare)(void*,void*)) $/;"	f	signature:(int(*func_compare)(void*,void*))
+criaListaLigada	mod_lista_ligada.h	/^MainListPTR criaListaLigada(int(*func_compare)(void*,void*));$/;"	p	signature:(int(*func_compare)(void*,void*))
+criaTabelaHash	mod_tabela_hash.c	/^TabelaHashPTR criaTabelaHash (int(*hash_function)(void*,int), int startcells, int (*func_compare)(void*,void*))$/;"	f	signature:(int(*hash_function)(void*,int), int startcells, int (*func_compare)(void*,void*))
+criaTabelaHash	mod_tabela_hash.h	/^TabelaHashPTR criaTabelaHash (int(*hash_function)(void*,int), int startcells, int (*func_compare)(void*,void*));$/;"	p	signature:(int(*hash_function)(void*,int), int startcells, int (*func_compare)(void*,void*))
 crialigacaoida	dados.c	/^LigacoesidaPTR crialigacaoida (char* nome, float custo, float distancia){$/;"	f	signature:(char* nome, float custo, float distancia)
 crialigacaoida	dados.h	/^LigacoesidaPTR crialigacaoida (char* nome, float custo, float distancia);$/;"	p	signature:(char* nome, float custo, float distancia)
 crialigacaovinda	dados.c	/^LigacoesvindaPTR crialigacaovinda (char* nome){$/;"	f	signature:(char* nome)
 crialigacaovinda	dados.h	/^LigacoesvindaPTR crialigacaovinda (char* nome);$/;"	p	signature:(char* nome)
-crialistaligada	mod_lista_ligada.c	/^MainListPTR crialistaligada(int(*func_compare)(void*,void*)) {$/;"	f	signature:(int(*func_compare)(void*,void*))
-crialistaligada	mod_lista_ligada.h	/^MainListPTR crialistaligada(int (*func_compare)(void *, void *));$/;"	p	signature:(int (*func_compare)(void *, void *))
 crialocalidade	dados.c	/^LocalidadePTR crialocalidade (char* nome){$/;"	f	signature:(char* nome)
 crialocalidade	dados.h	/^LocalidadePTR crialocalidade (char* nome);$/;"	p	signature:(char* nome)
 custo	dados.h	/^	float custo;$/;"	m	struct:Ligacoesida	access:public
 custo	dados.h	/^    double custo;$/;"	m	struct:sCamiao	access:public
+diminuiTabelaHash	mod_tabela_hash.c	/^int diminuiTabelaHash (TabelaHashPTR table)$/;"	f	signature:(TabelaHashPTR table)
+diminuiTabelaHash	mod_tabela_hash.h	/^int diminuiTabelaHash (TabelaHashPTR table);$/;"	p	signature:(TabelaHashPTR table)
 distancia	dados.h	/^	float distancia;$/;"	m	struct:Ligacoesida	access:public
 elems	mod_lista_ligada.h	/^	LinkedListPTR elems;     			\/\/ Apontador para uma lista ligada                    $/;"	m	struct:MainList	access:public
 extdata	mod_lista_ligada.h	/^	void *extdata;      		\/\/ Apontador para o elemento da lista       $/;"	m	struct:linkedList	access:public
@@ -120,20 +131,6 @@ getIntLoop	menu.h	/^int getIntLoop();$/;"	p	signature:()
 hash_function	mod_tabela_hash.h	/^	int (*hash_function)(void*,int);$/;"	m	struct:TabelaHash	access:public
 hashprint	dados.c	/^void hashprint (TabelaHashPTR table){$/;"	f	signature:(TabelaHashPTR table)
 hashprint	dados.h	/^void hashprint (TabelaHashPTR table);$/;"	p	signature:(TabelaHashPTR table)
-hashtablecelluse	mod_tabela_hash.c	/^int hashtablecelluse (TabelaHashPTR table)$/;"	f	signature:(TabelaHashPTR table)
-hashtablecelluse	mod_tabela_hash.h	/^int hashtablecelluse (TabelaHashPTR table);$/;"	p	signature:(TabelaHashPTR table)
-hashtablecreator	mod_tabela_hash.c	/^TabelaHashPTR hashtablecreator (int(*hash_function)(void*,int), int startcells, int (*func_compare)(void*,void*))$/;"	f	signature:(int(*hash_function)(void*,int), int startcells, int (*func_compare)(void*,void*))
-hashtablecreator	mod_tabela_hash.h	/^TabelaHashPTR hashtablecreator (int(*hash_function)(void*,int), int startcells,int (*func_compare)(void*,void*));$/;"	p	signature:(int(*hash_function)(void*,int), int startcells,int (*func_compare)(void*,void*))
-hashtabledestroy	mod_tabela_hash.c	/^void hashtabledestroy(TabelaHashPTR table)$/;"	f	signature:(TabelaHashPTR table)
-hashtabledestroy	mod_tabela_hash.h	/^void hashtabledestroy(TabelaHashPTR table);$/;"	p	signature:(TabelaHashPTR table)
-hashtableelemdeletion	mod_tabela_hash.c	/^int hashtableelemdeletion (TabelaHashPTR table, void* externdata)$/;"	f	signature:(TabelaHashPTR table, void* externdata)
-hashtableelemdeletion	mod_tabela_hash.h	/^int hashtableelemdeletion (TabelaHashPTR table, void* externdata);$/;"	p	signature:(TabelaHashPTR table, void* externdata)
-hashtableinsertion	mod_tabela_hash.c	/^int hashtableinsertion (TabelaHashPTR table, void *externdata)$/;"	f	signature:(TabelaHashPTR table, void *externdata)
-hashtableinsertion	mod_tabela_hash.h	/^int hashtableinsertion (TabelaHashPTR table, void *externdata);$/;"	p	signature:(TabelaHashPTR table, void *externdata)
-hashtablerealloc	mod_tabela_hash.c	/^int hashtablerealloc (TabelaHashPTR table)$/;"	f	signature:(TabelaHashPTR table)
-hashtablerealloc	mod_tabela_hash.h	/^int hashtablerealloc (TabelaHashPTR table);$/;"	p	signature:(TabelaHashPTR table)
-hashtablesearch	mod_tabela_hash.c	/^LinkedListPTR hashtablesearch (TabelaHashPTR table, void *externdata)$/;"	f	signature:(TabelaHashPTR table, void *externdata)
-hashtablesearch	mod_tabela_hash.h	/^LinkedListPTR hashtablesearch (TabelaHashPTR table, void *externdata);$/;"	p	signature:(TabelaHashPTR table, void *externdata)
 height	mod_avl_n_dimensional.h	/^    int height[DIM];$/;"	m	struct:sTree	access:public
 id	dados.h	/^    unsigned int id;$/;"	m	struct:sCamiao	access:public
 imprimelista	dados.c	/^void imprimelista(LinkedListPTR lista){$/;"	f	signature:(LinkedListPTR lista)
@@ -142,11 +139,15 @@ imprimelistaligacoes	dados.c	/^void imprimelistaligacoes(LinkedListPTR lista){$/
 imprimelistaligacoes	dados.h	/^void imprimelistaligacoes(LinkedListPTR lista);$/;"	p	signature:(LinkedListPTR lista)
 inicializarAtalhos	menu.c	/^void inicializarAtalhos(){$/;"	f
 inicializarAtalhos	menu.h	/^void inicializarAtalhos();$/;"	p	signature:()
+insereElementoTabelaHash	mod_tabela_hash.c	/^int insereElementoTabelaHash (TabelaHashPTR table, void *externdata)$/;"	f	signature:(TabelaHashPTR table, void *externdata)
+insereElementoTabelaHash	mod_tabela_hash.h	/^int insereElementoTabelaHash (TabelaHashPTR table, void *externdata);$/;"	p	signature:(TabelaHashPTR table, void *externdata)
+insereListaInicio	mod_lista_ligada.c	/^ int insereListaInicio(MainListPTR lista, void *externdata) $/;"	f	signature:(MainListPTR lista, void *externdata)
+insereListaInicio	mod_lista_ligada.h	/^ int insereListaInicio(MainListPTR lista, void *externdata); $/;"	p	signature:(MainListPTR lista, void *externdata)
+insereListaOrdenado	mod_lista_ligada.c	/^int insereListaOrdenado (MainListPTR lista, void *externdata)$/;"	f	signature:(MainListPTR lista, void *externdata)
+insereListaOrdenado	mod_lista_ligada.h	/^ int insereListaOrdenado (MainListPTR lista, void *externdata);$/;"	p	signature:(MainListPTR lista, void *externdata)
 insereligacaoinput	dados.c	/^void insereligacaoinput(TabelaHashPTR table){$/;"	f	signature:(TabelaHashPTR table)
 insereligacaoinput	dados.h	/^void insereligacaoinput(TabelaHashPTR table);$/;"	p	signature:(TabelaHashPTR table)
 insereligacaoinput	menu.h	/^void insereligacaoinput(TabelaHashPTR table);$/;"	p	signature:(TabelaHashPTR table)
-inserelistahead	mod_lista_ligada.c	/^ int inserelistahead(MainListPTR lista, void *externdata) {$/;"	f	signature:(MainListPTR lista, void *externdata)
-inserelistahead	mod_lista_ligada.h	/^int inserelistahead(MainListPTR lista, void* externdata);$/;"	p	signature:(MainListPTR lista, void* externdata)
 inserelocalidade	dados.c	/^int inserelocalidade (TabelaHashPTR table, char *nome){$/;"	f	signature:(TabelaHashPTR table, char *nome)
 inserelocalidade	dados.h	/^int inserelocalidade (TabelaHashPTR table, char *nome);$/;"	p	signature:(TabelaHashPTR table, char *nome)
 inserelocalidadeinput	dados.c	/^void inserelocalidadeinput (TabelaHashPTR table)$/;"	f	signature:(TabelaHashPTR table)
@@ -185,12 +186,16 @@ nome	dados.h	/^	char* nome;$/;"	m	struct:Ligacoesvinda	access:public
 nome	dados.h	/^	char* nome;$/;"	m	struct:Localidade	access:public
 nome	dados.h	/^    char *nome;$/;"	m	struct:sCliente	access:public
 novaEscolha	menu.c	/^static void novaEscolha(int input, char *str){$/;"	f	file:	signature:(int input, char *str)
+ocupacaoTabelaHash	mod_tabela_hash.c	/^int ocupacaoTabelaHash (TabelaHashPTR table)$/;"	f	signature:(TabelaHashPTR table)
+ocupacaoTabelaHash	mod_tabela_hash.h	/^int ocupacaoTabelaHash (TabelaHashPTR table);$/;"	p	signature:(TabelaHashPTR table)
 operativeSystem	utils.c	/^static char operativeSystem; \/**< Toma o valor 1 ou 2 consoante o sistema operativo em que o programa está a correr *\/$/;"	v	file:
 peso	dados.h	/^    double peso;$/;"	m	struct:sCamiao	access:public
 printMenu	menu.c	/^int printMenu(int input){$/;"	f	signature:(int input)
 printMenu	menu.h	/^int printMenu(int input);$/;"	p	signature:(int input)
-procuraelemlista	mod_lista_ligada.c	/^LinkedListPTR procuraelemlista (MainListPTR lista, void *externdata)$/;"	f	signature:(MainListPTR lista, void *externdata)
-procuraelemlista	mod_lista_ligada.h	/^LinkedListPTR procuraelemlista (MainListPTR lista, void *externdata);$/;"	p	signature:(MainListPTR lista, void *externdata)
+procuraElementoLista	mod_lista_ligada.c	/^LinkedListPTR procuraElementoLista (MainListPTR lista, void *externdata)$/;"	f	signature:(MainListPTR lista, void *externdata)
+procuraElementoLista	mod_lista_ligada.h	/^LinkedListPTR procuraElementoLista (MainListPTR lista, void *externdata);$/;"	p	signature:(MainListPTR lista, void *externdata)
+procuraTabelaHash	mod_tabela_hash.c	/^LinkedListPTR procuraTabelaHash (TabelaHashPTR table, void *externdata)$/;"	f	signature:(TabelaHashPTR table, void *externdata)
+procuraTabelaHash	mod_tabela_hash.h	/^LinkedListPTR procuraTabelaHash (TabelaHashPTR table, void *externdata);$/;"	p	signature:(TabelaHashPTR table, void *externdata)
 prox	mod_lista_ligada.h	/^	struct linkedList *prox;	\/\/ Próximo elemento da lista$/;"	m	struct:linkedList	typeref:struct:linkedList::linkedList	access:public
 r	mod_avl_n_dimensional.h	/^    struct sTree *r[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
 readDouble	input.c	/^double readDouble(){$/;"	f
@@ -230,6 +235,7 @@ sTree::l	mod_avl_n_dimensional.h	/^    struct sTree *l[DIM];$/;"	m	struct:sTree	
 sTree::node	mod_avl_n_dimensional.h	/^    void *node;$/;"	m	struct:sTree	access:public
 sTree::r	mod_avl_n_dimensional.h	/^    struct sTree *r[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
 servicos	dados.h	/^    MainListPTR servicos;$/;"	m	struct:sCliente	access:public
+startcells	mod_tabela_hash.h	/^	int startcells;$/;"	m	struct:TabelaHash	access:public
 totalcells	mod_tabela_hash.h	/^	int totalcells;$/;"	m	struct:TabelaHash	access:public
 tree	mod_avl_n_dimensional.h	/^    TreePt tree[DIM];$/;"	m	struct:sMainTree	access:public
 tree_applyToAllOrdered	mod_avl_n_dimensional.c	/^void tree_applyToAllOrdered(MainTreePt thisMainTree, int thisDim, void (*func)(void*)){$/;"	f	signature:(MainTreePt thisMainTree, int thisDim, void (*func)(void*))
