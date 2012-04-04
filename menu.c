@@ -216,7 +216,6 @@ int printMenu(int input){
                                 "*    %-56s  *\n"
                                 "*    %-56s  *\n"
                                 "*    %-56s  *\n"
-                                "*    %-56s  *\n"
                                 "%s"
                                 "*    %-56s  *\n"
                                 "*    %-56s  *\n"
@@ -225,12 +224,11 @@ int printMenu(int input){
                                     "Menu P. > Gestao de Localidades/Ligacoes", space,
                                     "1) Inserir Localidade",
                                     "2) Eliminar Localidade",
-                                    "3) Listar Localidades",
-                                    "4) Modificar localidade",space,
-                                    "5) Criar Ligacao",
-                                    "6) Eliminar Ligacao",
-                                    "7) Listar Ligacoes",
-                                    "8) Modificar Ligacoes"
+                                    "3) Listar Localidades",space,
+                                    "4) Criar Ligacao",
+                                    "5) Eliminar Ligacao",
+                                    "6) Listar Ligacoes",
+                                    "7) Modificar Ligacoes"
                         );
                         break;
                 case 41:
@@ -272,21 +270,11 @@ int printMenu(int input){
 
                         printf( "*    %-56s  *\n"
                                 "%s",
-                                    "Menu P. > Localidades/Ligacoes > Modificar Localidade", space
-                        );
-                        novaEscolha(44, "Modificar Localidade");
-                        break;
-                case 45:
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
-
-                        printf( "*    %-56s  *\n"
-                                "%s",
                                     "Menu P. > Localidades/Ligacoes > Criar Ligacao", space
                         );
                         novaEscolha(45, "Criar Ligacao");
                         break;
-                case 46:
+                case 45:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
                         strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
 
@@ -296,7 +284,7 @@ int printMenu(int input){
                         );
                         novaEscolha(46, "Eliminar Ligacao");
                         break;
-                case 47:
+                case 46:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
                         strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
 
@@ -307,7 +295,7 @@ int printMenu(int input){
                         novaEscolha(47, "Listar Ligacao");
                         break;
 
-                case 48:
+                case 47:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
                         strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
 
@@ -526,11 +514,10 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR l
         case 41: inserelocalidadeinput(localidades); clearInputBuffer(); input=0; break;
         case 42: removelocalidadeinput(localidades); clearInputBuffer(); input=0; break;
         case 43: imprimeLocalidades(localidades); clearInputBuffer(); input=0; break;
-        case 44: getchar(); clearInputBuffer(); input=0; break;
-        case 45: insereligacaoinput(localidades); clearInputBuffer(); input=0; break;
-        case 46: removeligacaoinput(localidades); clearInputBuffer(); input=0; break;
-        case 47: imprimelistaligacoesinput(localidades); clearInputBuffer(); input=0; break;
-        case 48: editaligacaoinput(localidades); clearInputBuffer(); input=0; break;
+        case 44: insereligacaoinput(localidades); clearInputBuffer(); input=0; break;
+        case 45: removeligacaoinput(localidades); clearInputBuffer(); input=0; break;
+        case 46: imprimelistaligacoesinput(localidades); clearInputBuffer(); input=0; break;
+        case 47: editaligacaoinput(localidades); clearInputBuffer(); input=0; break;
         case 9:
             input = getIntLoop();
             if( input == 1 || input == 2 )
