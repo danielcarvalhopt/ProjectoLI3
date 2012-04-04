@@ -42,6 +42,8 @@ MainTree	mod_avl_n_dimensional.h	/^} MainTree, *MainTreePt;$/;"	t	typeref:struct
 MainTreePt	mod_avl_n_dimensional.h	/^} MainTree, *MainTreePt;$/;"	t	typeref:struct:sMainTree
 Resumo	relatorio.tex	/^\\section{Resumo}$/;"	s
 SERIAL_H_INCLUDED	serial.h	8;"	d
+Servico	dados.h	/^} Servico, *ServicoPt;$/;"	t	typeref:struct:sServico
+ServicoPt	dados.h	/^} Servico, *ServicoPt;$/;"	t	typeref:struct:sServico
 TabelaHash	mod_tabela_hash.h	/^typedef struct TabelaHash{$/;"	s
 TabelaHash::arraycell	mod_tabela_hash.h	/^	MainListPTR *arraycell;$/;"	m	struct:TabelaHash	access:public
 TabelaHash::hash_function	mod_tabela_hash.h	/^	int (*hash_function)(void*,int);$/;"	m	struct:TabelaHash	access:public
@@ -69,6 +71,7 @@ apagaTabelaHash	mod_tabela_hash.h	/^void apagaTabelaHash(TabelaHashPTR table);$/
 arraycell	mod_tabela_hash.h	/^	MainListPTR *arraycell;$/;"	m	struct:TabelaHash	access:public
 aumentaTabelaHash	mod_tabela_hash.c	/^int aumentaTabelaHash (TabelaHashPTR table)$/;"	f	signature:(TabelaHashPTR table)
 aumentaTabelaHash	mod_tabela_hash.h	/^int aumentaTabelaHash (TabelaHashPTR table);$/;"	p	signature:(TabelaHashPTR table)
+camiao	dados.h	/^    CamiaoPt camiao;$/;"	m	struct:sServico	access:public
 camiao_compararId	dados.c	/^int camiao_compararId(void* camiaoUm, void* camiaoDois){$/;"	f	signature:(void* camiaoUm, void* camiaoDois)
 camiao_compararId	dados.h	/^int camiao_compararId(void* camiaoUm, void* camiaoDois);$/;"	p	signature:(void* camiaoUm, void* camiaoDois)
 camiao_compararMatricula	dados.c	/^int camiao_compararMatricula(void* camiaoUm, void* camiaoDois){$/;"	f	signature:(void* camiaoUm, void* camiaoDois)
@@ -77,12 +80,15 @@ camiao_dump	dados.c	/^void camiao_dump( void* camiao ){$/;"	f	signature:( void* 
 camiao_dump	dados.h	/^void camiao_dump( void* camiao );$/;"	p	signature:( void* camiao )
 camiao_novo	dados.c	/^CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double peso ){$/;"	f	signature:( unsigned int id, char *matricula, double custo, double peso )
 camiao_novo	dados.h	/^CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double peso );$/;"	p	signature:( unsigned int id, char *matricula, double custo, double peso )
+carga	dados.h	/^    LocalidadePTR carga;$/;"	m	struct:sServico	access:public
 chooseSO	utils.c	/^void chooseSO(){$/;"	f
 chooseSO	utils.h	/^void chooseSO();$/;"	p	signature:()
 clearInputBuffer	utils.c	/^void clearInputBuffer(){$/;"	f
 clearInputBuffer	utils.h	/^void clearInputBuffer();$/;"	p	signature:()
 clearScreen	utils.c	/^void clearScreen(){$/;"	f
 clearScreen	utils.h	/^void clearScreen();$/;"	p	signature:()
+cliente_comparaServico	dados.c	/^int cliente_comparaServico( void* servUm, void* servDois ){$/;"	f	signature:( void* servUm, void* servDois )
+cliente_comparaServico	dados.h	/^int cliente_comparaServico( void* servUm, void* servDois );$/;"	p	signature:( void* servUm, void* servDois )
 cliente_compararNif	dados.c	/^int cliente_compararNif(void* clienteUm, void* clienteDois){$/;"	f	signature:(void* clienteUm, void* clienteDois)
 cliente_compararNif	dados.h	/^int cliente_compararNif(void* clienteUm, void* clienteDois);$/;"	p	signature:(void* clienteUm, void* clienteDois)
 cliente_compararNome	dados.c	/^int cliente_compararNome(void* clienteUm, void* clienteDois){$/;"	f	signature:(void* clienteUm, void* clienteDois)
@@ -91,6 +97,8 @@ cliente_dump	dados.c	/^void cliente_dump( void* cliente ){$/;"	f	signature:( voi
 cliente_dump	dados.h	/^void cliente_dump( void* cliente );$/;"	p	signature:( void* cliente )
 cliente_getServico	dados.c	/^MainListPTR cliente_getServico( TreePt thisTreePt ){$/;"	f	signature:( TreePt thisTreePt )
 cliente_getServico	dados.h	/^MainListPTR cliente_getServico( TreePt thisTreePt );$/;"	p	signature:( TreePt thisTreePt )
+cliente_insereServico	dados.c	/^int cliente_insereServico( ClientePt thisCliente, CamiaoPt thisCamiao, double custo, double peso, LocalidadePTR origem, LocalidadePTR carga, LocalidadePTR destino ){$/;"	f	signature:( ClientePt thisCliente, CamiaoPt thisCamiao, double custo, double peso, LocalidadePTR origem, LocalidadePTR carga, LocalidadePTR destino )
+cliente_insereServico	dados.h	/^int cliente_insereServico( ClientePt thisCliente, CamiaoPt thisCamiao, double custo, double peso, LocalidadePTR origem, LocalidadePTR carga, LocalidadePTR destino );$/;"	p	signature:( ClientePt thisCliente, CamiaoPt thisCamiao, double custo, double peso, LocalidadePTR origem, LocalidadePTR carga, LocalidadePTR destino )
 cliente_novo	dados.c	/^ClientePt cliente_novo( unsigned int nif, char *nome, char *morada, MainListPTR servicos ){$/;"	f	signature:( unsigned int nif, char *nome, char *morada, MainListPTR servicos )
 cliente_novo	dados.h	/^ClientePt cliente_novo( unsigned int nif, char *nome, char *morada, MainListPTR servicos );$/;"	p	signature:( unsigned int nif, char *nome, char *morada, MainListPTR servicos )
 cliente_substituiPeloNif	dados.c	/^int cliente_substituiPeloNif( MainTreePt clientesPt, unsigned int procuraNif, unsigned int nif, char *nome, char *morada ){$/;"	f	signature:( MainTreePt clientesPt, unsigned int procuraNif, unsigned int nif, char *nome, char *morada )
@@ -118,6 +126,9 @@ crialocalidade	dados.c	/^LocalidadePTR crialocalidade (char* nome){$/;"	f	signat
 crialocalidade	dados.h	/^LocalidadePTR crialocalidade (char* nome);$/;"	p	signature:(char* nome)
 custo	dados.h	/^	float custo;$/;"	m	struct:Ligacoesida	access:public
 custo	dados.h	/^    double custo;$/;"	m	struct:sCamiao	access:public
+custo	dados.h	/^    double custo;$/;"	m	struct:sServico	access:public
+datahora	dados.h	/^    char *datahora; \/\/ "AAAA-MM-DD HH:MM:SS"$/;"	m	struct:sServico	access:public
+destino	dados.h	/^    LocalidadePTR destino;$/;"	m	struct:sServico	access:public
 diminuiTabelaHash	mod_tabela_hash.c	/^int diminuiTabelaHash (TabelaHashPTR table)$/;"	f	signature:(TabelaHashPTR table)
 diminuiTabelaHash	mod_tabela_hash.h	/^int diminuiTabelaHash (TabelaHashPTR table);$/;"	p	signature:(TabelaHashPTR table)
 distancia	dados.h	/^	float distancia;$/;"	m	struct:Ligacoesida	access:public
@@ -189,7 +200,9 @@ novaEscolha	menu.c	/^static void novaEscolha(int input, char *str){$/;"	f	file:	
 ocupacaoTabelaHash	mod_tabela_hash.c	/^int ocupacaoTabelaHash (TabelaHashPTR table)$/;"	f	signature:(TabelaHashPTR table)
 ocupacaoTabelaHash	mod_tabela_hash.h	/^int ocupacaoTabelaHash (TabelaHashPTR table);$/;"	p	signature:(TabelaHashPTR table)
 operativeSystem	utils.c	/^static char operativeSystem; \/**< Toma o valor 1 ou 2 consoante o sistema operativo em que o programa está a correr *\/$/;"	v	file:
+origem	dados.h	/^    LocalidadePTR origem;$/;"	m	struct:sServico	access:public
 peso	dados.h	/^    double peso;$/;"	m	struct:sCamiao	access:public
+peso	dados.h	/^    double peso;$/;"	m	struct:sServico	access:public
 printMenu	menu.c	/^int printMenu(int input){$/;"	f	signature:(int input)
 printMenu	menu.h	/^int printMenu(int input);$/;"	p	signature:(int input)
 procuraElementoLista	mod_lista_ligada.c	/^LinkedListPTR procuraElementoLista (MainListPTR lista, void *externdata)$/;"	f	signature:(MainListPTR lista, void *externdata)
@@ -229,6 +242,14 @@ sMainTree	mod_avl_n_dimensional.h	/^typedef struct sMainTree{$/;"	s
 sMainTree::compare	mod_avl_n_dimensional.h	/^    int (*compare[DIM])(void*,void*);$/;"	m	struct:sMainTree	access:public
 sMainTree::nodos	mod_avl_n_dimensional.h	/^    int nodos;$/;"	m	struct:sMainTree	access:public
 sMainTree::tree	mod_avl_n_dimensional.h	/^    TreePt tree[DIM];$/;"	m	struct:sMainTree	access:public
+sServico	dados.h	/^typedef struct sServico{$/;"	s
+sServico::camiao	dados.h	/^    CamiaoPt camiao;$/;"	m	struct:sServico	access:public
+sServico::carga	dados.h	/^    LocalidadePTR carga;$/;"	m	struct:sServico	access:public
+sServico::custo	dados.h	/^    double custo;$/;"	m	struct:sServico	access:public
+sServico::datahora	dados.h	/^    char *datahora; \/\/ "AAAA-MM-DD HH:MM:SS"$/;"	m	struct:sServico	access:public
+sServico::destino	dados.h	/^    LocalidadePTR destino;$/;"	m	struct:sServico	access:public
+sServico::origem	dados.h	/^    LocalidadePTR origem;$/;"	m	struct:sServico	access:public
+sServico::peso	dados.h	/^    double peso;$/;"	m	struct:sServico	access:public
 sTree	mod_avl_n_dimensional.h	/^typedef struct sTree{$/;"	s
 sTree::height	mod_avl_n_dimensional.h	/^    int height[DIM];$/;"	m	struct:sTree	access:public
 sTree::l	mod_avl_n_dimensional.h	/^    struct sTree *l[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
@@ -236,6 +257,8 @@ sTree::node	mod_avl_n_dimensional.h	/^    void *node;$/;"	m	struct:sTree	access:
 sTree::r	mod_avl_n_dimensional.h	/^    struct sTree *r[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
 servicos	dados.h	/^    MainListPTR servicos;$/;"	m	struct:sCliente	access:public
 startcells	mod_tabela_hash.h	/^	int startcells;$/;"	m	struct:TabelaHash	access:public
+tempo	utils.c	/^void tempo(char *str){$/;"	f	signature:(char *str)
+tempo	utils.h	/^void tempo(char *str);$/;"	p	signature:(char *str)
 totalcells	mod_tabela_hash.h	/^	int totalcells;$/;"	m	struct:TabelaHash	access:public
 tree	mod_avl_n_dimensional.h	/^    TreePt tree[DIM];$/;"	m	struct:sMainTree	access:public
 tree_applyToAllOrdered	mod_avl_n_dimensional.c	/^void tree_applyToAllOrdered(MainTreePt thisMainTree, int thisDim, void (*func)(void*)){$/;"	f	signature:(MainTreePt thisMainTree, int thisDim, void (*func)(void*))

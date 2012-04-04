@@ -324,8 +324,28 @@ void insereligacaoinput(TabelaHashPTR table){
 //
 // Funções dos serviços anteriores
 //
+int cliente_insereServico( ClientePt thisCliente, CamiaoPt thisCamiao, double custo, double peso, LocalidadePTR origem, LocalidadePTR carga, LocalidadePTR destino ){
+    ServicoPt thisServico;
+    if( (thisServico = (ServicoPt) malloc(sizeof(Servico))) == NULL ) return -1;
+    
+    thisServico->datahora = "datahora";
+    thisServico->camiao = thisCamiao;
+    thisServico->custo = custo;
+    thisServico->peso = peso;
+    thisServico->origem = origem;
+    thisServico->carga = carga;
+    thisServico->destino = destino;
+    
+    if( insereListaInicio( thisCliente->servicos, thisServico ) == 1 ) return 1;
+    else{
+        free(thisServico);
+        return 0;
+    }
+}
 
-
+int cliente_comparaServico( void* servUm, void* servDois ){
+    return strcmp( ((ServicoPt)servUm)->datahora, ((ServicoPt)servDois)->datahora );
+}
 
 //
 // Mais coisas?

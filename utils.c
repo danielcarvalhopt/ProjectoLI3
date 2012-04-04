@@ -93,7 +93,6 @@ char* allocStr(char *dest, char *src){
 	if( (dest = malloc(strlen(src) + 1)) == NULL ){
 		return NULL;
 	}
-	strcpy(dest, src);
         while( *src!='\n' && *src!='\0' ){
             *dest = *src;
             src++;
