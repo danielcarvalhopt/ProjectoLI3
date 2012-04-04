@@ -7,6 +7,7 @@
 #include <string.h>
 #include <limits.h>
 #include <math.h>
+#include <time.h>
 
 #include "utils.h"
 
@@ -33,6 +34,17 @@ void clearScreen(){
 			system("clear");
 		else
 			system("cls");
+}
+
+void tempo(char *str){
+    str = NULL;
+    time_t tempo;
+    if( (str = (char*)malloc(40*sizeof(char)) ) == NULL ) return;
+    tempo = time(NULL);
+    
+    printf("%s\n",ctime(&tempo));
+
+    printf("%d\n", strftime( str, 40, "%Y-%m-%d %H:%M:%S", localtime(&tempo) ));
 }
 
 
@@ -82,6 +94,12 @@ char* allocStr(char *dest, char *src){
 		return NULL;
 	}
 	strcpy(dest, src);
+        while( *src!='\n' && *src!='\0' ){
+            *dest = *src;
+            src++;
+            dest++;
+        }
+        *dest = '\0';
 	return dest;
 }
 

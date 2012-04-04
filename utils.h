@@ -8,7 +8,7 @@
 
 //////////////////////////////////
 //
-// I/O geral
+// Geral
 //
 //////////////////////////////////
 
@@ -26,6 +26,13 @@ void chooseSO();
  * @brief Limpa o texto e coloca o cursor no topo da consola
  * */
 void clearScreen();
+
+/**
+ * @brief Insere a data e hora actual numa string
+ * @details O formato é AAAA-MM-DD hh:mm:ss (MM - mês, mm - minutos). Desta forma o tamanho máximo da string é 19 caracteres
+ * @param str a String que vai receber a hora e data
+ * */
+void tempo(char *str);
 
 //////////////////////////////////
 //
