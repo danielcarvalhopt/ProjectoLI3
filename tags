@@ -54,8 +54,8 @@ TabelaHashPTR	mod_tabela_hash.h	/^}*TabelaHashPTR;$/;"	t	typeref:struct:TabelaHa
 Tree	mod_avl_n_dimensional.h	/^} Tree, *TreePt;$/;"	t	typeref:struct:sTree
 TreePt	mod_avl_n_dimensional.h	/^} Tree, *TreePt;$/;"	t	typeref:struct:sTree
 UTILS_H_INCLUDED	utils.h	7;"	d
-allocStr	utils.c	/^char* allocStr(char *dest, char *src){$/;"	f	signature:(char *dest, char *src)
-allocStr	utils.h	/^char* allocStr(char *dest, char *src);$/;"	p	signature:(char *dest, char *src)
+allocStr	utils.c	/^char* allocStr(char *src){$/;"	f	signature:(char *src)
+allocStr	utils.h	/^char* allocStr(char *src);$/;"	p	signature:(char *src)
 apagaElemento	mod_lista_ligada.c	/^void apagaElemento (LinkedListPTR *elem)$/;"	f	signature:(LinkedListPTR *elem)
 apagaElemento	mod_lista_ligada.h	/^void apagaElemento (LinkedListPTR *elem);$/;"	p	signature:(LinkedListPTR *elem)
 apagaElementoLista	mod_lista_ligada.c	/^int apagaElementoLista (MainListPTR lista, void* externdata)$/;"	f	signature:(MainListPTR lista, void* externdata)

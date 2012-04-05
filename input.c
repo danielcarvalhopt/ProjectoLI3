@@ -18,7 +18,7 @@ char* readStr(char *ptr){
     strBuffer[i] = '\0';
     
     //fgets(strBuffer, 1023, stdin);
-    allocStr(ptr, strBuffer);
+    ptr = allocStr(strBuffer);
     return ptr;
 }
 
@@ -36,7 +36,7 @@ int lerStr(char *ptr){
         excedeu=-1;
     }
     
-    if( allocStr(ptr, strBuffer) == NULL )
+    if( (ptr = allocStr(strBuffer)) == NULL )
         return 0;
     else
         return excedeu;

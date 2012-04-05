@@ -89,15 +89,16 @@ int intcmp(int a, int b){
 
 
 
-char* allocStr(char *dest, char *src){
-    if( (dest = malloc(strlen(src) + 1)) == NULL )
+char* allocStr(char *src){
+    char *dest = NULL;
+    if( (dest = (char*)malloc(strlen(src) + 1)) == NULL )
         return NULL;
     strcpy(dest, src);
     return dest;
 }
 
 char* concatStr(char *dest, char *src){
-    if( (dest = realloc( dest, (strlen(dest) + strlen(src) + 1) )) == NULL )
+    if( (dest = (char*)realloc( dest, (strlen(dest) + strlen(src) + 1) )) == NULL )
         return NULL;
     strcat(dest,src);
     return dest;

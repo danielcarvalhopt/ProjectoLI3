@@ -134,10 +134,10 @@ int compareligacoesvinda (void *a, void *b){
 }
 
 LocalidadePTR crialocalidade (char* nome){
-    LocalidadePTR localidade; char* nomelocalidade=NULL;
+    LocalidadePTR localidade;
 
     localidade = (LocalidadePTR)malloc(sizeof(struct Localidade));
-    localidade->nome=allocStr(nomelocalidade,nome);
+    localidade->nome=allocStr(nome);
     localidade->ligacoesida=criaListaLigada(compareligacoesida);
     localidade->ligacoesvinda=criaListaLigada(compareligacoesvinda);
 
@@ -161,10 +161,10 @@ int removerlocalidade (TabelaHashPTR table, char *nome){
 }
 
 LigacoesidaPTR crialigacaoida (char* nome, float custo, float distancia){
-    LigacoesidaPTR ligacao; char *nomelocalidade=NULL;
+    LigacoesidaPTR ligacao;
 
     ligacao = malloc (sizeof(struct Ligacoesida));
-    ligacao->nome = allocStr(nomelocalidade,nome);
+    ligacao->nome = allocStr(nome);
     ligacao->custo=custo;
     ligacao->distancia=distancia;
 
@@ -172,10 +172,10 @@ LigacoesidaPTR crialigacaoida (char* nome, float custo, float distancia){
 }
 
 LigacoesvindaPTR crialigacaovinda (char* nome){
-    LigacoesvindaPTR ligacao; char *nomelocalidade=NULL;
+    LigacoesvindaPTR ligacao;
 
     ligacao = (LigacoesvindaPTR)malloc(sizeof(struct Ligacoesvinda));
-    ligacao->nome=allocStr(nomelocalidade,nome);
+    ligacao->nome=allocStr(nome);
 
     return ligacao;
 }
