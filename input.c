@@ -24,7 +24,7 @@ char* readStr(char *ptr){
 
 int lerStr(char *ptr){
     char strBuffer[1024];
-    int i=0;
+    int i=0, excedeu=1;
     
     do{
         strBuffer[i] = getchar();
@@ -33,12 +33,13 @@ int lerStr(char *ptr){
     strBuffer[i] = '\0';
     if( i == 1023 ){
         clearInputBuffer();
-        if( allocStr(ptr, strBuffer) == 0 )
-            return 0;
-        else //conseguiu ler, mas a string está incompleta
-            return -1;
-    }else
-        return allocStr(ptr, strBuffer);
+        excedeu=-1;
+    }
+    
+    if( allocStr(ptr, strBuffer) == NULL )
+        return 0;
+    else
+        return excedeu;
 }
 
 
