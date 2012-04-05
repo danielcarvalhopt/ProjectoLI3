@@ -37,11 +37,13 @@ typedef struct sTree{
  *          Contém apontadores para o topo das árvores das várias
  *          dimensões e uma função de comparação para cada dimensão.
  * @param tree Array de apontadores para o topo da árvore
+ * @param nodos Inteiro que tem o número de nodos presentes na árvore
  * @param compare Array de apontadores para as funções de comparação dos nodos
  * @see mod_avl_n_dimensional.h
  * */
 typedef struct sMainTree{
     TreePt tree[DIM];
+    int nodos;
     int (*compare[DIM])(void*,void*);
 } MainTree, *MainTreePt;
 

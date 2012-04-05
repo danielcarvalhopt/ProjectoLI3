@@ -27,7 +27,14 @@
 #include "mod_avl_n_dimensional.h"
 #include "mod_lista_ligada.h"
 #include "mod_tabela_hash.h"
-
+/*
+int main(){
+    char *lol =NULL;
+    tempo(lol);
+    printf("%s",lol);
+    return 1;
+}
+*/
 
 int main(){
     int input=0;

@@ -374,18 +374,54 @@ void imprimeLocalidades (TabelaHashPTR table);
 void imprimelistaligacoesinput(TabelaHashPTR localidades);
 void editaligacaoinput(TabelaHashPTR localidades);
 
-/*
+
 //
 // Funções e estruturas dos serviços anteriores
 //
-
+/**
+ * @brief Estrutura de dados que define um serviço anterior 
+ * @param datahora Data e hora do pedido
+ * @param camiao Camião que fez o serviço
+ * @param origem Local onde estava o camião antes do pedido
+ * @param carga Local para onde o camião se deslocou para ser carregado
+ * @param destino Local para onde o camião transportou a carga
+ * */
 typedef struct sServico{
-
+    char *datahora; // "AAAA-MM-DD HH:MM:SS"
+    CamiaoPt camiao;
+    double custo;
+    double peso;
+    LocalidadePTR origem;
+    LocalidadePTR carga;
+    LocalidadePTR destino;
 } Servico, *ServicoPt;
+
+/**
+ * @brief Insere um serviço na lista de serviços
+ * @param thisCliente O cliente a associar ao serviço
+ * @param thisCamiao O camiao a associar ao serviço
+ * @param origem Local onde estava o camião antes do pedido
+ * @param carga Local para onde o camião se deslocou para ser carregado
+ * @param destino Local para onde o camião transportou a carga
+ * @return -1 Não conseguiu alocar
+ * @return 0 Não conseguiu inserir
+ * @return 1 Inseriu o serviço na lista
+ * */
+int cliente_insereServico( ClientePt thisCliente, CamiaoPt thisCamiao, double custo, double peso, LocalidadePTR origem, LocalidadePTR carga, LocalidadePTR destino );
+
+/**
+ * @brief Compara as datas de dois serviços
+ * @param servUm Primeiro serviço
+ * @param servDois Segundo serviço
+ * @return <0 Primeira data é anterior à segunda
+ * @return =0 As datas sao iguais
+ * @return >0 Primeira data é posterior à segunda
+ * */
+int cliente_comparaServico( void* servUm, void* servDois );
 
 //
 // Mais coisas?
 // 
-*/
+
 
 #endif /* DADOS_H_INCLUDED */
