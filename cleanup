@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+find . -name "*.swp" -delete
 find . -name "*.gch" -delete
 find . -name "*.o" -delete
 find . -name "transportes" -delete
