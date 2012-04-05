@@ -416,7 +416,7 @@ int printMenu(int input){
 	return input;
 }
 
-int getInput(int input, MainTreePt camioes, MainTreePt clientes){
+int getInput(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR localidades){
     //alguns dados para testes
 
     Camiao camiao_teste[20] = {
@@ -523,14 +523,14 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes){
             else if( input != 0 )
                 input = 4;
             break;
-        case 41: getchar(); clearInputBuffer(); input=0; break;
-        case 42: getchar(); clearInputBuffer(); input=0; break;
-        case 43: getchar(); clearInputBuffer(); input=0; break;
+        case 41: inserelocalidadeinput(localidades); clearInputBuffer(); input=0; break;
+        case 42: removelocalidadeinput(localidades); clearInputBuffer(); input=0; break;
+        case 43: imprimeLocalidades(localidades); clearInputBuffer(); input=0; break;
         case 44: getchar(); clearInputBuffer(); input=0; break;
-        case 45: getchar(); clearInputBuffer(); input=0; break;
-        case 46: getchar(); clearInputBuffer(); input=0; break;
-        case 47: getchar(); clearInputBuffer(); input=0; break;
-        case 48: getchar(); clearInputBuffer(); input=0; break;
+        case 45: insereligacaoinput(localidades); clearInputBuffer(); input=0; break;
+        case 46: removeligacaoinput(localidades); clearInputBuffer(); input=0; break;
+        case 47: imprimelistaligacoesinput(localidades); clearInputBuffer(); input=0; break;
+        case 48: editaligacaoinput(localidades); clearInputBuffer(); input=0; break;
         case 9:
             input = getIntLoop();
             if( input == 1 || input == 2 )

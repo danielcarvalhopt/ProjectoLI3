@@ -105,6 +105,7 @@ cliente_substituiPeloNif	dados.c	/^int cliente_substituiPeloNif( MainTreePt clie
 cliente_substituiPeloNif	dados.h	/^int cliente_substituiPeloNif( MainTreePt clientesPt, unsigned int procuraNif, unsigned int nif, char *nome, char *morada );$/;"	p	signature:( MainTreePt clientesPt, unsigned int procuraNif, unsigned int nif, char *nome, char *morada )
 cliente_substituiPeloNome	dados.c	/^int cliente_substituiPeloNome( MainTreePt clientesPt, char *procuraNome, unsigned int nif, char *nome, char *morada ){$/;"	f	signature:( MainTreePt clientesPt, char *procuraNome, unsigned int nif, char *nome, char *morada )
 cliente_substituiPeloNome	dados.h	/^int cliente_substituiPeloNome( MainTreePt clientesPt, char *procuraNome, unsigned int nif, char *nome, char *morada );$/;"	p	signature:( MainTreePt clientesPt, char *procuraNome, unsigned int nif, char *nome, char *morada )
+cloneLocalidade	dados.c	/^LocalidadePTR cloneLocalidade (LocalidadePTR localidade)$/;"	f	signature:(LocalidadePTR localidade)
 comparalocalidades	dados.c	/^int comparalocalidades (void *a, void *b){$/;"	f	signature:(void *a, void *b)
 comparalocalidades	dados.h	/^int comparalocalidades (void *a, void *b);$/;"	p	signature:(void *a, void *b)
 compare	mod_avl_n_dimensional.h	/^    int (*compare[DIM])(void*,void*);$/;"	m	struct:sMainTree	access:public
@@ -132,22 +133,29 @@ destino	dados.h	/^    LocalidadePTR destino;$/;"	m	struct:sServico	access:public
 diminuiTabelaHash	mod_tabela_hash.c	/^int diminuiTabelaHash (TabelaHashPTR table)$/;"	f	signature:(TabelaHashPTR table)
 diminuiTabelaHash	mod_tabela_hash.h	/^int diminuiTabelaHash (TabelaHashPTR table);$/;"	p	signature:(TabelaHashPTR table)
 distancia	dados.h	/^	float distancia;$/;"	m	struct:Ligacoesida	access:public
+editaligacaoinput	dados.c	/^void editaligacaoinput(TabelaHashPTR localidades)$/;"	f	signature:(TabelaHashPTR localidades)
+editaligacaoinput	dados.h	/^void editaligacaoinput(TabelaHashPTR localidades);$/;"	p	signature:(TabelaHashPTR localidades)
 elems	mod_lista_ligada.h	/^	LinkedListPTR elems;     			\/\/ Apontador para uma lista ligada                    $/;"	m	struct:MainList	access:public
 extdata	mod_lista_ligada.h	/^	void *extdata;      		\/\/ Apontador para o elemento da lista       $/;"	m	struct:linkedList	access:public
 func_compare	mod_lista_ligada.h	/^	int (*func_compare)(void*,void*);   \/\/ Função de comparação de elementos da lista ligada$/;"	m	struct:MainList	access:public
-getInput	menu.c	/^int getInput(int input, MainTreePt camioes, MainTreePt clientes){$/;"	f	signature:(int input, MainTreePt camioes, MainTreePt clientes)
-getInput	menu.h	/^int getInput(int input, MainTreePt camioes, MainTreePt clientes);$/;"	p	signature:(int input, MainTreePt camioes, MainTreePt clientes)
+getInput	menu.c	/^int getInput(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR localidades){$/;"	f	signature:(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR localidades)
+getInput	menu.h	/^int getInput(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR localidades);$/;"	p	signature:(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR localidades)
 getIntLoop	menu.c	/^int getIntLoop(){$/;"	f
 getIntLoop	menu.h	/^int getIntLoop();$/;"	p	signature:()
+hash_function	dados.c	/^int hash_function (void *localidade, int hashsize)$/;"	f	signature:(void *localidade, int hashsize)
+hash_function	dados.h	/^int hash_function (void *localidade, int hashsize);$/;"	p	signature:(void *localidade, int hashsize)
 hash_function	mod_tabela_hash.h	/^	int (*hash_function)(void*,int);$/;"	m	struct:TabelaHash	access:public
-hashprint	dados.c	/^void hashprint (TabelaHashPTR table){$/;"	f	signature:(TabelaHashPTR table)
 hashprint	dados.h	/^void hashprint (TabelaHashPTR table);$/;"	p	signature:(TabelaHashPTR table)
 height	mod_avl_n_dimensional.h	/^    int height[DIM];$/;"	m	struct:sTree	access:public
 id	dados.h	/^    unsigned int id;$/;"	m	struct:sCamiao	access:public
+imprimeLocalidades	dados.c	/^void imprimeLocalidades (TabelaHashPTR table){$/;"	f	signature:(TabelaHashPTR table)
+imprimeLocalidades	dados.h	/^void imprimeLocalidades (TabelaHashPTR table);$/;"	p	signature:(TabelaHashPTR table)
 imprimelista	dados.c	/^void imprimelista(LinkedListPTR lista){$/;"	f	signature:(LinkedListPTR lista)
 imprimelista	dados.h	/^void imprimelista(LinkedListPTR lista);$/;"	p	signature:(LinkedListPTR lista)
 imprimelistaligacoes	dados.c	/^void imprimelistaligacoes(LinkedListPTR lista){$/;"	f	signature:(LinkedListPTR lista)
 imprimelistaligacoes	dados.h	/^void imprimelistaligacoes(LinkedListPTR lista);$/;"	p	signature:(LinkedListPTR lista)
+imprimelistaligacoesinput	dados.c	/^void imprimelistaligacoesinput(TabelaHashPTR localidades)$/;"	f	signature:(TabelaHashPTR localidades)
+imprimelistaligacoesinput	dados.h	/^void imprimelistaligacoesinput(TabelaHashPTR localidades);$/;"	p	signature:(TabelaHashPTR localidades)
 inicializarAtalhos	menu.c	/^void inicializarAtalhos(){$/;"	f
 inicializarAtalhos	menu.h	/^void inicializarAtalhos();$/;"	p	signature:()
 insereElementoTabelaHash	mod_tabela_hash.c	/^int insereElementoTabelaHash (TabelaHashPTR table, void *externdata)$/;"	f	signature:(TabelaHashPTR table, void *externdata)

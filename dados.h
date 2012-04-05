@@ -9,6 +9,8 @@
 #include "mod_lista_ligada.h"
 #include "mod_avl_n_dimensional.h"
 #include "mod_tabela_hash.h"
+ 
+
 
 //
 // Funções e estruturas dos camiões
@@ -215,6 +217,10 @@ typedef struct Localidade{
 	MainListPTR ligacoesvinda;
 }*LocalidadePTR;
 
+
+
+int hash_function (void *localidade, int hashsize);
+
 /**
     @brief Pede a inserção do nome das localidades de onde se pretende remover uma ligação
     @details Pede a inserção do nome das localidades de onde se pretende remover uma ligação invocando as
@@ -364,7 +370,9 @@ void inserelocalidadeinput(TabelaHashPTR table);
 void removelocalidadeinput(TabelaHashPTR table);
 void insereligacaoinput(TabelaHashPTR table);
 void removeligacaoinput(TabelaHashPTR table);
-
+void imprimeLocalidades (TabelaHashPTR table);
+void imprimelistaligacoesinput(TabelaHashPTR localidades);
+void editaligacaoinput(TabelaHashPTR localidades);
 
 //
 // Funções e estruturas dos serviços anteriores
