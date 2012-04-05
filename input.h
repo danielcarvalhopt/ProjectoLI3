@@ -31,9 +31,21 @@ int readInt();
  *          depois aloca espaço em memória suficiente para conter o
  *          conjunto de caracteres lido e devolve um apontador para
  *          o início do espaço criado.
+ * @param ptr O apontador que vai ficar a apontar para a String lida
  * @return Um apontador para o primeiro caracter da sequência lida
  * @see allocStr()
  * */
 char* readStr(char *ptr);
+
+/**
+ * @brief  Lê um conjunto de caracteres
+ * @details Começa por criar um String buffer, depois vai ler caracteres para o buffer até ler \0, \n ou chegar ao limite do buffer. No caso de chegar ao limite do buffer é enviado um sinal específico. 
+ * @param ptr O apontador que vai ficar a apontar para a String lida
+ * @return -1 se leu a string, mas teve de a cortar porque era maior que o buffer
+ * @return 0 se não consguiu alocar espaço para a string
+ * @return 1 se teve sucesso na leitura dos caracteres
+ * @see allocStr()
+ * */
+int lerStr(char *ptr);
 
 #endif /* INPUT_H_INCLUDED */

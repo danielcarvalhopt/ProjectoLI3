@@ -89,70 +89,62 @@ int intcmp(int a, int b){
 
 
 
-char* allocStr(char *dest, char *src){
-	if( (dest = malloc(strlen(src) + 1)) == NULL ){
-		return NULL;
-	}
-        while( *src!='\n' && *src!='\0' ){
-            *dest = *src;
-            src++;
-            dest++;
-        }
-        *dest = '\0';
-	return dest;
+int allocStr(char *dest, char *src){
+    if( (dest = malloc(strlen(src) + 1)) == NULL )
+        return 0;
+    strcpy(dest, src);
+    return 1;
 }
 
-char* concatStr(char *dest, char *src){
-	if( (dest = realloc( dest, (strlen(dest) + strlen(src) + 1) )) == NULL ){
-		//printf("Out of memory");
-		return NULL;
-	}
+int concatStr(char *dest, char *src){
+    if( (dest = realloc( dest, (strlen(dest) + strlen(src) + 1) )) == NULL )
+        return 0;
     strcat(dest,src);
-    return dest;
+    return 1;
 }
 /*
-funções sem interesse--
+   funções sem interesse--
 
-char* extendStr(char *str, int i){
-	if( (str = realloc( str, (strlen(str) + i + 1) )) == NULL ){
-		//printf("Out of memory");
-		return NULL;
-	}
-	return str;
+   char* extendStr(char *str, int i){
+   if( (str = realloc( str, (strlen(str) + i + 1) )) == NULL ){
+//printf("Out of memory");
+return NULL;
+}
+return str;
 }
 
 char* addCharEnd(char *dest, char chr){
-	while(dest != '\0') dest++;
-	*(dest) = chr;
-	*(dest+1) = '\0';
-	return (dest+1);
-}
+while(dest != '\0') dest++;
+ *(dest) = chr;
+ *(dest+1) = '\0';
+ return (dest+1);
+ }
 
-char* addnCharEnd(char *dest, char chr, int i){
-	if( i > 0 ){
-		while(dest != '\0') dest++;
-		for(;i>0;i--){
-			*dest = chr;
-			dest++;
-		}
-		*dest = '\0';
-	}
-	return dest;
-}
+ char* addnCharEnd(char *dest, char chr, int i){
+ if( i > 0 ){
+ while(dest != '\0') dest++;
+ for(;i>0;i--){
+ *dest = chr;
+ dest++;
+ }
+ *dest = '\0';
+ }
+ return dest;
+ }
 
-char* addChar(char *dest, char chr){
-	*(dest) = chr;
-	*(dest+1) = '\0';
-	return (dest+1);
-}
+ char* addChar(char *dest, char chr){
+ *(dest) = chr;
+ *(dest+1) = '\0';
+ return (dest+1);
+ }
 
-char* addnChar(char *dest, char chr, int i){
-	for(;i>0;i--){
-		*dest = chr;
-		dest++;
-	}
-	*dest = '\0';
-	return dest;
-}
-*/
+ char* addnChar(char *dest, char chr, int i){
+ for(;i>0;i--){
+ *dest = chr;
+ dest++;
+ }
+ *dest = '\0';
+ return dest;
+ }
+ */
 

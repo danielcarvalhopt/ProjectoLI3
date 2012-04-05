@@ -126,10 +126,10 @@ int isDouble(double n);
  *          conteúdo da origem (src) para o destino (dest).
  * @param dest String de destino
  * @param src String de origem
- * @return Um apontador para a cópia da string em src
- *         NULL se não conseguir alocar espaço para a nova string
+ * @return 0 Caso nao tenha conseguido alocar espaço para a nova string
+ * @return 1 Caso tenha tido sucesso
  * */
-char* allocStr(char *dest, char *src);
+int allocStr(char *dest, char *src);
 
 /**
  * @brief Concatena src em dest
@@ -137,10 +137,11 @@ char* allocStr(char *dest, char *src);
  *          inseridas no espaço apontado por dest. Depois concatena as duas
  *          strings nesse espaço.
  * @param dest String de destino
- * @param src String de destino
- * @return Uma string com a concatenação das duas strings que são passadas como argumento
+ * @param src String de origem
+ * @return 0 Caso nao tenha conseguido alocar espaço para a nova string
+ * @return 1 Caso tenha tido sucesso
  * */
-char* concatStr(char *dest, char *src);
+int concatStr(char *dest, char *src);
 
 /*
 funções sem interesse--

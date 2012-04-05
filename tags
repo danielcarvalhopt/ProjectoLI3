@@ -54,8 +54,8 @@ TabelaHashPTR	mod_tabela_hash.h	/^}*TabelaHashPTR;$/;"	t	typeref:struct:TabelaHa
 Tree	mod_avl_n_dimensional.h	/^} Tree, *TreePt;$/;"	t	typeref:struct:sTree
 TreePt	mod_avl_n_dimensional.h	/^} Tree, *TreePt;$/;"	t	typeref:struct:sTree
 UTILS_H_INCLUDED	utils.h	7;"	d
-allocStr	utils.c	/^char* allocStr(char *dest, char *src){$/;"	f	signature:(char *dest, char *src)
-allocStr	utils.h	/^char* allocStr(char *dest, char *src);$/;"	p	signature:(char *dest, char *src)
+allocStr	utils.c	/^int allocStr(char *dest, char *src){$/;"	f	signature:(char *dest, char *src)
+allocStr	utils.h	/^int allocStr(char *dest, char *src);$/;"	p	signature:(char *dest, char *src)
 apagaElemento	mod_lista_ligada.c	/^void apagaElemento (LinkedListPTR *elem)$/;"	f	signature:(LinkedListPTR *elem)
 apagaElemento	mod_lista_ligada.h	/^void apagaElemento (LinkedListPTR *elem);$/;"	p	signature:(LinkedListPTR *elem)
 apagaElementoLista	mod_lista_ligada.c	/^int apagaElementoLista (MainListPTR lista, void* externdata)$/;"	f	signature:(MainListPTR lista, void* externdata)
@@ -112,8 +112,8 @@ compareligacoesida	dados.c	/^int compareligacoesida (void *a, void *b){$/;"	f	si
 compareligacoesida	dados.h	/^int compareligacoesida (void *a, void *b);$/;"	p	signature:(void *a, void *b)
 compareligacoesvinda	dados.c	/^int compareligacoesvinda (void *a, void *b){$/;"	f	signature:(void *a, void *b)
 compareligacoesvinda	dados.h	/^int compareligacoesvinda (void *a, void *b);$/;"	p	signature:(void *a, void *b)
-concatStr	utils.c	/^char* concatStr(char *dest, char *src){$/;"	f	signature:(char *dest, char *src)
-concatStr	utils.h	/^char* concatStr(char *dest, char *src);$/;"	p	signature:(char *dest, char *src)
+concatStr	utils.c	/^int concatStr(char *dest, char *src){$/;"	f	signature:(char *dest, char *src)
+concatStr	utils.h	/^int concatStr(char *dest, char *src);$/;"	p	signature:(char *dest, char *src)
 criaListaLigada	mod_lista_ligada.c	/^MainListPTR criaListaLigada(int(*func_compare)(void*,void*)) $/;"	f	signature:(int(*func_compare)(void*,void*))
 criaListaLigada	mod_lista_ligada.h	/^MainListPTR criaListaLigada(int(*func_compare)(void*,void*));$/;"	p	signature:(int(*func_compare)(void*,void*))
 criaTabelaHash	mod_tabela_hash.c	/^TabelaHashPTR criaTabelaHash (int(*hash_function)(void*,int), int startcells, int (*func_compare)(void*,void*))$/;"	f	signature:(int(*hash_function)(void*,int), int startcells, int (*func_compare)(void*,void*))
@@ -177,6 +177,8 @@ isUInt	utils.h	/^int isUInt(unsigned int n);$/;"	p	signature:(unsigned int n)
 l	mod_avl_n_dimensional.h	/^    struct sTree *l[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
 lastInt	menu.c	/^static int lastInt[3];          \/**< Representação numérica dos atalhos **\/$/;"	v	file:
 lastString	menu.c	/^static char lastString[3][54];  \/**<  Representação string dos atalhos  **\/$/;"	v	file:
+lerStr	input.c	/^int lerStr(char *ptr){$/;"	f	signature:(char *ptr)
+lerStr	input.h	/^int lerStr(char *ptr);$/;"	p	signature:(char *ptr)
 ligacoesida	dados.h	/^	MainListPTR ligacoesida;$/;"	m	struct:Localidade	access:public
 ligacoesvinda	dados.h	/^	MainListPTR ligacoesvinda;$/;"	m	struct:Localidade	access:public
 linkedList	mod_lista_ligada.h	/^typedef struct linkedList {$/;"	s
