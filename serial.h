@@ -7,5 +7,11 @@
 #ifndef SERIAL_H_INCLUDED
 #define SERIAL_H_INCLUDED
 
+#include "mod_avl_n_dimensional.h"
+#include "mod_tabela_hash.h"
+
+
+void serialize(TabelaHashPTR tabela, MainTreePt camioes, MainTreePt clientes);
+void deserialize();
 
 #endif /* MENU_H_INCLUDED */

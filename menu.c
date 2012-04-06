@@ -419,50 +419,6 @@ int printMenu(int input){
 int getInput(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR localidades){
     //alguns dados para testes
 
-    Camiao camiao_teste[20] = {
-        {0, "00-60-00", 1.0, 10},
-        {1, "60-00-00", 1.5, 10},
-        {2, "00-00-60", 2.0, 10},
-        {3, "00-85-00", 2.5, 10},
-        {4, "94-00-00", 3.0, 10},
-        {5, "00-63-85", 3.5, 10},
-        {6, "63-00-60", 4.0, 10},
-        {7, "60-94-00", 4.5, 10},
-        {8, "85-85-85", 5.0, 10},
-        {9, "85-AA-85", 5.5, 10},
-        {10, "60-BB-00", 6.0, 10},
-        {11, "00-BB-60", 6.5, 10},
-        {12, "94-CC-00", 7.0, 10},
-        {13, "00-DC-00", 7.5, 10},
-        {14, "00-BB-00", 8.0, 10},
-        {15, "00-AA-00", 8.5, 10},
-        {16, "85-XX-00", 9.0, 10},
-        {17, "94-94-94", 9.5, 10},
-        {18, "85-85-85",10.0, 10},
-        {19, "60-60-60",10.5, 10} };
-    Cliente cliente_teste[20] = {
-        {111111111, "luis", "Rua de baixo", NULL},
-        {222222222, "paulo", "Rua de cima", NULL},
-        {333333333, "joaquim", "Rua da esquerda", NULL},
-        {444444444, "albertina", "Rua da direita", NULL},
-        {726347623, "daniel", "praça do centro", NULL},
-        {638649271, "bruno", "praça ao lado", NULL},
-        {119372931, "fernando", "rua do fernando", NULL},
-        {682643264, "vanessa", "cidade feliz", NULL},
-        { 64826471, "claudia", "rua atravessada", NULL},
-        {101928498, "bernardo", "estrada do ar", NULL},
-        {628303648, "rui", "rua sem nome", NULL},
-        {356456456, "josé", "mais um nome de rua", NULL},
-        {554555423, "antonio", "um nome de cidade", NULL},
-        {729372984, "joao", "lisboa", NULL},
-        {380934803, "jorge", "porto", NULL},
-        {987654321, "joana", "santarem", NULL},
-        {456789121, "antonia", "leiria", NULL},
-        {732738231, "fernanda", "braga", NULL},
-        {452134541, "bruna", "guimarães", NULL},
-        {454645231, "vasco", "ultima rua à direita", NULL}
-    };
-    int i;
     switch( input ){
         case -1:
             input = 0;
@@ -475,8 +431,6 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR l
                 input = 2;
             break;
         case 21:
-            for(i=0; i<20; i++)
-                tree_insert(clientes, cliente_novo( cliente_teste[i].nif, cliente_teste[i].nome, cliente_teste[i].morada, cliente_teste[i].servicos ));
             getchar(); clearInputBuffer();
             input = 0;
             break;
@@ -499,8 +453,6 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR l
                 input = 3;
             break;
         case 31:
-            for(i=0; i<20; i++)
-                tree_insert( camioes, camiao_novo( camiao_teste[i].id, camiao_teste[i].matricula, camiao_teste[i].custo, camiao_teste[i].peso ) );
             getchar(); clearInputBuffer();
             input = 0;
             break;

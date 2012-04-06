@@ -36,15 +36,16 @@ void clearScreen(){
 			system("cls");
 }
 
-void tempo(char *str){
-    str = NULL;
-    time_t tempo;
-    if( (str = (char*)malloc(40*sizeof(char)) ) == NULL ) return;
-    tempo = time(NULL);
+int putTime(char **str){
+    time_t t;
+    if( (*str = (char*)malloc(20*sizeof(char)) ) == NULL ) return 0;
+    t = time(NULL);
     
-    printf("%s\n",ctime(&tempo));
-
-    printf("%d\n", strftime( str, 40, "%Y-%m-%d %H:%M:%S", localtime(&tempo) ));
+    if( strftime( *str, 20, "%Y-%m-%d %H:%M:%S", localtime(&t) ) == 0 ){
+        free(*str);
+        return -1;
+    }    
+    return 1;
 }
 
 

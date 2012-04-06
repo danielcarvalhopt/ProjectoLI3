@@ -403,7 +403,7 @@ typedef struct sServico{
  * @param carga Local para onde o camião se deslocou para ser carregado
  * @param destino Local para onde o camião transportou a carga
  * @return -1 Não conseguiu alocar
- * @return 0 Não conseguiu inserir
+ * @return 0 Não conseguiu inserir ou não conseguiu gerar a data e hora
  * @return 1 Inseriu o serviço na lista
  * */
 int cliente_insereServico( ClientePt thisCliente, CamiaoPt thisCamiao, double custo, double peso, LocalidadePTR origem, LocalidadePTR carga, LocalidadePTR destino );

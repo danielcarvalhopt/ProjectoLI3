@@ -412,11 +412,10 @@ void imprimelistaligacoes(LinkedListPTR lista){
     }
 }
 
-
 LocalidadePTR cloneLocalidade (LocalidadePTR localidade)
 {
     LocalidadePTR novo;
-    novo=(LocalidadePTR)malloc(sizeof(Localidade));
+    novo=(LocalidadePTR)malloc(sizeof(localidade));
 
     
 
@@ -428,21 +427,29 @@ LocalidadePTR cloneLocalidade (LocalidadePTR localidade)
 //
 int cliente_insereServico( ClientePt thisCliente, CamiaoPt thisCamiao, double custo, double peso, LocalidadePTR origem, LocalidadePTR carga, LocalidadePTR destino ){
     ServicoPt thisServico;
-    if( (thisServico = (ServicoPt) malloc(sizeof(Servico))) == NULL ) return -1;
-    
-    thisServico->datahora = "datahora";
-    thisServico->camiao = thisCamiao;
-    thisServico->custo = custo;
-    thisServico->peso = peso;
-    thisServico->origem = origem;
-    thisServico->carga = carga;
-    thisServico->destino = destino;
-    
-    if( insereListaInicio( thisCliente->servicos, thisServico ) == 1 ) return 1;
-    else{
+    int ret = 1;
+    if( (thisServico = (ServicoPt) malloc(sizeof(Servico))) != NULL ){
+        if( putTime(&thisServico->datahora) == 1 ){
+            thisServico->camiao = thisCamiao;
+            thisServico->custo = custo;
+            thisServico->peso = peso;
+            thisServico->origem = origem;
+            thisServico->carga = carga;
+            thisServico->destino = destino;
+
+            if( insereListaInicio( thisCliente->servicos, thisServico ) == 1 )
+                ret = 1;
+            else
+                ret = 0;
+        }else ret = 0;
+    }else ret = -1;
+
+    if( ret == 0 ){ //nao conseguiu inserir ou nao conseguiu gerar a data e hora
+        free(thisServico->datahora);
         free(thisServico);
-        return 0;
     }
+
+    return ret;
 }
 
 int cliente_comparaServico( void* servUm, void* servDois ){

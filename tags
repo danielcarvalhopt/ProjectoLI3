@@ -129,6 +129,8 @@ custo	dados.h	/^	float custo;$/;"	m	struct:Ligacoesida	access:public
 custo	dados.h	/^    double custo;$/;"	m	struct:sCamiao	access:public
 custo	dados.h	/^    double custo;$/;"	m	struct:sServico	access:public
 datahora	dados.h	/^    char *datahora; \/\/ "AAAA-MM-DD HH:MM:SS"$/;"	m	struct:sServico	access:public
+deserialize	serial.c	/^void deserialize(){$/;"	f
+deserialize	serial.h	/^void deserialize();$/;"	p	signature:()
 destino	dados.h	/^    LocalidadePTR destino;$/;"	m	struct:sServico	access:public
 diminuiTabelaHash	mod_tabela_hash.c	/^int diminuiTabelaHash (TabelaHashPTR table)$/;"	f	signature:(TabelaHashPTR table)
 diminuiTabelaHash	mod_tabela_hash.h	/^int diminuiTabelaHash (TabelaHashPTR table);$/;"	p	signature:(TabelaHashPTR table)
@@ -220,6 +222,8 @@ procuraElementoLista	mod_lista_ligada.h	/^LinkedListPTR procuraElementoLista (Ma
 procuraTabelaHash	mod_tabela_hash.c	/^LinkedListPTR procuraTabelaHash (TabelaHashPTR table, void *externdata)$/;"	f	signature:(TabelaHashPTR table, void *externdata)
 procuraTabelaHash	mod_tabela_hash.h	/^LinkedListPTR procuraTabelaHash (TabelaHashPTR table, void *externdata);$/;"	p	signature:(TabelaHashPTR table, void *externdata)
 prox	mod_lista_ligada.h	/^	struct linkedList *prox;	\/\/ Próximo elemento da lista$/;"	m	struct:linkedList	typeref:struct:linkedList::linkedList	access:public
+putTime	utils.c	/^int putTime(char **str){$/;"	f	signature:(char **str)
+putTime	utils.h	/^int putTime(char **str);$/;"	p	signature:(char **str)
 r	mod_avl_n_dimensional.h	/^    struct sTree *r[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
 readDouble	input.c	/^double readDouble(){$/;"	f
 readDouble	input.h	/^double readDouble();$/;"	p	signature:()
@@ -265,10 +269,10 @@ sTree::height	mod_avl_n_dimensional.h	/^    int height[DIM];$/;"	m	struct:sTree	
 sTree::l	mod_avl_n_dimensional.h	/^    struct sTree *l[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
 sTree::node	mod_avl_n_dimensional.h	/^    void *node;$/;"	m	struct:sTree	access:public
 sTree::r	mod_avl_n_dimensional.h	/^    struct sTree *r[DIM];$/;"	m	struct:sTree	typeref:struct:sTree::sTree	access:public
+serialize	serial.c	/^void serialize(TabelaHashPTR tabela, MainTreePt camioes, MainTreePt clientes){$/;"	f	signature:(TabelaHashPTR tabela, MainTreePt camioes, MainTreePt clientes)
+serialize	serial.h	/^void serialize(TabelaHashPTR tabela, MainTreePt camioes, MainTreePt clientes);$/;"	p	signature:(TabelaHashPTR tabela, MainTreePt camioes, MainTreePt clientes)
 servicos	dados.h	/^    MainListPTR servicos;$/;"	m	struct:sCliente	access:public
 startcells	mod_tabela_hash.h	/^	int startcells;$/;"	m	struct:TabelaHash	access:public
-tempo	utils.c	/^void tempo(char *str){$/;"	f	signature:(char *str)
-tempo	utils.h	/^void tempo(char *str);$/;"	p	signature:(char *str)
 totalcells	mod_tabela_hash.h	/^	int totalcells;$/;"	m	struct:TabelaHash	access:public
 tree	mod_avl_n_dimensional.h	/^    TreePt tree[DIM];$/;"	m	struct:sMainTree	access:public
 tree_applyToAllOrdered	mod_avl_n_dimensional.c	/^void tree_applyToAllOrdered(MainTreePt thisMainTree, int thisDim, void (*func)(void*)){$/;"	f	signature:(MainTreePt thisMainTree, int thisDim, void (*func)(void*))
