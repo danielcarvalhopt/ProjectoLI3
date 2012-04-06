@@ -416,11 +416,53 @@ void imprimelistaligacoes(LinkedListPTR lista){
 LocalidadePTR cloneLocalidade (LocalidadePTR localidade)
 {
     LocalidadePTR novo;
-    novo=(LocalidadePTR)malloc(sizeof(Localidade));
+    if((novo=(LocalidadePTR)malloc(sizeof(struct Localidade)))==NULL) return NULL;
 
-    
+    novo->nome=(char*)malloc(sizeof(strlen(localidade->nome)+1));
+    strcpy(novo->nome, localidade->nome);
+    novo->ligacoesida=criaListaLigada(compareligacoesida);
+    novo->ligacoesvinda=criaListaLigada(compareligacoesvinda);
 
+    free(localidade->nome);
+    free(localidade->ligacoesvinda);
+    free(localidade->ligacoesida);
+    free(localidade);
+    return novo;
 }
+
+
+LigacoesidaPTR cloneLigacaoida (LigacoesidaPTR ligacaoida)
+{
+    LigacoesidaPTR novo;
+    if((novo=(LigacoesidaPTR)malloc(sizeof(struct Ligacoesida)))==NULL) return NULL;
+
+    novo->nome=(char*)malloc(sizeof(strlen(ligacaoida->nome)+1));
+    strcpy(novo->nome, ligacaoida->nome);
+    novo->custo=ligacaoida->custo;
+    novo->distancia=ligacaoida->distancia;
+
+    free(ligacaoida->nome);
+    free(ligacaoida);
+    return novo;
+}
+
+
+LigacoesvindaPTR cloneLigacaovinda (LigacoesvindaPTR ligacaovinda)
+{
+    LigacoesvindaPTR novo;
+    if((novo=(LigacoesvindaPTR)malloc(sizeof(struct Ligacoesvinda)))==NULL) return NULL;
+
+    novo->nome=(char*)malloc(sizeof(strlen(ligacaovinda->nome)+1));
+    strcpy(novo->nome, ligacaovinda->nome);
+
+    free(ligacaovinda->nome);
+    free(ligacaovinda);
+
+    return novo;
+}
+
+
+
 
 
 //
