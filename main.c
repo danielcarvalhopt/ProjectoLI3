@@ -36,7 +36,16 @@ int main(){
     int (*comparaCamioes[DIM])(void*,void*) = {camiao_compararId, camiao_compararMatricula};
     int (*comparaClientes[DIM])(void*,void*) = {cliente_compararNif, cliente_compararNome};
     
-    /** Inicializar estruturas de controlo dos vários tipos de dados */
+    /* testes (des-serialização) */
+    MainTreePt camioes = NULL;
+    MainTreePt clientes = NULL;
+    TabelaHashPTR localidades = NULL;
+
+    deserialize( &camioes, comparaCamioes, &clientes, comparaClientes, &localidades, comparalocalidades, hash_function );
+    return 1;
+    /* fim de testes (des-serialização) */
+
+    /** Inicializar estruturas de controlo dos vários tipos de dados 
     MainTreePt camioes = tree_new( comparaCamioes );
     MainTreePt clientes = tree_new( comparaClientes );
     TabelaHashPTR localidades = criaTabelaHash(hash_function, 10000, comparalocalidades);
@@ -44,29 +53,30 @@ int main(){
     /** Inicializar os atalhos predefinidos do menu */
     inicializarAtalhos();
     
-    /*testes (serialização) */
+
+    /*testes (serialização) 
     int i;
     Camiao camiao_teste[20] = {
-        {0, "00-60-00", 1.0, 10},
-        {1, "60-00-00", 1.5, 10},
-        {2, "00-00-60", 2.0, 10},
-        {3, "00-85-00", 2.5, 10},
-        {4, "94-00-00", 3.0, 10},
-        {5, "00-63-85", 3.5, 10},
-        {6, "63-00-60", 4.0, 10},
-        {7, "60-94-00", 4.5, 10},
-        {8, "85-85-85", 5.0, 10},
-        {9, "85-AA-85", 5.5, 10},
-        {10, "60-BB-00", 6.0, 10},
-        {11, "00-BB-60", 6.5, 10},
-        {12, "94-CC-00", 7.0, 10},
-        {13, "00-DC-00", 7.5, 10},
-        {14, "00-BB-00", 8.0, 10},
-        {15, "00-AA-00", 8.5, 10},
-        {16, "85-XX-00", 9.0, 10},
-        {17, "94-94-94", 9.5, 10},
-        {18, "85-85-85",10.0, 10},
-        {19, "60-60-60",10.5, 10} };
+        {0, "00-60-00", 1.0, 10, "Fátima"},
+        {1, "60-00-00", 1.5, 10, "Fátima"},
+        {2, "00-00-60", 2.0, 10, "Fátima"},
+        {3, "00-85-00", 2.5, 10, "Fátima"},
+        {4, "94-00-00", 3.0, 10, "Fátima"},
+        {5, "00-63-85", 3.5, 10, "Fátima"},
+        {6, "63-00-60", 4.0, 10, "Fátima"},
+        {7, "60-94-00", 4.5, 10, "Fátima"},
+        {8, "85-85-85", 5.0, 10, "Fátima"},
+        {9, "85-AA-85", 5.5, 10, "Fátima"},
+        {10, "60-BB-00", 6.0, 10, "Fátima"},
+        {11, "00-BB-60", 6.5, 10, "Fátima"},
+        {12, "94-CC-00", 7.0, 10, "Fátima"},
+        {13, "00-DC-00", 7.5, 10, "Fátima"},
+        {14, "00-BB-00", 8.0, 10, "Fátima"},
+        {15, "00-AA-00", 8.5, 10, "Fátima"},
+        {16, "85-XX-00", 9.0, 10, "Fátima"},
+        {17, "94-94-94", 9.5, 10, "Fátima"},
+        {18, "85-85-85",10.0, 10, "Fátima"},
+        {19, "60-60-60",10.5, 10, "Fátima"} };
     Cliente cliente_teste[20] = {
         {111111111, "luis", "Rua de baixo", NULL},
         {222222222, "paulo", "Rua de cima", NULL},
@@ -106,10 +116,11 @@ int main(){
         tree_insert(clientes, cliente_novo( cliente_teste[i].nif, cliente_teste[i].nome, cliente_teste[i].morada, cliente_teste[i].servicos ));
 
     for(i=0; i<20; i++)
-        tree_insert( camioes, camiao_novo( camiao_teste[i].id, camiao_teste[i].matricula, camiao_teste[i].custo, camiao_teste[i].peso ) );
+        tree_insert( camioes, camiao_novo( camiao_teste[i].id, camiao_teste[i].matricula, camiao_teste[i].custo, camiao_teste[i].peso, camiao_teste[i].local ) );
     
     //for(i=0; i<20000; i++){
         serialize(local_teste, camioes, clientes);
+
         //deserialize();
     //}
 

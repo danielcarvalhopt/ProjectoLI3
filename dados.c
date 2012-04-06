@@ -24,7 +24,7 @@ void camiao_dump( void* camiao ){
     printf("{id=%3d, matricula=\"%s\", consumo=%f}\n", thisCamiaoPt->id, thisCamiaoPt->matricula, thisCamiaoPt->custo );
 }
 
-CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double peso ){
+CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double peso, char *local ){
     CamiaoPt novoCamiaoPt = NULL;
     if( (novoCamiaoPt = malloc( sizeof(Camiao)) ) == NULL ) return NULL;
 
@@ -40,6 +40,7 @@ CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double pes
     novoCamiaoPt->id = id;
     novoCamiaoPt->custo = custo;
     novoCamiaoPt->peso = peso;
+    novoCamiaoPt->local = local;
     return novoCamiaoPt;
 }
 
@@ -70,6 +71,13 @@ ClientePt cliente_novo( unsigned int nif, char *nome, char *morada, MainListPTR 
     novoClientePt->morada = morada;
     novoClientePt->servicos = servicos;
     return novoClientePt;
+}
+
+ClientePt cliente_procuraNif( MainTreePt clientesPt, unsigned int nif){
+    ClientePt aux = cliente_novo( nif, "", "", NULL );
+    TreePt thisTreePt = tree_search( clientesPt, aux, 0);
+    free(aux);
+    return (ClientePt)thisTreePt->node;
 }
 
 int cliente_substituiPeloNome( MainTreePt clientesPt, char *procuraNome, unsigned int nif, char *nome, char *morada ){
@@ -425,12 +433,16 @@ LocalidadePTR cloneLocalidade (LocalidadePTR localidade)
 //
 // Funções dos serviços anteriores
 //
-int cliente_insereServico( ClientePt thisCliente, CamiaoPt thisCamiao, double custo, double peso, LocalidadePTR origem, LocalidadePTR carga, LocalidadePTR destino ){
+int cliente_insereServico( MainTreePt clientesPt, unsigned int nif, char *camiao, double custo, double peso, char *origem, char *carga, char *destino ){
     ServicoPt thisServico;
+
+    ClientePt thisCliente = cliente_procuraNif(clientesPt, nif);
+    if( thisCliente == NULL )
+        return -2;
     int ret = 1;
     if( (thisServico = (ServicoPt) malloc(sizeof(Servico))) != NULL ){
         if( putTime(&thisServico->datahora) == 1 ){
-            thisServico->camiao = thisCamiao;
+            thisServico->camiao = camiao;
             thisServico->custo = custo;
             thisServico->peso = peso;
             thisServico->origem = origem;

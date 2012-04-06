@@ -28,6 +28,7 @@ typedef struct sCamiao{
     char *matricula;
     double custo;
     double peso;
+    char *local;
 } Camiao, *CamiaoPt;
 
 /**
@@ -71,7 +72,7 @@ int camiao_compararMatricula(void* camiaoUm, void* camiaoDois);
  * @return Um apontador para o novo camião
  * @see Camiao
  * */
-CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double peso );
+CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double peso, char *local );
 
 //
 // Funções e estruturas dos clientes
@@ -169,6 +170,15 @@ int cliente_substituiPeloNome( MainTreePt clientesPt, char *procuraNome, unsigne
  *          1 - O cliente foi removido e foi inserido um novo
  * */
 int cliente_substituiPeloNif( MainTreePt clientesPt, unsigned int procuraNif, unsigned int nif, char *nome, char *morada );
+
+/**
+ * @brief Procura um cliente pelo nif
+ * @param clientesPt um apontador para a estrutura de controlo da árvore de clientes
+ * @param nif numero de contribuinte do cliente
+ * @return NULL caso não tenha encontrado uma correspondencia
+ * @return Um ClientePt caso tenha encontrado
+ * */
+ClientePt cliente_procuraNif( MainTreePt clientesPt, unsigned int nif);
 
 /**
  * @brief Obtém a lista de serviços anteriores de um cliente
@@ -380,33 +390,34 @@ void editaligacaoinput(TabelaHashPTR localidades);
 /**
  * @brief Estrutura de dados que define um serviço anterior 
  * @param datahora Data e hora do pedido
- * @param camiao Camião que fez o serviço
+ * @param camiao Camião que fez o serviço (matricula)
  * @param origem Local onde estava o camião antes do pedido
  * @param carga Local para onde o camião se deslocou para ser carregado
  * @param destino Local para onde o camião transportou a carga
  * */
 typedef struct sServico{
     char *datahora; // "AAAA-MM-DD HH:MM:SS"
-    CamiaoPt camiao;
+    char *camiao; //matricula do camiao
     double custo;
     double peso;
-    LocalidadePTR origem;
-    LocalidadePTR carga;
-    LocalidadePTR destino;
+    char *origem;
+    char *carga;
+    char *destino;
 } Servico, *ServicoPt;
 
 /**
  * @brief Insere um serviço na lista de serviços
- * @param thisCliente O cliente a associar ao serviço
+ * @param nif Nif do cliente a associar ao serviço
  * @param thisCamiao O camiao a associar ao serviço
  * @param origem Local onde estava o camião antes do pedido
  * @param carga Local para onde o camião se deslocou para ser carregado
  * @param destino Local para onde o camião transportou a carga
+ * @return -2 Não encontrou o cliente
  * @return -1 Não conseguiu alocar
  * @return 0 Não conseguiu inserir ou não conseguiu gerar a data e hora
  * @return 1 Inseriu o serviço na lista
  * */
-int cliente_insereServico( ClientePt thisCliente, CamiaoPt thisCamiao, double custo, double peso, LocalidadePTR origem, LocalidadePTR carga, LocalidadePTR destino );
+int cliente_insereServico( MainTreePt clientesPt, unsigned int nif, char *camiao, double custo, double peso, char *origem, char *carga, char *destino );
 
 /**
  * @brief Compara as datas de dois serviços

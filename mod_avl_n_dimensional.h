@@ -43,7 +43,7 @@ typedef struct sTree{
  * */
 typedef struct sMainTree{
     TreePt tree[DIM];
-    int nodos;
+    unsigned int nodos;
     int (*compare[DIM])(void*,void*);
 } MainTree, *MainTreePt;
 
