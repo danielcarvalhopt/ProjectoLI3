@@ -5,7 +5,6 @@
 #include "utils.h"
 
 
-
 TabelaHashPTR criaTabelaHash (int(*hash_function)(void*,int), int startcells, int (*func_compare)(void*,void*))
 {
     TabelaHashPTR table;
@@ -119,16 +118,16 @@ int diminuiTabelaHash (TabelaHashPTR table)
 int insereElementoTabelaHash (TabelaHashPTR table, void *externdata)
 {
     void *func_compare=table->arraycell[0]->func_compare;
-    void *cloneElemento= cloneElementoHash(externdata);
+
     if(ocupacaoTabelaHash(table)==1){
         aumentaTabelaHash(table);
     }
-    int hashkey=table->hash_function(cloneElemento,table->totalcells);
+    int hashkey=table->hash_function(externdata,table->totalcells);
     if (table->arraycell[hashkey]==NULL)
     {
         table->arraycell[hashkey]=(criaListaLigada(func_compare));
     }
-    int success = insereListaOrdenado(table->arraycell[hashkey], cloneElemento);
+    int success = insereListaOrdenado(table->arraycell[hashkey], externdata);
     if (success==1){
         table->nelems++;
     }
@@ -151,11 +150,10 @@ LinkedListPTR procuraTabelaHash (TabelaHashPTR table, void *externdata)
 
 int apagaElementoTabelaHash (TabelaHashPTR table, void* externdata)
 {
-    void *cloneElemento= cloneElementoHash(externdata);
     int apagado=0;
-    int hashkey=table->hash_function(cloneElemento,table->totalcells);
+    int hashkey=table->hash_function(externdata,table->totalcells);
 
-    if(apagaElementoLista(table->arraycell[hashkey],cloneElemento)==1)
+    if(apagaElementoLista(table->arraycell[hashkey],externdata)==1)
     {
         apagado=1; 
         table->nelems--;
@@ -182,14 +180,3 @@ void apagaTabelaHash(TabelaHashPTR table)
         diminuiTabelaHash(table);
     }
 }
-
-
-/*  Encapsulamento  */
-
-
-void* cloneElementoHash(void *externdata)
-{
-    return cloneLocalidade(externdata);
-}
-
-/*  -------------   */
