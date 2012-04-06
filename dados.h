@@ -373,6 +373,7 @@ void removeligacaoinput(TabelaHashPTR table);
 void imprimeLocalidades (TabelaHashPTR table);
 void imprimelistaligacoesinput(TabelaHashPTR localidades);
 void editaligacaoinput(TabelaHashPTR localidades);
+void* cloneLocalidade (void* externdata);
 
 //
 // Funções e estruturas dos serviços anteriores

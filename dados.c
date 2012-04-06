@@ -413,12 +413,12 @@ void imprimelistaligacoes(LinkedListPTR lista){
 }
 
 
-LocalidadePTR cloneLocalidade (LocalidadePTR localidade)
+void* cloneLocalidade (void* externdata)
 {
-    LocalidadePTR novo;
+    LocalidadePTR novo, localidade=(LocalidadePTR)externdata;
     if((novo=(LocalidadePTR)malloc(sizeof(struct Localidade)))==NULL) return NULL;
 
-    novo->nome=(char*)malloc(sizeof(strlen(localidade->nome)+1));
+    novo->nome=(char*)malloc(sizeof(char)*(strlen(localidade->nome)+1));
     strcpy(novo->nome, localidade->nome);
     novo->ligacoesida=criaListaLigada(compareligacoesida);
     novo->ligacoesvinda=criaListaLigada(compareligacoesvinda);

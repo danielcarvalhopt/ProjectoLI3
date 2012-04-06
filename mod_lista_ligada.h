@@ -109,5 +109,8 @@ void apagaListaAux(LinkedListPTR *lista);
 void apagaLista(MainListPTR lista);
 
 
+void* cloneElementoHash(void *externdata);
+
+
 
 #endif /* MOD_LISTA_LIGADA_H_INCLUDED */
