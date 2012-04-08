@@ -504,8 +504,10 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR l
                 input = 8;
             break;
         case 81: getchar(); clearInputBuffer(); input=0; break;
+            //serialize(local_teste, camioes, clientes);                 
         case 82: getchar(); clearInputBuffer(); input=0; break;
         case 83: getchar(); clearInputBuffer(); input=0; break;
+            // deserialize( &camioes, comparaCamioes, &clientes, comparaClientes, &localidades, comparalocalidades, hash_function );
         default:
             input = getIntLoop();
             if( input == -1 )
