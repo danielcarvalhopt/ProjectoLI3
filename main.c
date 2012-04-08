@@ -54,7 +54,7 @@ int main(){
     inicializarAtalhos();
     
 
-    /*testes (serialização) 
+    /*testes (serialização)  
     int i;
     Camiao camiao_teste[20] = {
         {0, "00-60-00", 1.0, 10, "Fátima"},
@@ -75,7 +75,7 @@ int main(){
         {15, "00-AA-00", 8.5, 10, "Fátima"},
         {16, "85-XX-00", 9.0, 10, "Fátima"},
         {17, "94-94-94", 9.5, 10, "Fátima"},
-        {18, "85-85-85",10.0, 10, "Fátima"},
+        {18, "85-85-85",10.0, 10, "Coimbra"}, //matricula repetida!
         {19, "60-60-60",10.5, 10, "Fátima"} };
     Cliente cliente_teste[20] = {
         {111111111, "luis", "Rua de baixo", NULL},

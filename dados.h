@@ -202,8 +202,8 @@ MainListPTR cliente_getServico( TreePt thisTreePt );
  */
 typedef struct Ligacoesida{
 	char* nome;
-	float custo;
-	float distancia;
+	double custo;
+	double distancia;
 }*LigacoesidaPTR;
 
 /**
@@ -286,7 +286,7 @@ void imprimelista(LinkedListPTR lista);
  * @return 0 Caso ligação já exista
  * @return 1 Caso seja inserida com sucesso
  * */
-int inserirligacao(TabelaHashPTR table, char *nomeorigem, char *nomedestino, float custo, float distancia);
+int inserirligacao(TabelaHashPTR table, char *nomeorigem, char *nomedestino, double custo, double distancia);
 
 /**
  * @brief Aloca espaço e cria para uma estrutura de dados do tipo ligacaovinda
@@ -304,7 +304,7 @@ LigacoesvindaPTR crialigacaovinda (char* nome);
  * @param distancia Distancia para a localidade inserida
  * @return Apontador para a estrutura criada ou NULL caso não seja possível alocar memória
  * */
-LigacoesidaPTR crialigacaoida (char* nome, float custo, float distancia);
+LigacoesidaPTR crialigacaoida (char* nome, double custo, double distancia);
 
 /**
  * @brief Remove uma localidade da tabela de Hash

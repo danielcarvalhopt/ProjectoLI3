@@ -194,7 +194,7 @@ int removerlocalidade (TabelaHashPTR table, char *nome){
     return (apagaElementoTabelaHash(table, aux)); 
 }
 
-LigacoesidaPTR crialigacaoida (char* nome, float custo, float distancia){
+LigacoesidaPTR crialigacaoida (char* nome, double custo, double distancia){
     LigacoesidaPTR ligacao;
 
     ligacao = malloc (sizeof(struct Ligacoesida));
@@ -214,7 +214,7 @@ LigacoesvindaPTR crialigacaovinda (char* nome){
     return ligacao;
 }
 
-int inserirligacao(TabelaHashPTR table, char *nomeorigem, char *nomedestino, float custo, float distancia){
+int inserirligacao(TabelaHashPTR table, char *nomeorigem, char *nomedestino, double custo, double distancia){
     LocalidadePTR localidadeida = crialocalidade(nomeorigem);
     LocalidadePTR localidadevinda = crialocalidade(nomedestino);
     LigacoesidaPTR localidadedestino = crialigacaoida(nomedestino, custo,distancia);
@@ -298,7 +298,7 @@ void removelocalidadeinput(TabelaHashPTR table)
 
 void insereligacaoinput(TabelaHashPTR table){
     char *localorigem=NULL, *localdest=NULL, *aux=NULL,*aux2=NULL;
-    float custo, distancia;
+    double custo, distancia;
 
 
     printf("Introduza localidade de origem > ");
@@ -349,7 +349,7 @@ void editaligacaoinput(TabelaHashPTR localidades)
     LigacoesidaPTR localidadedestino = crialigacaoida(localdest, 0,0);
 
     LocalidadePTR aux;
-    float custo, distancia;
+    double custo, distancia;
 
     if ((procuraTabelaHash(localidades, localidadeida)==NULL) || (procuraTabelaHash(localidades, localidadevinda)==NULL)) printf("Uma ou ambas as localidades não existem!");
     else{
@@ -415,7 +415,7 @@ void imprimelistaligacoes(LinkedListPTR lista){
     LigacoesidaPTR local;
     while (aux!=NULL){
         local = aux->extdata;
-        printf("%s %0.2f %0.2f\n",(char*)local->nome, (float)local->custo, (float)local->distancia);
+        printf("%s %0.2f %0.2f\n",(char*)local->nome, (double)local->custo, (double)local->distancia);
         aux=aux->prox;
     }
 }

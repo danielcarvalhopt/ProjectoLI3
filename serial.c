@@ -75,6 +75,7 @@ void serial_clienteRec( TreePt thisTree, FILE *file ){
     ClientePt cliente = NULL;
     LinkedListPTR servico = NULL;
     short int strl;
+    int exception = 0;
     if( thisTree != NULL ){
         serial_clienteRec( thisTree->l[0], file);
         
@@ -113,7 +114,8 @@ void serial_clienteRec( TreePt thisTree, FILE *file ){
 
                 servico = servico->prox;
             }
-        }
+        }else
+            fwrite( &exception, sizeof(int), 1, file );
 
         serial_clienteRec( thisTree->r[0], file);
     }
@@ -200,7 +202,7 @@ int deserialize(
         fread( &strl, sizeof(short int), 1, file);
         locOrigem = novaString(strl);
         *(locOrigem+strl) = '\0';
-        fread( &locOrigem, sizeof(char), strl, file );
+        fread( locOrigem, sizeof(char), strl, file );
 
         fread( &nAdjs, sizeof(int), 1, file );
         for( nAdj = 0; nAdj < nAdjs; nAdj++ ){
@@ -220,11 +222,11 @@ int deserialize(
     unsigned int id;
     char *matricula;
     char *local;
-    int ncamiao, ncamioes;
+    unsigned int ncamiao, ncamioes;
 
     *camioes = tree_new( comparaCamioes );
 
-    fread( &ncamioes, sizeof(int), 1, file );
+    fread( &ncamioes, sizeof(unsigned int), 1, file );
     for( ncamiao=0; ncamiao<ncamioes; ncamiao++ ){
         fread( &id, sizeof(unsigned int), 1, file);
         fread( &dArr, sizeof(double), 2, file );
@@ -247,17 +249,18 @@ int deserialize(
     unsigned int nif;
     char *nome;
     char *morada;
-    int ncliente, nclientes, nservico, nservicos;
+    unsigned int ncliente, nclientes;
+    int nservico, nservicos;
 
     char *datahora;
-    free(matricula);
+    char *cmatricula;
     char *origem;
     char *carga;
     char *destino;
 
     *clientes = tree_new( comparaClientes );
 
-    fread( &nclientes, sizeof(int), 1, file);
+    fread( &nclientes, sizeof(unsigned int), 1, file);
     for( ncliente=0; ncliente<nclientes; ncliente++ ){
         fread( &nif, sizeof(unsigned int), 1, file);
         
@@ -284,19 +287,14 @@ int deserialize(
             fread( datahora, sizeof(char), strl, file );
 
             fread( &strl, sizeof(short int), 1, file );
-            matricula = novaString(strl);
-            *(matricula+strl) = '\0';
-            fread( matricula, sizeof(char), strl, file );
+            cmatricula = novaString(strl);
+            *(cmatricula+strl) = '\0';
+            fread( cmatricula, sizeof(char), strl, file );
 
             fread( &strl, sizeof(short int), 1, file );
             origem = novaString(strl);
             *(origem+strl) = '\0';
             fread( origem, sizeof(char), strl, file );
-
-            fread( &strl, sizeof(short int), 1, file );
-            carga = novaString(strl);
-            *(carga+strl) = '\0';
-            fread( carga, sizeof(char), strl, file );
 
             fread( &strl, sizeof(short int), 1, file );
             carga = novaString(strl);
@@ -313,7 +311,56 @@ int deserialize(
         }
     }
     
+    printf("e ai estao os camioes!!!\n");
+    tree_applyToAllOrdered( *camioes, 0 , camiao_dump);
+    printf("e agora os clientes!! yey!\n");
+    tree_applyToAllOrdered( *clientes, 0 , cliente_dump);
+    
+    printf("localidades... :medo:\n");
+    imprimeHash(*localidades);
+
 
     return 1;
 }
 
+
+void imprimeHash(TabelaHashPTR table)
+{
+    MainListPTR *aux=table->arraycell; int i;
+
+    for(i=0;i<(table->totalcells);i++)
+    {
+        imprimelista2(aux[i]->elems);
+    }
+}
+
+void imprimelista2(LinkedListPTR lista)
+{
+    LinkedListPTR aux=lista;
+    while (aux)
+    {
+        printf("\n----------\n%s que tem ligação a:\n",((LocalidadePTR)aux->extdata)->nome );
+        if( ((LocalidadePTR)aux->extdata)->ligacoesida != NULL )
+            imprimelistaIda( ((LocalidadePTR)aux->extdata)->ligacoesida->elems );
+        printf("E as seguintes localidades ligam à anterior:\n");
+        if(((LocalidadePTR)aux->extdata)->ligacoesvinda != NULL)
+            imprimelistaVinda( ((LocalidadePTR)aux->extdata)->ligacoesvinda->elems );
+        aux=aux->prox;
+    }
+}
+
+void imprimelistaIda(LinkedListPTR lista){
+    LinkedListPTR aux=lista;
+    while(aux){
+        printf("\tnome: %s, custo: %g, distancia: %g\n", ((LigacoesidaPTR)aux->extdata)->nome, ((LigacoesidaPTR)aux->extdata)->custo, ((LigacoesidaPTR)aux->extdata)->distancia );
+        aux=aux->prox;
+    }
+}
+
+void imprimelistaVinda(LinkedListPTR lista){
+    LinkedListPTR aux=lista;
+    while(aux){
+        printf("\tnome: %s\n", ((LigacoesvindaPTR)aux->extdata)->nome );
+        aux=aux->prox;
+    }
+}
