@@ -266,8 +266,8 @@ void inserelocalidadeinput (TabelaHashPTR table)
     aux=readStr(inputlocal); 
     switch (inserelocalidade(table, aux)){
         case -1: errorMessage(ERROR_LOCEXIST); break;
-        case 0: printf("Não foi possível inserir a localidade por falta de memória!");break;
-        case 1: printf("Localidade inserida com sucesso!");break;
+        case 0: errorMessage(ERROR_MEMALOC); break;
+        case 1: errorMessage(ERROR_SUCCESS); break;
     }
 }
 
@@ -281,9 +281,9 @@ void removelocalidadeinput(TabelaHashPTR table)
     aux=readStr(inputlocal);
     switch (removerlocalidade(table, aux))
     {
-        case -1: printf("Não foi possível completar a operação por falta de memória!");break;
-        case 0: printf("Localidade não existe!"); break;
-        case 1: printf("Localidade removida com sucesso!");break;
+        case -1: errorMessage(ERROR_MEMALOC); break;
+        case 0: errorMessage(ERROR_LOCNOTEXIST); break;
+        case 1: errorMessage(ERROR_SUCCESS); break;
     }
 }
 
@@ -304,10 +304,10 @@ void insereligacaoinput(TabelaHashPTR table){
     distancia=readDouble();
 
     switch(inserirligacao(table,localorigem,localdest,custo,distancia)){
-        case -2:printf("Não foi possível completar a operação por falta de memória! ");break;
-        case -1: printf("Uma ou ambas as localidades não existem!");break;
-        case 0: printf("A ligação já existe!");break; 
-        case 1: printf("A ligação foi inserida com sucesso!");break;
+        case -2: errorMessage(ERROR_MEMALOC); break;
+        case -1: errorMessage(ERROR_LOCNOTEXIST); break;
+        case 0: errorMessage(ERROR_LIGLOCEXIST); break; 
+        case 1: errorMessage(ERROR_SUCCESS); break;
 
     }
 
@@ -322,9 +322,9 @@ void removeligacaoinput(TabelaHashPTR table){
     localdest= readStr(aux2);
 
     switch(removerligacao (table,localorigem, localdest)){
-        case -1: printf("Uma ou ambas as localidades não existem!");break;
-        case 0: printf("A ligação não existe!");break; 
-        case 1: printf("A ligação foi removida com sucesso!");break;
+        case -1: errorMessage(ERROR_LOCNOTEXIST); break;
+        case 0:  errorMessage(ERROR_LIGLOCNOTEXIST); break; 
+        case 1: errorMessage(ERROR_SUCCESS); break;
     }
 }
 
@@ -348,7 +348,7 @@ void editaligacaoinput(TabelaHashPTR localidades)
     else{
         aux = (((LinkedListPTR)procuraTabelaHash(localidades, localidadeida))->extdata);
         if ((procuraElementoLista(aux->ligacoesida,localidadedestino)==NULL))
-            printf("A ligação que quer editar não existe!");
+            errorMessage(ERROR_LIGLOCNOTEXIST);
         else{
             printf("Irá alterara a ligação entre %s e %s.\n", localorigem,localdest );
             printf("Novo custo da ligação > ");
@@ -357,7 +357,7 @@ void editaligacaoinput(TabelaHashPTR localidades)
             distancia=readDouble();
             removerligacao(localidades, localorigem, localdest);
             inserirligacao(localidades, localorigem, localdest,custo,distancia);
-            printf("Ligação alterada\n");
+            errorMessage(ERROR_SUCCESS);
         }
     }
 
@@ -383,11 +383,11 @@ void imprimelistaligacoesinput(TabelaHashPTR localidades)
     LocalidadePTR localidade = crialocalidade(nomelocalidade);
     LocalidadePTR aux;
 
-    if (procuraTabelaHash(localidades, localidade)==NULL) {printf("Localidade não existe");}
+    if (procuraTabelaHash(localidades, localidade)==NULL) {errorMessage(ERROR_LOCNOTEXIST);}
     else
     {
         aux = (((LinkedListPTR)procuraTabelaHash(localidades, localidade))->extdata);
-        if (aux->ligacoesida->elems==NULL) printf("Não existem ligações nesta localidade!");
+        if (aux->ligacoesida->elems==NULL) errorMessage(ERROR_NOLIGS);
         else
         imprimelistaligacoes(aux->ligacoesida->elems);
     }
