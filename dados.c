@@ -6,6 +6,7 @@
 #include "dados.h"
 #include "utils.h"
 #include "input.h"
+#include "mod_error.h"
 
 //
 // Funções dos camiões
@@ -264,7 +265,7 @@ void inserelocalidadeinput (TabelaHashPTR table)
     printf("Nome da localidade a inserir > ");
     aux=readStr(inputlocal); 
     switch (inserelocalidade(table, aux)){
-        case -1: printf("Localidade já existe!"); break;
+        case -1: errorMessage(ERROR_LOCEXIST); break;
         case 0: printf("Não foi possível inserir a localidade por falta de memória!");break;
         case 1: printf("Localidade inserida com sucesso!");break;
     }
