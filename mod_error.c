@@ -1,11 +1,6 @@
 #include <stdio.h>
 #include "mod_error.h"
 
-typedef struct error
-{
-  char *error_code;
-  char *message;
-} Error;
 
 static Error errors[] =
 {

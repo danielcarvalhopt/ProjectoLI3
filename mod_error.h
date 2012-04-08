@@ -10,6 +10,11 @@
 #define ERROR_NOLIGS 			6 		// Não existem ligações para esta localidade!
 
 
+typedef struct error
+{
+  char *error_code;
+  char *message;
+} Error;
 
 
 int errorMessage(int erro_num);
