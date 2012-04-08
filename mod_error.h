@@ -17,4 +17,4 @@ typedef struct error
 } Error;
 
 
-int errorMessage(int erro_num);
+int errorMessage(int error_code);
