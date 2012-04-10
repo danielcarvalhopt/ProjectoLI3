@@ -115,6 +115,30 @@ double readDouble(){
 
 //
 //
+// FUNÇÕES PARA LER OS DADOS DE TESTE
+//
+//
+
+
+int reSampleLocalidades(){
+    //id_local:Nome:lista de ligacoes a partir de id_local (9 ligacoes)
+    FILE *f = fopen("localidades.txt", "r");
+    struct sSampleLocalidades d[18515];
+    int dummy, i;
+    
+    for( i=1; i<18515; i++ )
+        fscanf(f, "%d:%[^:]:%d:%d:%d:%d:%d:%d:%d:%d:%d", &dummy, d[i].nome, &d[i].lig[0], &d[i].lig[1], &d[i].lig[2], &d[i].lig[3], &d[i].lig[4], &d[i].lig[5],
+                &d[i].lig[6], &d[i].lig[7], &d[i].lig[8] );
+    for( i=1; i<18515; i++ )
+        printf( "%s:%s:%s:%s:%s:%s:%s:%s:%s:%s\n", d[i].nome, d[d[i].lig[0]].nome, d[d[i].lig[1]].nome, d[d[i].lig[2]].nome, d[d[i].lig[3]].nome, d[d[i].lig[4]].nome, d[d[i].lig[5]].nome, d[d[i].lig[6]].nome, d[d[i].lig[7]].nome, d[d[i].lig[8]].nome);
+    
+    fclose(f);
+
+    return 0;    
+}
+
+//
+//
 // FUNÇÕES DE INPUT ESPEFÍFICAS
 //
 // LOCALIDADES

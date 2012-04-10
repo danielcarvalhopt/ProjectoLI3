@@ -8,6 +8,11 @@
 
 #include "dados.h"
 
+struct sSampleLocalidades{
+    char nome[113];
+    int lig[9];
+};
+
 /**
  * @brief Lê uma variável do tipo double.
  * @details Primeiro verifica se a string introduzida corresponde a um número no formato decimal, depois faz parsing da string para um double
@@ -75,6 +80,9 @@ void imprimelista(LinkedListPTR lista);
  * @param localidades apontador para a estrutura de controlo da tabela de hash de localidades
  * */
 void camiaoi_insere(MainTreePt camioes, TabelaHashPTR localidades);
+
+
+int reSampleLocalidades();
 
 
 #endif /* INPUT_H_INCLUDED */

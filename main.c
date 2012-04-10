@@ -43,6 +43,10 @@ int main(){
 
     /** Inicializar os atalhos predefinidos do menu */
     inicializarAtalhos();
+    
+    //samples
+    //reSampleLocalidades();
+    //return 0;
 
     while( input != -1 ){
         input = printMenu(input);
