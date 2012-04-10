@@ -138,12 +138,11 @@ int insereElementoTabelaHash (TabelaHashPTR table, void *externdata)
 
 
 
-LinkedListPTR procuraTabelaHash (TabelaHashPTR table, void *externdata)
-{
-    int hashkey=(int)(table->hash_function(externdata,table->totalcells));
-    LinkedListPTR aux;
-    if ((aux=(procuraElementoLista(table->arraycell[hashkey], externdata)))!=NULL) return aux;  
-    else return NULL;
+LinkedListPTR procuraTabelaHash (TabelaHashPTR table, void *externdata){
+    int hashkey;
+    if( externdata==NULL ) return NULL;
+    hashkey=(int)(table->hash_function(externdata,table->totalcells));
+    return procuraElementoLista(table->arraycell[hashkey], externdata);  
 }
 
 

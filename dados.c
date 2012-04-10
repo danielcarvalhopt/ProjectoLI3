@@ -163,7 +163,9 @@ int compareligacoesvinda (void *a, void *b){
 
 LocalidadePTR crialocalidade (char* nome){
     LocalidadePTR localidade;
-
+    
+    if(nome == NULL)
+        return NULL;
     localidade = (LocalidadePTR)malloc(sizeof(struct Localidade));
     localidade->nome=allocStr(nome);
     localidade->ligacoesida=criaListaLigada(compareligacoesida);

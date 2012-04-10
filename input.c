@@ -8,23 +8,10 @@
 #include "utils.h"
 #include "dados.h"
 #include "input.h"
+#include <stdlib.h>
+#include <string.h>
 
-char* readStr(char *ptr){
-    char strBuffer[1024];
-    int i=0;
-    
-    do{
-        strBuffer[i] = getchar();
-        i++;
-    }while( strBuffer[i-1] != '\0' && strBuffer[i-1] != '\n' && i < 1023 );
-    strBuffer[i] = '\0';
-    
-    //fgets(strBuffer, 1023, stdin);
-    ptr = allocStr(strBuffer);
-    return ptr;
-}
-
-int lerStr(char *ptr){
+int lerStr(char **ptr){
     char strBuffer[1024];
     int i=0, excedeu=1;
     
@@ -32,13 +19,13 @@ int lerStr(char *ptr){
         strBuffer[i] = getchar();
         i++;
     }while( strBuffer[i-1] != '\0' && strBuffer[i-1] != '\n' && i < 1023 );
-    strBuffer[i] = '\0';
+    strBuffer[i-1] = '\0';
     if( i == 1023 ){
         clearInputBuffer();
         excedeu=-1;
     }
     
-    if( (ptr = allocStr(strBuffer)) == NULL )
+    if( (*ptr = allocStr(strBuffer)) == NULL )
         return 0;
     else
         return excedeu;
@@ -108,7 +95,7 @@ double readDouble(){
         if( *ps >= '0' && *ps <= '9' ){
             *pd = *ps;
             pd++;ps++;
-        }else if( (*ps == ',' || *ps == '.') && ponto == 0 ){
+        }else if( *ps == '.' && ponto == 0 ){
             ponto = 1;
             *pd = '.';
             ps++;pd++;
@@ -129,15 +116,15 @@ double readDouble(){
 //
 // FUNÇÕES DE INPUT ESPEFÍFICAS
 //
-//
+// LOCALIDADES
 
 void inserelocalidadeinput (TabelaHashPTR table)
 {   
-    char *inputlocal=NULL,*aux=NULL;
+    char *inputlocal=NULL;
 
     printf("Nome da localidade a inserir > ");
-    aux=readStr(inputlocal); 
-    switch (inserelocalidade(table, aux)){
+    lerStr(&inputlocal); 
+    switch (inserelocalidade(table, inputlocal)){
         case -1: printf("Localidade já existe!"); break;
         case 0: printf("Não foi possível inserir a localidade por falta de memória!");break;
         case 1: printf("Localidade inserida com sucesso!");break;
@@ -148,11 +135,11 @@ void inserelocalidadeinput (TabelaHashPTR table)
 
 void removelocalidadeinput(TabelaHashPTR table)
 {
-    char *inputlocal=NULL,*aux=NULL;
+    char *inputlocal=NULL;
 
     printf("Nome da localidade a remover > ");
-    aux=readStr(inputlocal);
-    switch (removerlocalidade(table, aux))
+    lerStr(&inputlocal);
+    switch (removerlocalidade(table, inputlocal))
     {
         case -1: printf("Não foi possível completar a operação por falta de memória!");break;
         case 0: printf("Localidade não existe!"); break;
@@ -163,14 +150,14 @@ void removelocalidadeinput(TabelaHashPTR table)
 
 
 void insereligacaoinput(TabelaHashPTR table){
-    char *localorigem=NULL, *localdest=NULL, *aux=NULL,*aux2=NULL;
+    char *localorigem=NULL, *localdest=NULL;
     double custo, distancia;
 
 
     printf("Introduza localidade de origem > ");
-    localorigem= readStr(aux);
+    lerStr(&localorigem);
     printf("Introduza localidade de destino > ");
-    localdest= readStr(aux2);
+    lerStr(&localdest);
     printf("Introduza o custo de portagens > ");
     custo=readDouble();
     printf("Introduza a distância > ");
@@ -188,11 +175,11 @@ void insereligacaoinput(TabelaHashPTR table){
 
 
 void removeligacaoinput(TabelaHashPTR table){
-    char *localorigem=NULL, *localdest=NULL, *aux=NULL,*aux2=NULL;
+    char *localorigem=NULL, *localdest=NULL;
     printf("Introduza localidade de origem > ");
-    localorigem= readStr(aux);
+    lerStr(&localorigem);
     printf("Introduza localidade de destino > ");
-    localdest= readStr(aux2);
+    lerStr(&localdest);
 
     switch(removerligacao (table,localorigem, localdest)){
         case -1: printf("Uma ou ambas as localidades não existem!");break;
@@ -205,11 +192,11 @@ void removeligacaoinput(TabelaHashPTR table){
 
 void editaligacaoinput(TabelaHashPTR localidades)
 {
-    char *localorigem=NULL, *localdest=NULL, *auxc=NULL,*aux2c=NULL;
+    char *localorigem=NULL, *localdest=NULL;
     printf("Introduza localidade de origem > ");
-    localorigem= readStr(auxc);
+    lerStr(&localorigem);
     printf("Introduza localidade de destino > ");
-    localdest= readStr(aux2c);
+    lerStr(&localdest);
     LocalidadePTR localidadeida = crialocalidade(localorigem);
     LocalidadePTR localidadevinda = crialocalidade(localdest);
     LigacoesidaPTR localidadedestino = crialigacaoida(localdest, 0,0);
@@ -238,9 +225,9 @@ void editaligacaoinput(TabelaHashPTR localidades)
 
 void imprimelistaligacoesinput(TabelaHashPTR localidades)
 {
-    char *nomelocalidade=NULL, *auxc=NULL;
+    char *nomelocalidade=NULL;
     printf("Introduza localidade de origem > ");
-    nomelocalidade=readStr(auxc);
+    lerStr(&nomelocalidade);
     LocalidadePTR localidade = crialocalidade(nomelocalidade);
     LocalidadePTR aux;
 
@@ -259,6 +246,7 @@ void imprimeLocalidades (TabelaHashPTR table){
     MainListPTR *aux = table->arraycell;
     int i;
     for (i=0; i<n; i++){
+        printf("%d\n", i);
         imprimelista(aux[i]->elems);
     }
 
@@ -284,7 +272,46 @@ void imprimelistaligacoes(LinkedListPTR lista){
     }
 }
 
+//
+// CAMIOES
+//
 
+void camiaoi_insere(MainTreePt camioes, TabelaHashPTR localidades){
+    unsigned int id;
+    char *matricula=NULL, *local=NULL, vazia[1]={'\0'};
+    LinkedListPTR localidade=NULL;
+    double custo, peso;
 
+    printf("Introduza o ID > ");
+    while( isUInt(id = readUInt()) == 0 )
+        printf("Erro: Valor inválido (veja as instruções acima)"); //erro
+
+    printf("Introduza a matrícula > ");
+    lerStr( &matricula);
+    printf("matricula: %s\n", matricula);
+    printf("Custo (por Km) > ");
+    if( isDouble(custo = readDouble()) == 0 )
+        printf("Erro: Valor inválido (veja as instruções acima)"); //erro
+    printf("Peso máximo da carga > ");
+    if( isDouble(peso = readDouble()) == 0 )
+        printf("Erro: Valor inválido (veja as instruções acima)"); //erro
+    
+    printf("Localidade actual > ");
+    lerStr( &local );
+    while( (localidade = procuraTabelaHash( localidades, crialocalidade(local) ) ) == NULL && strcmp(local,vazia) != 0 ){
+        printf("Erro: Localidade não foi encontrada. Para cancelar apenas pressione [ENTER].\nLocalidade actual > ");
+        lerStr( &local );
+    }
+    free(localidade);
+    if( strcmp(local,vazia) == 0 ){
+        printf("Cancelou a introdução.\nPressione [ENTER] para voltar ao menu.");
+        free(matricula);
+        free(local);
+    }else
+        if( tree_insert( camioes, camiao_novo(id, matricula, custo, peso, local) ) == 1 )
+            printf("Dados introduzidos com sucesso!");
+        else
+            printf("Já existe um Camião com esse ID ou Matrícula");
+}
 
 

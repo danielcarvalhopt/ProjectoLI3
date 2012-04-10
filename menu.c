@@ -172,12 +172,16 @@ int printMenu(int input){
                                 "*    %-56s  *\n"
                                 "*    %-56s  *\n"
                                 "*    %-56s  *\n"
+                                "*    %-56s  *\n"
+                                "*    %-56s  *\n"
                                 "*    %-56s  *\n",
                                     "Menu P. > Gestao de Camioes > Inserir veiculo", space,
                                     "Campos:",
-                                    "ID - inteiro positivo que identifica o veiculo",
-                                    "Matricula - conjunto de caracteres no formato XX-XX-XX",
-                                    "Consumo - consumo de combustivel a cada 100km"
+                                    "ID - (inteiro positivo) identificador unico do veiculo",
+                                    "Matricula - (caracteres) formato: XX-XX-XX",
+                                    "Consumo - (numero real) consumo de combustivel a cada 100km",
+                                    "Peso - (numero real) peso maximo que o camiao pode carregar",
+                                    "Local - (caracteres) localidade onde o camiao se encontra"
                         );
                         novaEscolha(31, "Inserir Veiculo");
                         break;
@@ -453,7 +457,8 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR l
                 input = 3;
             break;
         case 31:
-            getchar(); clearInputBuffer();
+            camiaoi_insere( camioes, localidades );
+            clearInputBuffer();
             input = 0;
             break;
         case 32:break;
