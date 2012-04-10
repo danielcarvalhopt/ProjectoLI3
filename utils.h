@@ -31,8 +31,11 @@ void clearScreen();
  * @brief Insere a data e hora actual numa string
  * @details O formato é AAAA-MM-DD hh:mm:ss (MM - mês, mm - minutos). Desta forma o tamanho máximo da string é 19 caracteres
  * @param str a String que vai receber a hora e data
+ * @return -1 Não conseguiu colocar a data em 20 caracteres
+ * @return  0 Falhou a alocação de espaço para a string
+ * @return  1 Sucesso
  * */
-void tempo(char *str);
+int putTime(char **str);
 
 //////////////////////////////////
 //

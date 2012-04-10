@@ -28,6 +28,7 @@ typedef struct sCamiao{
     char *matricula;
     double custo;
     double peso;
+    char *local;
 } Camiao, *CamiaoPt;
 
 /**
@@ -71,7 +72,7 @@ int camiao_compararMatricula(void* camiaoUm, void* camiaoDois);
  * @return Um apontador para o novo camião
  * @see Camiao
  * */
-CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double peso );
+CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double peso, char *local );
 
 //
 // Funções e estruturas dos clientes
@@ -171,6 +172,15 @@ int cliente_substituiPeloNome( MainTreePt clientesPt, char *procuraNome, unsigne
 int cliente_substituiPeloNif( MainTreePt clientesPt, unsigned int procuraNif, unsigned int nif, char *nome, char *morada );
 
 /**
+ * @brief Procura um cliente pelo nif
+ * @param clientesPt um apontador para a estrutura de controlo da árvore de clientes
+ * @param nif numero de contribuinte do cliente
+ * @return NULL caso não tenha encontrado uma correspondencia
+ * @return Um ClientePt caso tenha encontrado
+ * */
+ClientePt cliente_procuraNif( MainTreePt clientesPt, unsigned int nif);
+
+/**
  * @brief Obtém a lista de serviços anteriores de um cliente
  * @details Obtém o apontador para a estrutura de controlo da
  *          lista de serviços anteriores do cliente a partir
@@ -192,8 +202,8 @@ MainListPTR cliente_getServico( TreePt thisTreePt );
  */
 typedef struct Ligacoesida{
 	char* nome;
-	float custo;
-	float distancia;
+	double custo;
+	double distancia;
 }*LigacoesidaPTR;
 
 /**
@@ -242,12 +252,6 @@ void removeligacaoinput(TabelaHashPTR table);
  * */
 int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino);
 
-/**
- * @brief Imprime ligações de uma determinada localidade
- * @details Imprime ligações de uma determinada localidade passada como argumento da função mostrando as localidades, o custo e a distância entre elas.
- * @param lista Apontador de Lista Ligada para uma localidade
- * */
-void imprimelistaligacoes(LinkedListPTR lista);
 
 /**
  * @brief Imprime todas as localidades inseridas no programa invocando uma função auxiliar de output
@@ -256,12 +260,6 @@ void imprimelistaligacoes(LinkedListPTR lista);
  * */
 void hashprint (TabelaHashPTR table);
 
-/**
- * @brief Imprime todas as localidades existentes nos indices da tabela de Hash
- * @details 
- * @param lista Apontador de Lista Ligada para uma lista de localidades existentes nos indices da tabela de hash
- * */
-void imprimelista(LinkedListPTR lista);
 
 
 /**
@@ -276,7 +274,7 @@ void imprimelista(LinkedListPTR lista);
  * @return 0 Caso ligação já exista
  * @return 1 Caso seja inserida com sucesso
  * */
-int inserirligacao(TabelaHashPTR table, char *nomeorigem, char *nomedestino, float custo, float distancia);
+int inserirligacao(TabelaHashPTR table, char *nomeorigem, char *nomedestino, double custo, double distancia);
 
 /**
  * @brief Aloca espaço e cria para uma estrutura de dados do tipo ligacaovinda
@@ -294,7 +292,7 @@ LigacoesvindaPTR crialigacaovinda (char* nome);
  * @param distancia Distancia para a localidade inserida
  * @return Apontador para a estrutura criada ou NULL caso não seja possível alocar memória
  * */
-LigacoesidaPTR crialigacaoida (char* nome, float custo, float distancia);
+LigacoesidaPTR crialigacaoida (char* nome, double custo, double distancia);
 
 /**
  * @brief Remove uma localidade da tabela de Hash
@@ -365,49 +363,40 @@ int comparalocalidades (void *a, void *b);
  * */
 int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino);
 
-
-void inserelocalidadeinput(TabelaHashPTR table);
-void removelocalidadeinput(TabelaHashPTR table);
-void insereligacaoinput(TabelaHashPTR table);
-void removeligacaoinput(TabelaHashPTR table);
-void imprimeLocalidades (TabelaHashPTR table);
-void imprimelistaligacoesinput(TabelaHashPTR localidades);
-void editaligacaoinput(TabelaHashPTR localidades);
-void* cloneLocalidade (void* externdata);
-
 //
 // Funções e estruturas dos serviços anteriores
 //
 /**
  * @brief Estrutura de dados que define um serviço anterior 
  * @param datahora Data e hora do pedido
- * @param camiao Camião que fez o serviço
+ * @param camiao Camião que fez o serviço (matricula)
  * @param origem Local onde estava o camião antes do pedido
  * @param carga Local para onde o camião se deslocou para ser carregado
  * @param destino Local para onde o camião transportou a carga
  * */
 typedef struct sServico{
     char *datahora; // "AAAA-MM-DD HH:MM:SS"
-    CamiaoPt camiao;
+    char *camiao; //matricula do camiao
     double custo;
     double peso;
-    LocalidadePTR origem;
-    LocalidadePTR carga;
-    LocalidadePTR destino;
+    char *origem;
+    char *carga;
+    char *destino;
 } Servico, *ServicoPt;
 
 /**
  * @brief Insere um serviço na lista de serviços
- * @param thisCliente O cliente a associar ao serviço
+ * @param nif Nif do cliente a associar ao serviço
  * @param thisCamiao O camiao a associar ao serviço
  * @param origem Local onde estava o camião antes do pedido
  * @param carga Local para onde o camião se deslocou para ser carregado
  * @param destino Local para onde o camião transportou a carga
+ * @return -2 Não encontrou o cliente
  * @return -1 Não conseguiu alocar
- * @return 0 Não conseguiu inserir
+ * @return 0 Não conseguiu inserir ou não conseguiu gerar a data e hora
  * @return 1 Inseriu o serviço na lista
  * */
-int cliente_insereServico( ClientePt thisCliente, CamiaoPt thisCamiao, double custo, double peso, LocalidadePTR origem, LocalidadePTR carga, LocalidadePTR destino );
+int cliente_insereServico( MainTreePt clientesPt, unsigned int nif, char *camiao, double custo, double peso, char *origem, char *carga, char *destino );
 
 /**
  * @brief Compara as datas de dois serviços

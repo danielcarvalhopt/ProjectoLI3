@@ -23,18 +23,11 @@
 #include "input.h"
 #include "menu.h"
 #include "utils.h"
+#include "serial.h"
 
 #include "mod_avl_n_dimensional.h"
 #include "mod_lista_ligada.h"
 #include "mod_tabela_hash.h"
-/*
-int main(){
-    char *lol =NULL;
-    tempo(lol);
-    printf("%s",lol);
-    return 1;
-}
-*/
 
 int main(){
     int input=0;
@@ -43,7 +36,7 @@ int main(){
     int (*comparaCamioes[DIM])(void*,void*) = {camiao_compararId, camiao_compararMatricula};
     int (*comparaClientes[DIM])(void*,void*) = {cliente_compararNif, cliente_compararNome};
     
-    /** Inicializar estruturas de controlo dos vários tipos de dados */
+    /** Inicializar estruturas de controlo dos vários tipos de dados */ 
     MainTreePt camioes = tree_new( comparaCamioes );
     MainTreePt clientes = tree_new( comparaClientes );
     TabelaHashPTR localidades = criaTabelaHash(hash_function, 10000, comparalocalidades);

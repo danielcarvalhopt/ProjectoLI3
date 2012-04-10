@@ -25,7 +25,7 @@ void camiao_dump( void* camiao ){
     printf("{id=%3d, matricula=\"%s\", consumo=%f}\n", thisCamiaoPt->id, thisCamiaoPt->matricula, thisCamiaoPt->custo );
 }
 
-CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double peso ){
+CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double peso, char *local ){
     CamiaoPt novoCamiaoPt = NULL;
     if( (novoCamiaoPt = malloc( sizeof(Camiao)) ) == NULL ) return NULL;
 
@@ -41,6 +41,7 @@ CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double pes
     novoCamiaoPt->id = id;
     novoCamiaoPt->custo = custo;
     novoCamiaoPt->peso = peso;
+    novoCamiaoPt->local = local;
     return novoCamiaoPt;
 }
 
@@ -71,6 +72,13 @@ ClientePt cliente_novo( unsigned int nif, char *nome, char *morada, MainListPTR 
     novoClientePt->morada = morada;
     novoClientePt->servicos = servicos;
     return novoClientePt;
+}
+
+ClientePt cliente_procuraNif( MainTreePt clientesPt, unsigned int nif){
+    ClientePt aux = cliente_novo( nif, "", "", NULL );
+    TreePt thisTreePt = tree_search( clientesPt, aux, 0);
+    free(aux);
+    return (ClientePt)thisTreePt->node;
 }
 
 int cliente_substituiPeloNome( MainTreePt clientesPt, char *procuraNome, unsigned int nif, char *nome, char *morada ){
@@ -156,7 +164,9 @@ int compareligacoesvinda (void *a, void *b){
 
 LocalidadePTR crialocalidade (char* nome){
     LocalidadePTR localidade;
-
+    
+    if(nome == NULL)
+        return NULL;
     localidade = (LocalidadePTR)malloc(sizeof(struct Localidade));
     localidade->nome=allocStr(nome);
     localidade->ligacoesida=criaListaLigada(compareligacoesida);
@@ -187,7 +197,7 @@ int removerlocalidade (TabelaHashPTR table, char *nome){
     return (apagaElementoTabelaHash(table, aux)); 
 }
 
-LigacoesidaPTR crialigacaoida (char* nome, float custo, float distancia){
+LigacoesidaPTR crialigacaoida (char* nome, double custo, double distancia){
     LigacoesidaPTR ligacao;
 
     ligacao = malloc (sizeof(struct Ligacoesida));
@@ -207,7 +217,7 @@ LigacoesvindaPTR crialigacaovinda (char* nome){
     return ligacao;
 }
 
-int inserirligacao(TabelaHashPTR table, char *nomeorigem, char *nomedestino, float custo, float distancia){
+int inserirligacao(TabelaHashPTR table, char *nomeorigem, char *nomedestino, double custo, double distancia){
     LocalidadePTR localidadeida = crialocalidade(nomeorigem);
     LocalidadePTR localidadevinda = crialocalidade(nomedestino);
     LigacoesidaPTR localidadedestino = crialigacaoida(nomedestino, custo,distancia);
@@ -255,237 +265,38 @@ int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino){
 }
 
 
-
-
-
-void inserelocalidadeinput (TabelaHashPTR table)
-{   
-    char *inputlocal=NULL,*aux=NULL;
-
-    printf("Nome da localidade a inserir > ");
-    aux=readStr(inputlocal); 
-    switch (inserelocalidade(table, aux)){
-        case -1: errorMessage(ERROR_LOCEXIST); break;
-        case 0: errorMessage(ERROR_MEMALOC); break;
-        case 1: errorMessage(ERROR_SUCCESS); break;
-    }
-}
-
-
-
-void removelocalidadeinput(TabelaHashPTR table)
-{
-    char *inputlocal=NULL,*aux=NULL;
-
-    printf("Nome da localidade a remover > ");
-    aux=readStr(inputlocal);
-    switch (removerlocalidade(table, aux))
-    {
-        case -1: errorMessage(ERROR_MEMALOC); break;
-        case 0: errorMessage(ERROR_LOCNOTEXIST); break;
-        case 1: errorMessage(ERROR_SUCCESS); break;
-    }
-}
-
-
-
-void insereligacaoinput(TabelaHashPTR table){
-    char *localorigem=NULL, *localdest=NULL, *aux=NULL,*aux2=NULL;
-    float custo, distancia;
-
-
-    printf("Introduza localidade de origem > ");
-    localorigem= readStr(aux);
-    printf("Introduza localidade de destino > ");
-    localdest= readStr(aux2);
-    printf("Introduza o custo de portagens > ");
-    custo=readDouble();
-    printf("Introduza a distância > ");
-    distancia=readDouble();
-
-    switch(inserirligacao(table,localorigem,localdest,custo,distancia)){
-        case -2: errorMessage(ERROR_MEMALOC); break;
-        case -1: errorMessage(ERROR_LOCNOTEXIST); break;
-        case 0: errorMessage(ERROR_LIGLOCEXIST); break; 
-        case 1: errorMessage(ERROR_SUCCESS); break;
-
-    }
-
-}
-
-
-void removeligacaoinput(TabelaHashPTR table){
-    char *localorigem=NULL, *localdest=NULL, *aux=NULL,*aux2=NULL;
-    printf("Introduza localidade de origem > ");
-    localorigem= readStr(aux);
-    printf("Introduza localidade de destino > ");
-    localdest= readStr(aux2);
-
-    switch(removerligacao (table,localorigem, localdest)){
-        case -1: errorMessage(ERROR_LOCNOTEXIST); break;
-        case 0:  errorMessage(ERROR_LIGLOCNOTEXIST); break; 
-        case 1: errorMessage(ERROR_SUCCESS); break;
-    }
-}
-
-
-
-void editaligacaoinput(TabelaHashPTR localidades)
-{
-    char *localorigem=NULL, *localdest=NULL, *auxc=NULL,*aux2c=NULL;
-    printf("Introduza localidade de origem > ");
-    localorigem= readStr(auxc);
-    printf("Introduza localidade de destino > ");
-    localdest= readStr(aux2c);
-    LocalidadePTR localidadeida = crialocalidade(localorigem);
-    LocalidadePTR localidadevinda = crialocalidade(localdest);
-    LigacoesidaPTR localidadedestino = crialigacaoida(localdest, 0,0);
-
-    LocalidadePTR aux;
-    float custo, distancia;
-
-    if ((procuraTabelaHash(localidades, localidadeida)==NULL) || (procuraTabelaHash(localidades, localidadevinda)==NULL)) printf("Uma ou ambas as localidades não existem!");
-    else{
-        aux = (((LinkedListPTR)procuraTabelaHash(localidades, localidadeida))->extdata);
-        if ((procuraElementoLista(aux->ligacoesida,localidadedestino)==NULL))
-            errorMessage(ERROR_LIGLOCNOTEXIST);
-        else{
-            printf("Irá alterara a ligação entre %s e %s.\n", localorigem,localdest );
-            printf("Novo custo da ligação > ");
-            custo=readDouble();
-            printf("Nova distância da ligação > ");
-            distancia=readDouble();
-            removerligacao(localidades, localorigem, localdest);
-            inserirligacao(localidades, localorigem, localdest,custo,distancia);
-            errorMessage(ERROR_SUCCESS);
-        }
-    }
-
-}
-
-
-void imprimelista(LinkedListPTR lista){
-    LinkedListPTR aux=lista;
-    LocalidadePTR local;
-    while (aux){
-        local = aux->extdata;
-        printf("%s",(char*)local->nome);
-        aux=aux->prox;
-    }
-}
-
-
-void imprimelistaligacoesinput(TabelaHashPTR localidades)
-{
-    char *nomelocalidade=NULL, *auxc=NULL;
-    printf("Introduza localidade de origem > ");
-    nomelocalidade=readStr(auxc);
-    LocalidadePTR localidade = crialocalidade(nomelocalidade);
-    LocalidadePTR aux;
-
-    if (procuraTabelaHash(localidades, localidade)==NULL) {errorMessage(ERROR_LOCNOTEXIST);}
-    else
-    {
-        aux = (((LinkedListPTR)procuraTabelaHash(localidades, localidade))->extdata);
-        if (aux->ligacoesida->elems==NULL) errorMessage(ERROR_NOLIGS);
-        else
-        imprimelistaligacoes(aux->ligacoesida->elems);
-    }
-}
-
-void imprimeLocalidades (TabelaHashPTR table){
-    int n= table->totalcells;
-    MainListPTR *aux = table->arraycell;
-    int i;
-    for (i=0; i<n; i++){
-        imprimelista(aux[i]->elems);
-    }
-
-}
-
-void imprimelistaligacoes(LinkedListPTR lista){
-    LinkedListPTR aux=lista;
-    LigacoesidaPTR local;
-    while (aux!=NULL){
-        local = aux->extdata;
-        printf("%s %0.2f %0.2f\n",(char*)local->nome, (float)local->custo, (float)local->distancia);
-        aux=aux->prox;
-    }
-}
-
-
-void* cloneLocalidade (void* externdata)
-{
-    LocalidadePTR novo, localidade=(LocalidadePTR)externdata;
-    if((novo=(LocalidadePTR)malloc(sizeof(struct Localidade)))==NULL) return NULL;
-
-    novo->nome=(char*)malloc(sizeof(char)*(strlen(localidade->nome)+1));
-    strcpy(novo->nome, localidade->nome);
-    novo->ligacoesida=criaListaLigada(compareligacoesida);
-    novo->ligacoesvinda=criaListaLigada(compareligacoesvinda);
-
-    free(localidade->nome);
-    free(localidade->ligacoesvinda);
-    free(localidade->ligacoesida);
-    free(localidade);
-    return novo;
-}
-
-
-LigacoesidaPTR cloneLigacaoida (LigacoesidaPTR ligacaoida)
-{
-    LigacoesidaPTR novo;
-    if((novo=(LigacoesidaPTR)malloc(sizeof(struct Ligacoesida)))==NULL) return NULL;
-
-    novo->nome=(char*)malloc(sizeof(strlen(ligacaoida->nome)+1));
-    strcpy(novo->nome, ligacaoida->nome);
-    novo->custo=ligacaoida->custo;
-    novo->distancia=ligacaoida->distancia;
-
-    free(ligacaoida->nome);
-    free(ligacaoida);
-    return novo;
-}
-
-
-LigacoesvindaPTR cloneLigacaovinda (LigacoesvindaPTR ligacaovinda)
-{
-    LigacoesvindaPTR novo;
-    if((novo=(LigacoesvindaPTR)malloc(sizeof(struct Ligacoesvinda)))==NULL) return NULL;
-
-    novo->nome=(char*)malloc(sizeof(strlen(ligacaovinda->nome)+1));
-    strcpy(novo->nome, ligacaovinda->nome);
-
-    free(ligacaovinda->nome);
-    free(ligacaovinda);
-
-    return novo;
-}
-
-
-
-
-
 //
 // Funções dos serviços anteriores
 //
-int cliente_insereServico( ClientePt thisCliente, CamiaoPt thisCamiao, double custo, double peso, LocalidadePTR origem, LocalidadePTR carga, LocalidadePTR destino ){
+int cliente_insereServico( MainTreePt clientesPt, unsigned int nif, char *camiao, double custo, double peso, char *origem, char *carga, char *destino ){
     ServicoPt thisServico;
-    if( (thisServico = (ServicoPt) malloc(sizeof(Servico))) == NULL ) return -1;
-    
-    thisServico->datahora = "datahora";
-    thisServico->camiao = thisCamiao;
-    thisServico->custo = custo;
-    thisServico->peso = peso;
-    thisServico->origem = origem;
-    thisServico->carga = carga;
-    thisServico->destino = destino;
-    
-    if( insereListaInicio( thisCliente->servicos, thisServico ) == 1 ) return 1;
-    else{
+
+    ClientePt thisCliente = cliente_procuraNif(clientesPt, nif);
+    if( thisCliente == NULL )
+        return -2;
+    int ret = 1;
+    if( (thisServico = (ServicoPt) malloc(sizeof(Servico))) != NULL ){
+        if( putTime(&thisServico->datahora) == 1 ){
+            thisServico->camiao = camiao;
+            thisServico->custo = custo;
+            thisServico->peso = peso;
+            thisServico->origem = origem;
+            thisServico->carga = carga;
+            thisServico->destino = destino;
+
+            if( insereListaInicio( thisCliente->servicos, thisServico ) == 1 )
+                ret = 1;
+            else
+                ret = 0;
+        }else ret = 0;
+    }else ret = -1;
+
+    if( ret == 0 ){ //nao conseguiu inserir ou nao conseguiu gerar a data e hora
+        free(thisServico->datahora);
         free(thisServico);
-        return 0;
     }
+
+    return ret;
 }
 
 int cliente_comparaServico( void* servUm, void* servDois ){

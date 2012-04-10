@@ -138,12 +138,11 @@ int insereElementoTabelaHash (TabelaHashPTR table, void *externdata)
 
 
 
-LinkedListPTR procuraTabelaHash (TabelaHashPTR table, void *externdata)
-{
-    int hashkey=(int)(table->hash_function(externdata,table->totalcells));
-    LinkedListPTR aux;
-    if ((aux=(procuraElementoLista(table->arraycell[hashkey], externdata)))!=NULL) return aux;  
-    else return NULL;
+LinkedListPTR procuraTabelaHash (TabelaHashPTR table, void *externdata){
+    int hashkey;
+    if( externdata==NULL ) return NULL;
+    hashkey=(int)(table->hash_function(externdata,table->totalcells));
+    return procuraElementoLista(table->arraycell[hashkey], externdata);  
 }
 
 
@@ -180,3 +179,27 @@ void apagaTabelaHash(TabelaHashPTR table)
         diminuiTabelaHash(table);
     }
 }
+
+/*
+void imprimeHash(TabelaHashPTR table)
+{
+    MainListPTR *aux=table->arraycell; int i;
+
+    for(i=0;i<(table->totalcells);i++)
+    {
+        imprimelista(aux[i]->elems);
+    }
+}
+
+
+int hash_function (void *externdata, int b)
+{
+    char *a=externdata; double res=0; int i=0;
+    while (i < strlen(a))
+    {
+        res+=a[i];
+        i++;
+    }
+    return (int)res%(b-1);
+}
+*/
