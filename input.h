@@ -6,6 +6,8 @@
 #ifndef INPUT_H_INCLUDED
 #define INPUT_H_INCLUDED
 
+#include "dados.h"
+
 /**
  * @brief Lê uma variável do tipo double.
  * @details Primeiro verifica se a string introduzida corresponde a um número no formato decimal, depois faz parsing da string para um double
@@ -47,5 +49,35 @@ char* readStr(char *ptr);
  * @see allocStr()
  * */
 int lerStr(char *ptr);
+
+
+//
+//
+//  FUNÇOES DE INPUT ESPECÍFICAS
+//
+//
+
+void inserelocalidadeinput(TabelaHashPTR table);
+void removelocalidadeinput(TabelaHashPTR table);
+void insereligacaoinput(TabelaHashPTR table);
+void removeligacaoinput(TabelaHashPTR table);
+void imprimeLocalidades (TabelaHashPTR table);
+void imprimelistaligacoesinput(TabelaHashPTR localidades);
+void editaligacaoinput(TabelaHashPTR localidades);
+
+/**
+ * @brief Imprime ligações de uma determinada localidade
+ * @details Imprime ligações de uma determinada localidade passada como argumento da função mostrando as localidades, o custo e a distância entre elas.
+ * @param lista Apontador de Lista Ligada para uma localidade
+ * */
+void imprimelistaligacoes(LinkedListPTR lista);
+
+/**
+ * @brief Imprime todas as localidades existentes nos indices da tabela de Hash
+ * @details 
+ * @param lista Apontador de Lista Ligada para uma lista de localidades existentes nos indices da tabela de hash
+ * */
+void imprimelista(LinkedListPTR lista);
+
 
 #endif /* INPUT_H_INCLUDED */

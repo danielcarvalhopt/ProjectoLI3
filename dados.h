@@ -252,12 +252,6 @@ void removeligacaoinput(TabelaHashPTR table);
  * */
 int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino);
 
-/**
- * @brief Imprime ligações de uma determinada localidade
- * @details Imprime ligações de uma determinada localidade passada como argumento da função mostrando as localidades, o custo e a distância entre elas.
- * @param lista Apontador de Lista Ligada para uma localidade
- * */
-void imprimelistaligacoes(LinkedListPTR lista);
 
 /**
  * @brief Imprime todas as localidades inseridas no programa invocando uma função auxiliar de output
@@ -266,12 +260,6 @@ void imprimelistaligacoes(LinkedListPTR lista);
  * */
 void hashprint (TabelaHashPTR table);
 
-/**
- * @brief Imprime todas as localidades existentes nos indices da tabela de Hash
- * @details 
- * @param lista Apontador de Lista Ligada para uma lista de localidades existentes nos indices da tabela de hash
- * */
-void imprimelista(LinkedListPTR lista);
 
 
 /**
@@ -374,15 +362,6 @@ int comparalocalidades (void *a, void *b);
  * @return 1  Removeu a ligação
  * */
 int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino);
-
-
-void inserelocalidadeinput(TabelaHashPTR table);
-void removelocalidadeinput(TabelaHashPTR table);
-void insereligacaoinput(TabelaHashPTR table);
-void removeligacaoinput(TabelaHashPTR table);
-void imprimeLocalidades (TabelaHashPTR table);
-void imprimelistaligacoesinput(TabelaHashPTR localidades);
-void editaligacaoinput(TabelaHashPTR localidades);
 
 //
 // Funções e estruturas dos serviços anteriores
