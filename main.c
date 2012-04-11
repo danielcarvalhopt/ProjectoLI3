@@ -47,7 +47,7 @@ int main(){
     //samples
     //reSampleLocalidades(1);
     //reSampleUser();
-    return 0;
+    //return 0;
 
     while( input != -1 ){
         input = printMenu(input);
