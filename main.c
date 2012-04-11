@@ -45,8 +45,8 @@ int main(){
     inicializarAtalhos();
     
     //samples
-    //reSampleLocalidades();
-    //return 0;
+    reSampleLocalidades(1);
+    return 0;
 
     while( input != -1 ){
         input = printMenu(input);

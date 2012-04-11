@@ -120,22 +120,47 @@ double readDouble(){
 //
 
 
-int reSampleLocalidades(){
+int reSampleLocalidades(int flag){
     //id_local:Nome:lista de ligacoes a partir de id_local (9 ligacoes)
     FILE *f = fopen("localidades.txt", "r");
     struct sSampleLocalidades d[18515];
+
+    //id_origem:id_destino:KM:custo
+    FILE *l = fopen("custosligacao.txt", "r");
+    int lig[166626][4];
+
+    //misc.
     int dummy, i;
     
+    // necessário para os 2
     for( i=1; i<18515; i++ )
-        fscanf(f, "%d:%[^:]:%d:%d:%d:%d:%d:%d:%d:%d:%d", &dummy, d[i].nome, &d[i].lig[0], &d[i].lig[1], &d[i].lig[2], &d[i].lig[3], &d[i].lig[4], &d[i].lig[5],
-                &d[i].lig[6], &d[i].lig[7], &d[i].lig[8] );
-    for( i=1; i<18515; i++ )
-        printf( "%s:%s:%s:%s:%s:%s:%s:%s:%s:%s\n", d[i].nome, d[d[i].lig[0]].nome, d[d[i].lig[1]].nome, d[d[i].lig[2]].nome, d[d[i].lig[3]].nome, d[d[i].lig[4]].nome, d[d[i].lig[5]].nome, d[d[i].lig[6]].nome, d[d[i].lig[7]].nome, d[d[i].lig[8]].nome);
-    
+        fscanf(f, "%d:%[^:]:%d:%d:%d:%d:%d:%d:%d:%d:%d", &dummy, d[i].nome,
+                &d[i].lig[0], &d[i].lig[1], &d[i].lig[2], &d[i].lig[3], &d[i].lig[4], &d[i].lig[5], &d[i].lig[6], &d[i].lig[7], &d[i].lig[8] );
+
+    // output localidades
+    // nome:adj[0]:...:adj[9]
+    if( flag==0 ){
+        for( i=1; i<18515; i++ )
+            printf( "%s:%s:%s:%s:%s:%s:%s:%s:%s:%s\n", d[i].nome, d[d[i].lig[0]].nome, d[d[i].lig[1]].nome, d[d[i].lig[2]].nome, d[d[i].lig[3]].nome,
+                    d[d[i].lig[4]].nome, d[d[i].lig[5]].nome, d[d[i].lig[6]].nome, d[d[i].lig[7]].nome, d[d[i].lig[8]].nome);
+    }
+
+    // output ligacoes
+    // origem:destino:km:custo
+    if( flag==1 ){
+        for( i=0; i<166626; i++ )
+            fscanf(l, "%d:%d:%d:%d", &lig[i][0], &lig[i][1], &lig[i][2], &lig[i][3]); 
+        
+        for( i=0; i<166626; i++ )
+            printf( "%s:%s:%d:%d\n", d[lig[i][0]].nome, d[lig[i][1]].nome, lig[i][2], lig[i][3] ); 
+    }
+
     fclose(f);
+    fclose(l);
 
     return 0;    
 }
+
 
 //
 //
