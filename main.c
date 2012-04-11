@@ -46,7 +46,7 @@ int main(){
     
     //samples
     //reSampleLocalidades(1);
-    reSampleUser();
+    //reSampleUser();
     return 0;
 
     while( input != -1 ){
