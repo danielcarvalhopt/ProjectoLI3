@@ -45,7 +45,8 @@ int main(){
     inicializarAtalhos();
     
     //samples
-    reSampleLocalidades(1);
+    //reSampleLocalidades(1);
+    reSampleUser();
     return 0;
 
     while( input != -1 ){

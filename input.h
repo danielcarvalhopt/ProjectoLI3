@@ -83,6 +83,7 @@ void camiaoi_insere(MainTreePt camioes, TabelaHashPTR localidades);
 
 
 int reSampleLocalidades();
+int reSampleUser();
 
 
 #endif /* INPUT_H_INCLUDED */

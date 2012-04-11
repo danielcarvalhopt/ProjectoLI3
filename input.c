@@ -161,6 +161,22 @@ int reSampleLocalidades(int flag){
     return 0;    
 }
 
+int reSampleUser(){
+    FILE *f = fopen("utilizadores.txt","r");
+    unsigned int nif[18484];
+    int i;
+    char nome[18484][100];
+    char email[50];
+    char morada[18484][100];
+    
+    for( i=0; i<18484; i++ )
+        fscanf(f,"%d\t%[^\t]\t%[^\t]\t%[^\t]", &nif[i], nome[i], email, morada[i]);
+    for( i=0; i<18484; i++ )
+        printf("%d:%s:%s", nif[i], nome[i], morada[i]);
+
+    return 1;
+}
+
 
 //
 //
