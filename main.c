@@ -28,6 +28,27 @@
 #include "mod_avl_n_dimensional.h"
 #include "mod_lista_ligada.h"
 #include "mod_tabela_hash.h"
+#include "mod_dijkstra.h"
+
+
+
+
+void insereficheiro(TabelaHashPTR localidades)
+{
+    FILE *ficheiro; 
+    char linha[80];
+
+    ficheiro = fopen ("teste.txt", "rt");  
+    while(fgets(linha, 80, ficheiro) != NULL)
+    {
+        linha[(strlen(linha)-1)]='\0';
+        inserelocalidade(localidades, linha);
+    }
+    fclose(ficheiro); 
+    imprimeColisoes(localidades); 
+} 
+
+
 
 int main(){
     int input=0;
@@ -43,11 +64,11 @@ int main(){
 
     /** Inicializar os atalhos predefinidos do menu */
     inicializarAtalhos();
-    
+    insereficheiro(localidades);
     //samples
     //reSampleLocalidades(1);
     //reSampleUser();
-    return 0;
+    //return 0;
 
     while( input != -1 ){
         input = printMenu(input);

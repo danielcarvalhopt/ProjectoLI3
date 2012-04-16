@@ -1,5 +1,5 @@
-transportes: serial.o utils.o menu.o input.o mod_avl_n_dimensional.o mod_lista_ligada.o mod_tabela_hash.o dados.o mod_error.o main.o
-	 gcc serial.o utils.o menu.o input.o mod_avl_n_dimensional.o mod_lista_ligada.o mod_tabela_hash.o dados.o mod_error.o main.o -o transportes
+transportes: serial.o utils.o menu.o input.o mod_avl_n_dimensional.o mod_lista_ligada.o mod_tabela_hash.o dados.o mod_error.o mod_dijkstra.o main.o
+	 gcc serial.o utils.o menu.o input.o mod_avl_n_dimensional.o mod_lista_ligada.o mod_tabela_hash.o dados.o mod_error.o mod_dijkstra.o main.o -o transportes
 
 dados.o:
 	gcc -c -g dados.c dados.h -Wall -Wextra
@@ -15,6 +15,12 @@ menu.o:
 
 mod_tabela_hash.o:
 	gcc -c -g mod_tabela_hash.c mod_tabela_hash.h -Wall -Wextra
+
+mod_lista_ligada.o:
+	gcc -c -g mod_lista_ligada.c mod_lista_ligada.h -Wall -Wextra
+
+mod_dijkstra.o:
+	gcc -c -g mod_dijkstra.c mod_dijkstra.h -Wall -Wextra
 
 mod_lista_ligada.o:
 	gcc -c -g mod_lista_ligada.c mod_lista_ligada.h -Wall -Wextra

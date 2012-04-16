@@ -127,7 +127,7 @@ int insereElementoTabelaHash (TabelaHashPTR table, void *externdata)
     {
         table->arraycell[hashkey]=(criaListaLigada(func_compare));
     }
-    int success = insereListaOrdenado(table->arraycell[hashkey], externdata);
+    int success = insereListaInicio(table->arraycell[hashkey], externdata);
     if (success==1){
         table->nelems++;
     }
@@ -147,7 +147,7 @@ LinkedListPTR procuraTabelaHash (TabelaHashPTR table, void *externdata){
 
 
 
-int apagaElementoTabelaHash (TabelaHashPTR table, void* externdata)
+int apagaElementoTabelaHash(TabelaHashPTR table, void* externdata)
 {
     int apagado=0;
     int hashkey=table->hash_function(externdata,table->totalcells);
@@ -163,6 +163,23 @@ int apagaElementoTabelaHash (TabelaHashPTR table, void* externdata)
     return apagado;
 }
 
+
+void aplicaFuncTabelaHash(TabelaHashPTR table, void (*applyFunction)(void *, void *), void *parametros) 
+{
+    LinkedListPTR aux;
+    int i;
+
+    for (i=0; i < (table->totalcells); i++) 
+    {
+        aux=table->arraycell[i]->elems;
+        
+        while (aux != NULL) 
+        {
+            applyFunction(aux->extdata, parametros);
+            aux = aux->prox;
+        }
+    }
+}
 
 
 void apagaTabelaHash(TabelaHashPTR table)

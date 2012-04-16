@@ -21,7 +21,6 @@ typedef struct TabelaHash{
 	int (*hash_function)(void*,int);
 	int nelems;
 	int totalcells;
-	int startcells;
 }*TabelaHashPTR;
 
 
@@ -87,6 +86,7 @@ int insereElementoTabelaHash (TabelaHashPTR table, void *externdata);
 LinkedListPTR procuraTabelaHash (TabelaHashPTR table, void *externdata);
 
 
+void aplicaFuncTabelaHash(TabelaHashPTR table, void (*applyFunction)(void *, void *), void *parametros) ;
 
 /**
 	@brief Elimina um elemento dado da tabela de hash

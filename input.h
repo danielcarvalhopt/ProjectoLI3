@@ -57,6 +57,8 @@ void removeligacaoinput(TabelaHashPTR table);
 void imprimeLocalidades (TabelaHashPTR table);
 void imprimelistaligacoesinput(TabelaHashPTR localidades);
 void editaligacaoinput(TabelaHashPTR localidades);
+void imprimeColisoes(TabelaHashPTR table);
+
 
 /**
  * @brief Imprime ligações de uma determinada localidade

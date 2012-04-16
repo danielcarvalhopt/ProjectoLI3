@@ -115,12 +115,22 @@ int hash_function (void *localidade, int hashsize)
 {
     LocalidadePTR localA = (LocalidadePTR)localidade; 
     char *nome;
-    long int res=1; int i;
+    long int res=11; int i=0, j=0; int hashing[]={2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109};
 
     nome=(char*)localA->nome;
-    for (i=0; nome[i]!='\0'; i++)
+    //printf("%s %lu\n", nome, strlen(nome));
+    while (nome[i]!='\0')
     {
-        res+=((int)nome[i])*(i+1)*13;
+        //printf("%d %c total> %ld\n",nome[i], nome[i],res );
+        if(nome[i]!='a'||nome[i]!='e'||nome[i]!='e'||nome[i]!='o'||nome[i]!='u')
+        {
+        res+=abs((int)((i+j+(nome[i]^i)*hashing[j]-(i+j))*hashing[j])*hashing[j+1]-i+j+hashing[j]+nome[i]);}
+        if((nome[i]=='a'&&nome[i+1]=='\0') || ((nome[i]=='o'&&nome[i+1]=='\0')&&((strlen(nome)%7)==0)))
+            res+=abs(hashing[j]*nome[0]-hashing[j]-i-hashing[j+2]);
+        //res+=abs((((int)nome[i]^(i+1))*(i+1)*13)+nome[i]-hashing);
+        i++; j=(((nome[i]*hashing[j])+i)%30);
+
+
     }
     int hashkey= (int)(res%(long int)hashsize);
     return hashkey;
@@ -232,8 +242,8 @@ int inserirligacao(TabelaHashPTR table, char *nomeorigem, char *nomedestino, dou
         if ((procuraElementoLista(aux->ligacoesida,localidadedestino)!=NULL) || (procuraElementoLista(aux2->ligacoesvinda, localidadeorigem)!=NULL))
             return 0;
         else{
-            insereListaOrdenado(aux->ligacoesida,localidadedestino);
-            insereListaOrdenado(aux2->ligacoesvinda, localidadeorigem);
+            insereListaInicio(aux->ligacoesida,localidadedestino);
+            insereListaInicio(aux2->ligacoesvinda, localidadeorigem);
         }
     }
     return 1;

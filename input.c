@@ -314,11 +314,32 @@ void imprimeLocalidades (TabelaHashPTR table){
     MainListPTR *aux = table->arraycell;
     int i;
     for (i=0; i<n; i++){
-        printf("%d\n", i);
-        imprimelista(aux[i]->elems);
+       // printf("%d\n", i);
+        //if(aux[i]->elems!=NULL){
+            printf("\n%d> ", i);
+            imprimelista(aux[i]->elems);
+        //}
+
     }
 
 }
+
+
+void imprimeColisoes(TabelaHashPTR table)
+{
+    int n= table->totalcells;
+    MainListPTR *aux = table->arraycell;
+    int i, res=0; int pos=-1;
+    for (i=0; i<n; i++){
+        if(aux[i]->nelems>res){
+            res=aux[i]->nelems;
+            pos=i;
+        }
+    }
+    printf("col:%d pos:%d\n", res,pos);
+
+}
+
 
 void imprimelista(LinkedListPTR lista){
     LinkedListPTR aux=lista;
@@ -326,6 +347,10 @@ void imprimelista(LinkedListPTR lista){
     while (aux){
         local = aux->extdata;
         printf("%s",(char*)local->nome);
+        if (aux->prox)
+            printf(", ");
+        else
+            printf(".");
         aux=aux->prox;
     }
 }
@@ -335,7 +360,7 @@ void imprimelistaligacoes(LinkedListPTR lista){
     LigacoesidaPTR local;
     while (aux!=NULL){
         local = aux->extdata;
-        printf("%s %0.2f %0.2f\n",(char*)local->nome, (double)local->custo, (double)local->distancia);
+        printf("%s %0.2f€ %0.2f€\n",(char*)local->nome, (double)local->custo, (double)local->distancia);
         aux=aux->prox;
     }
 }

@@ -127,6 +127,17 @@ LinkedListPTR procuraElementoLista (MainListPTR lista, void *externdata)
 
 
 
+void aplicaFuncLista(MainListPTR lista, void (*applyFunction)(void *, void *), void *parametros) 
+{
+    LinkedListPTR aux = lista->elems;
+
+    while (aux != NULL) {
+        applyFunction(aux->extdata, parametros);
+        aux = aux->prox;
+    }
+}
+
+
 void apagaListaAux(LinkedListPTR *lista)
 {
     LinkedListPTR aux;
