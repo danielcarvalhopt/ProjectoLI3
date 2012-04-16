@@ -22,8 +22,8 @@ int serialize(TabelaHashPTR tabela, MainTreePt camioes, MainTreePt clientes){
     LinkedListPTR listaAux = NULL;
     LinkedListPTR adjacencia = NULL;
 
-    file = fopen("s_write", "w+");
-    if( file == 0 ) return 0;
+    file = fopen("dados.sav", "w");
+    if( file == NULL ) return 0;
     
     //tamanho do array de hash
     // assim não é preciso fazer re-hash, usa-se este como tamanho inicial
@@ -43,7 +43,7 @@ int serialize(TabelaHashPTR tabela, MainTreePt camioes, MainTreePt clientes){
             nAdj = ((LocalidadePTR)(listaAux->extdata))->ligacoesida->nelems;
             fwrite( &nAdj, sizeof(int), 1, file );
             adjacencia = ((LocalidadePTR)(listaAux->extdata))->ligacoesida->elems;
-            
+
             while( adjacencia ){
                 strl = strlen( ((LigacoesidaPTR)adjacencia->extdata)->nome );
                 fwrite( &strl, sizeof(short int), 1, file );
@@ -162,19 +162,26 @@ int deserialize(
         MainTreePt *camioes, int (*comparaCamioes[DIM])(void*,void*),
         MainTreePt *clientes, int (*comparaClientes[DIM])(void*,void*),
         TabelaHashPTR *localidades, int (*comparaLocalidades)(void*,void*), int(*hash_function)(void*,int) ){
-
-    unsigned int strl;
+    short int strl;
     char *str;
     char *locOrigem;
     int nelem, nelems, tmp;
     int nAdj, nAdjs;
     double dArr[2];
+
+    int teste;
     
     FILE *file;
     fpos_t file_pos;
-    file = fopen("s_read", "r");
-    if( file == 0 ) return 0;
-    
+
+    apagaTabelaHash(*localidades);
+    tree_dispose(camioes);
+    tree_dispose(clientes);
+
+
+    file = fopen("dados.sav", "r");
+    if( file == NULL ) return 0;
+
     fread( &tmp, sizeof(int), 1, file );
     *localidades = criaTabelaHash(hash_function, tmp, comparaLocalidades);
 
@@ -187,7 +194,9 @@ int deserialize(
         str = novaString(strl);
         *(str+strl) = '\0';
         fread( str, sizeof(char), strl, file );
-        inserelocalidade( *localidades, str ); // localidade inserida
+        teste = inserelocalidade( *localidades, str ); // localidade inserida
+        if( teste != 1 )
+            printf(".");
 
         fread( &nAdjs, sizeof(int), 1, file );
         for( nAdj = 0; nAdj < nAdjs; nAdj++ ){
@@ -220,8 +229,8 @@ int deserialize(
     
     //camiões
     unsigned int id;
-    char *matricula;
-    char *local;
+    char *matricula=NULL;
+    char *local=NULL;
     unsigned int ncamiao, ncamioes;
 
     *camioes = tree_new( comparaCamioes );
@@ -310,57 +319,7 @@ int deserialize(
 
         }
     }
-    
-    printf("e ai estao os camioes!!!\n");
-    tree_applyToAllOrdered( *camioes, 0 , camiao_dump);
-    printf("e agora os clientes!! yey!\n");
-    tree_applyToAllOrdered( *clientes, 0 , cliente_dump);
-    
-    printf("localidades... :medo:\n");
-    imprimeHash(*localidades);
-
 
     return 1;
 }
 
-
-void imprimeHash(TabelaHashPTR table)
-{
-    MainListPTR *aux=table->arraycell; int i;
-
-    for(i=0;i<(table->totalcells);i++)
-    {
-        imprimelista2(aux[i]->elems);
-    }
-}
-
-void imprimelista2(LinkedListPTR lista)
-{
-    LinkedListPTR aux=lista;
-    while (aux)
-    {
-        printf("\n----------\n%s que tem ligação a:\n",((LocalidadePTR)aux->extdata)->nome );
-        if( ((LocalidadePTR)aux->extdata)->ligacoesida != NULL )
-            imprimelistaIda( ((LocalidadePTR)aux->extdata)->ligacoesida->elems );
-        printf("E as seguintes localidades ligam à anterior:\n");
-        if(((LocalidadePTR)aux->extdata)->ligacoesvinda != NULL)
-            imprimelistaVinda( ((LocalidadePTR)aux->extdata)->ligacoesvinda->elems );
-        aux=aux->prox;
-    }
-}
-
-void imprimelistaIda(LinkedListPTR lista){
-    LinkedListPTR aux=lista;
-    while(aux){
-        printf("\tnome: %s, custo: %g, distancia: %g\n", ((LigacoesidaPTR)aux->extdata)->nome, ((LigacoesidaPTR)aux->extdata)->custo, ((LigacoesidaPTR)aux->extdata)->distancia );
-        aux=aux->prox;
-    }
-}
-
-void imprimelistaVinda(LinkedListPTR lista){
-    LinkedListPTR aux=lista;
-    while(aux){
-        printf("\tnome: %s\n", ((LigacoesvindaPTR)aux->extdata)->nome );
-        aux=aux->prox;
-    }
-}

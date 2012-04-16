@@ -22,7 +22,7 @@ int camiao_compararMatricula(void* camiaoUm, void* camiaoDois){
 
 void camiao_dump( void* camiao ){
     CamiaoPt thisCamiaoPt = (CamiaoPt)camiao;
-    printf("{id=%3d, matricula=\"%s\", consumo=%f}\n", thisCamiaoPt->id, thisCamiaoPt->matricula, thisCamiaoPt->custo );
+    printf("{id=%3d, matricula=\"%s\", consumo=%g, cargaMax=%g, local=\"%s\"}\n", thisCamiaoPt->id, thisCamiaoPt->matricula, thisCamiaoPt->custo, thisCamiaoPt->peso, thisCamiaoPt->local );
 }
 
 CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double peso, char *local ){
@@ -59,7 +59,7 @@ int cliente_compararNome(void* clienteUm, void* clienteDois){
 
 void cliente_dump( void* cliente ){
     ClientePt thisClientePt = (ClientePt)cliente;
-    printf("{id=%09d, nome=\"%s\", morada=\"%s\"}\n", thisClientePt->nif, thisClientePt->nome, thisClientePt->morada );
+    printf("{id=%u, nome=\"%s\", morada=\"%s\"}\n", thisClientePt->nif, thisClientePt->nome, thisClientePt->morada );
 }
 
 ClientePt cliente_novo( unsigned int nif, char *nome, char *morada, MainListPTR servicos ){
@@ -87,7 +87,7 @@ int cliente_substituiPeloNome( MainTreePt clientesPt, char *procuraNome, unsigne
     free(aux);
     if( thisTreePt == NULL ) return -1;
     ClientePt modificado = cliente_novo( nif, nome, morada, cliente_getServico( thisTreePt ) );
-    tree_remove( clientesPt, thisTreePt->node );
+    tree_remove( clientesPt, thisTreePt->node, 1 );
     return tree_insert( clientesPt, modificado );
 }
 
@@ -102,7 +102,7 @@ int cliente_substituiPeloNif( MainTreePt clientesPt, unsigned int procuraNif, un
     free(aux);
     if( thisTreePt == NULL ) return -1;
     ClientePt modificado = cliente_novo( nif, nome, morada, cliente_getServico( thisTreePt ) );
-    tree_remove( clientesPt, thisTreePt->node );
+    tree_remove( clientesPt, thisTreePt->node, 0 );
     return tree_insert( clientesPt, modificado );
 }
 
@@ -120,9 +120,9 @@ int hash_function (void *localidade, int hashsize)
     nome=(char*)localA->nome;
     for (i=0; nome[i]!='\0'; i++)
     {
-        res+=((int)nome[i])*(i+1)*13;
+        res+=(abs((int)nome[i]))*(i+1)*13;
     }
-    int hashkey= (int)(res%(long int)hashsize);
+    int hashkey= (int)(res%(int)hashsize);
     return hashkey;
 }
 

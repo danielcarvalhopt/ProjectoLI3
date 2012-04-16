@@ -12,7 +12,6 @@
 
 #include <stdio.h>
 
-
 int serialize(TabelaHashPTR tabela, MainTreePt camioes, MainTreePt clientes);
 
 int deserialize(
@@ -25,10 +24,5 @@ void serial_clienteRec( TreePt thisTree, FILE *file );
 void serial_cliente( MainTreePt thisMainTree, FILE *file );
 void serial_camiaoRec( TreePt thisTree, FILE *file );
 void serial_camiao( MainTreePt thisMainTree, FILE *file );
-
-void imprimeHash(TabelaHashPTR table);
-void imprimelista2(LinkedListPTR lista);
-void imprimelistaIda(LinkedListPTR lista);
-void imprimelistaVinda(LinkedListPTR lista);
 
 #endif /* MENU_H_INCLUDED */

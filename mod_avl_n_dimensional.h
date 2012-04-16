@@ -87,8 +87,9 @@ void tree_applyToAllOrdered(MainTreePt thisMainTree, int thisDim, void (*func)(v
  * @details Procura o elemento semelhante ao apontado por node, se encontrar, remove-o
  * @param thisMainTreePt Apontador para a estrutura de controlo da árvore
  * @param node Apontador para o nodo com informação de procura
+ * @param dim dimensao d aprocura inicial
  * */
-void tree_remove( MainTreePt thisMainTreePt, void* node );
+void tree_remove( MainTreePt thisMainTreePt, void* node, int dim );
 
 /**
  * @brief Apagar a árvore e todas as suas sub-árvores

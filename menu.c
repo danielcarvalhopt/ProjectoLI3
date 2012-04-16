@@ -10,6 +10,7 @@
 #include "menu.h"
 #include "utils.h"
 #include "dados.h"
+#include "serial.h"
 
 
 
@@ -61,6 +62,7 @@ int printMenu(int input){
 	char status[60+1] = " ";
 	char menuAnt[62+1] = "0) Voltar ao Menu Principal";
         char inputWait[4] = ">> ";
+
 
         int i;
         
@@ -187,7 +189,6 @@ int printMenu(int input){
                         break;
                 case 32:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
 
                         printf( "*    %-56s  *\n"
                                 "%s",
@@ -220,7 +221,6 @@ int printMenu(int input){
                                 "*    %-56s  *\n"
                                 "*    %-56s  *\n"
                                 "*    %-56s  *\n"
-                                "*    %-56s  *\n"
                                 "%s"
                                 "*    %-56s  *\n"
                                 "*    %-56s  *\n"
@@ -229,12 +229,11 @@ int printMenu(int input){
                                     "Menu P. > Gestao de Localidades/Ligacoes", space,
                                     "1) Inserir Localidade",
                                     "2) Eliminar Localidade",
-                                    "3) Listar Localidades",
-                                    "4) Modificar localidade",space,
-                                    "5) Criar Ligacao",
-                                    "6) Eliminar Ligacao",
-                                    "7) Listar Ligacoes",
-                                    "8) Modificar Ligacoes"
+                                    "3) Listar Localidades",space,
+                                    "4) Criar Ligacao",
+                                    "5) Eliminar Ligacao",
+                                    "6) Listar Ligacoes",
+                                    "7) Modificar Ligacoes"
                         );
                         break;
                 case 41:
@@ -276,21 +275,11 @@ int printMenu(int input){
 
                         printf( "*    %-56s  *\n"
                                 "%s",
-                                    "Menu P. > Localidades/Ligacoes > Modificar Localidade", space
-                        );
-                        novaEscolha(44, "Modificar Localidade");
-                        break;
-                case 45:
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
-
-                        printf( "*    %-56s  *\n"
-                                "%s",
                                     "Menu P. > Localidades/Ligacoes > Criar Ligacao", space
                         );
                         novaEscolha(45, "Criar Ligacao");
                         break;
-                case 46:
+                case 45:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
                         strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
 
@@ -300,7 +289,7 @@ int printMenu(int input){
                         );
                         novaEscolha(46, "Eliminar Ligacao");
                         break;
-                case 47:
+                case 46:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
                         strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
 
@@ -311,7 +300,7 @@ int printMenu(int input){
                         novaEscolha(47, "Listar Ligacao");
                         break;
 
-                case 48:
+                case 47:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
                         strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
 
@@ -346,18 +335,15 @@ int printMenu(int input){
                         printf( "*    %-56s  *\n"
 				"%s"
 				"*    %-56s  *\n"
-				"*    %-56s  *\n"
 				"*    %-56s  *\n",
 					"Menu Principal > Exportar/Importar Dados", space,
 					"1) Exportar",
-                                        "2) Exportar (especificando nome do ficheiro)",
-					"3) Importar"
+					"2) Importar"
 			);
 			break;
 
 		case 81:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
                         printf( "*    %-56s  *\n",
                                     "Menu P. > Importar/Exportar Dados > Exportar Dados"
                         ); 
@@ -365,19 +351,10 @@ int printMenu(int input){
                         break;
                 case 82:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
-                        printf( "*    %-56s  *\n",
-                                    "Menu P. > Importar/Exportar Dados > Exportar Dados..."
-                        ); 
-                        novaEscolha(82, "Exportar Dados (especificando nome de ficheiro)");
-                        break;
-                case 83:
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
                         printf( "*    %-56s  *\n",
                                     "Menu P. > Importar/Exportar Dados > Importar Dados"
                         ); 
-                        novaEscolha(83, "Importar Dados");
+                        novaEscolha(82, "Importar Dados");
                         break;
 		default:
 			printf( "*    %-56s  *\n"
@@ -420,9 +397,7 @@ int printMenu(int input){
 	return input;
 }
 
-int getInput(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR localidades){
-    //alguns dados para testes
-
+int getInput(int input, MainTreePt *camioes, MainTreePt *clientes, TabelaHashPTR *localidades){
     switch( input ){
         case -1:
             input = 0;
@@ -442,9 +417,9 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR l
         case 23:
             // modo de listagem para efeitos de debug
             printf("ordenados por Nome: \n");
-            tree_applyToAllOrdered( clientes, 1 , cliente_dump);
+            tree_applyToAllOrdered( *clientes, 1 , cliente_dump);
             printf("ordenados por NIF: \n");
-            tree_applyToAllOrdered( clientes, 0 , cliente_dump);
+            tree_applyToAllOrdered( *clientes, 0 , cliente_dump);
             getchar(); clearInputBuffer();
             input = 0;
             break;
@@ -457,17 +432,21 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR l
                 input = 3;
             break;
         case 31:
-            camiaoi_insere( camioes, localidades );
+            camiaoi_insere( *camioes, *localidades );
             clearInputBuffer();
             input = 0;
             break;
-        case 32:break;
+        case 32:
+            camiaoi_remove( *camioes );
+            clearInputBuffer();
+            input = 0;
+            break;
         case 33:
             // modo de listagem para efeitos de debug
             printf("ordenados por matricula: \n");
-            tree_applyToAllOrdered( camioes, 1 , camiao_dump);
+            tree_applyToAllOrdered( *camioes, 1 , camiao_dump);
             printf("ordenados por id: \n");
-            tree_applyToAllOrdered( camioes, 0 , camiao_dump);
+            tree_applyToAllOrdered( *camioes, 0 , camiao_dump);
             getchar(); clearInputBuffer();
             input = 0;
             break;
@@ -480,14 +459,13 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR l
             else if( input != 0 )
                 input = 4;
             break;
-        case 41: inserelocalidadeinput(localidades); clearInputBuffer(); input=0; break;
-        case 42: removelocalidadeinput(localidades); clearInputBuffer(); input=0; break;
-        case 43: imprimeLocalidades(localidades); clearInputBuffer(); input=0; break;
-        case 44: getchar(); clearInputBuffer(); input=0; break;
-        case 45: insereligacaoinput(localidades); clearInputBuffer(); input=0; break;
-        case 46: removeligacaoinput(localidades); clearInputBuffer(); input=0; break;
-        case 47: imprimelistaligacoesinput(localidades); clearInputBuffer(); input=0; break;
-        case 48: editaligacaoinput(localidades); clearInputBuffer(); input=0; break;
+        case 41: inserelocalidadeinput(*localidades); clearInputBuffer(); input=0; break;
+        case 42: removelocalidadeinput(*localidades); clearInputBuffer(); input=0; break;
+        case 43: imprimeLocalidades(*localidades); clearInputBuffer(); input=0; break;
+        case 44: insereligacaoinput(*localidades); clearInputBuffer(); input=0; break;
+        case 45: removeligacaoinput(*localidades); clearInputBuffer(); input=0; break;
+        case 46: imprimelistaligacoesinput(*localidades); clearInputBuffer(); input=0; break;
+        case 47: editaligacaoinput(*localidades); clearInputBuffer(); input=0; break;
         case 9:
             input = getIntLoop();
             if( input == 1 || input == 2 )
@@ -503,16 +481,14 @@ int getInput(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR l
             break;
         case 8:
             input = getIntLoop();
-            if( input >= 1 && input <= 3 )
+            if( input >= 1 && input <= 2 )
                 input += 80;
             else if( input != 0 )
                 input = 8;
             break;
-        case 81: getchar(); clearInputBuffer(); input=0; break;
-            //serialize(local_teste, camioes, clientes);                 
-        case 82: getchar(); clearInputBuffer(); input=0; break;
-        case 83: getchar(); clearInputBuffer(); input=0; break;
-            // deserialize( &camioes, comparaCamioes, &clientes, comparaClientes, &localidades, comparalocalidades, hash_function );
+        case 81: serialize( *localidades, *camioes, *clientes ); clearInputBuffer(); input=0; break;
+        case 82: deserialize( camioes, comparaCamioes, clientes, comparaClientes, localidades, comparalocalidades, hash_function );
+                 clearInputBuffer(); input=0; break;
         default:
             input = getIntLoop();
             if( input == -1 )

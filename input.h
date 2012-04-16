@@ -13,6 +13,8 @@ struct sSampleLocalidades{
     int lig[9];
 };
 
+int readSampleLocalidades(TabelaHashPTR *table, int (*comparaLocalidades)(void*,void*), int(*hash_function)(void*,int));
+
 /**
  * @brief Lê uma variável do tipo double.
  * @details Primeiro verifica se a string introduzida corresponde a um número no formato decimal, depois faz parsing da string para um double
@@ -80,10 +82,13 @@ void imprimelista(LinkedListPTR lista);
  * @param localidades apontador para a estrutura de controlo da tabela de hash de localidades
  * */
 void camiaoi_insere(MainTreePt camioes, TabelaHashPTR localidades);
+void camiaoi_remove(MainTreePt camiao);
 
 
 int reSampleLocalidades();
 int reSampleUser();
+int readSampleClientes(MainTreePt *clientes, int (*comparaClientes[DIM])(void*,void*));
+int readSampleCamioes(MainTreePt *camioes, int (*comparaCamioes[DIM])(void*,void*));
 
 
 #endif /* INPUT_H_INCLUDED */

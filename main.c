@@ -4,11 +4,8 @@
  * */
 
 /**
- * \mainpage Membros do Grupo
+ * \mainpage Membros do Grupo 42
  * 
- *
- * \image html membros.png Grupo 42
- *
  * <CENTER><B>
  * Bruno Ferreira - a61055<BR>
  * Daniel Carvalho - a61008<BR>
@@ -31,16 +28,24 @@
 
 int main(){
     int input=0;
-    
-    /** Declarar arrays de apontadores para as funções de comparação de dados */
-    int (*comparaCamioes[DIM])(void*,void*) = {camiao_compararId, camiao_compararMatricula};
-    int (*comparaClientes[DIM])(void*,void*) = {cliente_compararNif, cliente_compararNome};
+
+    comparaCamioes[0] = camiao_compararId;
+    comparaCamioes[1] = camiao_compararMatricula;
+    comparaClientes[0] = cliente_compararNif;
+    comparaClientes[1] = cliente_compararNome;
     
     /** Inicializar estruturas de controlo dos vários tipos de dados */ 
     MainTreePt camioes = tree_new( comparaCamioes );
     MainTreePt clientes = tree_new( comparaClientes );
     TabelaHashPTR localidades = criaTabelaHash(hash_function, 10000, comparalocalidades);
-
+    
+    //TabelaHashPTR localidades = NULL;
+    //readSampleLocalidades(&localidades, comparalocalidades, hash_function);
+    //MainTreePt clientes = NULL;
+    //readSampleClientes(&clientes, comparaClientes);
+    //MainTreePt camioes = NULL;
+    //readSampleCamioes(&camioes, comparaCamioes);
+    
     /** Inicializar os atalhos predefinidos do menu */
     inicializarAtalhos();
     
@@ -51,7 +56,7 @@ int main(){
 
     while( input != -1 ){
         input = printMenu(input);
-        input = getInput(input, camioes, clientes, localidades);
+        input = getInput(input, &camioes, &clientes, &localidades);
     }
     return 0;
 }

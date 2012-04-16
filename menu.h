@@ -31,7 +31,7 @@ int getIntLoop();
  * @param localidades Tabela de Hash para tratamento de dados de localidades
  * @return Inteiro que indica o próximo menú a mostrar ao utilizador
  * */
-int getInput(int input, MainTreePt camioes, MainTreePt clientes, TabelaHashPTR localidades);
+int getInput(int input, MainTreePt *camioes, MainTreePt *clientes, TabelaHashPTR *localidades);
 
 /** 
  * @brief Inicializa as variáveis static que controlam os atalhos mostrados ao utilizador com três atalhos iniciais e predefinidos

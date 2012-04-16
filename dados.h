@@ -32,6 +32,12 @@ typedef struct sCamiao{
 } Camiao, *CamiaoPt;
 
 /**
+ * @brief Array das funções de comparação
+ * */
+int (*comparaCamioes[DIM])(void*,void*);
+
+
+/**
  * @brief Escreve de uma forma simplista a informação sobre determinado camião
  * @param camiao Apontador para o camião cuja informação se quer imprimir
  * */
@@ -91,6 +97,11 @@ typedef struct sCliente{
     char *morada;
     MainListPTR servicos;
 } Cliente, *ClientePt;
+
+/**
+ * @brief Array das funções de comparação
+ * */
+int (*comparaClientes[DIM])(void*,void*);
 
 /**
  * @brief Compara o campo Nif de dois clientes
