@@ -127,7 +127,7 @@ LinkedListPTR procuraElementoLista (MainListPTR lista, void *externdata)
 
 
 
-void aplicaFuncLista(MainListPTR lista, void (*applyFunction)(void *, void *), void *parametros) 
+void aplicaFuncLista(MainListPTR lista, int (*applyFunction)(void *, void *), void *parametros) 
 {
     LinkedListPTR aux = lista->elems;
 

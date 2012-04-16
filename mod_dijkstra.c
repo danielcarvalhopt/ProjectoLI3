@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
+
 
 #include "mod_dijkstra.h"
 #include "mod_lista_ligada.h"
@@ -46,44 +48,44 @@ int comparaGraphElem (void *a, void *b){
 
 
 
-GraphDijkstraPTR startGraphDijkstra(TabelaHashPTR localidades, int(*hash_function_dij)(void*,int), int startcells, int (*comparaGraphElem)(void*,void*),char* localidadeorigem, char*localidadedestino, double custocamiao)
-{
-    GraphDijkstraPTR graphDijkstra= criaTabelaHash(hash_function_dij, startcells, comparaGraphElem);
-    GraphDijkstraPTR endDijkstra = cheapestPathDijsktra(localidades ,graphDijkstra, localidadeorigem, localidadedestino, custocamiao);
-    return endDijkstra;
-}
+
     
 
 
-GraphDijkstraPTR cheapestPathDijsktra(TabelaHashPTR localidades, GraphDijkstraPTR graphDijkstra, char* localidadeorigem, char* localidadedestino, double custoCamiaoKm) 
+GraphDijkstraPTR cheapestPathDijsktra(TabelaHashPTR localidades,  char* localidadeorigem, char* localidadedestino, double custoCamiaoKm) 
 {
-    GraphElemPTR novo;
-    if((novo = (GraphElemPTR)malloc(sizeof(struct GraphElem)))==NULL) return NULL;
+    GraphDijkstraPTR graphDijkstra= criaTabelaHash(hash_function_dij, 3, comparaGraphElem);
+    GraphElemPTR novo= (GraphElemPTR)malloc(sizeof(struct GraphElem));
     LocalidadePTR localidadeAux, localidadeAux2;
 
     int naOrla;
- 
+
+
+    novo->nome=(char*)malloc(strlen(localidadeorigem)+1);
     strcpy(novo->nome,localidadeorigem);
-    novo->nomeAnterior=NULL;
+    novo->nomeAnterior=(char*)malloc(strlen("Rota: ")+1); 
+    strcpy(novo->nomeAnterior,"Rota: ");
     novo->distancia = 0;    
     novo->custoligacao = 0;   
     novo->custoCamiaoKm = custoCamiaoKm;    
-    novo->estado = ORLA;    
+    novo->estado = ORLA;  
+
 
     insereElementoTabelaHash(graphDijkstra, novo);
 
     naOrla=1;
     while (naOrla>0) 
     {
+        novo = NULL;
+        aplicaFuncTabelaHash(graphDijkstra, &nextVertexDijkstra, &novo);
+        localidadeAux2=(LocalidadePTR)crialocalidade(novo->nome);
+        localidadeAux =(LocalidadePTR)procuraTabelaHash(localidades, localidadeAux2);
         void **params = (void**) malloc (sizeof(void*)*3);
         params[0] = graphDijkstra;
         params[1] = novo;
         params[2] = &naOrla;
 
-        //novo = NULL;
-        aplicaFuncTabelaHash(graphDijkstra, &nextVertexDijkstra, &params[1]);
-        localidadeAux2=(LocalidadePTR)crialocalidade(novo->nome);
-        localidadeAux =(LocalidadePTR)procuraTabelaHash(localidades, localidadeAux2);
+        
 		
         aplicaFuncLista(localidadeAux->ligacoesida, &cheapestPathDijsktraAux, params);
         novo->estado = VISITADO;
@@ -94,17 +96,42 @@ GraphDijkstraPTR cheapestPathDijsktra(TabelaHashPTR localidades, GraphDijkstraPT
     
     return graphDijkstra;
 }
-
-void nextVertexDijkstra(void *elem, void *parametros) 
+/*
+while (greyCount > 0) 
+    {
+        elemAct = NULL;
+        aplica_THash(result, &verifica_prox_nodo, &elemAct);
+    
+        localAct = procura_THash(thash, elemAct->id);
+   
+        void **params = (void**) malloc (sizeof(void*)*3);
+        params[0] = elemAct;
+        params[1] = result;
+        params[2] = &greyCount;
+        
+        aplica_LLigada(localAct->ligacoes, &caminhomb_aux, params);
+        elemAct->vis = _VIS_BLACK;
+     
+        if (strcmp(elemAct->id,destino)==0 ) return result;
+        greyCount--;
+    }
+*/
+int nextVertexDijkstra(void *elem, void *parametros) 
 {
+    printf("*\n");
     GraphElemPTR nextVertex = (GraphElemPTR) elem;
-    GraphElemPTR vertex = (GraphElemPTR) parametros;
+    GraphElemPTR *vertex = (GraphElemPTR *) parametros;
 
-    if (nextVertex->estado!=VISITADO && ((vertex == NULL) || (vertex->custoligacao + (vertex->distancia * vertex->custoCamiaoKm) > nextVertex->custoligacao + (nextVertex->distancia * nextVertex->custoCamiaoKm))))
-        vertex=nextVertex;
+    if (nextVertex->estado!=VISITADO && ((*vertex == NULL) || ((*vertex)->custoligacao + ((*vertex)->distancia * (*vertex)->custoCamiaoKm) > nextVertex->custoligacao + (nextVertex->distancia * nextVertex->custoCamiaoKm))))
+       { *vertex=nextVertex; }
+   return 0;
 }
 
-void cheapestPathDijsktraAux(void *elem, void *parametros) {
+
+
+
+
+int cheapestPathDijsktraAux(void *elem, void *parametros) {
     
     LigacoesidaPTR ligacao=(LigacoesidaPTR)elem;
     
@@ -135,5 +162,6 @@ void cheapestPathDijsktraAux(void *elem, void *parametros) {
 
         insereElementoTabelaHash(graph, nextVertex);
     }
+    return 0;
 }
 

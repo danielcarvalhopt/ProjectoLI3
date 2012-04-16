@@ -164,20 +164,15 @@ int apagaElementoTabelaHash(TabelaHashPTR table, void* externdata)
 }
 
 
-void aplicaFuncTabelaHash(TabelaHashPTR table, void (*applyFunction)(void *, void *), void *parametros) 
+void aplicaFuncTabelaHash(TabelaHashPTR table, int (*applyFunction)(void *, void *), void *parametros) 
 {
-    LinkedListPTR aux;
+    MainListPTR aux;
     int i;
 
     for (i=0; i < (table->totalcells); i++) 
     {
-        aux=table->arraycell[i]->elems;
-        
-        while (aux != NULL) 
-        {
-            applyFunction(aux->extdata, parametros);
-            aux = aux->prox;
-        }
+        aux=table->arraycell[i];
+        aplicaFuncLista(aux, applyFunction, parametros);
     }
 }
 

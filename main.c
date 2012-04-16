@@ -64,16 +64,22 @@ int main(){
 
     /** Inicializar os atalhos predefinidos do menu */
     inicializarAtalhos();
-    insereficheiro(localidades);
+    //insereficheiro(localidades);
+    inserelocalidade(localidades,"Lousada");
+    inserelocalidade(localidades,"Porto");
+    inserelocalidade(localidades,"Braga");
+    inserirligacao(localidades, "Lousada", "Braga",2, 2);
+    inserirligacao(localidades, "Braga", "Porto",2, 2);
     //samples
     //reSampleLocalidades(1);
     //reSampleUser();
     //return 0;
 
-    while( input != -1 ){
+    /*while( input != -1 ){
         input = printMenu(input);
         input = getInput(input, camioes, clientes, localidades);
-    }
+    }*/
+    cheapestPathDijsktra(localidades,  "Lousada", "Porto", 3); 
     return 0;
 }
 

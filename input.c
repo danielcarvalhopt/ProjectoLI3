@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "mod_error.h"
+#include "mod_dijkstra.h"
 
 int lerStr(char **ptr){
     char strBuffer[1024];
