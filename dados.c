@@ -45,6 +45,36 @@ CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double pes
     return novoCamiaoPt;
 }
 
+int camiao_substituiPelaMatricula( MainTreePt camiaoPt, char *procuraMatricula, double custo, double peso, char *local ){
+    CamiaoPt aux = camiao_novo( 0, procuraMatricula, 0, 0, NULL );
+    TreePt thisTreePt = tree_search( camiaoPt, aux, 1);
+    free(aux);
+    if( thisTreePt == NULL ) return -1;
+    CamiaoPt modificado = camiao_novo( ((CamiaoPt)thisTreePt->node)->id, ((CamiaoPt)thisTreePt->node)->matricula, custo, peso, local );
+    tree_remove( camiaoPt, thisTreePt->node, 1 );
+    return tree_insert( camiaoPt, modificado );
+}
+
+CamiaoPt camiaoMaisBarato( MainTreePt camioes, char *local ){
+    CamiaoPt thisCamiao = NULL;
+    camiaoMaisBaratoRec( camioes->tree[0], local, &thisCamiao );
+    return thisCamiao;
+}
+
+void camiaoMaisBaratoRec( TreePt thisTree, char *local, CamiaoPt *camiao ){
+    if( thisTree != NULL ){
+        camiaoMaisBaratoRec(thisTree, local, camiao);
+        if( strcmp( ((CamiaoPt)thisTree->node)->local, local ) == 0 ){
+            if( *camiao != NULL ){
+                if( ((CamiaoPt)thisTree->node)->custo < (*camiao)->custo )
+                    *camiao = thisTree->node;
+            }else
+                *camiao = thisTree->node;
+        }
+        camiaoMaisBaratoRec(thisTree, local, camiao);
+    }
+}
+
 //
 // Funções dos clientes
 //

@@ -79,6 +79,9 @@ int camiao_compararMatricula(void* camiaoUm, void* camiaoDois);
  * @see Camiao
  * */
 CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double peso, char *local );
+int camiao_substituiPelaMatricula( MainTreePt camiaoPt, char *procuraMatricula, double custo, double peso, char *local );
+void camiaoMaisBaratoRec( TreePt thisTree, char *local, CamiaoPt *camiao );
+CamiaoPt camiaoMaisBarato( MainTreePt camioes, char *local );
 
 //
 // Funções e estruturas dos clientes

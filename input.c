@@ -488,7 +488,37 @@ void camiaoi_remove(MainTreePt camiao){
     }
     tree_remove(camiao, tmp, tmpi);
     free(tmp);
-    printf("Se existia, foi removido\n");
+    printf("Foi removido\n");
 }
 
+void camiaoi_modifica(MainTreePt camioes, TabelaHashPTR localidades){
+    char *matricula=NULL, *local=NULL, vazia[1]={'\0'};
+    LinkedListPTR localidade=NULL;
+    double custo, peso;
 
+    printf("Introduza a matricula do camiao a modificar > ");
+    lerStr( &matricula);
+
+    printf("Custo (por Km) > ");
+    if( isDouble(custo = readDouble()) == 0 )
+        printf("Erro: Valor inválido (veja as instruções acima)"); //erro
+    printf("Peso máximo da carga > ");
+    if( isDouble(peso = readDouble()) == 0 )
+        printf("Erro: Valor inválido (veja as instruções acima)"); //erro
+    
+    printf("Localidade actual > ");
+    lerStr( &local );
+    while( (localidade = procuraTabelaHash( localidades, crialocalidade(local) ) ) == NULL && strcmp(local,vazia) != 0 ){
+        printf("Erro: Localidade não foi encontrada. Para cancelar apenas pressione [ENTER].\nLocalidade actual > ");
+        lerStr( &local );
+    }
+    free(localidade);
+    if( strcmp(local,vazia) == 0 ){
+        printf("Cancelou a introdução.\n");
+        free(matricula);
+        free(local);
+    }else{
+        camiao_substituiPelaMatricula( camioes, matricula, custo, peso, local );
+        printf("Modificado!");
+    }
+}
