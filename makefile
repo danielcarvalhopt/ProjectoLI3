@@ -16,9 +16,6 @@ menu.o:
 mod_tabela_hash.o:
 	gcc -c -g mod_tabela_hash.c mod_tabela_hash.h -Wall -Wextra
 
-mod_lista_ligada.o:
-	gcc -c -g mod_lista_ligada.c mod_lista_ligada.h -Wall -Wextra
-
 mod_graph.o:
 	gcc -c -g mod_graph.c mod_graph.h -Wall -Wextra
 

@@ -118,7 +118,7 @@ int main(){
     inserirligacao(localidades,"E","F",3,2);
     inserirligacao(localidades,"F","END",2,2);
 */
-    costCheapestPath(localidades, "START", "END",1);
+    costCheapestPath(localidades, "Cetos", "Ribalongo",1);
 
     //samples
     //reSampleLocalidades(1);
