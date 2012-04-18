@@ -330,11 +330,14 @@ void freeLocalidade(LocalidadePTR localidade)
 
 double costCheapestPath(TabelaHashPTR localidades, char* localidadeorigem, char* localidadedestino, double custoCamiaoKm)
 {
-    GraphPTR graph;
-    graph=cheapestPathGraph(localidades,localidadeorigem, localidadedestino, custoCamiaoKm);
+    GraphPTR graph; graph=cheapestPathGraph(localidades,localidadeorigem, localidadedestino, custoCamiaoKm);
     GraphElemPTR destino=(GraphElemPTR)(procuraTabelaHash(graph, newVertex(localidadedestino, "",0,0,0,0)))->extdata;
-    printf("%s %s\n", destino->nome, destino->nomeAnterior );
-    return 0;
+
+    while(strcmp(destino->nome,localidadeorigem)!=0)
+    {
+        printf("%s <- ",destino->nome);
+        destino=(GraphElemPTR)(procuraTabelaHash(graph, newVertex(destino->nomeAnterior, "",0,0,0,0)))->extdata;
+    }
 }
 
 

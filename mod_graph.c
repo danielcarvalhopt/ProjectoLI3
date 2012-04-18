@@ -38,9 +38,7 @@ int hashFunctionGraph (void *elem, int hashsize)
 
 int compareVertexCost(GraphElemPTR a, GraphElemPTR b)
 {
-    if ((a->custoCaminho+(a->custoCamiaoKm*a->distancia))>(b->custoCaminho+(b->custoCamiaoKm*b->distancia))) return 1;
-    if ((a->custoCaminho+(a->custoCamiaoKm*a->distancia))<(b->custoCaminho+(b->custoCamiaoKm*b->distancia))) return -1;
-    return 0;
+    return ((a->custoCaminho+(a->custoCamiaoKm*a->distancia))>(b->custoCaminho+(b->custoCamiaoKm*b->distancia)));
 }
 
 
@@ -93,10 +91,10 @@ int buildPathGraph(GraphPTR graph, LigacoesidaPTR ligacao,GraphElemPTR vertex, i
         insereElementoTabelaHash(graph, nextVertex);
     }
     else {
-            nextVertex=auxvertex->extdata;
-            int recalculoCusto=nextVertex->custoCaminho+nextVertex->custoCamiaoKm*ligacao->distancia;
-            if ((nextVertex->estado != VISITADO) && (recalculoCusto > novoCustoCaminho))
+            nextVertex=(GraphElemPTR)auxvertex->extdata;
+            if ((nextVertex->estado != VISITADO) && (novoCustoCaminho < nextVertex->custoCaminho))
             {
+                nextVertex->nomeAnterior=(char*)malloc(strlen(vertex->nome)+1);
                 strcpy(nextVertex->nomeAnterior,vertex->nome);
                 nextVertex->custoCaminho=novoCustoCaminho;
                 nextVertex->distancia = vertex->distancia + ligacao->distancia;
@@ -105,30 +103,6 @@ int buildPathGraph(GraphPTR graph, LigacoesidaPTR ligacao,GraphElemPTR vertex, i
     return naOrla;
 }
 
-/*
-void caminhomb_aux(void *elem, void *params) {
-    
-    Ligacao* lig = (Ligacao*) elem;
-    
-    DijElem target = (DijElem) procura_THash(result, lig->id);
-    
-    if (target && target->vis != _VIS_BLACK && (target->km*target->custokm+target->taxas) > res && target->km != -1) {
-        target->km = newkm;
-        strcpy(target->idpai,elemAct->id);
-    }
-    else if (!target) {
-        target = (DijElem) malloc(sizeof(struct dij_elem));
-        target->km = newkm;
-        target->taxas = newtx;
-        strcpy(target->id,lig->id);
-        strcpy(target->idpai,elemAct->id);
-        target->vis = _VIS_GREY;
-
-        (*greyCount)++;
-
-        insere_THash(&result, target);
-    }
-}*/
 
 
 
@@ -141,13 +115,13 @@ GraphElemPTR chooseNextCheapestVertex (GraphPTR graph, GraphElemPTR proxVertice)
             while(throughCells)
             {
                 GraphElemPTR verticeCheck=throughCells->extdata;
-                if(verticeCheck->estado!=VISITADO &&((proxVertice==NULL)||(compareVertexCost(verticeCheck, proxVertice)<=0)))
+                if(verticeCheck->estado!=VISITADO &&((proxVertice==NULL)||proxVertice->distancia * proxVertice->custoCamiaoKm + proxVertice->custoCaminho > verticeCheck->distancia * verticeCheck->custoCamiaoKm + verticeCheck->custoCaminho))
                     proxVertice=verticeCheck;
                 throughCells=throughCells->prox;
             }
         }
         return proxVertice;
-}
+} 
 
 
 GraphPTR cheapestPathGraph(TabelaHashPTR localidades,  char* localidadeorigem, char* localidadedestino, double custoCamiaoKm) 
@@ -161,7 +135,7 @@ GraphPTR cheapestPathGraph(TabelaHashPTR localidades,  char* localidadeorigem, c
     verticeOrigem=(GraphElemPTR)newVertex(localidadeorigem, "_PATHSTART_", 0, 0 , custoCamiaoKm, ORLA); 
     naOrla=1;
     insereElementoTabelaHash(graph, verticeOrigem);
-    while(naOrla>ORLA ){
+    do{
         proxVertice=chooseNextCheapestVertex(graph, NULL);
         localidadeAux=(LocalidadePTR)(procuraTabelaHash(localidades, crialocalidade(proxVertice->nome)))->extdata;
         LinkedListPTR throughList = localidadeAux->ligacoesida->elems;
@@ -171,11 +145,9 @@ GraphPTR cheapestPathGraph(TabelaHashPTR localidades,  char* localidadeorigem, c
             throughList=throughList->prox;
         }
         proxVertice->estado = VISITADO;
-        //if(strcmp(proxVertice->nome,localidadedestino)==0) return graph;
+        if ((strcmp(proxVertice->nome,localidadedestino))==0) return graph;
         naOrla--;
-
-        printf("Prox: %s Orla:%d\n",proxVertice->nome, naOrla );
-    } //while(naOrla>ORLA && (strcmp(proxVertice->nome,localidadedestino)!=0));
+    } while(naOrla>ORLA && (strcmp(proxVertice->nome,localidadedestino)!=0));
 
     return graph;
 }

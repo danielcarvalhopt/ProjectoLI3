@@ -28,6 +28,6 @@ typedef struct sParametrosMap{
 GraphElemPTR newVertex(char* nome, char* nomeAnterior, double distancia, double custoCaminho, double custoCamiaoKm, int estado);
 GraphElemPTR chooseNextCheapestVertex (GraphPTR graph, GraphElemPTR proxVertice);
 GraphPTR cheapestPathGraph(TabelaHashPTR localidades, char* localidadeorigem, char* localidadedestino, double custoCamiaoKm);
-int buildPathGraph(GraphPTR graph, LigacoesidaPTR ligacao,GraphElemPTR vertex,int naOrla);
+int buildPathGraph(GraphPTR graph, LigacoesidaPTR ligacao,GraphElemPTR vertex, int naOrla) ;
 void imprimedijkstra(GraphPTR graphDijkstra);
 #endif

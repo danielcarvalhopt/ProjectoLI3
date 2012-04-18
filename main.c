@@ -84,7 +84,7 @@ void insereLigacoesFicheiro(TabelaHashPTR localidades)
     fclose(ficheiro);  
 } 
 
-
+//using namespace std; 
 
 int main(){
     int input=0;
@@ -100,15 +100,15 @@ int main(){
 
     /** Inicializar os atalhos predefinidos do menu */
     inicializarAtalhos();
-    //insereLocalidadesFicheiro(localidades);
-    //insereLigacoesFicheiro(localidades);
+    insereLocalidadesFicheiro(localidades);
+    insereLigacoesFicheiro(localidades);
     //
-    inserelocalidade(localidades,"START");
+ /*   inserelocalidade(localidades,"START");
     inserelocalidade(localidades,"A");
     inserelocalidade(localidades,"B");
     inserelocalidade(localidades,"C");
     inserelocalidade(localidades,"D");
-    inserelocalidade(localidades,"E");
+    inserelocalidade(localidades,"E");    inserelocalidade(localidades,"F");
     inserelocalidade(localidades,"END");
     inserirligacao(localidades,"START","A",3,4);
     inserirligacao(localidades,"A","B",1,10);
@@ -117,9 +117,8 @@ int main(){
     inserirligacao(localidades,"C","END",10,40);
     inserirligacao(localidades,"C","D",3,2);
     inserirligacao(localidades,"D","E",2,2);
-    inserirligacao(localidades,"E","END",2,3);
-    GraphPTR graph= cheapestPathGraph(localidades, "START", "END",1);
-            imprimedijkstra(graph);
+    inserirligacao(localidades,"E","END",2,3);*/
+    costCheapestPath(localidades, "Bedoiros", "Xabregas",1);
     //samples
     //reSampleLocalidades(1);
     //reSampleUser();
