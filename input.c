@@ -522,3 +522,91 @@ void camiaoi_modifica(MainTreePt camioes, TabelaHashPTR localidades){
         printf("Modificado!");
     }
 }
+
+
+
+/*
+void clientei_insere(MainTreePt clientes){
+    unsigned int nif;
+    char *nome=NULL, *morada=NULL;
+
+    printf("NIF > ");
+    while( isUInt(id = readUInt()) == 0 )
+        printf("Erro: Valor inválido (veja as instruções acima)"); //erro
+
+    printf("Nome > ");
+    lerStr( &nome);
+    
+    printf("Morada > ");
+    lerStr( &morada );
+
+        if( tree_insert( clientes, cliente_novo(nif, nome, morada, criaListaLigada( cliente_comparaServico )) ) == 1 )
+            printf("Dados introduzidos com sucesso!");
+        else
+            printf("Já existe um Camião com esse ID ou Matrícula");
+}
+
+void camiaoi_lista(MainTreePt camiao){
+    int input=-1;
+    printf("Pretende os resultados ordenados por ID(0) ou matrícula(1)? > ");
+    while( isInt(input = readInt()) == 0 && input != 0 && input != 1 )
+        printf("Erro: Valor inválido. Valores possíveis: 0 ou 1\n"); //erro
+    if( input == 0)
+        tree_applyToAllOrdered( camiao, 0, camiao_dump);
+    else if(input == 1)
+        tree_applyToAllOrdered( camiao, 1, camiao_dump);
+}
+
+void camiaoi_remove(MainTreePt camiao){
+    char *input=NULL;
+    int tmpi;
+    CamiaoPt tmp=NULL;
+    printf("ID ou Matricula do camião > ");
+    lerStr( &input );
+
+    printf("Introduziu um ID (0) ou matricula (1)? > ");
+    while( isInt(tmpi = readInt()) == 0 && tmpi != 0 && tmpi != 1 )
+        printf("Erro: Valor inválido. Valores possíveis: 0 ou 1\n"); //erro
+
+    if( tmpi == 0 ){
+        tmp = camiao_novo( (int)strtol(input, NULL, 10), "", 0,0,NULL);
+    }else{
+        tmp = camiao_novo(0, input, 0,0,NULL);
+    }
+    tree_remove(camiao, tmp, tmpi);
+    free(tmp);
+    printf("Foi removido\n");
+}
+
+void camiaoi_modifica(MainTreePt camioes, TabelaHashPTR localidades){
+    char *matricula=NULL, *local=NULL, vazia[1]={'\0'};
+    LinkedListPTR localidade=NULL;
+    double custo, peso;
+
+    printf("Introduza a matricula do camiao a modificar > ");
+    lerStr( &matricula);
+
+    printf("Custo (por Km) > ");
+    if( isDouble(custo = readDouble()) == 0 )
+        printf("Erro: Valor inválido (veja as instruções acima)"); //erro
+    printf("Peso máximo da carga > ");
+    if( isDouble(peso = readDouble()) == 0 )
+        printf("Erro: Valor inválido (veja as instruções acima)"); //erro
+    
+    printf("Localidade actual > ");
+    lerStr( &local );
+    while( (localidade = procuraTabelaHash( localidades, crialocalidade(local) ) ) == NULL && strcmp(local,vazia) != 0 ){
+        printf("Erro: Localidade não foi encontrada. Para cancelar apenas pressione [ENTER].\nLocalidade actual > ");
+        lerStr( &local );
+    }
+    free(localidade);
+    if( strcmp(local,vazia) == 0 ){
+        printf("Cancelou a introdução.\n");
+        free(matricula);
+        free(local);
+    }else{
+        camiao_substituiPelaMatricula( camioes, matricula, custo, peso, local );
+        printf("Modificado!");
+    }
+}
+*/
