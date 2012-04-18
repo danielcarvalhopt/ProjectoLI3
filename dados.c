@@ -332,12 +332,14 @@ double costCheapestPath(TabelaHashPTR localidades, char* localidadeorigem, char*
 {
     GraphPTR graph; graph=cheapestPathGraph(localidades,localidadeorigem, localidadedestino, custoCamiaoKm);
     GraphElemPTR destino=(GraphElemPTR)(procuraTabelaHash(graph, newVertex(localidadedestino, "",0,0,0,0)))->extdata;
+    double cost = destino->custoCaminho;
 
     while(strcmp(destino->nome,localidadeorigem)!=0)
     {
         printf("%s <- ",destino->nome);
         destino=(GraphElemPTR)(procuraTabelaHash(graph, newVertex(destino->nomeAnterior, "",0,0,0,0)))->extdata;
     }
+    return cost;
 }
 
 

@@ -131,7 +131,7 @@ GraphPTR cheapestPathGraph(TabelaHashPTR localidades,  char* localidadeorigem, c
     LocalidadePTR localidadeAux;
     int naOrla;
 
-    graph=(GraphPTR)criaTabelaHash(hashFunctionGraph, 30, searchGraphElemAux);
+    graph=(GraphPTR)criaTabelaHash(hashFunctionGraph, 500000, searchGraphElemAux);
     verticeOrigem=(GraphElemPTR)newVertex(localidadeorigem, "_PATHSTART_", 0, 0 , custoCamiaoKm, ORLA); 
     naOrla=1;
     insereElementoTabelaHash(graph, verticeOrigem);

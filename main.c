@@ -118,7 +118,7 @@ int main(){
     inserirligacao(localidades,"C","D",3,2);
     inserirligacao(localidades,"D","E",2,2);
     inserirligacao(localidades,"E","END",2,3);*/
-    costCheapestPath(localidades, "Bedoiros", "Xabregas",1);
+    costCheapestPath(localidades, "Bedoiros", "Soutaria",1);
     //samples
     //reSampleLocalidades(1);
     //reSampleUser();
