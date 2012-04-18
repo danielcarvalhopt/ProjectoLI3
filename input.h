@@ -88,6 +88,10 @@ void camiaoi_remove(MainTreePt camiao);
 void camiaoi_lista(MainTreePt camiao);
 void camiaoi_modifica(MainTreePt camioes, TabelaHashPTR localidades);
 
+void clientei_insere(MainTreePt clientes);
+void clientei_lista(MainTreePt clientes);
+void clientei_remove(MainTreePt clientes);
+void clientei_modifica(MainTreePt clientes);
 
 int reSampleLocalidades();
 int reSampleUser();

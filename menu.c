@@ -400,20 +400,23 @@ int getInput(int input, MainTreePt *camioes, MainTreePt *clientes, TabelaHashPTR
                 input = 2;
             break;
         case 21:
-            getchar(); clearInputBuffer();
+            clientei_insere(*clientes);
+            clearInputBuffer();
             input = 0;
             break;
-        case 22: getchar(); clearInputBuffer(); input=0; break;
+        case 22:
+            clientei_remove(*clientes);
+            clearInputBuffer();
+            input=0; break;
         case 23: 
-            // modo de listagem para efeitos de debug
-            printf("ordenados por Nome: \n");
-            tree_applyToAllOrdered( *clientes, 1 , cliente_dump);
-            printf("ordenados por NIF: \n");
-            tree_applyToAllOrdered( *clientes, 0 , cliente_dump);
-            getchar(); clearInputBuffer();
+            clientei_lista(*clientes);
+            clearInputBuffer();
             input = 0;
             break;
-        case 24: getchar(); clearInputBuffer(); input=0; break;
+        case 24:
+            clientei_modifica(*clientes);
+            clearInputBuffer();
+            input=0; break;
         case 3:
             input = getIntLoop();
             if( input >= 1 && input <= 4)

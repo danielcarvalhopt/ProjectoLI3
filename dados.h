@@ -176,15 +176,13 @@ int cliente_substituiPeloNome( MainTreePt clientesPt, char *procuraNome, unsigne
  *          Por fim, apaga o cliente que encontrou e insere o que criou.
  * @param clientesPt Apontador para a estrutura de controlo da árvore de clientes
  * @param procuraNif Nif do cliente que se quer modificar
- * @param nif Novo nif do cliente
- * @param nome Novo nome do cliente
  * @param morada Nova morada do cliente
  * @return Um inteiro com o seguinte significado:
  *         -1 - Não foi encontrado nenhum cliente
  *          0 - O cliente foi removido mas não foi inserido um novo
  *          1 - O cliente foi removido e foi inserido um novo
  * */
-int cliente_substituiPeloNif( MainTreePt clientesPt, unsigned int procuraNif, unsigned int nif, char *nome, char *morada );
+int cliente_substituiPeloNif( MainTreePt clientesPt, unsigned int procuraNif, char *morada );
 
 /**
  * @brief Procura um cliente pelo nif
