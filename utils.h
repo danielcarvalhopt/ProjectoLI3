@@ -124,10 +124,8 @@ int isDouble(double n);
 
 /**
  * @brief Copia uma string para outra
- * @details Aloca espaço para uma string de tamanho igual à string em src,
- *          coloca o apontador dest a apontar para esse espaço e copia o
- *          conteúdo da origem (src) para o destino (dest).
- * @param dest String de destino
+ * @details Aloca espaço para uma string de tamanho igual à string em src e copia o conteúdo de src para esse espaço.
+ * @param src String de origem
  * @return NULL Caso nao tenha conseguido alocar espaço para a nova string
  * @return Uma string caso tenha tido sucesso
  * */

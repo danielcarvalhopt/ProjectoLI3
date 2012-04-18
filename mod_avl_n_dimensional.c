@@ -266,13 +266,13 @@ static void tree_searchTreeToDisconnect( TreePt *thisTreePt, int thisDim, void *
     tree_maintain(thisTreePt, thisDim);
 }
 
-void tree_remove( MainTreePt thisMainTreePt, void* node ){
+void tree_remove( MainTreePt thisMainTreePt, void* node, int dim ){
     int i;
-    TreePt elem = tree_search( thisMainTreePt, node, 0);
+    TreePt elem = tree_search( thisMainTreePt, node, dim);
     if( elem == NULL ) return;
 
     for( i=0; i<DIM; i++ )
-        tree_searchTreeToDisconnect( &thisMainTreePt->tree[i], i, node, thisMainTreePt->compare[i] );
+        tree_searchTreeToDisconnect( &thisMainTreePt->tree[i], i, elem->node, thisMainTreePt->compare[i] );
 
     free(elem);
     thisMainTreePt->nodos--;

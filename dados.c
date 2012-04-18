@@ -23,7 +23,7 @@ int camiao_compararMatricula(void* camiaoUm, void* camiaoDois){
 
 void camiao_dump( void* camiao ){
     CamiaoPt thisCamiaoPt = (CamiaoPt)camiao;
-    printf("{id=%3d, matricula=\"%s\", consumo=%f}\n", thisCamiaoPt->id, thisCamiaoPt->matricula, thisCamiaoPt->custo );
+    printf("{id=%3d, matricula=\"%s\", consumo=%g, cargaMax=%g, local=\"%s\"}\n", thisCamiaoPt->id, thisCamiaoPt->matricula, thisCamiaoPt->custo, thisCamiaoPt->peso, thisCamiaoPt->local );
 }
 
 CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double peso, char *local ){
@@ -46,6 +46,36 @@ CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double pes
     return novoCamiaoPt;
 }
 
+int camiao_substituiPelaMatricula( MainTreePt camiaoPt, char *procuraMatricula, double custo, double peso, char *local ){
+    CamiaoPt aux = camiao_novo( 0, procuraMatricula, 0, 0, NULL );
+    TreePt thisTreePt = tree_search( camiaoPt, aux, 1);
+    free(aux);
+    if( thisTreePt == NULL ) return -1;
+    CamiaoPt modificado = camiao_novo( ((CamiaoPt)thisTreePt->node)->id, ((CamiaoPt)thisTreePt->node)->matricula, custo, peso, local );
+    tree_remove( camiaoPt, thisTreePt->node, 1 );
+    return tree_insert( camiaoPt, modificado );
+}
+
+CamiaoPt camiaoMaisBarato( MainTreePt camioes, char *local ){
+    CamiaoPt thisCamiao = NULL;
+    camiaoMaisBaratoRec( camioes->tree[0], local, &thisCamiao );
+    return thisCamiao;
+}
+
+void camiaoMaisBaratoRec( TreePt thisTree, char *local, CamiaoPt *camiao ){
+    if( thisTree != NULL ){
+        camiaoMaisBaratoRec(thisTree, local, camiao);
+        if( strcmp( ((CamiaoPt)thisTree->node)->local, local ) == 0 ){
+            if( *camiao != NULL ){
+                if( ((CamiaoPt)thisTree->node)->custo < (*camiao)->custo )
+                    *camiao = thisTree->node;
+            }else
+                *camiao = thisTree->node;
+        }
+        camiaoMaisBaratoRec(thisTree, local, camiao);
+    }
+}
+
 //
 // Funções dos clientes
 //
@@ -60,7 +90,7 @@ int cliente_compararNome(void* clienteUm, void* clienteDois){
 
 void cliente_dump( void* cliente ){
     ClientePt thisClientePt = (ClientePt)cliente;
-    printf("{id=%09d, nome=\"%s\", morada=\"%s\"}\n", thisClientePt->nif, thisClientePt->nome, thisClientePt->morada );
+    printf("{id=%u, nome=\"%s\", morada=\"%s\"}\n", thisClientePt->nif, thisClientePt->nome, thisClientePt->morada );
 }
 
 ClientePt cliente_novo( unsigned int nif, char *nome, char *morada, MainListPTR servicos ){
@@ -88,7 +118,7 @@ int cliente_substituiPeloNome( MainTreePt clientesPt, char *procuraNome, unsigne
     free(aux);
     if( thisTreePt == NULL ) return -1;
     ClientePt modificado = cliente_novo( nif, nome, morada, cliente_getServico( thisTreePt ) );
-    tree_remove( clientesPt, thisTreePt->node );
+    tree_remove( clientesPt, thisTreePt->node, 1 );
     return tree_insert( clientesPt, modificado );
 }
 
@@ -103,7 +133,7 @@ int cliente_substituiPeloNif( MainTreePt clientesPt, unsigned int procuraNif, un
     free(aux);
     if( thisTreePt == NULL ) return -1;
     ClientePt modificado = cliente_novo( nif, nome, morada, cliente_getServico( thisTreePt ) );
-    tree_remove( clientesPt, thisTreePt->node );
+    tree_remove( clientesPt, thisTreePt->node, 0 );
     return tree_insert( clientesPt, modificado );
 }
 
