@@ -236,7 +236,7 @@ int readSampleCamioes(MainTreePt *camioes, int (*comparaCamioes[DIM])(void*,void
     char local[10][50] = {
         "Taipa",
         "Praia de Porto Chão",
-        "Ponta do Fogo:",
+        "Ponta do Fogo",
         "Póvoa da Pégada",
         "Alto do Vale de Sardão",
         "Vale de Mouros",
