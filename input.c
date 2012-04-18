@@ -441,8 +441,30 @@ void imprimelistaligacoes(LinkedListPTR lista){
 //
 
 
+void insereServicoInput(TabelaHashPTR localidades, MainTreePt clientesPt, MainTreePt camioes)
+{
+    char *localidadeorigem, *localidadedestino;
+    int nif;CamiaoPt camiao;
 
+    printf("\nIntroduza o NIF do Cliente > ");
+    while( isUInt (nif=readUInt())==0);
+    printf("Introduza a localidade de carregamento da carga > ");
+    lerStr(&localidadeorigem);
+    printf("Introduza a localidade de descarregamento da carga > ");
+    lerStr(&localidadedestino);
 
+    if (camiaoMaisBarato(camioes, localidadeorigem )==NULL) {errorMessage(ERROR_NOCAMLOC); return;}
+    camiao= (CamiaoPt)camiaoMaisBarato(camioes, localidadeorigem );
+    double custo = costCheapestPath(localidades, localidadeorigem, localidadedestino, camiao->custo);
+    printf("Custo transporte: %.2f\n", custo);
+    switch(cliente_insereServico(clientesPt, nif, camiao->matricula, custo, 0, localidadeorigem,"", localidadedestino)){
+        case -2: errorMessage(ERROR_MEMALOC); break;
+        case 0:  errorMessage(ERROR_MEMALOC);break; 
+        case -1:  errorMessage(ERROR_MEMALOC);break;
+        case 1: errorMessage(ERROR_SUCCESS);
+    } 
+    return;
+}
 
 
 //

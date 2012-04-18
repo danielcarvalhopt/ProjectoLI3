@@ -12,8 +12,9 @@ static Error errors[] =
   {"ERROR_LOCNOTEXIST",	"Localidade(s) não existe(m)!"},
   {"ERROR_LIGLOCEXIST",		"Ligação entre localidades já existe!"},
   {"ERROR_LIGLOCNOTEXIST",	"Ligação entre localidades não existe!"},
-  {"ERROR_NOLIGS",	"Não existem ligações a partir desta localidade!"}
+  {"ERROR_NOLIGS",	"Não existem ligações a partir desta localidade!"},
   /*      -------      */
+  {"ERROR_NOCAMLOC",  "Não existem camiões nesta localidade!"}
 };
 
 

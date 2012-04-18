@@ -391,7 +391,7 @@ int getInput(int input, MainTreePt *camioes, MainTreePt *clientes, TabelaHashPTR
     switch( input ){
         case -1:
             input = 0;
-        case 1: getchar(); clearInputBuffer(); input=0; break;
+        case 1: insereServicoInput(localidades, clientes, camioes); break;
         case 2:
             input = getIntLoop();
             if( input >= 1 && input <= 4)

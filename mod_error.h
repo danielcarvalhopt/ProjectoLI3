@@ -9,6 +9,8 @@
 #define ERROR_LIGLOCNOTEXIST 	5 		// Ligação entre localidades não existe!
 #define ERROR_NOLIGS 			6 		// Não existem ligações a partir desta localidade!
 
+#define ERROR_NOCAMLOC			7
+
 
 typedef struct error
 {

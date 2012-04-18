@@ -64,7 +64,7 @@ CamiaoPt camiaoMaisBarato( MainTreePt camioes, char *local ){
 
 void camiaoMaisBaratoRec( TreePt thisTree, char *local, CamiaoPt *camiao ){
     if( thisTree != NULL ){
-        camiaoMaisBaratoRec(thisTree, local, camiao);
+        camiaoMaisBaratoRec(thisTree->l[0], local, camiao);
         if( strcmp( ((CamiaoPt)thisTree->node)->local, local ) == 0 ){
             if( *camiao != NULL ){
                 if( ((CamiaoPt)thisTree->node)->custo < (*camiao)->custo )
@@ -72,7 +72,7 @@ void camiaoMaisBaratoRec( TreePt thisTree, char *local, CamiaoPt *camiao ){
             }else
                 *camiao = thisTree->node;
         }
-        camiaoMaisBaratoRec(thisTree, local, camiao);
+        camiaoMaisBaratoRec(thisTree->r[0], local, camiao);
     }
 }
 
