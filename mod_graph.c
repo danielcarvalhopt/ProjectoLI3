@@ -94,6 +94,7 @@ int buildPathGraph(GraphPTR graph, LigacoesidaPTR ligacao,GraphElemPTR vertex, i
             nextVertex=(GraphElemPTR)auxvertex->extdata;
             if ((nextVertex->estado != VISITADO) && (novoCustoCaminho < nextVertex->custoCaminho))
             {
+                nextVertex->nomeAnterior=NULL;
                 nextVertex->nomeAnterior=(char*)malloc(strlen(vertex->nome)+1);
                 strcpy(nextVertex->nomeAnterior,vertex->nome);
                 nextVertex->custoCaminho=novoCustoCaminho;
@@ -131,7 +132,7 @@ GraphPTR cheapestPathGraph(TabelaHashPTR localidades,  char* localidadeorigem, c
     LocalidadePTR localidadeAux;
     int naOrla;
 
-    graph=(GraphPTR)criaTabelaHash(hashFunctionGraph, 500000, searchGraphElemAux);
+    graph=(GraphPTR)criaTabelaHash(hashFunctionGraph, 100000, searchGraphElemAux);
     verticeOrigem=(GraphElemPTR)newVertex(localidadeorigem, "_PATHSTART_", 0, 0 , custoCamiaoKm, ORLA); 
     naOrla=1;
     insereElementoTabelaHash(graph, verticeOrigem);

@@ -339,6 +339,7 @@ double costCheapestPath(TabelaHashPTR localidades, char* localidadeorigem, char*
         printf("%s <- ",destino->nome);
         destino=(GraphElemPTR)(procuraTabelaHash(graph, newVertex(destino->nomeAnterior, "",0,0,0,0)))->extdata;
     }
+    imprimedijkstra(graph);
     return cost;
 }
 

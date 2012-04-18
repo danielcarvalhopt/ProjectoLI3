@@ -102,8 +102,8 @@ int main(){
     inicializarAtalhos();
     insereLocalidadesFicheiro(localidades);
     insereLigacoesFicheiro(localidades);
-    //
- /*   inserelocalidade(localidades,"START");
+    /*
+   inserelocalidade(localidades,"START");
     inserelocalidade(localidades,"A");
     inserelocalidade(localidades,"B");
     inserelocalidade(localidades,"C");
@@ -112,13 +112,14 @@ int main(){
     inserelocalidade(localidades,"END");
     inserirligacao(localidades,"START","A",3,4);
     inserirligacao(localidades,"A","B",1,10);
-    inserirligacao(localidades,"B","END",3,20);
-    inserirligacao(localidades,"START","C",10,2);
-    inserirligacao(localidades,"C","END",10,40);
-    inserirligacao(localidades,"C","D",3,2);
-    inserirligacao(localidades,"D","E",2,2);
-    inserirligacao(localidades,"E","END",2,3);*/
-    costCheapestPath(localidades, "Bedoiros", "Soutaria",1);
+    inserirligacao(localidades,"B","C",3,20);
+    inserirligacao(localidades,"C","D",10,2);
+    inserirligacao(localidades,"D","E",10,40);
+    inserirligacao(localidades,"E","F",3,2);
+    inserirligacao(localidades,"F","END",2,2);
+*/
+    costCheapestPath(localidades, "START", "END",1);
+
     //samples
     //reSampleLocalidades(1);
     //reSampleUser();
