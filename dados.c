@@ -127,12 +127,12 @@ MainListPTR cliente_getServico( TreePt thisTreePt ){
     return ((ClientePt)tree_getElem(thisTreePt))->servicos;
 }
 
-int cliente_substituiPeloNif( MainTreePt clientesPt, unsigned int procuraNif, unsigned int nif, char *nome, char *morada ){
+int cliente_substituiPeloNif( MainTreePt clientesPt, unsigned int procuraNif, char *morada ){
     ClientePt aux = cliente_novo( procuraNif, "", "", NULL );
     TreePt thisTreePt = tree_search( clientesPt, aux, 0);
     free(aux);
     if( thisTreePt == NULL ) return -1;
-    ClientePt modificado = cliente_novo( nif, nome, morada, cliente_getServico( thisTreePt ) );
+    ClientePt modificado = cliente_novo( procuraNif , ((ClientePt)thisTreePt->node)->nome, morada, cliente_getServico( thisTreePt ) );
     tree_remove( clientesPt, thisTreePt->node, 0 );
     return tree_insert( clientesPt, modificado );
 }

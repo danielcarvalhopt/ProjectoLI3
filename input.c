@@ -552,13 +552,13 @@ void camiaoi_modifica(MainTreePt camioes, TabelaHashPTR localidades){
 
 
 
-/*
+
 void clientei_insere(MainTreePt clientes){
     unsigned int nif;
     char *nome=NULL, *morada=NULL;
 
     printf("NIF > ");
-    while( isUInt(id = readUInt()) == 0 )
+    while( isUInt(nif = readUInt()) == 0 )
         printf("Erro: Valor inválido (veja as instruções acima)"); //erro
 
     printf("Nome > ");
@@ -570,70 +570,40 @@ void clientei_insere(MainTreePt clientes){
         if( tree_insert( clientes, cliente_novo(nif, nome, morada, criaListaLigada( cliente_comparaServico )) ) == 1 )
             printf("Dados introduzidos com sucesso!");
         else
-            printf("Já existe um Camião com esse ID ou Matrícula");
+            printf("Já existe um Cliente com esse NIF ou Nome");
 }
 
-void camiaoi_lista(MainTreePt camiao){
-    int input=-1;
-    printf("Pretende os resultados ordenados por ID(0) ou matrícula(1)? > ");
-    while( isInt(input = readInt()) == 0 && input != 0 && input != 1 )
-        printf("Erro: Valor inválido. Valores possíveis: 0 ou 1\n"); //erro
-    if( input == 0)
-        tree_applyToAllOrdered( camiao, 0, camiao_dump);
-    else if(input == 1)
-        tree_applyToAllOrdered( camiao, 1, camiao_dump);
+void clientei_lista(MainTreePt clientes){
+    tree_applyToAllOrdered( clientes, 0, cliente_dump);
 }
 
-void camiaoi_remove(MainTreePt camiao){
-    char *input=NULL;
-    int tmpi;
-    CamiaoPt tmp=NULL;
-    printf("ID ou Matricula do camião > ");
-    lerStr( &input );
+void clientei_remove(MainTreePt clientes){
+    unsigned int nif;
+    ClientePt tmp=NULL;
+    printf("NIF do cliente > ");
+    while( isUInt(nif = readUInt()) == 0 )
+        printf("Erro: NIF inválido.");
+    
+    tmp = cliente_novo( nif, NULL, NULL, NULL );
 
-    printf("Introduziu um ID (0) ou matricula (1)? > ");
-    while( isInt(tmpi = readInt()) == 0 && tmpi != 0 && tmpi != 1 )
-        printf("Erro: Valor inválido. Valores possíveis: 0 ou 1\n"); //erro
-
-    if( tmpi == 0 ){
-        tmp = camiao_novo( (int)strtol(input, NULL, 10), "", 0,0,NULL);
-    }else{
-        tmp = camiao_novo(0, input, 0,0,NULL);
-    }
-    tree_remove(camiao, tmp, tmpi);
+    tree_remove(clientes, tmp, 0);
     free(tmp);
     printf("Foi removido\n");
 }
 
-void camiaoi_modifica(MainTreePt camioes, TabelaHashPTR localidades){
-    char *matricula=NULL, *local=NULL, vazia[1]={'\0'};
-    LinkedListPTR localidade=NULL;
-    double custo, peso;
+void clientei_modifica(MainTreePt clientes){
+    char *morada=NULL;
+    unsigned int nif;
 
-    printf("Introduza a matricula do camiao a modificar > ");
-    lerStr( &matricula);
+    printf("Introduza o nif do cliente > ");
+    while( isUInt( nif = readUInt() ) == 0 )
+        printf("Número inválido.");
 
-    printf("Custo (por Km) > ");
-    if( isDouble(custo = readDouble()) == 0 )
-        printf("Erro: Valor inválido (veja as instruções acima)"); //erro
-    printf("Peso máximo da carga > ");
-    if( isDouble(peso = readDouble()) == 0 )
-        printf("Erro: Valor inválido (veja as instruções acima)"); //erro
-    
-    printf("Localidade actual > ");
-    lerStr( &local );
-    while( (localidade = procuraTabelaHash( localidades, crialocalidade(local) ) ) == NULL && strcmp(local,vazia) != 0 ){
-        printf("Erro: Localidade não foi encontrada. Para cancelar apenas pressione [ENTER].\nLocalidade actual > ");
-        lerStr( &local );
-    }
-    free(localidade);
-    if( strcmp(local,vazia) == 0 ){
-        printf("Cancelou a introdução.\n");
-        free(matricula);
-        free(local);
-    }else{
-        camiao_substituiPelaMatricula( camioes, matricula, custo, peso, local );
-        printf("Modificado!");
-    }
+    printf("Introduza a nova morada > ");
+    lerStr( &morada );
+
+
+    cliente_substituiPeloNif( clientes, nif, morada );
+    printf("Modificado!\n");
 }
-*/
+
