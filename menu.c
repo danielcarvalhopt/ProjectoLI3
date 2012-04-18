@@ -277,7 +277,7 @@ int printMenu(int input){
                                 "%s",
                                     "Menu P. > Localidades/Ligacoes > Criar Ligacao", space
                         );
-                        novaEscolha(45, "Criar Ligacao");
+                        novaEscolha(44, "Criar Ligacao");
                         break;
                 case 45:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
@@ -287,7 +287,7 @@ int printMenu(int input){
                                 "%s",
                                     "Menu P. > Localidades/Ligacoes > Eliminar Ligacao", space
                         );
-                        novaEscolha(46, "Eliminar Ligacao");
+                        novaEscolha(45, "Eliminar Ligacao");
                         break;
                 case 46:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
@@ -297,7 +297,7 @@ int printMenu(int input){
                                 "%s",
                                     "Menu P. > Localidades/Ligacoes > Listar Ligacao", space
                         );
-                        novaEscolha(47, "Listar Ligacao");
+                        novaEscolha(46, "Listar Ligacao");
                         break;
 
                 case 47:
@@ -308,7 +308,7 @@ int printMenu(int input){
                                 "%s",
                                     "Menu P. > Localidades/Ligacoes > Modificar Ligacao", space
                         );
-                        novaEscolha(48, "Modificar Ligacao");
+                        novaEscolha(47, "Modificar Ligacao");
                         break;
 
                 case 9:
@@ -398,6 +398,7 @@ int printMenu(int input){
 }
 
 int getInput(int input, MainTreePt *camioes, MainTreePt *clientes, TabelaHashPTR *localidades){
+    char pressENTER[101] = "Pressione [ENTER] para continuar";
     switch( input ){
         case -1:
             input = 0;
@@ -414,7 +415,7 @@ int getInput(int input, MainTreePt *camioes, MainTreePt *clientes, TabelaHashPTR
             input = 0;
             break;
         case 22: getchar(); clearInputBuffer(); input=0; break;
-        case 23:
+        case 23: 
             // modo de listagem para efeitos de debug
             printf("ordenados por Nome: \n");
             tree_applyToAllOrdered( *clientes, 1 , cliente_dump);
@@ -433,6 +434,7 @@ int getInput(int input, MainTreePt *camioes, MainTreePt *clientes, TabelaHashPTR
             break;
         case 31:
             camiaoi_insere( *camioes, *localidades );
+            printf("\n%s", pressENTER);
             clearInputBuffer();
             input = 0;
             break;
@@ -442,12 +444,9 @@ int getInput(int input, MainTreePt *camioes, MainTreePt *clientes, TabelaHashPTR
             input = 0;
             break;
         case 33:
-            // modo de listagem para efeitos de debug
-            printf("ordenados por matricula: \n");
-            tree_applyToAllOrdered( *camioes, 1 , camiao_dump);
-            printf("ordenados por id: \n");
-            tree_applyToAllOrdered( *camioes, 0 , camiao_dump);
-            getchar(); clearInputBuffer();
+            camiaoi_lista(*camioes);
+            printf("\n%s", pressENTER);
+            clearInputBuffer();
             input = 0;
             break;
         case 34: getchar(); clearInputBuffer(); input=0; break;

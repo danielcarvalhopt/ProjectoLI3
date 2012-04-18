@@ -83,6 +83,7 @@ void imprimelista(LinkedListPTR lista);
  * */
 void camiaoi_insere(MainTreePt camioes, TabelaHashPTR localidades);
 void camiaoi_remove(MainTreePt camiao);
+void camiaoi_lista(MainTreePt camiao);
 
 
 int reSampleLocalidades();

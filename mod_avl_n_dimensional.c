@@ -287,11 +287,8 @@ void tree_remove( MainTreePt thisMainTreePt, void* node, int dim ){
  * */
 static void tree_applyToAllOrderedRec( TreePt thisTree, void (*func)(void*), int thisDim ){
     if( thisTree != NULL ){
-        printf("left\n");
         tree_applyToAllOrderedRec( thisTree->l[thisDim], func, thisDim);
-        printf("this\n");
         func(thisTree->node);
-        printf("right\n");
         tree_applyToAllOrderedRec( thisTree->r[thisDim], func, thisDim);
     }
 }

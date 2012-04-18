@@ -434,7 +434,6 @@ void camiaoi_insere(MainTreePt camioes, TabelaHashPTR localidades){
 
     printf("Introduza a matrícula > ");
     lerStr( &matricula);
-    printf("matricula: %s\n", matricula);
     printf("Custo (por Km) > ");
     if( isDouble(custo = readDouble()) == 0 )
         printf("Erro: Valor inválido (veja as instruções acima)"); //erro
@@ -450,7 +449,7 @@ void camiaoi_insere(MainTreePt camioes, TabelaHashPTR localidades){
     }
     free(localidade);
     if( strcmp(local,vazia) == 0 ){
-        printf("Cancelou a introdução.\nPressione [ENTER] para voltar ao menu.");
+        printf("Cancelou a introdução.\n");
         free(matricula);
         free(local);
     }else
@@ -458,6 +457,17 @@ void camiaoi_insere(MainTreePt camioes, TabelaHashPTR localidades){
             printf("Dados introduzidos com sucesso!");
         else
             printf("Já existe um Camião com esse ID ou Matrícula");
+}
+
+void camiaoi_lista(MainTreePt camiao){
+    int input=-1;
+    printf("Pretende os resultados ordenados por ID(0) ou matrícula(1)? > ");
+    while( isInt(input = readInt()) == 0 && input != 0 && input != 1 )
+        printf("Erro: Valor inválido. Valores possíveis: 0 ou 1\n"); //erro
+    if( input == 0)
+        tree_applyToAllOrdered( camiao, 0, camiao_dump);
+    else if(input == 1)
+        tree_applyToAllOrdered( camiao, 1, camiao_dump);
 }
 
 void camiaoi_remove(MainTreePt camiao){
@@ -468,7 +478,7 @@ void camiaoi_remove(MainTreePt camiao){
     lerStr( &input );
 
     printf("Introduziu um ID (0) ou matricula (1)? > ");
-    while( isInt(tmpi = readInt()) == 0 )
+    while( isInt(tmpi = readInt()) == 0 && tmpi != 0 && tmpi != 1 )
         printf("Erro: Valor inválido. Valores possíveis: 0 ou 1\n"); //erro
 
     if( tmpi == 0 ){
