@@ -164,7 +164,7 @@ int apagaElementoTabelaHash(TabelaHashPTR table, void* externdata)
 }
 
 
-void aplicaFuncTabelaHash(TabelaHashPTR table, int (*applyFunction)(void *, void *), void *parametros) 
+void aplicaFuncTabelaHash(TabelaHashPTR table, void (*applyFunction)(void *, void *), void *parametros) 
 {
     MainListPTR aux;
     int i;

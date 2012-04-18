@@ -11,7 +11,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "mod_error.h"
-#include "mod_dijkstra.h"
 
 int lerStr(char **ptr){
     char strBuffer[1024];
@@ -294,7 +293,7 @@ void editaligacaoinput(TabelaHashPTR localidades)
 void imprimelistaligacoesinput(TabelaHashPTR localidades)
 {
     char *nomelocalidade=NULL;
-    printf("Introduza localidade de origem > ");
+    printf("Introduza localidade de partida > ");
     lerStr(&nomelocalidade);
     LocalidadePTR localidade = crialocalidade(nomelocalidade);
     LocalidadePTR aux;
@@ -315,14 +314,10 @@ void imprimeLocalidades (TabelaHashPTR table){
     MainListPTR *aux = table->arraycell;
     int i;
     for (i=0; i<n; i++){
-       // printf("%d\n", i);
-        //if(aux[i]->elems!=NULL){
-            printf("\n%d> ", i);
+        if(aux[i]->elems!=NULL){
             imprimelista(aux[i]->elems);
-        //}
-
+        }
     }
-
 }
 
 
@@ -347,11 +342,7 @@ void imprimelista(LinkedListPTR lista){
     LocalidadePTR local;
     while (aux){
         local = aux->extdata;
-        printf("%s",(char*)local->nome);
-        if (aux->prox)
-            printf(", ");
-        else
-            printf(".");
+        printf("%s\n",(char*)local->nome);
         aux=aux->prox;
     }
 }
@@ -361,10 +352,20 @@ void imprimelistaligacoes(LinkedListPTR lista){
     LigacoesidaPTR local;
     while (aux!=NULL){
         local = aux->extdata;
-        printf("%s %0.2f€ %0.2f€\n",(char*)local->nome, (double)local->custo, (double)local->distancia);
+        printf("Destino: %s \tCustos:%0.2f€ \tDistância:%0.2fKm\n",(char*)local->nome, (double)local->custo, (double)local->distancia);
         aux=aux->prox;
     }
 }
+
+
+//
+// Caminho mais Barato
+//
+
+
+
+
+
 
 //
 // CAMIOES

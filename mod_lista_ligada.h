@@ -110,7 +110,7 @@ void apagaLista(MainListPTR lista);
 
 
 void* cloneElementoHash(void *externdata);
-void aplicaFuncLista(MainListPTR lista, int (*applyFunction)(void *, void *), void *parametros);
+void aplicaFuncLista(MainListPTR lista, void (*applyFunction)(void *, void *), void *parametros);
 
 
 #endif /* MOD_LISTA_LIGADA_H_INCLUDED */

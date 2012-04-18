@@ -18,6 +18,7 @@
 
 #include <stdio.h>
 #include <string.h>
+ #include <stdlib.h>
 
 #include "dados.h"
 #include "input.h"
@@ -28,12 +29,12 @@
 #include "mod_avl_n_dimensional.h"
 #include "mod_lista_ligada.h"
 #include "mod_tabela_hash.h"
-#include "mod_dijkstra.h"
+#include "mod_graph.h"
 
 
 
 
-void insereficheiro(TabelaHashPTR localidades)
+void insereLocalidadesFicheiro(TabelaHashPTR localidades)
 {
     FILE *ficheiro; 
     char linha[80];
@@ -45,7 +46,42 @@ void insereficheiro(TabelaHashPTR localidades)
         inserelocalidade(localidades, linha);
     }
     fclose(ficheiro); 
-    imprimeColisoes(localidades); 
+     
+} 
+
+
+
+void insereLigacoesFicheiro(TabelaHashPTR localidades)
+{
+    FILE *ficheiro; 
+    char linha[1000];
+    int i,j,k,l, res=0, res2=0;
+    ficheiro = fopen ("ligacoes.txt", "rt");  
+    while(fgets(linha, 1000, ficheiro) != NULL)
+    {
+        char origem[200]={'\0'};
+        char destino[200]={'\0'};
+        res=res2=0;
+        for(i=0; linha[i]!=':';i++)
+            {
+                origem[i]=linha[i];origem[(strlen(origem)+1)]='\0';
+            }
+        i++;
+        for(j=0; linha[i]!=':';j++,i++)
+            {
+                destino[j]=linha[i];
+                destino[(strlen(destino)+1)]='\0';
+            }
+        i++;
+        for(k=0; linha[i]!=':'; k++,i++)
+            res=res*10+(linha[i]-'0');
+        i++;
+        for(l=0; linha[i]!='\n'; l++,i++)
+            res2=res2*10+(linha[i]-'0');
+        i++;
+        inserirligacao(localidades, origem, destino, res2, res);
+    }
+    fclose(ficheiro);  
 } 
 
 
@@ -64,22 +100,35 @@ int main(){
 
     /** Inicializar os atalhos predefinidos do menu */
     inicializarAtalhos();
-    //insereficheiro(localidades);
-    inserelocalidade(localidades,"Lousada");
-    inserelocalidade(localidades,"Porto");
-    inserelocalidade(localidades,"Braga");
-    inserirligacao(localidades, "Lousada", "Braga",2, 2);
-    inserirligacao(localidades, "Braga", "Porto",2, 2);
+    //insereLocalidadesFicheiro(localidades);
+    //insereLigacoesFicheiro(localidades);
+    //
+    inserelocalidade(localidades,"START");
+    inserelocalidade(localidades,"A");
+    inserelocalidade(localidades,"B");
+    inserelocalidade(localidades,"C");
+    inserelocalidade(localidades,"D");
+    inserelocalidade(localidades,"E");
+    inserelocalidade(localidades,"END");
+    inserirligacao(localidades,"START","A",3,4);
+    inserirligacao(localidades,"A","B",1,10);
+    inserirligacao(localidades,"B","END",3,20);
+    inserirligacao(localidades,"START","C",10,2);
+    inserirligacao(localidades,"C","END",10,40);
+    inserirligacao(localidades,"C","D",3,2);
+    inserirligacao(localidades,"D","E",2,2);
+    inserirligacao(localidades,"E","END",2,3);
+    GraphPTR graph= cheapestPathGraph(localidades, "START", "END",1);
+            imprimedijkstra(graph);
     //samples
     //reSampleLocalidades(1);
     //reSampleUser();
     //return 0;
-
-    /*while( input != -1 ){
+imprimeColisoes(localidades);
+    while( input != -1 ){
         input = printMenu(input);
         input = getInput(input, camioes, clientes, localidades);
-    }*/
-    cheapestPathDijsktra(localidades,  "Lousada", "Porto", 3); 
+    }
     return 0;
 }
 

@@ -86,7 +86,7 @@ int insereElementoTabelaHash (TabelaHashPTR table, void *externdata);
 LinkedListPTR procuraTabelaHash (TabelaHashPTR table, void *externdata);
 
 
-void aplicaFuncTabelaHash(TabelaHashPTR table, int (*applyFunction)(void *, void *), void *parametros) ;
+void aplicaFuncTabelaHash(TabelaHashPTR table, void (*applyFunction)(void *, void *), void *parametros) ;
 
 /**
 	@brief Elimina um elemento dado da tabela de hash

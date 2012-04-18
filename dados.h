@@ -10,6 +10,7 @@
 #include "mod_avl_n_dimensional.h"
 #include "mod_tabela_hash.h"
  
+ 
 
 
 //
@@ -362,7 +363,10 @@ int comparalocalidades (void *a, void *b);
  * @return 1  Removeu a ligação
  * */
 int removerligacao (TabelaHashPTR table, char *nomeorigem, char *nomedestino);
-
+void freeLocalidade(LocalidadePTR localidade);
+void freeLigacaoVinda(LigacoesvindaPTR ligacao);
+void freeLigacaoIda(LigacoesidaPTR ligacao);
+double costCheapestPath(TabelaHashPTR localidades, char* localidadeorigem, char* localidadedestino, double custoCamiaoKm);
 //
 // Funções e estruturas dos serviços anteriores
 //
