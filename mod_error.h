@@ -10,6 +10,8 @@
 #define ERROR_NOLIGS 			6 		// Não existem ligações a partir desta localidade!
 
 #define ERROR_NOCAMLOC			7
+#define ERROR_NOPATH			8
+#define ERROR_CANCEL			9
 
 
 typedef struct error

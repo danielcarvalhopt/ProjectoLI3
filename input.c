@@ -443,8 +443,9 @@ void imprimelistaligacoes(LinkedListPTR lista){
 
 void insereServicoInput(TabelaHashPTR localidades, MainTreePt clientesPt, MainTreePt camioes)
 {
-    char *localidadeorigem, *localidadedestino;
+    char *localidadeorigem, *localidadedestino, *inserir;
     int nif;CamiaoPt camiao;
+    LocalidadePTR localidadeA, localidadeB;
 
     printf("\nIntroduza o NIF do Cliente > ");
     while( isUInt (nif=readUInt())==0);
@@ -453,15 +454,32 @@ void insereServicoInput(TabelaHashPTR localidades, MainTreePt clientesPt, MainTr
     printf("Introduza a localidade de descarregamento da carga > ");
     lerStr(&localidadedestino);
 
+    if(((localidadeA=(crialocalidade(localidadeorigem)))==NULL)||((localidadeB=(crialocalidade(localidadedestino)))==NULL))
+    {
+       errorMessage(ERROR_MEMALOC);
+       freeLocalidade(localidadeA);freeLocalidade(localidadeB);
+       return;
+    }
+    if((procuraTabelaHash(localidades, localidadeA)==NULL)||(procuraTabelaHash(localidades, localidadeB)==NULL))
+    {
+    freeLocalidade(localidadeA);freeLocalidade(localidadeB);
+       errorMessage(ERROR_LOCNOTEXIST);
+       return;
+    }
     if ((camiao= (CamiaoPt)camiaoMaisBarato(camioes, localidadeorigem ))==NULL) {errorMessage(ERROR_NOCAMLOC); return;}
     double custo = costCheapestPath(localidades, localidadeorigem, localidadedestino, 1);
-    printf("Custo transporte: %.2f\n", custo);
+    if (custo==-1) {errorMessage(ERROR_NOPATH);return;}
+    printf("\nCusto transporte: %.2f€\nPretende registar o seviços? (sim ou [NAO]) > ", custo);
+    lerStr(&inserir);
+    if((strcmp(inserir,"SIM")==0)||(strcmp(inserir,"Sim")==0)||(strcmp(inserir,"sim")==0)) {
     switch(cliente_insereServico(clientesPt, nif, camiao->matricula, custo, 0, localidadeorigem,"", localidadedestino)){
         case -2: errorMessage(ERROR_MEMALOC); break;
         case 0:  errorMessage(ERROR_MEMALOC);break; 
         case -1:  errorMessage(ERROR_MEMALOC);break;
         case 1: errorMessage(ERROR_SUCCESS);
-    } 
+    }} 
+    else errorMessage(ERROR_CANCEL);
+    freeLocalidade(localidadeA);freeLocalidade(localidadeB);
 }
 
 

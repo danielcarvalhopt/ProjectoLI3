@@ -21,9 +21,6 @@ typedef struct GraphElem{
     int estado;
 } *GraphElemPTR;
 
-typedef struct sParametrosMap{
-	void* params[3];
-}ParametrosMap;
 
 GraphElemPTR newVertex(char* nome, char* nomeAnterior, double distancia, double custoCaminho, double custoCamiaoKm, int estado);
 GraphElemPTR chooseNextCheapestVertex (GraphPTR graph, GraphElemPTR proxVertice);
