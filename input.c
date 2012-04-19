@@ -490,7 +490,7 @@ void insereServicoInput(TabelaHashPTR localidades, MainTreePt clientesPt, MainTr
 void camiaoi_insere(MainTreePt camioes, TabelaHashPTR localidades){
     unsigned int id;
     char *matricula=NULL, *local=NULL, vazia[1]={'\0'};
-    LinkedListPTR localidade=NULL;
+    LocalidadePTR aux_local=NULL;
     double custo, peso;
 
     printf("Introduza o ID > ");
@@ -508,11 +508,12 @@ void camiaoi_insere(MainTreePt camioes, TabelaHashPTR localidades){
     
     printf("Localidade actual > ");
     lerStr( &local );
-    while( (localidade = procuraTabelaHash( localidades, crialocalidade(local) ) ) == NULL && strcmp(local,vazia) != 0 ){
+
+    while( (procuraTabelaHash( localidades, aux_local = crialocalidade(local) ) ) == NULL && strcmp(local,vazia) != 0 ){
         printf("Erro: Localidade não foi encontrada. Para cancelar apenas pressione [ENTER].\nLocalidade actual > ");
+        free(aux_local);
         lerStr( &local );
     }
-    free(localidade);
     if( strcmp(local,vazia) == 0 ){
         printf("Cancelou a introdução.\n");
         free(matricula);
