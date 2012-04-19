@@ -429,11 +429,4 @@ int cliente_comparaServico( void* servUm, void* servDois );
 // 
 
 
-typedef struct  StatsLocalidade{
-    char* nome;
-    int entregas;
-    LinkedListPTR clientes;
-}*StatsLocalidadePTR;
-
-
 #endif /* DADOS_H_INCLUDED */

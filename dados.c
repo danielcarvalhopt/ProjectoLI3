@@ -366,6 +366,7 @@ double costCheapestPath(TabelaHashPTR localidades, char* localidadeorigem, char*
         destino=(GraphElemPTR)(procuraTabelaHash(graph, newVertex(destino->nomeAnterior, "",0,0,0,0)))->extdata;
     }
     printf("%s\n",localidadeorigem);
+    apagaTabelaHash(graph);
     return cost;
 }
 
@@ -412,18 +413,6 @@ int cliente_comparaServico( void* servUm, void* servDois ){
 //
 // Estatisticas
 // 
-/*
-typedef struct  StatsLocalidade{
-    char* nome;
-    int entregas;
-    LinkedListPTR clientes;
-}*StatsLocalidadePTR;
 
-
-TabelaHashPTR criaStats(){
-    TabelaHashPTR statsHashTable = (criaTabelaHash)
-
-
-}*/
 
 
