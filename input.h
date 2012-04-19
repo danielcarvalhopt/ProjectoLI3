@@ -98,6 +98,7 @@ int reSampleUser();
 int readSampleClientes(MainTreePt *clientes, int (*comparaClientes[DIM])(void*,void*));
 int readSampleCamioes(MainTreePt *camioes, int (*comparaCamioes[DIM])(void*,void*));
 void insereServicoInput(TabelaHashPTR localidades, MainTreePt clientesPt, MainTreePt camioes);
+void servicosi_lista(MainTreePt clientes);
 
 
 #endif /* INPUT_H_INCLUDED */

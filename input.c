@@ -457,10 +457,10 @@ void insereServicoInput(TabelaHashPTR localidades, MainTreePt clientesPt, MainTr
     double custo = costCheapestPath(localidades, localidadeorigem, localidadedestino, 1);
     printf("Custo transporte: %.2f\n", custo);
     switch(cliente_insereServico(clientesPt, nif, camiao->matricula, custo, 0, localidadeorigem,"", localidadedestino)){
-        case -2: errorMessage(ERROR_MEMALOC); break;
-        case 0:  errorMessage(ERROR_MEMALOC);break; 
-        case -1:  errorMessage(ERROR_MEMALOC);break;
-        case 1: errorMessage(ERROR_SUCCESS);
+        case -2:
+        case -1:
+        case  0: errorMessage(ERROR_MEMALOC); break;
+        case  1: errorMessage(ERROR_SUCCESS);
     } 
 }
 
@@ -625,5 +625,43 @@ void clientei_modifica(MainTreePt clientes){
 
     cliente_substituiPeloNif( clientes, nif, morada );
     printf("Modificado!\n");
+}
+
+
+void servicosi_lista(MainTreePt clientes){
+    unsigned int nif;
+    TreePt cliente = NULL;
+    ClientePt caux=NULL;
+    LinkedListPTR list = NULL;
+    ServicoPt servico = NULL;
+    printf("Introduza o nif do cliente > ");
+    while( isUInt( nif = readUInt() ) == 0 )
+        printf("Número inválido");
+    
+    caux = cliente_novo( nif, NULL, NULL, NULL );
+    cliente = tree_search( clientes, caux, 0);
+    free(caux);
+    
+    if( cliente == NULL ) return;
+    
+    if( ((ClientePt)cliente->node)->servicos->nelems == 0 ){
+        printf("O cliente não tem histórico de serviços anteriores.");
+        return;
+    }
+
+    list = ((ClientePt)cliente->node)->servicos->elems;
+    printf("[AAAA-MM-DD hh:mm:ss] Matrícula  Peso  Custo  <Origem> <Carga> <Destino>\n");
+    while( list ){
+        servico = (ServicoPt)list->extdata;
+        printf("[%s] %s %gKg %g€ <%s> <%s> <%s>\n",
+                servico->datahora,
+                servico->camiao,
+                servico->peso,
+                servico->custo,
+                servico->origem,
+                servico->carga,
+                servico->destino);
+        list = list->prox;
+    }
 }
 
