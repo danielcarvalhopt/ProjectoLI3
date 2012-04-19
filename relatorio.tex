@@ -9,7 +9,7 @@
 \usepackage[landscape]{geometry}
 
 %Sample text
-\usepackage{lipsum}
+%\usepackage{lipsum}
 
 %escrever acentos e coisas do género sem que o latex se desoriente
 \usepackage[utf8]{inputenc}
@@ -217,6 +217,22 @@ Nas figuras~\ref{menu principal} e~\ref{menu principal com atalho diferente} pod
     \centering
         \includegraphics[width=200pt]{menu_com_atalho_diferente.png}
 \end{figure}
+
+\clearpage
+\subsection{Serialização}
+
+
+
+\clearpage
+\subsection{Ligações entre Localidades - Algoritmo Caminho mais barato}
+Baseados no problema das interligações entre as localidades e tendo em conta que seria necessário calcular o caminho mais barato
+entre duas localiades o percurso mais lógico foi ter como base um algoritmo que calculasse o caminho mais curto entre vértices num
+grafo e adaptá-lo a este problema. A implementação passou então por usar o Algoritmo de Caminho mais Curto de Dijkstra e aplicá-lo
+criando então um grafo com as localidade. Usando uma Tabela de Dispersão como suporte onde cada elemento a ser introduzido é um vértice
+que indica qual a localidade que está ligada até ele e que tenha até ao momento o preço mais baixo, um custo total calculado pela soma
+de todas as passagens por outras localidades ate chegas à actual, o estado do vértice que indica se já foram processadas todas
+as localidades que estão ligadas a este e caso não estejam serão processadas de forma a prosseguir então a criação de caminhos
+até chegar à localidade pretendida ou então verificar que não há caminho possível.
 
 
 
