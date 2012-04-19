@@ -56,13 +56,13 @@ int searchGraphElemAux (void *a, void *b){
 
 GraphElemPTR newVertex(char* nome, char* nomeAnterior, double distancia, double custoCaminho, double custoCamiaoKm, int estado)
 {
-    GraphElemPTR novo = (GraphElemPTR) malloc(sizeof(struct GraphElem));
+    GraphElemPTR novo = malloc(sizeof(struct GraphElem));
     if (novo==NULL) return NULL;
 
     novo->nome=malloc(strlen(nome)+1);
     strcpy(novo->nome, nome);
 
-    novo->nomeAnterior=malloc(strlen(nome)+1);
+    novo->nomeAnterior=malloc(strlen(nomeAnterior)+1);
     strcpy(novo->nomeAnterior, nomeAnterior);
 
     novo->distancia=distancia;

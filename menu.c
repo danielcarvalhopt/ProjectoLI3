@@ -228,10 +228,10 @@ int printMenu(int input){
                                     "Menu P. > Gestao de Localidades/Ligacoes", space,
                                     "1) Inserir Localidade",
                                     "2) Eliminar Localidade",space,
-                                    "4) Criar Ligacao",
-                                    "5) Eliminar Ligacao",
-                                    "6) Listar Ligacoes",
-                                    "7) Modificar Ligacoes"
+                                    "3) Criar Ligacao",
+                                    "4) Eliminar Ligacao",
+                                    "5) Listar Ligacoes",
+                                    "6) Modificar Ligacoes"
                         );
                         break;
                 case 41:
@@ -391,7 +391,10 @@ int getInput(int input, MainTreePt *camioes, MainTreePt *clientes, TabelaHashPTR
     switch( input ){
         case -1:
             input = 0;
-        case 1: insereServicoInput(localidades, clientes, camioes); break;
+        case 1: insereServicoInput(*localidades, *clientes, *camioes);
+            clearInputBuffer();
+            input = 0;
+            break;
         case 2:
             input = getIntLoop();
             if( input >= 1 && input <= 4)
@@ -448,7 +451,7 @@ int getInput(int input, MainTreePt *camioes, MainTreePt *clientes, TabelaHashPTR
             break;
         case 4:
             input = getIntLoop();
-            if( input >= 1 && input <= 8)
+            if( input >= 1 && input <= 6)
                 input += 40;
             else if( input != 0 )
                 input = 4;
