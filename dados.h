@@ -425,8 +425,15 @@ int cliente_insereServico( MainTreePt clientesPt, unsigned int nif, char *camiao
 int cliente_comparaServico( void* servUm, void* servDois );
 
 //
-// Mais coisas?
+// Estatisticas
 // 
+
+
+typedef struct  StatsLocalidade{
+    char* nome;
+    int entregas;
+    LinkedListPTR clientes;
+}*StatsLocalidadePTR;
 
 
 #endif /* DADOS_H_INCLUDED */

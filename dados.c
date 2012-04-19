@@ -410,8 +410,20 @@ int cliente_comparaServico( void* servUm, void* servDois ){
 }
 
 //
-// Mais coisas?
+// Estatisticas
 // 
+/*
+typedef struct  StatsLocalidade{
+    char* nome;
+    int entregas;
+    LinkedListPTR clientes;
+}*StatsLocalidadePTR;
 
+
+TabelaHashPTR criaStats(){
+    TabelaHashPTR statsHashTable = (criaTabelaHash)
+
+
+}*/
 
 
