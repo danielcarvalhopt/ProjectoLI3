@@ -7,6 +7,10 @@
 Para compilar o programa utilizar o cmake. ( ./cmake )
 O cmake remove ficheiros antigos e executa o makefile.
 
+******* instruções para correr o programa ******
+O estado do programa com os dados de teste está guardado nos ficheiros dados.sav e dados.sav.backup.
+Basta carregar os dados de teste com a opção 82.
+
 
 ******* compilar a documentação ***
 instalar o doxygen 1.8.0, preferencialmente compilando as fontes e não usando os binários

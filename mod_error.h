@@ -6,10 +6,12 @@
 #define ERROR_LOCEXIST 			2 		// Localidade(s) já existe(m)!
 #define ERROR_LOCNOTEXIST 		3 		// Localidade(s) não existe(m)!
 #define ERROR_LIGLOCEXIST 		4 		// Ligação entre localidades já existe!
-#define ERROR_LIGLOCNOTEXIST 	5 		// Ligação entre localidades não existe!
+#define ERROR_LIGLOCNOTEXIST            5               // Ligação entre localidades não existe!
 #define ERROR_NOLIGS 			6 		// Não existem ligações a partir desta localidade!
 
-#define ERROR_NOCAMLOC			7
+#define ERROR_NOCAMLOC			7               // Não existe um camião nessa localidade
+#define ERROR_INVALID_VALI              8               // Valor inválido (veja as instruções acima)
+
 
 
 typedef struct error
