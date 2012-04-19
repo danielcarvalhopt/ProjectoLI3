@@ -10,8 +10,10 @@
 #define ERROR_NOLIGS 			6 		// Não existem ligações a partir desta localidade!
 
 #define ERROR_NOCAMLOC			7               // Não existe um camião nessa localidade
-#define ERROR_INVALID_VALI              8               // Valor inválido (veja as instruções acima)
+#define ERROR_NOPATH			8               // Não há caminho spossiveis entre as localidades
+#define ERROR_CANCEL			9               // Operacao cancelada pelo utilizador
 
+#define ERROR_INVALID_VALI              10              // Valor inválido (veja as instruções acima)
 
 
 typedef struct error

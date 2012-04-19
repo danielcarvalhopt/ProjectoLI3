@@ -15,6 +15,8 @@ static Error errors[] =
   {"ERROR_NOLIGS",	"Não existem ligações a partir desta localidade!"},
   /*      -------      */
   {"ERROR_NOCAMLOC",  "Não existem camiões nesta localidade!"},
+  {"ERROR_NOPATH", "Não há caminhos possíveis entre as localidades!"},
+  {"ERROR_CANCEL", "Operação cancelada pelo utilizador!"},
   {"ERROR_INVALID_VALI","Erro: Valor inválido (veja as instruções acima)"}
 };
 

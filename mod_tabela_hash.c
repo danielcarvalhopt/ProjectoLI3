@@ -191,27 +191,3 @@ void apagaTabelaHash(TabelaHashPTR table)
         diminuiTabelaHash(table);
     }
 }
-
-/*
-void imprimeHash(TabelaHashPTR table)
-{
-    MainListPTR *aux=table->arraycell; int i;
-
-    for(i=0;i<(table->totalcells);i++)
-    {
-        imprimelista(aux[i]->elems);
-    }
-}
-
-
-int hash_function (void *externdata, int b)
-{
-    char *a=externdata; double res=0; int i=0;
-    while (i < strlen(a))
-    {
-        res+=a[i];
-        i++;
-    }
-    return (int)res%(b-1);
-}
-*/

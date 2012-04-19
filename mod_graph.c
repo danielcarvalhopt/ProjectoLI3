@@ -106,7 +106,6 @@ int buildPathGraph(GraphPTR graph, LigacoesidaPTR ligacao,GraphElemPTR vertex, i
 
 
 
-
 GraphElemPTR chooseNextCheapestVertex (GraphPTR graph, GraphElemPTR proxVertice)
 {
         LinkedListPTR throughCells; int i;
@@ -146,7 +145,6 @@ GraphPTR cheapestPathGraph(TabelaHashPTR localidades,  char* localidadeorigem, c
             throughList=throughList->prox;
         }
         proxVertice->estado = VISITADO;
-        if ((strcmp(proxVertice->nome,localidadedestino))==0) return graph;
         naOrla--;
     } while(naOrla>ORLA && (strcmp(proxVertice->nome,localidadedestino)!=0));
 

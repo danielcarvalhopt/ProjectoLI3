@@ -30,14 +30,6 @@ CamiaoPt camiao_novo( unsigned int id, char *matricula, double custo, double pes
     CamiaoPt novoCamiaoPt = NULL;
     if( (novoCamiaoPt = malloc( sizeof(Camiao)) ) == NULL ) return NULL;
 
-    /*tentar alocar espaço para a matricula
-    if( (novoCamiaoPt->matricula = allocStr( novoCamiaoPt->matricula, matricula ) ) == NULL ){
-        free(novoCamiaoPt);
-        return NULL;
-    }
-    */
-
-    // ou meter só o apontador
     novoCamiaoPt->matricula = matricula;
     novoCamiaoPt->id = id;
     novoCamiaoPt->custo = custo;
@@ -361,15 +353,19 @@ void freeLocalidade(LocalidadePTR localidade)
 double costCheapestPath(TabelaHashPTR localidades, char* localidadeorigem, char* localidadedestino, double custoCamiaoKm)
 {
     GraphPTR graph; graph=cheapestPathGraph(localidades,localidadeorigem, localidadedestino, custoCamiaoKm);
-    GraphElemPTR destino=(GraphElemPTR)(procuraTabelaHash(graph, newVertex(localidadedestino, "",0,0,0,0)))->extdata;
+    GraphElemPTR destino; LinkedListPTR destinoAux;
+    if((destinoAux=(LinkedListPTR)(procuraTabelaHash(graph, newVertex(localidadedestino, "",0,0,0,0))))==NULL)
+        return -1;
+    destino=destinoAux->extdata;
     double cost = destino->custoCaminho;
-
+    printf("\nCaminho gerado: \n");
     while(strcmp(destino->nome,localidadeorigem)!=0)
     {
+
         printf("%s <- ",destino->nome);
         destino=(GraphElemPTR)(procuraTabelaHash(graph, newVertex(destino->nomeAnterior, "",0,0,0,0)))->extdata;
     }
-    //imprimedijkstra(graph);
+    printf("%s\n",localidadeorigem);
     return cost;
 }
 
@@ -414,8 +410,20 @@ int cliente_comparaServico( void* servUm, void* servDois ){
 }
 
 //
-// Mais coisas?
+// Estatisticas
 // 
+/*
+typedef struct  StatsLocalidade{
+    char* nome;
+    int entregas;
+    LinkedListPTR clientes;
+}*StatsLocalidadePTR;
 
+
+TabelaHashPTR criaStats(){
+    TabelaHashPTR statsHashTable = (criaTabelaHash)
+
+
+}*/
 
 
