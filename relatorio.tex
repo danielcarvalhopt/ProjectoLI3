@@ -81,7 +81,6 @@ Hash
     \begin{tabular}{r@{, }l}
         Bruno Ferreira&A61055\\
         Daniel Carvalho&A61008\\
-        Mariana Madeiros&A61041\\
     \end{tabular}
     
     \vspace{5pt}
@@ -103,6 +102,8 @@ Relativamente às estruturas de dados será feita uma abordagem sobre módulos g
 
 Para além do já supracitado, este relatório serve de referência para o uso da interface do programa pelo utilizador, sendo explicado com pormenor o uso e o funcionamento desta.
 
+Por fim serão tratados os aspectos mais avançados da aplicação, como a salvaguarda do estado da aplicação e a implementação do algoritmo Dijkstra de forma a ser possível calcular qual o caminho mais barato entre uma série de localidades, cumprindo assim o objectivo principal proposto pelo enunciado.
+
 \clearpage
 \section{Introdução}
 Uma empresa de transportes de nome Transitários LEI procura uma solução informática que permita registar informação relativa aos seus serviços bem como auxiliar a empresa na execução dos mesmos.
@@ -116,6 +117,8 @@ Atendendo às várias restrições que a empresa comporta nos seus serviços, co
     \item{Alteração das propriedades de localidades e das ligações entre estas;}
     \item{Inserção, remoção e edição tanto de clientes como dos meios de transporte possuídos pela empresa}
     \item{Registo dos serviços prestados}
+    \item{Cálculo de caminho mais barato}
+    \item{Serialização de dados}
 \end{itemize}
 Tendo estas informações como base irá de seguida ser mostrado o processo de análise e
 solução do problema apresentado implementado na linguagem imperativa C.
@@ -146,11 +149,24 @@ A implementação foi baseada em módulos genéricos de Tabelas de dispersão e 
 
 Seguindo-se neste relatório encontram-se duas figuras ilustrativas da forma como as localidades usam as estruturas de dados acima referidos, de uma forma mais genérica.
 
-IMAGEM
-
-IMAGEM
+\clearpage
+\onecolumn
+\begin{figure}[hbt]
+    \caption[Tabela de Dispersão]{Tabela de Dispersão aplicada às localidades.}
+    \label{hashtable}
+    \centering
+        \includegraphics[width=400pt]{hashtable.png}
+\end{figure}
+\begin{figure}[tbt]
+    \caption[Listas Ligadas]{Listas ligadas}
+    \label{linkedlist}
+    \centering
+        \includegraphics[width=400pt]{hashtable.png}
+\end{figure}
 
 \clearpage
+
+\twocolumn
 \subsection[Clientes e Camiões]{Clientes e Camiões -- Árvores AVL n\hyph{}dimensionais}
 As árvores Adelson-Velskii Landis n\hyph{}dimensionais surgiram da necessidade de ordenar o mesmo conjunto de informação de várias formas diferentes, isto sem ocupar demasiado espaço em memória.
 
@@ -219,26 +235,22 @@ Nas figuras~\ref{menu principal} e~\ref{menu principal com atalho diferente} pod
 \end{figure}
 
 \clearpage
-\subsection{Serialização}
+\subsection[Serialização]{Serialização de dados}
+Como forma de se guardar o estado da aplicação, optou-se por serializar os dados. A serialização dos dados nesta aplicação consiste em fragmentar e guardar a informação num ficheiro em modo binário. Os dados são guardados de uma forma organizada, mas dinâmica. Um exemplo disto é a maneira como as strings são guardadas: em vez de guardar strings com tamanho fixo, preferiu-se utilizar um \emph{short int} para indicar o numero de caracteres a ler.
 
+A serialização também foi optimizada para melhorar o desempenho do programa. Um exemplo disso é um valor que é guardado (um inteiro) que representa o tamanho da tabela de Hash das Localidades. Assim, ao importar, evita-se a necessidade de expansão da tabela, que é um processo que consome muitos recursos.
 
+A maior dificuldade sentida nesta implementação foi o facto de escrever/ler dados de tamanho dinâmico.
 
 \clearpage
-\subsection{Ligações entre Localidades - Algoritmo Caminho mais barato}
-Baseados no problema das interligações entre as localidades e tendo em conta que seria necessário calcular o caminho mais barato
-entre duas localiades o percurso mais lógico foi ter como base um algoritmo que calculasse o caminho mais curto entre vértices num
-grafo e adaptá-lo a este problema. A implementação passou então por usar o Algoritmo de Caminho mais Curto de Dijkstra e aplicá-lo
-criando então um grafo com as localidade. Usando uma Tabela de Dispersão como suporte onde cada elemento a ser introduzido é um vértice
-que indica qual a localidade que está ligada até ele e que tenha até ao momento o preço mais baixo, um custo total calculado pela soma
-de todas as passagens por outras localidades ate chegas à actual, o estado do vértice que indica se já foram processadas todas
-as localidades que estão ligadas a este e caso não estejam serão processadas de forma a prosseguir então a criação de caminhos
-até chegar à localidade pretendida ou então verificar que não há caminho possível.
+\subsection[Ligações entre Localidades]{Ligações entre Localidades -- Algoritmo Caminho mais \vbox{barato}}
+Baseados no problema das interligações entre as localidades e tendo em conta que seria necessário calcular o caminho mais barato entre duas localidades o percurso mais lógico foi ter como base um algoritmo que calculasse o caminho mais curto entre vértices num grafo e adaptá-lo a este problema. A implementação passou então por usar o Algoritmo de Caminho mais Curto de Dijkstra e aplicá-lo criando então um grafo com as localidade. Usando uma Tabela de Dispersão como suporte onde cada elemento a ser introduzido é um vértice que indica qual a localidade que está ligada até ele e que tenha até ao momento o preço mais baixo, um custo total calculado pela soma de todas as passagens por outras localidades ate chegas à actual, o estado do vértice que indica se já foram processadas todas as localidades que estão ligadas a este e caso não estejam serão processadas de forma a prosseguir então a criação de caminhos até chegar à localidade pretendida ou então verificar que não há caminho possível.
 
 
 
 \clearpage
 \section{Conclusão}
-Este relatório serve de referência para as soluções e implementações que, tendo em conta todas as indicações dadas pelo enunciado do projecto, foram tidas em conta pelo grupo. De forma sucinta a escolha passou por Tabela de Hash com chaining utilizando o conceito de grafo e listas ligadas para tratamento de localidades e árvores AVL n\hyph{}dimensionais para o tratamento de clientes e camiões.
+Este relatório serve de referência para as soluções e implementações que, tendo em conta todas as indicações dadas pelo enunciado do projecto, foram tidas em conta pelo grupo. De forma sucinta a escolha passou por Tabela de Hash com chaining utilizando o conceito de grafo e listas ligadas para tratamento de localidades e árvores AVL n\hyph{}dimensionais para o tratamento de clientes e camiões. Para além disso, recorreu-se ao algoritmo de Dijkstra para calcular os caminhos mais baratos entre as várias localidades e também, de forma a preservar o estado da aplicação, recorreu-se à serialização de dados.
 
 Durante a fase de trabalhos do grupo recorreu-se ao git devido à sua capacidade de controlo de versões.
 
@@ -250,15 +262,12 @@ De saudar também o empenho dos elementos do grupo que trabalharam afincadamente
 \begin{center}
     \begin{tabular}{ccc}
         \includegraphics[width=90pt]{bruno.png}&
-        \includegraphics[width=90pt]{daniel.png}&
-        \includegraphics[width=90pt]{mariana.png}\\
+        \includegraphics[width=90pt]{daniel.png}\\
         
         \small{\textbf{Bruno Ferreira}}&
-        \small{\textbf{Daniel Carvalho}}&
-        \small{\textbf{Mariana Medeiros}}\\
+        \small{\textbf{Daniel Carvalho}}\\
         \small{\textbf{A61055}}&
-        \small{\textbf{A61008}}&
-        \small{\textbf{A61041}}\\
+        \small{\textbf{A61008}}\\
     \end{tabular}
 \end{center}
 \end{document}
