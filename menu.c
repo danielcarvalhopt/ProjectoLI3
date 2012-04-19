@@ -79,8 +79,6 @@ int printMenu(int input){
 	switch( input ){
                 case 1:
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
-
                         printf( "*    %-56s  *\n"
                                 "%s",
                                     "Menu Principal > Novo pedido", space
@@ -93,18 +91,19 @@ int printMenu(int input){
                                 "*    %-56s  *\n"
                                 "*    %-56s  *\n"
                                 "*    %-56s  *\n"
+                                "*    %-56s  *\n"
+                                "%s"
                                 "*    %-56s  *\n",
                                     "Menu P. > Gestao de Clientes", space,
                                     "1) Inserir Cliente",
                                     "2) Eliminar Cliente",
                                     "3) Listar Clientes",
-                                    "4) Modificar Cliente"
+                                    "4) Modificar Cliente",space,
+                                    "5) Listar Servicos do Cliente"
                         );
                         break;
                 case 21:
-                        strcpy( inputWait, "" );
                         strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Inserindo dados de teste..." ); 
                         printf( "*    %-56s  *\n"
                                 "%s"
                                 "*    %-56s  *\n"
@@ -149,6 +148,14 @@ int printMenu(int input){
                                     "Menu P. > Gestao de Clientes > Modificar Cliente", space
                         );
                         novaEscolha(24, "Modificar Cliente");
+                        break;
+                case 25:
+                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
+                        printf( "*    %-56s  *\n"
+                                "%s",
+                                    "Menu P. > Gestao de Clientes > Listar Servicos", space
+                        );
+                        novaEscolha(25, "Listar Servicos de Cliente");
                         break;
 
                 case 3:
@@ -397,7 +404,7 @@ int getInput(int input, MainTreePt *camioes, MainTreePt *clientes, TabelaHashPTR
             break;
         case 2:
             input = getIntLoop();
-            if( input >= 1 && input <= 4)
+            if( input >= 1 && input <= 5)
                 input += 20;
             else if( input != 0 )
                 input = 2;
@@ -418,6 +425,10 @@ int getInput(int input, MainTreePt *camioes, MainTreePt *clientes, TabelaHashPTR
             break;
         case 24:
             clientei_modifica(*clientes);
+            clearInputBuffer();
+            input=0; break;
+        case 25:
+            servicosi_lista(*clientes);
             clearInputBuffer();
             input=0; break;
         case 3:
@@ -470,6 +481,7 @@ int getInput(int input, MainTreePt *camioes, MainTreePt *clientes, TabelaHashPTR
                 input = 9;
             break;
         case 91:
+            serialize( *localidades, *camioes, *clientes );
             input = -1;
             break;
         case 92:
