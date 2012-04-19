@@ -9,7 +9,6 @@
  * <CENTER><B>
  * Bruno Ferreira - a61055<BR>
  * Daniel Carvalho - a61008<BR>
- * Mariana Medeiros - a61041
  * </B></CENTER>
  * */
 
