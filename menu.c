@@ -61,7 +61,7 @@ int printMenu(int input){
 	char title[64+2] = "*    Transportes LEI - Gestao de Transportes                   *\n";
 	char status[60+1] = " ";
 	char menuAnt[62+1] = "0) Voltar ao Menu Principal";
-        char inputWait[4] = ">> ";
+        char inputWait[4] = "";
 
 
         int i;
@@ -78,14 +78,13 @@ int printMenu(int input){
 	printf("%s%s%s%s",fill,space,title,space);
 	switch( input ){
                 case 1:
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu principal" );
                         printf( "*    %-56s  *\n"
                                 "%s",
                                     "Menu Principal > Novo pedido", space
                         );
                         break;
-
                 case 2:
+                        strcpy(inputWait, ">> ");
                         printf( "*    %-56s  *\n"
                                 "%s"
                                 "*    %-56s  *\n"
@@ -103,7 +102,6 @@ int printMenu(int input){
                         );
                         break;
                 case 21:
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
                         printf( "*    %-56s  *\n"
                                 "%s"
                                 "*    %-56s  *\n"
@@ -119,20 +117,13 @@ int printMenu(int input){
                         novaEscolha(21,"Inserir Cliente");
                         break;
                 case 22:
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
-
                         printf( "*    %-56s  *\n"
                                 "%s",
                                     "Menu P. > Gestao de Clientes > Eliminar Cliente", space
                         );
                         novaEscolha(22, "Eliminar Cliente");
                         break;
-
                 case 23:
-                        strcpy( status, "Listando Elementos..." );
-                        strcpy( inputWait, "" );
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
                         printf( "*    %-56s  *\n"
                                 "%s",
                                     "Menu P. > Gestao de Clientes > Listar Clientes", space
@@ -140,9 +131,6 @@ int printMenu(int input){
                         novaEscolha(23, "Listar Clientes");
                         break;
                 case 24:
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
-
                         printf( "*    %-56s  *\n"
                                 "%s",
                                     "Menu P. > Gestao de Clientes > Modificar Cliente", space
@@ -150,15 +138,14 @@ int printMenu(int input){
                         novaEscolha(24, "Modificar Cliente");
                         break;
                 case 25:
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
                         printf( "*    %-56s  *\n"
                                 "%s",
                                     "Menu P. > Gestao de Clientes > Listar Servicos", space
                         );
                         novaEscolha(25, "Listar Servicos de Cliente");
                         break;
-
                 case 3:
+                        strcpy(inputWait, ">> ");
                         printf( "*    %-56s  *\n"
                                 "%s"
                                 "*    %-56s  *\n"
@@ -173,9 +160,6 @@ int printMenu(int input){
                         );
                         break;
                 case 31:
-                        strcpy( inputWait, "" );
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Inserindo dados de teste..." ); 
                         printf( "*    %-56s  *\n"
                                 "%s"
                                 "*    %-56s  *\n"
@@ -195,8 +179,6 @@ int printMenu(int input){
                         novaEscolha(31, "Inserir Veiculo");
                         break;
                 case 32:
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-
                         printf( "*    %-56s  *\n"
                                 "%s",
                                     "Menu P. > Gestao de Camioes > Eliminar Veiculo", space
@@ -204,18 +186,12 @@ int printMenu(int input){
                         novaEscolha(32, "Eliminar Veiculo");
                         break;
                 case 33:
-                        strcpy( status, "Listando Elementos..." );
-                        strcpy( inputWait, "" );
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
                         printf( "*    %-56s  *\n",
                                     "Menu P. > Gestao de Camioes > Listar Veiculos"
                         ); 
                         novaEscolha(33, "Listar Veiculos");
                         break;
                 case 34:
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
-
                         printf( "*    %-56s  *\n"
                                 "%s",
                                     "Menu P. > Gestao de Camioes > Modificar Veiculo", space
@@ -223,6 +199,7 @@ int printMenu(int input){
                         novaEscolha(34, "Modificar Veiculo");
                         break;
                 case 4:
+                        strcpy(inputWait, ">> ");
                         printf( "*    %-56s  *\n"
                                 "%s"
                                 "*    %-56s  *\n"
@@ -242,23 +219,12 @@ int printMenu(int input){
                         );
                         break;
                 case 41:
-                        strcpy( inputWait, "" );
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Inserindo dados de teste..." ); 
-                        printf( "*    %-56s  *\n"
-                                "%s"
-                                "*    %-56s  *\n"
-                                "*    %-56s  *\n",
-                                    "Menu P. > Localidades/Ligacoes > Inserir Localidade", space,
-                                    "Campos:",
-                                    "???"
+                        printf( "*    %-56s  *\n",
+                                    "Menu P. > Localidades/Ligacoes > Inserir Localidade"
                         );
                         novaEscolha(41, "Inserir Localidade");
                         break;
                 case 42:
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
-
                         printf( "*    %-56s  *\n"
                                 "%s",
                                     "Menu P. > Localidades/Ligacoes > Eliminar Localidade", space
@@ -266,9 +232,6 @@ int printMenu(int input){
                         novaEscolha(42, "Eliminar Localidade");
                         break;
                 case 43:
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
-
                         printf( "*    %-56s  *\n"
                                 "%s",
                                     "Menu P. > Localidades/Ligacoes > Criar Ligacao", space
@@ -276,9 +239,6 @@ int printMenu(int input){
                         novaEscolha(43, "Criar Ligacao");
                         break;
                 case 44:
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
-
                         printf( "*    %-56s  *\n"
                                 "%s",
                                     "Menu P. > Localidades/Ligacoes > Eliminar Ligacao", space
@@ -286,28 +246,21 @@ int printMenu(int input){
                         novaEscolha(44, "Eliminar Ligacao");
                         break;
                 case 45:
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
-
                         printf( "*    %-56s  *\n"
                                 "%s",
                                     "Menu P. > Localidades/Ligacoes > Listar Ligacao", space
                         );
                         novaEscolha(45, "Listar Ligacao");
                         break;
-
                 case 46:
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
-                        strcpy( status, "Funcionalidade ainda nao esta disponivel..." ); 
-
                         printf( "*    %-56s  *\n"
                                 "%s",
                                     "Menu P. > Localidades/Ligacoes > Modificar Ligacao", space
                         );
                         novaEscolha(46, "Modificar Ligacao");
                         break;
-
                 case 9:
+                        strcpy(inputWait, ">> ");
 			printf( "*    %-56s  *\n"
 				"%s"
 				"*    %-56s  *\n"
@@ -328,6 +281,7 @@ int printMenu(int input){
 			printf( "*    %-56s  *\n", "Menu Principal > Sair > Sair sem guardar");
 			break;
                 case 8:
+                        strcpy(inputWait, ">> ");
                         printf( "*    %-56s  *\n"
 				"%s"
 				"*    %-56s  *\n"
@@ -337,22 +291,20 @@ int printMenu(int input){
 					"2) Importar"
 			);
 			break;
-
 		case 81:
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
                         printf( "*    %-56s  *\n",
                                     "Menu P. > Importar/Exportar Dados > Exportar Dados"
                         ); 
                         novaEscolha(81, "Exportar Dados");
                         break;
                 case 82:
-                        strcpy( menuAnt, "[qualquer]) Voltar ao Menu Principal" );
                         printf( "*    %-56s  *\n",
                                     "Menu P. > Importar/Exportar Dados > Importar Dados"
                         ); 
                         novaEscolha(82, "Importar Dados");
                         break;
 		default:
+                        strcpy(inputWait, ">> ");
 			printf( "*    %-56s  *\n"
 				"%s"
 				"*    %-56s  *\n"
@@ -377,8 +329,6 @@ int printMenu(int input){
                                         lastString[2],space,
 					"8) Importar/Exportar Dados"
 			);
-			
-
 			strcpy(menuAnt, "9) Sair");
 	}
 	printf(
@@ -388,8 +338,6 @@ int printMenu(int input){
 		"* %60s *\n"
 		"%s%s",
 			space, menuAnt, space, space, status, fill, inputWait);
-	
-	
 	return input;
 }
 
